@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/fortify/json-schema/fortify-application-schema.json",
+  "title": "Fortify Application",
+  "description": "Represents an application in the Fortify platform that is subject to security testing. An application contains one or more releases and may be organized with microservices. Applications are the primary organizational unit for managing security assessments.",
+  "type": "object",
+  "required": [
+    "applicationName"
+  ],
+  "properties": {
+    "applicationId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Unique identifier of the application"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Name of the application",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "applicationDescription": {
+      "type": "string",
+      "description": "Description of the application and its purpose"
+    },
+    "applicationCreatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the application was created in ISO 8601 format"
+    },
+    "businessCriticalityType": {
+      "type": "string",
+      "description": "Business criticality classification indicating the importance of the application",
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ]
+    },
+    "sdlcStatusType": {
+      "type": "string",
+      "description": "Current software development lifecycle status of the application",
+      "enum": [
+        "Development",
+        "QA",
+        "Production",
+        "Retired"
+      ]
+    },
+    "emailList": {
+      "type": "string",
+      "description": "Comma-separated list of email addresses for notifications"
+    },
+    "hasMicroservices": {
+      "type": "boolean",
+      "description": "Whether the application has microservices configured",
+      "default": false
+    },
+    "attributes": {
+      "type": "array",
+      "description": "Custom attributes assigned to the application",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Attribute definition identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Attribute name"
+          },
+          "value": {
+            "type": "string",
+            "description": "Attribute value"
+          }
+        }
+      }
+    },
+    "releases": {
+      "type": "array",
+      "description": "Releases associated with this application",
+      "items": {
+        "$ref": "fortify-release-schema.json"
+      }
+    }
+  },
+  "additionalProperties": true
+}

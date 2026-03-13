@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/fortify/json-schema/fortify-release-schema.json",
+  "title": "Fortify Release",
+  "description": "Represents a release (version) of an application in the Fortify platform. Releases track the security posture of a specific version of an application through its development lifecycle, aggregating scan results and vulnerability metrics.",
+  "type": "object",
+  "required": [
+    "releaseName"
+  ],
+  "properties": {
+    "releaseId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Unique identifier of the release"
+    },
+    "releaseName": {
+      "type": "string",
+      "description": "Name of the release",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "releaseDescription": {
+      "type": "string",
+      "description": "Description of the release"
+    },
+    "applicationId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Identifier of the parent application"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Name of the parent application"
+    },
+    "sdlcStatusType": {
+      "type": "string",
+      "description": "Software development lifecycle status",
+      "enum": [
+        "Development",
+        "QA",
+        "Production",
+        "Retired"
+      ]
+    },
+    "rating": {
+      "type": "number",
+      "format": "double",
+      "description": "Security rating for the release (0-5 stars)",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "critical": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of critical severity issues",
+      "minimum": 0
+    },
+    "high": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of high severity issues",
+      "minimum": 0
+    },
+    "medium": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of medium severity issues",
+      "minimum": 0
+    },
+    "low": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of low severity issues",
+      "minimum": 0
+    },
+    "issueCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Total number of open issues",
+      "minimum": 0
+    },
+    "isPassed": {
+      "type": "boolean",
+      "description": "Whether the release passes the security policy"
+    },
+    "passFailReasonType": {
+      "type": "string",
+      "description": "Reason for the pass or fail status"
+    },
+    "currentStaticScanId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Identifier of the most recent static scan"
+    },
+    "currentDynamicScanId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Identifier of the most recent dynamic scan"
+    },
+    "currentMobileScanId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Identifier of the most recent mobile scan"
+    },
+    "microserviceId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Optional microservice identifier if this release belongs to a microservice"
+    },
+    "microserviceName": {
+      "type": "string",
+      "description": "Name of the associated microservice"
+    }
+  },
+  "additionalProperties": true
+}

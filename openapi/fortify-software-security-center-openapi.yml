@@ -1,0 +1,2318 @@
+openapi: 3.1.0
+info:
+  title: Fortify Software Security Center API
+  description: >-
+    REST API for the on-premise Fortify Software Security Center (SSC), which
+    provides centralized management and reporting of security assessment data
+    across an organization's application portfolio. Enables managing projects,
+    application versions, issues, artifacts, reports, users, and authentication
+    tokens. The SSC REST API uses token-based authentication via the
+    FortifyToken authorization header.
+  version: v1
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+externalDocs:
+  description: Fortify Software Security Center Documentation
+  url: https://www.microfocus.com/documentation/fortify-software-security-center/
+servers:
+  - url: '{protocol}://{host}/ssc/api/v1'
+    description: Fortify SSC Server
+    variables:
+      protocol:
+        default: https
+        enum:
+          - https
+          - http
+      host:
+        default: localhost
+        description: Your SSC server hostname and optional port
+security:
+  - fortifyToken: []
+tags:
+  - name: Projects
+    description: Manage top-level projects
+  - name: Project Versions
+    description: Manage application versions within projects
+  - name: Issues
+    description: Access and manage vulnerability issues
+  - name: Artifacts
+    description: Manage scan artifacts and uploads
+  - name: Authentication
+    description: Manage authentication tokens
+  - name: Users
+    description: Manage local user accounts
+  - name: Auth Entities
+    description: Manage authentication entities (users and LDAP groups)
+  - name: Attributes
+    description: Manage attribute definitions and values
+  - name: Custom Tags
+    description: Manage custom tags for issue triage
+  - name: Reports
+    description: Generate and manage reports
+  - name: Jobs
+    description: Monitor processing jobs
+  - name: Issue Selectors
+    description: Retrieve issue filter metadata
+  - name: Features
+    description: System feature and connectivity information
+  - name: Alert Definitions
+    description: Manage alert definitions
+  - name: Cloud Pools
+    description: Manage cloud scan worker pools
+  - name: File Tokens
+    description: Manage file transfer tokens
+  - name: Performance Indicators
+    description: Access performance indicator data
+  - name: Saved Reports
+    description: Manage saved report configurations
+paths:
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List projects
+      description: >-
+        Retrieves a paginated list of projects. Projects are the top-level
+        organizational unit containing one or more application versions.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createProject
+      summary: Create project
+      description: Creates a new project for organizing application versions.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultProject'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /projects/{id}:
+    get:
+      operationId: getProject
+      summary: Get project
+      description: Retrieves details for a specific project by identifier.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultProject'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProject
+      summary: Update project
+      description: Updates an existing project's properties.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+      responses:
+        '200':
+          description: Project updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultProject'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteProject
+      summary: Delete project
+      description: >-
+        Permanently deletes a project and all associated versions and data.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Project deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions:
+    get:
+      operationId: listProjectVersions
+      summary: List project versions
+      description: >-
+        Retrieves a paginated list of all project versions (application versions)
+        accessible to the authenticated user.
+      tags:
+        - Project Versions
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of project versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectVersionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createProjectVersion
+      summary: Create project version
+      description: >-
+        Creates a new project version. Requires committing the version after
+        creation to activate it.
+      tags:
+        - Project Versions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectVersionRequest'
+      responses:
+        '201':
+          description: Project version created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultProjectVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /projectVersions/{parentId}:
+    get:
+      operationId: getProjectVersion
+      summary: Get project version
+      description: Retrieves details for a specific project version by identifier.
+      tags:
+        - Project Versions
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with project version details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultProjectVersion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProjectVersion
+      summary: Update project version
+      description: Updates an existing project version's properties.
+      tags:
+        - Project Versions
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectVersionRequest'
+      responses:
+        '200':
+          description: Project version updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultProjectVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteProjectVersion
+      summary: Delete project version
+      description: >-
+        Permanently deletes a project version and all associated scan data.
+      tags:
+        - Project Versions
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+      responses:
+        '200':
+          description: Project version deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/action:
+    post:
+      operationId: performProjectVersionAction
+      summary: Perform project version action
+      description: >-
+        Performs an action on a project version such as committing, copying
+        state, or sending for analysis.
+      tags:
+        - Project Versions
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectVersionActionRequest'
+      responses:
+        '200':
+          description: Action performed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/issues:
+    get:
+      operationId: listProjectVersionIssues
+      summary: List project version issues
+      description: >-
+        Retrieves a paginated list of vulnerability issues for the specified
+        project version. Supports filtering using Fortify search syntax.
+      tags:
+        - Issues
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - name: qm
+          in: query
+          description: >-
+            Query mode for filtering (e.g., issues, hidden, removed, suppressed)
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: Named filter to apply
+          schema:
+            type: string
+        - name: filterset
+          in: query
+          description: Filter set GUID to use
+          schema:
+            type: string
+        - name: groupid
+          in: query
+          description: Group identifier for issue grouping
+          schema:
+            type: string
+        - name: groupingtype
+          in: query
+          description: Type of grouping to apply
+          schema:
+            type: string
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/issues/{id}:
+    get:
+      operationId: getProjectVersionIssue
+      summary: Get project version issue
+      description: Retrieves details for a specific issue within a project version.
+      tags:
+        - Issues
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultIssue'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/artifacts:
+    get:
+      operationId: listProjectVersionArtifacts
+      summary: List project version artifacts
+      description: >-
+        Retrieves a paginated list of artifacts (uploaded scan results) for the
+        specified project version.
+      tags:
+        - Artifacts
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of artifacts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtifactListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: uploadProjectVersionArtifact
+      summary: Upload artifact
+      description: >-
+        Uploads a scan artifact (FPR file) to the specified project version
+        for processing.
+      tags:
+        - Artifacts
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The FPR or scan results file to upload
+      responses:
+        '201':
+          description: Artifact uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultArtifact'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/artifacts/{id}:
+    get:
+      operationId: getProjectVersionArtifact
+      summary: Get artifact
+      description: Retrieves details for a specific artifact.
+      tags:
+        - Artifacts
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with artifact details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultArtifact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteProjectVersionArtifact
+      summary: Delete artifact
+      description: Deletes a specific artifact from the project version.
+      tags:
+        - Artifacts
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Artifact deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/attributes:
+    get:
+      operationId: listProjectVersionAttributes
+      summary: List project version attributes
+      description: >-
+        Retrieves attribute values assigned to the specified project version.
+      tags:
+        - Attributes
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with attribute values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeValueListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProjectVersionAttributes
+      summary: Update project version attributes
+      description: Updates attribute values for the specified project version.
+      tags:
+        - Attributes
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AttributeValue'
+      responses:
+        '200':
+          description: Attributes updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeValueListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/authEntities:
+    get:
+      operationId: listProjectVersionAuthEntities
+      summary: List project version auth entities
+      description: >-
+        Retrieves authentication entities (users and LDAP groups) assigned to
+        the specified project version.
+      tags:
+        - Auth Entities
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with auth entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthEntityListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProjectVersionAuthEntities
+      summary: Update project version auth entities
+      description: >-
+        Assigns or updates authentication entities for the specified project
+        version.
+      tags:
+        - Auth Entities
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AuthEntity'
+      responses:
+        '200':
+          description: Auth entities updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthEntityListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/issueSelectorSet:
+    get:
+      operationId: getProjectVersionIssueSelectorSet
+      summary: Get issue selector set
+      description: >-
+        Retrieves the issue selector set (filter metadata) for the specified
+        project version, providing available groupings, filters, and filter
+        sets for issue queries.
+      tags:
+        - Issue Selectors
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with issue selector set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueSelectorSetResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/customTags:
+    get:
+      operationId: listProjectVersionCustomTags
+      summary: List project version custom tags
+      description: >-
+        Retrieves custom tags configured for the specified project version.
+      tags:
+        - Custom Tags
+      parameters:
+        - $ref: '#/components/parameters/ParentId'
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with custom tags
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTagListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tokens:
+    post:
+      operationId: createToken
+      summary: Create authentication token
+      description: >-
+        Creates an authentication token for API access. Supports
+        UnifiedLoginToken, AnalysisUploadToken, AuditToken, and
+        DownloadFileTransferToken types. This endpoint accepts HTTP Basic
+        authentication.
+      tags:
+        - Authentication
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenRequest'
+      responses:
+        '201':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultAuthToken'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tokens/{id}:
+    delete:
+      operationId: revokeToken
+      summary: Revoke authentication token
+      description: Revokes an existing authentication token.
+      tags:
+        - Authentication
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Token revoked successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /localUsers:
+    get:
+      operationId: listLocalUsers
+      summary: List local users
+      description: Retrieves a paginated list of local user accounts.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of local users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalUserListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createLocalUser
+      summary: Create local user
+      description: Creates a new local user account.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLocalUserRequest'
+      responses:
+        '201':
+          description: Local user created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultLocalUser'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /localUsers/{id}:
+    get:
+      operationId: getLocalUser
+      summary: Get local user
+      description: Retrieves details for a specific local user.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with local user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultLocalUser'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateLocalUser
+      summary: Update local user
+      description: Updates an existing local user account.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLocalUserRequest'
+      responses:
+        '200':
+          description: Local user updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultLocalUser'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteLocalUser
+      summary: Delete local user
+      description: Permanently deletes a local user account.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Local user deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /attributeDefinitions:
+    get:
+      operationId: listAttributeDefinitions
+      summary: List attribute definitions
+      description: >-
+        Retrieves the list of attribute definitions configured in the system.
+      tags:
+        - Attributes
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with attribute definitions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeDefinitionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAttributeDefinition
+      summary: Create attribute definition
+      description: Creates a new attribute definition.
+      tags:
+        - Attributes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAttributeDefinitionRequest'
+      responses:
+        '201':
+          description: Attribute definition created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultAttributeDefinition'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /reportDefinitions:
+    get:
+      operationId: listReportDefinitions
+      summary: List report definitions
+      description: >-
+        Retrieves the list of available report definitions that can be used
+        to generate reports.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with report definitions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportDefinitionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /savedReports:
+    get:
+      operationId: listSavedReports
+      summary: List saved reports
+      description: Retrieves a list of generated reports.
+      tags:
+        - Saved Reports
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with saved reports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedReportListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: generateReport
+      summary: Generate report
+      description: >-
+        Schedules a report for generation based on a report definition and
+        parameters.
+      tags:
+        - Saved Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateReportRequest'
+      responses:
+        '201':
+          description: Report generation scheduled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultSavedReport'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /savedReports/{id}:
+    get:
+      operationId: getSavedReport
+      summary: Get saved report
+      description: Retrieves details for a specific saved report.
+      tags:
+        - Saved Reports
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with saved report details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultSavedReport'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSavedReport
+      summary: Delete saved report
+      description: Deletes a saved report.
+      tags:
+        - Saved Reports
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Report deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs:
+    get:
+      operationId: listJobs
+      summary: List jobs
+      description: >-
+        Retrieves a paginated list of processing jobs (artifact processing,
+        report generation, etc.).
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jobs/{id}:
+    get:
+      operationId: getJob
+      summary: Get job
+      description: Retrieves details for a specific processing job.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /features:
+    get:
+      operationId: listFeatures
+      summary: List features
+      description: >-
+        Retrieves a list of system features and connectivity information,
+        useful for verifying API availability.
+      tags:
+        - Features
+      responses:
+        '200':
+          description: Successful response with feature list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /customTags/{id}:
+    get:
+      operationId: getCustomTag
+      summary: Get custom tag
+      description: Retrieves details for a specific custom tag.
+      tags:
+        - Custom Tags
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with custom tag details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultCustomTag'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /fileTokens:
+    post:
+      operationId: createFileToken
+      summary: Create file token
+      description: >-
+        Creates a single-use file transfer token for uploading or downloading
+        artifacts.
+      tags:
+        - File Tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileTokenRequest'
+      responses:
+        '201':
+          description: File token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultFileToken'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /alertDefinitions:
+    get:
+      operationId: listAlertDefinitions
+      summary: List alert definitions
+      description: Retrieves a list of configured alert definitions.
+      tags:
+        - Alert Definitions
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with alert definitions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertDefinitionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cloudpools:
+    get:
+      operationId: listCloudPools
+      summary: List cloud pools
+      description: Retrieves a list of cloud scan worker pools.
+      tags:
+        - Cloud Pools
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with cloud pools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudPoolListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /performanceIndicators:
+    get:
+      operationId: listPerformanceIndicators
+      summary: List performance indicators
+      description: >-
+        Retrieves performance indicator data for monitoring SSC system health.
+      tags:
+        - Performance Indicators
+      parameters:
+        - $ref: '#/components/parameters/Start'
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with performance indicators
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceIndicatorListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    fortifyToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Fortify token-based authentication. Pass as: FortifyToken <token_value>.
+        Obtain a token via POST /api/v1/tokens with HTTP Basic credentials.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication. Only supported on the /tokens endpoint for
+        obtaining API tokens.
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Q:
+      name: q
+      in: query
+      description: >-
+        Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    OrderBy:
+      name: orderby
+      in: query
+      description: >-
+        Sort field and direction (e.g., name for ascending, -name for
+        descending)
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+  schemas:
+    Project:
+      type: object
+      description: Represents a top-level project in SSC
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        creationDate:
+          type: string
+          format: date-time
+          description: Date when the project was created
+        issueTemplateId:
+          type: string
+          description: Issue template identifier
+    ProjectVersion:
+      type: object
+      description: Represents an application version within a project
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        name:
+          type: string
+          description: Version name
+        description:
+          type: string
+          description: Version description
+        active:
+          type: boolean
+          description: Whether the version is active
+        committed:
+          type: boolean
+          description: Whether the version is committed
+        project:
+          $ref: '#/components/schemas/Project'
+        createdBy:
+          type: string
+          description: User who created the version
+        creationDate:
+          type: string
+          format: date-time
+          description: Creation date
+        issueTemplateId:
+          type: string
+          description: Issue template identifier
+        currentState:
+          type: object
+          properties:
+            committed:
+              type: boolean
+            analysisResultsExist:
+              type: boolean
+            hasCustomIssues:
+              type: boolean
+            auditEnabled:
+              type: boolean
+    Issue:
+      type: object
+      description: Represents a vulnerability issue
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        issueInstanceId:
+          type: string
+          description: Instance identifier
+        issueName:
+          type: string
+          description: Name of the issue
+        primaryLocation:
+          type: string
+          description: Primary source file location
+        lineNumber:
+          type: integer
+          format: int32
+          description: Line number of the issue
+        fullFileName:
+          type: string
+          description: Full file path
+        frilessSeverity:
+          type: number
+          format: float
+          description: Friless severity score
+        severity:
+          type: number
+          format: float
+          description: Numeric severity score
+        confidence:
+          type: number
+          format: float
+          description: Confidence score
+        kingdom:
+          type: string
+          description: Vulnerability kingdom
+        issueStatus:
+          type: string
+          description: Current issue status
+        removedDate:
+          type: string
+          format: date-time
+          description: Date when the issue was removed
+        foundDate:
+          type: string
+          format: date-time
+          description: Date when the issue was first found
+        hasAttachments:
+          type: boolean
+          description: Whether the issue has attachments
+        hasCorrelatedIssues:
+          type: boolean
+          description: Whether the issue has correlated issues
+        scanStatus:
+          type: string
+          description: Scan status
+        engineCategory:
+          type: string
+          description: Engine category
+        audienceSet:
+          type: boolean
+          description: Whether the audience is set
+        reviewed:
+          type: boolean
+          description: Whether the issue has been reviewed
+        issueState:
+          type: string
+          description: State of the issue
+        analyzer:
+          type: string
+          description: Analyzer that found the issue
+        primaryTag:
+          type: string
+          description: Primary tag value
+        folderGuid:
+          type: string
+          description: Folder GUID
+        projectVersionId:
+          type: integer
+          format: int64
+          description: Parent project version identifier
+    Artifact:
+      type: object
+      description: Represents an uploaded scan artifact
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        fileName:
+          type: string
+          description: Name of the uploaded file
+        fileSize:
+          type: integer
+          format: int64
+          description: File size in bytes
+        status:
+          type: string
+          description: Processing status
+          enum:
+            - SCHED_PROCESSING
+            - PROCESSING
+            - PROCESS_COMPLETE
+            - ERROR_PROCESSING
+            - REQUIRE_AUTH
+            - DELETED
+        uploadDate:
+          type: string
+          format: date-time
+          description: Date when the artifact was uploaded
+        messages:
+          type: string
+          description: Processing messages
+        allowDelete:
+          type: boolean
+          description: Whether the artifact can be deleted
+        allowApprove:
+          type: boolean
+          description: Whether the artifact requires approval
+        allowPurge:
+          type: boolean
+          description: Whether the artifact can be purged
+        scanTypes:
+          type: array
+          description: Types of scans in this artifact
+          items:
+            type: string
+    AuthToken:
+      type: object
+      description: Represents an authentication token
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        token:
+          type: string
+          description: The token value
+        creationDate:
+          type: string
+          format: date-time
+          description: When the token was created
+        terminalDate:
+          type: string
+          format: date-time
+          description: When the token expires
+        remainingUsages:
+          type: integer
+          format: int32
+          description: Remaining number of uses
+        type:
+          type: string
+          description: Token type
+          enum:
+            - UnifiedLoginToken
+            - AnalysisUploadToken
+            - AuditToken
+            - DownloadFileTransferToken
+            - UploadFileTransferToken
+            - ReportFileTransferToken
+    LocalUser:
+      type: object
+      description: Represents a local user account
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        userName:
+          type: string
+          description: Username
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        email:
+          type: string
+          description: Email address
+        suspended:
+          type: boolean
+          description: Whether the account is suspended
+        roles:
+          type: array
+          description: Assigned roles
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+    AttributeDefinition:
+      type: object
+      description: Represents an attribute definition
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        guid:
+          type: string
+          description: GUID of the attribute
+        name:
+          type: string
+          description: Attribute name
+        category:
+          type: string
+          description: Attribute category
+          enum:
+            - TECHNICAL
+            - BUSINESS
+            - ORGANIZATION
+            - DYNAMIC_SCAN_REQUEST
+        type:
+          type: string
+          description: Attribute data type
+          enum:
+            - TEXT
+            - LONG_TEXT
+            - SINGLE
+            - MULTIPLE
+            - INTEGER
+            - BOOLEAN
+            - DATE
+            - FILE
+            - SENSITIVE_TEXT
+        required:
+          type: boolean
+          description: Whether the attribute is required
+        hidden:
+          type: boolean
+          description: Whether the attribute is hidden
+    AttributeValue:
+      type: object
+      description: An attribute value assignment
+      properties:
+        attributeDefinitionId:
+          type: integer
+          format: int64
+          description: Attribute definition identifier
+        guid:
+          type: string
+          description: Attribute GUID
+        value:
+          type: string
+          description: Attribute value
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              guid:
+                type: string
+              name:
+                type: string
+    AuthEntity:
+      type: object
+      description: An authentication entity (user or LDAP group)
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        entityName:
+          type: string
+          description: Entity name
+        isLdap:
+          type: boolean
+          description: Whether this is an LDAP entity
+    CustomTag:
+      type: object
+      description: A custom tag for issue classification
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        guid:
+          type: string
+          description: GUID of the custom tag
+        name:
+          type: string
+          description: Custom tag name
+        valueType:
+          type: string
+          description: Value type
+        valueList:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              lookupValue:
+                type: string
+              lookupIndex:
+                type: integer
+                format: int32
+    ReportDefinition:
+      type: object
+      description: A report definition template
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        name:
+          type: string
+          description: Report name
+        templateDocId:
+          type: integer
+          format: int64
+          description: Template document identifier
+        type:
+          type: string
+          description: Report type
+          enum:
+            - ISSUE
+            - PROJECT
+            - PORTFOLIO
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              identifier:
+                type: string
+    SavedReport:
+      type: object
+      description: A generated report
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        name:
+          type: string
+          description: Report name
+        status:
+          type: string
+          description: Report generation status
+          enum:
+            - SCHED_PROCESSING
+            - PROCESSING
+            - PROCESS_COMPLETE
+            - ERROR_PROCESSING
+        format:
+          type: string
+          description: Report output format
+        generationDate:
+          type: string
+          format: date-time
+          description: Date when the report was generated
+        reportDefinitionId:
+          type: integer
+          format: int64
+          description: Source report definition
+    Job:
+      type: object
+      description: Represents a processing job
+      properties:
+        jobName:
+          type: string
+          description: Name of the job
+        jobGroup:
+          type: string
+          description: Job group
+        jobClassName:
+          type: string
+          description: Java class name
+        state:
+          type: string
+          description: Job state
+          enum:
+            - PREPARED
+            - RUNNING
+            - FINISHED
+            - FAILED
+            - CANCELLED
+            - WAITING_FOR_WORKER
+        priority:
+          type: integer
+          format: int32
+        projectVersionId:
+          type: integer
+          format: int64
+        artifactId:
+          type: integer
+          format: int64
+    FileToken:
+      type: object
+      description: A single-use file transfer token
+      properties:
+        token:
+          type: string
+          description: Token value
+        fileTokenType:
+          type: string
+          description: Token type
+          enum:
+            - UPLOAD
+            - DOWNLOAD
+            - REPORT_FILE
+    CreateProjectRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        issueTemplateId:
+          type: string
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        issueTemplateId:
+          type: string
+    CreateProjectVersionRequest:
+      type: object
+      required:
+        - name
+        - project
+      properties:
+        name:
+          type: string
+          description: Version name
+        description:
+          type: string
+          description: Version description
+        active:
+          type: boolean
+          default: true
+        committed:
+          type: boolean
+          default: false
+        project:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            name:
+              type: string
+        issueTemplateId:
+          type: string
+    UpdateProjectVersionRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        committed:
+          type: boolean
+        issueTemplateId:
+          type: string
+    ProjectVersionActionRequest:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          description: Action to perform
+          enum:
+            - commit
+            - COPY_CURRENT_STATE
+            - COPY_FROM_PARTIAL
+            - SEND_FOR_TRAINING
+            - SEND_FOR_PREDICTION
+        values:
+          type: object
+          description: Action-specific parameters
+    CreateTokenRequest:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          description: Token type
+          enum:
+            - UnifiedLoginToken
+            - AnalysisUploadToken
+            - AuditToken
+            - DownloadFileTransferToken
+            - UploadFileTransferToken
+            - ReportFileTransferToken
+        description:
+          type: string
+          description: Token description
+        terminalDate:
+          type: string
+          format: date-time
+          description: Token expiration date
+    CreateLocalUserRequest:
+      type: object
+      required:
+        - userName
+        - firstName
+        - lastName
+        - email
+        - password
+      properties:
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        passwordNeverExpires:
+          type: boolean
+        suspended:
+          type: boolean
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+    UpdateLocalUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        suspended:
+          type: boolean
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+    CreateAttributeDefinitionRequest:
+      type: object
+      required:
+        - name
+        - type
+        - category
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - TEXT
+            - LONG_TEXT
+            - SINGLE
+            - MULTIPLE
+            - INTEGER
+            - BOOLEAN
+            - DATE
+        category:
+          type: string
+          enum:
+            - TECHNICAL
+            - BUSINESS
+            - ORGANIZATION
+        required:
+          type: boolean
+        hidden:
+          type: boolean
+        description:
+          type: string
+    GenerateReportRequest:
+      type: object
+      required:
+        - name
+        - reportDefinitionId
+      properties:
+        name:
+          type: string
+          description: Name for the generated report
+        reportDefinitionId:
+          type: integer
+          format: int64
+          description: Report definition to use
+        format:
+          type: string
+          description: Output format
+          enum:
+            - PDF
+            - DOC
+            - XLS
+        inputReportParameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              identifier:
+                type: string
+              paramValue:
+                type: string
+    CreateFileTokenRequest:
+      type: object
+      required:
+        - fileTokenType
+      properties:
+        fileTokenType:
+          type: string
+          enum:
+            - UPLOAD
+            - DOWNLOAD
+            - REPORT_FILE
+    ProjectListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        count:
+          type: integer
+          format: int32
+    ProjectVersionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectVersion'
+        count:
+          type: integer
+          format: int32
+    IssueListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        count:
+          type: integer
+          format: int32
+    ArtifactListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artifact'
+        count:
+          type: integer
+          format: int32
+    AttributeValueListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeValue'
+        count:
+          type: integer
+          format: int32
+    AuthEntityListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthEntity'
+        count:
+          type: integer
+          format: int32
+    CustomTagListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTag'
+        count:
+          type: integer
+          format: int32
+    LocalUserListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalUser'
+        count:
+          type: integer
+          format: int32
+    AttributeDefinitionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeDefinition'
+        count:
+          type: integer
+          format: int32
+    ReportDefinitionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportDefinition'
+        count:
+          type: integer
+          format: int32
+    SavedReportListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SavedReport'
+        count:
+          type: integer
+          format: int32
+    JobListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        count:
+          type: integer
+          format: int32
+    FeatureListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              enabled:
+                type: boolean
+        count:
+          type: integer
+          format: int32
+    IssueSelectorSetResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            filterSets:
+              type: array
+              items:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                  title:
+                    type: string
+                  defaultFilterSet:
+                    type: boolean
+            groupBySet:
+              type: array
+              items:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                  displayName:
+                    type: string
+                  entityType:
+                    type: string
+    AlertDefinitionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              name:
+                type: string
+              enabled:
+                type: boolean
+        count:
+          type: integer
+          format: int32
+    CloudPoolListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              uuid:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+        count:
+          type: integer
+          format: int32
+    PerformanceIndicatorListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: number
+                format: double
+        count:
+          type: integer
+          format: int32
+    ApiResultProject:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Project'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultProjectVersion:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProjectVersion'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultIssue:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Issue'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultArtifact:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Artifact'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultAuthToken:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthToken'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultLocalUser:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LocalUser'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultAttributeDefinition:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AttributeDefinition'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultSavedReport:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SavedReport'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultJob:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Job'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultCustomTag:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomTag'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultFileToken:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/FileToken'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultVoid:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

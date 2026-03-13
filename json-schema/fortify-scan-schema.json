@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/fortify/json-schema/fortify-scan-schema.json",
+  "title": "Fortify Scan",
+  "description": "Represents a security scan performed by Fortify tools. Scans analyze applications for vulnerabilities using static analysis (SAST), dynamic analysis (DAST), mobile testing, or software composition analysis. Each scan produces vulnerability findings associated with a release.",
+  "type": "object",
+  "properties": {
+    "scanId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Unique identifier of the scan"
+    },
+    "scanType": {
+      "type": "string",
+      "description": "Type of security scan performed",
+      "enum": [
+        "Static",
+        "Dynamic",
+        "Mobile",
+        "OpenSource"
+      ]
+    },
+    "analysisStatusType": {
+      "type": "string",
+      "description": "Current analysis status of the scan"
+    },
+    "releaseId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Identifier of the associated release"
+    },
+    "applicationId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Identifier of the associated application"
+    },
+    "assessmentTypeId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Assessment type used for the scan"
+    },
+    "entitlementId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Entitlement used for the scan"
+    },
+    "startedDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the scan started"
+    },
+    "completedDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the scan completed"
+    },
+    "totalIssues": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Total number of vulnerability issues found",
+      "minimum": 0
+    },
+    "issueCountCritical": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of critical severity issues found",
+      "minimum": 0
+    },
+    "issueCountHigh": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of high severity issues found",
+      "minimum": 0
+    },
+    "issueCountMedium": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of medium severity issues found",
+      "minimum": 0
+    },
+    "issueCountLow": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of low severity issues found",
+      "minimum": 0
+    },
+    "isRemediationScan": {
+      "type": "boolean",
+      "description": "Whether this scan is a remediation verification scan",
+      "default": false
+    },
+    "isBundledAssessment": {
+      "type": "boolean",
+      "description": "Whether this scan used a bundled assessment",
+      "default": false
+    },
+    "passFailStatus": {
+      "type": "boolean",
+      "description": "Whether the scan passes the configured security policy"
+    },
+    "passFailReasonType": {
+      "type": "string",
+      "description": "Reason for the pass or fail determination"
+    },
+    "technologyStack": {
+      "type": "string",
+      "description": "Technology stack analyzed (for static scans)"
+    },
+    "languageLevel": {
+      "type": "string",
+      "description": "Language level used for analysis (for static scans)"
+    }
+  },
+  "additionalProperties": true
+}

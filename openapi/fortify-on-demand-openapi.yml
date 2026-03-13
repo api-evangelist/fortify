@@ -1,0 +1,3307 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand API
+  description: >-
+    REST API for Fortify on Demand (FoD), the cloud-based application security
+    testing service from OpenText. Provides programmatic access to manage
+    applications, releases, initiate static, dynamic, and mobile scans, retrieve
+    vulnerability results, and manage tenant-level settings. Supports OAuth2
+    client credentials and resource owner password grant flows for
+    authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index
+servers:
+  - url: https://api.ams.fortify.com
+    description: Fortify on Demand - Americas
+  - url: https://api.emea.fortify.com
+    description: Fortify on Demand - EMEA
+  - url: https://api.apac.fortify.com
+    description: Fortify on Demand - APAC
+security:
+  - bearerAuth: []
+tags:
+  - name: Applications
+    description: Manage applications and their configurations
+  - name: Releases
+    description: Manage releases within applications
+  - name: Scans
+    description: View and manage security scans
+  - name: Static Scans
+    description: Configure and start static application security testing scans
+  - name: Dynamic Scans
+    description: Configure and start dynamic application security testing scans
+  - name: DAST Automated Scans
+    description: Configure and start DAST automated scans
+  - name: Mobile Scans
+    description: Configure and start mobile application security testing scans
+  - name: Open Source Scans
+    description: Manage open source / software composition analysis scans
+  - name: Vulnerabilities
+    description: Access and manage vulnerability findings
+  - name: API Keys
+    description: Manage API keys for programmatic access
+  - name: Personal Access Tokens
+    description: Manage personal access tokens
+  - name: Attributes
+    description: Manage application attributes
+  - name: Audit Templates
+    description: Manage audit templates for vulnerability triage
+  - name: Notifications
+    description: Manage user notifications
+  - name: Lookup Items
+    description: Retrieve lookup and reference data
+  - name: Event Logs
+    description: Access tenant event logs
+  - name: Microservices
+    description: Manage microservices within applications
+  - name: Open Source Components
+    description: View open source component data
+  - name: Reports
+    description: Generate and download reports
+paths:
+  /api/v3/applications:
+    get:
+      operationId: listApplications
+      summary: List applications
+      description: >-
+        Retrieves a paginated collection of applications accessible to the
+        authenticated user. Supports filtering, sorting, and field selection.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - name: modifiedStartDate
+          in: query
+          description: Filter applications modified after this date
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful response with list of applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createApplication
+      summary: Create application
+      description: >-
+        Creates a new application along with an initial release. Requires
+        manage-apps scope.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostApplicationRequest'
+      responses:
+        '201':
+          description: Application created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostApplicationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Get application
+      description: Retrieves an individual application by its unique identifier.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Successful response with application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateApplication
+      summary: Update application
+      description: Updates an existing application's properties and configuration.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutApplicationRequest'
+      responses:
+        '200':
+          description: Application updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutApplicationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteApplication
+      summary: Delete application
+      description: >-
+        Permanently deletes an application and all associated releases, scans,
+        and vulnerability data.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Application deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/releases:
+    get:
+      operationId: listApplicationReleases
+      summary: List application releases
+      description: >-
+        Returns a paginated list of releases belonging to the specified
+        application.
+      tags:
+        - Applications
+        - Releases
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - name: modifiedStartDate
+          in: query
+          description: Filter releases modified after this date
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful response with list of releases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/scans:
+    get:
+      operationId: listApplicationScans
+      summary: List application scans
+      description: Returns a paginated list of scans for the specified application.
+      tags:
+        - Applications
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/issue-count-by-severity:
+    get:
+      operationId: getApplicationIssueCountBySeverity
+      summary: Get issue count by severity
+      description: >-
+        Retrieves the number of issues grouped by severity level for the
+        specified application.
+      tags:
+        - Applications
+        - Vulnerabilities
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Successful response with issue counts by severity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationIssueCountListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/users:
+    get:
+      operationId: listApplicationUsers
+      summary: List application users
+      description: >-
+        Returns a list of users that have access to the specified application.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Successful response with list of application users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationUserListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/microservices:
+    get:
+      operationId: listApplicationMicroservices
+      summary: List application microservices
+      description: >-
+        Retrieves a list of microservices associated with the specified
+        application.
+      tags:
+        - Applications
+        - Microservices
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+        - name: includeReleases
+          in: query
+          description: Whether to include release information for each microservice
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful response with list of microservices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicroserviceListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createApplicationMicroservice
+      summary: Create application microservice
+      description: Adds a new microservice to the specified application.
+      tags:
+        - Applications
+        - Microservices
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMicroserviceRequest'
+      responses:
+        '201':
+          description: Microservice created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMicroserviceResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}:
+    get:
+      operationId: getApplicationVulnerability
+      summary: Get application vulnerability
+      description: >-
+        Returns a list of vulnerabilities matching the specified instance
+        identifier within an application.
+      tags:
+        - Applications
+        - Vulnerabilities
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+        - name: vulnerabilityId
+          in: path
+          required: true
+          description: Unique identifier of the vulnerability
+          schema:
+            type: integer
+            format: int32
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - name: includeFixed
+          in: query
+          description: Include fixed vulnerabilities in results
+          schema:
+            type: boolean
+        - name: includeSuppressed
+          in: query
+          description: Include suppressed vulnerabilities in results
+          schema:
+            type: boolean
+        - name: keywordSearch
+          in: query
+          description: Keyword search filter for vulnerabilities
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with vulnerability details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/owners:
+    get:
+      operationId: listApplicationOwners
+      summary: List application owners
+      description: >-
+        Returns a list of users available for application ownership assignment.
+      tags:
+        - Applications
+      responses:
+        '200':
+          description: Successful response with list of potential application owners
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationUserListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/open-source-components:
+    get:
+      operationId: listOpenSourceComponents
+      summary: List open source components
+      description: >-
+        Retrieves a collection of open source components across all
+        applications.
+      tags:
+        - Open Source Components
+      parameters:
+        - name: openSourceScanType
+          in: query
+          description: Type of open source scan engine
+          schema:
+            type: string
+            enum:
+              - Sonatype
+              - CycloneDx
+              - Debricked
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - name: returnTotalComponentCount
+          in: query
+          description: Whether to include total count in response
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful response with list of open source components
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenSourceComponentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases:
+    get:
+      operationId: listReleases
+      summary: List releases
+      description: >-
+        Returns a paginated list of all releases accessible to the
+        authenticated user.
+      tags:
+        - Releases
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - name: modifiedStartDate
+          in: query
+          description: Filter releases modified after this date
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful response with list of releases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createRelease
+      summary: Create release
+      description: Creates a new release within an existing application.
+      tags:
+        - Releases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostReleaseRequest'
+      responses:
+        '201':
+          description: Release created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostReleaseResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}:
+    get:
+      operationId: getRelease
+      summary: Get release
+      description: Retrieves details for a specific release by identifier.
+      tags:
+        - Releases
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with release details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateRelease
+      summary: Update release
+      description: Updates an existing release's properties and configuration.
+      tags:
+        - Releases
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutReleaseRequest'
+      responses:
+        '200':
+          description: Release updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutReleaseResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteRelease
+      summary: Delete release
+      description: Permanently deletes the specified release and associated data.
+      tags:
+        - Releases
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Release deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans:
+    get:
+      operationId: listReleaseScans
+      summary: List release scans
+      description: Returns a paginated list of scans for the specified release.
+      tags:
+        - Releases
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans/{scanId}:
+    get:
+      operationId: getReleaseScan
+      summary: Get release scan
+      description: Returns summary information for the specified scan.
+      tags:
+        - Releases
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: scanId
+          in: path
+          required: true
+          description: Unique identifier of the scan
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful response with scan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans/{scanId}/polling-summary:
+    get:
+      operationId: getReleaseScanPollingSummary
+      summary: Get scan polling summary
+      description: >-
+        Returns the current scan status for a specific scan, useful for
+        polling scan progress.
+      tags:
+        - Releases
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: scanId
+          in: path
+          required: true
+          description: Unique identifier of the scan
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful response with scan polling summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollingScanSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/fpr:
+    get:
+      operationId: downloadReleaseFpr
+      summary: Download release FPR
+      description: >-
+        Downloads the Fortify Project Results (FPR) file for the specified
+        release and scan type.
+      tags:
+        - Releases
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: scanType
+          in: query
+          description: Type of scan to download FPR for
+          schema:
+            type: string
+            enum:
+              - Static
+              - Dynamic
+              - Mobile
+              - Monitoring
+              - Network
+              - OpenSource
+      responses:
+        '200':
+          description: FPR file download
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/category-rollups:
+    get:
+      operationId: listReleaseCategoryRollups
+      summary: List vulnerability category rollups
+      description: >-
+        Returns a list and count of vulnerability categories grouped by
+        severity for the specified release.
+      tags:
+        - Releases
+        - Vulnerabilities
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - name: showFixed
+          in: query
+          description: Include fixed vulnerabilities
+          schema:
+            type: boolean
+        - name: vulnerabilitiesSeverityType
+          in: query
+          description: Filter by severity type
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with category rollup data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryRollupsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/assessment-types:
+    get:
+      operationId: listReleaseAssessmentTypes
+      summary: List assessment types
+      description: >-
+        Returns a list of available assessment types and entitlements for the
+        specified release.
+      tags:
+        - Releases
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: scanType
+          in: query
+          required: true
+          description: Type of scan to retrieve assessment types for
+          schema:
+            type: string
+            enum:
+              - Static
+              - Dynamic
+              - Mobile
+              - OpenSource
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with assessment types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseAssessmentTypeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/static-scan-options:
+    get:
+      operationId: getReleaseStaticScanOptions
+      summary: Get static scan options
+      description: >-
+        Retrieves available options for starting a static scan on the specified
+        release, including technology stacks and language levels.
+      tags:
+        - Releases
+        - Static Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: technologyStack
+          in: query
+          description: Technology stack identifier
+          schema:
+            type: string
+        - name: languageLevel
+          in: query
+          description: Language level identifier
+          schema:
+            type: string
+        - name: assessmentTypeId
+          in: query
+          description: Assessment type identifier
+          schema:
+            type: integer
+            format: int32
+        - name: entitlementFrequencyType
+          in: query
+          description: Entitlement frequency type
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with static scan options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetStaticScanOptionsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/audit-action:
+    post:
+      operationId: setReleaseAuditAction
+      summary: Set audit action
+      description: >-
+        Sets the audit action (such as approve or reject) for vulnerabilities
+        in the specified release.
+      tags:
+        - Releases
+        - Audit Templates
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAuditActionRequest'
+      responses:
+        '204':
+          description: Audit action applied successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/audit-options:
+    get:
+      operationId: getReleaseAuditOptions
+      summary: Get audit options
+      description: >-
+        Retrieves the available audit options for the specified release,
+        including statuses and custom fields.
+      tags:
+        - Releases
+        - Audit Templates
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with audit options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAuditOptionsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/dast-automated-scans/scan-setup:
+    get:
+      operationId: getDastAutomatedScanSetup
+      summary: Get DAST automated scan setup
+      description: >-
+        Retrieves the current DAST automated scan setup configuration for the
+        specified release.
+      tags:
+        - DAST Automated Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with DAST scan setup details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDastAutomatedScanSetupResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/dast-automated-scans/website-scan-setup:
+    put:
+      operationId: saveDastAutomatedWebsiteScanSetup
+      summary: Save DAST automated website scan setup
+      description: >-
+        Saves the DAST automated website scan setup configuration for the
+        specified release.
+      tags:
+        - DAST Automated Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutDastAutomatedWebsiteScanSetupRequest'
+      responses:
+        '200':
+          description: Website scan setup saved successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/dast-automated-scans/openapi-scan-setup:
+    put:
+      operationId: saveDastAutomatedOpenApiScanSetup
+      summary: Save DAST automated OpenAPI scan setup
+      description: >-
+        Saves the DAST automated OpenAPI scan setup configuration for the
+        specified release.
+      tags:
+        - DAST Automated Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutDastAutomatedOpenApiScanSetupRequest'
+      responses:
+        '200':
+          description: OpenAPI scan setup saved successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/dast-automated-scans/start-scan:
+    post:
+      operationId: startDastAutomatedScan
+      summary: Start DAST automated scan
+      description: >-
+        Initiates a DAST automated scan for the specified release using the
+        current scan setup configuration.
+      tags:
+        - DAST Automated Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: networkName
+          in: query
+          description: >-
+            Name of the Fortify on Demand Connect network to use for scanning
+          schema:
+            type: string
+      responses:
+        '200':
+          description: DAST automated scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/dynamic-scans/scan-setup:
+    get:
+      operationId: getDynamicScanSetup
+      summary: Get dynamic scan setup
+      description: >-
+        Retrieves the current dynamic scan setup configuration for the
+        specified release.
+      tags:
+        - Dynamic Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with dynamic scan setup details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDynamicScanSetupResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: saveDynamicScanSetup
+      summary: Save dynamic scan setup
+      description: >-
+        Saves the dynamic scan setup configuration for the specified release.
+      tags:
+        - Dynamic Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutDynamicScanSetupRequest'
+      responses:
+        '200':
+          description: Dynamic scan setup saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutDynamicScanSetupResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/dynamic-scans/start-scan:
+    post:
+      operationId: startDynamicScan
+      summary: Start dynamic scan
+      description: >-
+        Initiates a dynamic scan for the specified release using the current
+        scan setup configuration.
+      tags:
+        - Dynamic Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: networkName
+          in: query
+          description: >-
+            Name of the Fortify on Demand Connect network to use for scanning
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartDynamicScanRequest'
+      responses:
+        '200':
+          description: Dynamic scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/mobile-scans/scan-setup:
+    get:
+      operationId: getMobileScanSetup
+      summary: Get mobile scan setup
+      description: >-
+        Retrieves the current mobile scan setup configuration for the
+        specified release.
+      tags:
+        - Mobile Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with mobile scan setup details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileScanSetup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: saveMobileScanSetup
+      summary: Save mobile scan setup
+      description: >-
+        Saves the mobile scan setup configuration for the specified release.
+      tags:
+        - Mobile Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutMobileScanSetupRequest'
+      responses:
+        '200':
+          description: Mobile scan setup saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutMobileScanSetupResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/mobile-scans/start-scan:
+    post:
+      operationId: startMobileScan
+      summary: Start mobile scan
+      description: >-
+        Initiates a mobile scan for the specified release by uploading a
+        mobile application binary.
+      tags:
+        - Mobile Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: startDate
+          in: query
+          description: Scheduled start date for the scan
+          schema:
+            type: string
+            format: date-time
+        - name: assessmentTypeId
+          in: query
+          description: Assessment type identifier
+          schema:
+            type: integer
+            format: int32
+        - name: frameworkType
+          in: query
+          description: Mobile framework type
+          schema:
+            type: string
+            enum:
+              - iOS
+              - Android
+        - name: timeZone
+          in: query
+          description: Time zone for scheduled scans
+          schema:
+            type: string
+        - name: entitlementId
+          in: query
+          description: Entitlement identifier
+          schema:
+            type: integer
+            format: int32
+        - name: entitlementFrequencyType
+          in: query
+          description: Entitlement frequency type
+          schema:
+            type: string
+        - name: isRemediationScan
+          in: query
+          description: Whether this is a remediation scan
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Mobile scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/open-source-scans/start-scan:
+    post:
+      operationId: startOpenSourceScan
+      summary: Start open source scan
+      description: >-
+        Initiates an open source / software composition analysis scan for the
+        specified release.
+      tags:
+        - Open Source Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+        - name: fragNo
+          in: query
+          description: Fragment number for chunked upload
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: Byte offset for chunked upload
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Open source scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/import-scan-session-id:
+    get:
+      operationId: getReleaseImportScanSessionId
+      summary: Get import scan session ID
+      description: >-
+        Initiates an import scan session and returns a session identifier for
+        uploading third-party scan results.
+      tags:
+        - Releases
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with import scan session ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetImportScanSessionIdResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/open-source-scans/{scanId}/sbom:
+    get:
+      operationId: downloadOpenSourceSbom
+      summary: Download open source SBOM
+      description: >-
+        Downloads the Software Bill of Materials (SBOM) file for the specified
+        open source scan.
+      tags:
+        - Open Source Scans
+      parameters:
+        - name: scanId
+          in: path
+          required: true
+          description: Unique identifier of the open source scan
+          schema:
+            type: integer
+            format: int32
+        - name: format
+          in: query
+          description: SBOM output format
+          schema:
+            type: string
+      responses:
+        '200':
+          description: SBOM file download
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/api-keys:
+    get:
+      operationId: listApiKeys
+      summary: List API keys
+      description: Returns a paginated list of API keys for the tenant.
+      tags:
+        - API Keys
+      parameters:
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of API keys
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createApiKey
+      summary: Create API key
+      description: Creates a new API key for programmatic access.
+      tags:
+        - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '201':
+          description: API key created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostApiKeyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/api-keys/{apiKeyId}:
+    get:
+      operationId: getApiKey
+      summary: Get API key
+      description: Returns details for a specific API key.
+      tags:
+        - API Keys
+      parameters:
+        - name: apiKeyId
+          in: path
+          required: true
+          description: Unique identifier of the API key
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful response with API key details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateApiKey
+      summary: Update API key
+      description: Updates an existing API key's properties.
+      tags:
+        - API Keys
+      parameters:
+        - name: apiKeyId
+          in: path
+          required: true
+          description: Unique identifier of the API key
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '201':
+          description: API key updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteApiKey
+      summary: Delete API key
+      description: Permanently deletes the specified API key.
+      tags:
+        - API Keys
+      parameters:
+        - name: apiKeyId
+          in: path
+          required: true
+          description: Unique identifier of the API key
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: API key deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/personal-access-tokens:
+    get:
+      operationId: listPersonalAccessTokens
+      summary: List personal access tokens
+      description: Returns a list of personal access tokens for the authenticated user.
+      tags:
+        - Personal Access Tokens
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+      responses:
+        '200':
+          description: Successful response with list of personal access tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessTokenListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createPersonalAccessToken
+      summary: Create personal access token
+      description: Creates a new personal access token for the authenticated user.
+      tags:
+        - Personal Access Tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostPersonalAccessTokenRequest'
+      responses:
+        '201':
+          description: Personal access token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePersonalAccessTokenResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/personal-access-tokens/{personalAccessTokenId}:
+    get:
+      operationId: getPersonalAccessToken
+      summary: Get personal access token
+      description: Returns details for a specific personal access token.
+      tags:
+        - Personal Access Tokens
+      parameters:
+        - name: personalAccessTokenId
+          in: path
+          required: true
+          description: Unique identifier of the personal access token
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful response with personal access token details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessToken'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updatePersonalAccessToken
+      summary: Update personal access token
+      description: Updates an existing personal access token.
+      tags:
+        - Personal Access Tokens
+      parameters:
+        - name: personalAccessTokenId
+          in: path
+          required: true
+          description: Unique identifier of the personal access token
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutPersonalAccessTokenRequest'
+      responses:
+        '200':
+          description: Personal access token updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deletePersonalAccessToken
+      summary: Delete personal access token
+      description: Permanently deletes the specified personal access token.
+      tags:
+        - Personal Access Tokens
+      parameters:
+        - name: personalAccessTokenId
+          in: path
+          required: true
+          description: Unique identifier of the personal access token
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Personal access token deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/attributes:
+    get:
+      operationId: listAttributes
+      summary: List attributes
+      description: >-
+        Retrieves a list of application attributes defined for the tenant.
+      tags:
+        - Attributes
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+      responses:
+        '200':
+          description: Successful response with list of attributes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createAttribute
+      summary: Create attribute
+      description: Creates a new application attribute for the tenant.
+      tags:
+        - Attributes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAttributeRequest'
+      responses:
+        '201':
+          description: Attribute created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAttributeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/attributes/{attributeId}:
+    put:
+      operationId: updateAttribute
+      summary: Update attribute
+      description: Updates an existing application attribute.
+      tags:
+        - Attributes
+      parameters:
+        - name: attributeId
+          in: path
+          required: true
+          description: Unique identifier of the attribute
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutAttributeRequest'
+      responses:
+        '200':
+          description: Attribute updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutAttributeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteAttribute
+      summary: Delete attribute
+      description: Permanently deletes the specified attribute.
+      tags:
+        - Attributes
+      parameters:
+        - name: attributeId
+          in: path
+          required: true
+          description: Unique identifier of the attribute
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Attribute deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/notifications/unread:
+    get:
+      operationId: listUnreadNotifications
+      summary: List unread notifications
+      description: >-
+        Retrieves a paginated list of unread notifications for the
+        authenticated user.
+      tags:
+        - Notifications
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of unread notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/notifications/read:
+    get:
+      operationId: listReadNotifications
+      summary: List read notifications
+      description: >-
+        Retrieves a paginated list of read notifications for the authenticated
+        user.
+      tags:
+        - Notifications
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/OrderByDirection'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of read notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/notifications/markasread:
+    post:
+      operationId: markNotificationsAsRead
+      summary: Mark notifications as read
+      description: Marks one or more notifications as read.
+      tags:
+        - Notifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkNotificationsAsReadRequest'
+      responses:
+        '204':
+          description: Notifications marked as read successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/lookup-items:
+    get:
+      operationId: listLookupItems
+      summary: List lookup items
+      description: >-
+        Returns a list of lookup items for the specified type, providing
+        reference data such as scan types, time zones, and status values.
+      tags:
+        - Lookup Items
+      parameters:
+        - name: type
+          in: query
+          required: true
+          description: The type of lookup items to retrieve
+          schema:
+            type: string
+            enum:
+              - AnalysisStatusTypes
+              - ApplicationTypes
+              - AssessmentTypes
+              - AuditActionTypes
+              - AuditTemplateConditionTypes
+              - BusinessCriticalityTypes
+              - DynamicScanEnvironmentFacingTypes
+              - MobileScanFrameworkTypes
+              - MobileScanPlatformTypes
+              - ScanStatusTypes
+              - ScanTypes
+              - SDLCStatusTypes
+              - TimeZones
+              - TechnologyTypes
+              - LanguageLevels
+              - AuditPreferenceTypes
+              - EntitlementFrequencyTypes
+              - ReportTypes
+              - ReportStatusTypes
+              - ReportFormats
+              - DastAutomatedScanTypes
+              - RepeatScheduleTypes
+      responses:
+        '200':
+          description: Successful response with list of lookup items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupItemListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/eventlogs/download:
+    get:
+      operationId: downloadEventLogs
+      summary: Download event logs
+      description: >-
+        Downloads the last 24 hours of event log data in CSV format for the
+        tenant.
+      tags:
+        - Event Logs
+      responses:
+        '200':
+          description: Event log CSV file download
+          content:
+            application/x-download:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/fortify-on-demand-connect-networks:
+    get:
+      operationId: listFortifyConnectNetworks
+      summary: List Fortify Connect networks
+      description: >-
+        Retrieves a list of Fortify on Demand Connect networks configured for
+        the tenant, enabling scanning of internal applications.
+      tags:
+        - Applications
+      responses:
+        '200':
+          description: >-
+            Successful response with list of Fortify Connect networks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FortifyConnectNetworkListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth2 Bearer token obtained from POST /oauth/token using either
+        client_credentials or password grant type.
+  parameters:
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+    Filters:
+      name: filters
+      in: query
+      description: >-
+        Filter expression using Fortify on Demand filter syntax. Multiple
+        filters can be combined.
+      schema:
+        type: string
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+  schemas:
+    Application:
+      type: object
+      description: Represents an application in Fortify on Demand
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Unique identifier of the application
+        applicationName:
+          type: string
+          description: Name of the application
+        applicationDescription:
+          type: string
+          description: Description of the application
+        applicationCreatedDate:
+          type: string
+          format: date-time
+          description: Date when the application was created
+        businessCriticalityType:
+          type: string
+          description: Business criticality classification
+        emailList:
+          type: string
+          description: Comma-separated list of notification email addresses
+        hasMicroservices:
+          type: boolean
+          description: Whether the application has microservices configured
+        attributes:
+          type: array
+          description: Application attributes
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    ApplicationAttribute:
+      type: object
+      description: An attribute value assigned to an application
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Attribute identifier
+        name:
+          type: string
+          description: Attribute name
+        value:
+          type: string
+          description: Attribute value
+    ApplicationListResponse:
+      type: object
+      description: Paginated list of applications
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of applications matching the query
+    PostApplicationRequest:
+      type: object
+      description: Request body for creating an application
+      required:
+        - applicationName
+        - applicationDescription
+        - businessCriticalityType
+        - releaseName
+        - sdlcStatusType
+      properties:
+        applicationName:
+          type: string
+          description: Name of the application
+        applicationDescription:
+          type: string
+          description: Description of the application
+        businessCriticalityType:
+          type: string
+          description: Business criticality classification
+          enum:
+            - High
+            - Medium
+            - Low
+        releaseName:
+          type: string
+          description: Name of the initial release
+        releaseDescription:
+          type: string
+          description: Description of the initial release
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+          enum:
+            - Development
+            - QA
+            - Production
+            - Retired
+        emailList:
+          type: string
+          description: Comma-separated list of notification email addresses
+        hasMicroservices:
+          type: boolean
+          description: Whether the application uses microservices
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    PostApplicationResponse:
+      type: object
+      description: Response after creating an application
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created application
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the initial release
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    PutApplicationRequest:
+      type: object
+      description: Request body for updating an application
+      properties:
+        applicationName:
+          type: string
+          description: Name of the application
+        applicationDescription:
+          type: string
+          description: Description of the application
+        businessCriticalityType:
+          type: string
+          description: Business criticality classification
+        emailList:
+          type: string
+          description: Comma-separated list of notification email addresses
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    PutApplicationResponse:
+      type: object
+      description: Response after updating an application
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    Release:
+      type: object
+      description: Represents a release within an application
+      properties:
+        releaseId:
+          type: integer
+          format: int32
+          description: Unique identifier of the release
+        releaseName:
+          type: string
+          description: Name of the release
+        releaseDescription:
+          type: string
+          description: Description of the release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+        applicationName:
+          type: string
+          description: Name of the parent application
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+        rating:
+          type: number
+          format: double
+          description: Security rating for the release
+        critical:
+          type: integer
+          format: int32
+          description: Number of critical severity issues
+        high:
+          type: integer
+          format: int32
+          description: Number of high severity issues
+        medium:
+          type: integer
+          format: int32
+          description: Number of medium severity issues
+        low:
+          type: integer
+          format: int32
+          description: Number of low severity issues
+        issueCount:
+          type: integer
+          format: int32
+          description: Total number of issues
+        isPassed:
+          type: boolean
+          description: Whether the release passes the security policy
+        passFailReasonType:
+          type: string
+          description: Reason for pass or fail status
+        currentStaticScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current static scan
+        currentDynamicScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current dynamic scan
+        currentMobileScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current mobile scan
+    ReleaseListResponse:
+      type: object
+      description: Paginated list of releases
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Release'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of releases matching the query
+    PostReleaseRequest:
+      type: object
+      description: Request body for creating a release
+      required:
+        - applicationId
+        - releaseName
+        - sdlcStatusType
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+        releaseName:
+          type: string
+          description: Name of the release
+        releaseDescription:
+          type: string
+          description: Description of the release
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+          enum:
+            - Development
+            - QA
+            - Production
+            - Retired
+        microserviceId:
+          type: integer
+          format: int32
+          description: Optional microservice identifier
+    PostReleaseResponse:
+      type: object
+      description: Response after creating a release
+      properties:
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created release
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    PutReleaseRequest:
+      type: object
+      description: Request body for updating a release
+      properties:
+        releaseName:
+          type: string
+          description: Name of the release
+        releaseDescription:
+          type: string
+          description: Description of the release
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+    PutReleaseResponse:
+      type: object
+      description: Response after updating a release
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    Scan:
+      type: object
+      description: Represents a security scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        scanType:
+          type: string
+          description: Type of scan performed
+          enum:
+            - Static
+            - Dynamic
+            - Mobile
+            - OpenSource
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        startedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan started
+        completedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan completed
+        totalIssues:
+          type: integer
+          format: int32
+          description: Total number of issues found
+        issueCountCritical:
+          type: integer
+          format: int32
+          description: Number of critical issues found
+        issueCountHigh:
+          type: integer
+          format: int32
+          description: Number of high issues found
+        issueCountMedium:
+          type: integer
+          format: int32
+          description: Number of medium issues found
+        issueCountLow:
+          type: integer
+          format: int32
+          description: Number of low issues found
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the associated application
+    ScanListResponse:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of scans matching the query
+    PollingScanSummary:
+      type: object
+      description: Scan status for polling
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        analysisStatusTypeValue:
+          type: integer
+          format: int32
+          description: Numeric value of the analysis status
+        pauseDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              reason:
+                type: string
+              notes:
+                type: string
+        passFailStatus:
+          type: boolean
+          description: Whether the scan passes the security policy
+    Vulnerability:
+      type: object
+      description: Represents a vulnerability finding
+      properties:
+        vulnId:
+          type: integer
+          format: int32
+          description: Unique identifier of the vulnerability
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        category:
+          type: string
+          description: Vulnerability category
+        kingdom:
+          type: string
+          description: Vulnerability kingdom classification
+        severity:
+          type: integer
+          format: int32
+          description: Severity level (1-4, where 4 is critical)
+        severityString:
+          type: string
+          description: Human-readable severity string
+        assignedUser:
+          type: string
+          description: User assigned to the vulnerability
+        isSuppressed:
+          type: boolean
+          description: Whether the vulnerability is suppressed
+        hasComments:
+          type: boolean
+          description: Whether the vulnerability has comments
+        status:
+          type: string
+          description: Current audit status
+        scanType:
+          type: string
+          description: Type of scan that found the vulnerability
+        primaryLocation:
+          type: string
+          description: Primary source location of the vulnerability
+        lineNumber:
+          type: integer
+          format: int32
+          description: Line number of the vulnerability
+        introducedDate:
+          type: string
+          format: date-time
+          description: Date when the vulnerability was first found
+        removedDate:
+          type: string
+          format: date-time
+          description: Date when the vulnerability was resolved
+    VulnerabilityListResponse:
+      type: object
+      description: Paginated list of vulnerabilities
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of vulnerabilities matching the query
+    ApplicationIssueCountListResponse:
+      type: object
+      description: Issue counts grouped by severity for an application
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              severityValue:
+                type: integer
+                format: int32
+              count:
+                type: integer
+                format: int32
+              scanType:
+                type: string
+    ApplicationUserListResponse:
+      type: object
+      description: List of users associated with an application
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalCount:
+          type: integer
+          format: int32
+    User:
+      type: object
+      description: Represents a user in the system
+      properties:
+        userId:
+          type: integer
+          format: int32
+          description: Unique identifier of the user
+        userName:
+          type: string
+          description: Username
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        email:
+          type: string
+          description: Email address
+    Microservice:
+      type: object
+      description: Represents a microservice within an application
+      properties:
+        microserviceId:
+          type: integer
+          format: int32
+          description: Unique identifier of the microservice
+        microserviceName:
+          type: string
+          description: Name of the microservice
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+    MicroserviceListResponse:
+      type: object
+      description: List of microservices
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Microservice'
+        totalCount:
+          type: integer
+          format: int32
+    PostMicroserviceRequest:
+      type: object
+      description: Request body for creating a microservice
+      required:
+        - microserviceName
+      properties:
+        microserviceName:
+          type: string
+          description: Name of the microservice
+    PostMicroserviceResponse:
+      type: object
+      description: Response after creating a microservice
+      properties:
+        microserviceId:
+          type: integer
+          format: int32
+        success:
+          type: boolean
+    OpenSourceComponent:
+      type: object
+      description: Represents an open source component
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+        componentVersion:
+          type: string
+          description: Version of the component
+        license:
+          type: string
+          description: License of the component
+        applicationName:
+          type: string
+          description: Parent application name
+        releaseName:
+          type: string
+          description: Parent release name
+        vulnerabilityCount:
+          type: integer
+          format: int32
+          description: Number of known vulnerabilities
+    OpenSourceComponentListResponse:
+      type: object
+      description: Paginated list of open source components
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpenSourceComponent'
+        totalCount:
+          type: integer
+          format: int32
+    ApiKey:
+      type: object
+      description: Represents an API key
+      properties:
+        apiKeyId:
+          type: integer
+          format: int32
+          description: Unique identifier of the API key
+        apiKeyName:
+          type: string
+          description: Name of the API key
+        callerIpRange:
+          type: string
+          description: Allowed IP range for the API key
+        apiKeySecret:
+          type: string
+          description: Secret value of the API key
+        createdDate:
+          type: string
+          format: date-time
+          description: Date when the API key was created
+    ApiKeyListResponse:
+      type: object
+      description: Paginated list of API keys
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+        totalCount:
+          type: integer
+          format: int32
+    ApiKeyRequest:
+      type: object
+      description: Request body for creating or updating an API key
+      required:
+        - apiKeyName
+      properties:
+        apiKeyName:
+          type: string
+          description: Name of the API key
+        callerIpRange:
+          type: string
+          description: Allowed IP range
+    PostApiKeyResponse:
+      type: object
+      description: Response after creating an API key
+      properties:
+        apiKeyId:
+          type: integer
+          format: int32
+        apiKeySecret:
+          type: string
+        success:
+          type: boolean
+    ApiKeyResponse:
+      type: object
+      description: Response for API key operations
+      properties:
+        success:
+          type: boolean
+    PersonalAccessToken:
+      type: object
+      description: Represents a personal access token
+      properties:
+        personalAccessTokenId:
+          type: integer
+          format: int32
+          description: Unique identifier
+        name:
+          type: string
+          description: Name of the token
+        userName:
+          type: string
+          description: User who owns the token
+        secretExpirationDate:
+          type: string
+          format: date-time
+          description: Expiration date of the token secret
+    PersonalAccessTokenListResponse:
+      type: object
+      description: List of personal access tokens
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonalAccessToken'
+        totalCount:
+          type: integer
+          format: int32
+    PostPersonalAccessTokenRequest:
+      type: object
+      description: Request body for creating a personal access token
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Name of the token
+        secretLifetimeDays:
+          type: integer
+          format: int32
+          description: Number of days until the secret expires
+        secretExpirationDate:
+          type: string
+          format: date-time
+          description: Specific expiration date for the secret
+    PutPersonalAccessTokenRequest:
+      type: object
+      description: Request body for updating a personal access token
+      properties:
+        name:
+          type: string
+          description: Name of the token
+    CreatePersonalAccessTokenResult:
+      type: object
+      description: Response after creating a personal access token
+      properties:
+        personalAccessTokenId:
+          type: integer
+          format: int32
+        secret:
+          type: string
+          description: The token secret (only returned on creation)
+    AttributeListResponse:
+      type: object
+      description: List of attributes
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        totalCount:
+          type: integer
+          format: int32
+    Attribute:
+      type: object
+      description: Represents an application attribute definition
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier
+        name:
+          type: string
+          description: Attribute name
+        attributeType:
+          type: string
+          description: Type of attribute
+        attributeDataType:
+          type: string
+          description: Data type of the attribute
+        isRequired:
+          type: boolean
+          description: Whether the attribute is required
+    PostAttributeRequest:
+      type: object
+      description: Request body for creating an attribute
+      required:
+        - name
+        - attributeType
+      properties:
+        name:
+          type: string
+        attributeType:
+          type: string
+        attributeDataType:
+          type: string
+        isRequired:
+          type: boolean
+    PostAttributeResponse:
+      type: object
+      description: Response after creating an attribute
+      properties:
+        attributeId:
+          type: integer
+          format: int32
+        success:
+          type: boolean
+    PutAttributeRequest:
+      type: object
+      description: Request body for updating an attribute
+      properties:
+        name:
+          type: string
+        attributeType:
+          type: string
+        isRequired:
+          type: boolean
+    PutAttributeResponse:
+      type: object
+      description: Response after updating an attribute
+      properties:
+        success:
+          type: boolean
+    NotificationListResponse:
+      type: object
+      description: Paginated list of notifications
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notification'
+        totalCount:
+          type: integer
+          format: int32
+    Notification:
+      type: object
+      description: Represents a notification
+      properties:
+        notificationId:
+          type: integer
+          format: int32
+          description: Unique identifier
+        notificationType:
+          type: string
+          description: Type of notification
+        message:
+          type: string
+          description: Notification message
+        isRead:
+          type: boolean
+          description: Whether the notification has been read
+        createdDate:
+          type: string
+          format: date-time
+          description: Date when the notification was created
+    MarkNotificationsAsReadRequest:
+      type: object
+      description: Request body for marking notifications as read
+      properties:
+        notificationIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: List of notification identifiers to mark as read
+    LookupItemListResponse:
+      type: object
+      description: List of lookup items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LookupItem'
+        totalCount:
+          type: integer
+          format: int32
+    LookupItem:
+      type: object
+      description: Represents a reference/lookup data item
+      properties:
+        text:
+          type: string
+          description: Display text
+        value:
+          type: string
+          description: Value
+        group:
+          type: string
+          description: Group classification
+    CategoryRollupsResponse:
+      type: object
+      description: Vulnerability category rollup data
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Category name
+              critical:
+                type: integer
+                format: int32
+              high:
+                type: integer
+                format: int32
+              medium:
+                type: integer
+                format: int32
+              low:
+                type: integer
+                format: int32
+    ReleaseAssessmentTypeListResponse:
+      type: object
+      description: List of available assessment types for a release
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentType'
+        totalCount:
+          type: integer
+          format: int32
+    AssessmentType:
+      type: object
+      description: Represents an assessment type
+      properties:
+        assessmentTypeId:
+          type: integer
+          format: int32
+          description: Unique identifier
+        name:
+          type: string
+          description: Assessment type name
+        scanType:
+          type: string
+          description: Scan type
+        entitlementId:
+          type: integer
+          format: int32
+          description: Associated entitlement
+        frequencyType:
+          type: string
+          description: Frequency type
+    GetStaticScanOptionsResponse:
+      type: object
+      description: Available options for starting a static scan
+      properties:
+        technologyStacks:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              text:
+                type: string
+        languageLevels:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              text:
+                type: string
+    GetDastAutomatedScanSetupResponse:
+      type: object
+      description: DAST automated scan setup configuration
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        scanType:
+          type: string
+        scanPolicy:
+          type: string
+        websiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        networkAuthenticationUserName:
+          type: string
+        timeZone:
+          type: string
+    PutDastAutomatedWebsiteScanSetupRequest:
+      type: object
+      description: Request body for saving DAST website scan setup
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+          enum:
+            - Internal
+            - External
+        websiteUrl:
+          type: string
+          description: URL of the website to scan
+        scanPolicy:
+          type: string
+          description: Scan policy to use
+        requiresNetworkAuthentication:
+          type: boolean
+        networkAuthenticationUserName:
+          type: string
+        networkAuthenticationPassword:
+          type: string
+        timeZone:
+          type: string
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+    PutDastAutomatedOpenApiScanSetupRequest:
+      type: object
+      description: Request body for saving DAST OpenAPI scan setup
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+          enum:
+            - Internal
+            - External
+        openApiUrl:
+          type: string
+          description: URL of the OpenAPI specification
+        apiKey:
+          type: string
+          description: API key for authentication
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+        timeZone:
+          type: string
+    GetDynamicScanSetupResponse:
+      type: object
+      description: Dynamic scan setup configuration
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        dynamicSiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        timeZone:
+          type: string
+    PutDynamicScanSetupRequest:
+      type: object
+      description: Request body for saving dynamic scan setup
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        dynamicSiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        networkAuthenticationUserName:
+          type: string
+        networkAuthenticationPassword:
+          type: string
+        timeZone:
+          type: string
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+    PutDynamicScanSetupResponse:
+      type: object
+      description: Response after saving dynamic scan setup
+      properties:
+        success:
+          type: boolean
+    StartDynamicScanRequest:
+      type: object
+      description: Request body for starting a dynamic scan
+      properties:
+        startDate:
+          type: string
+          format: date-time
+          description: Scheduled start date
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+        isRemediationScan:
+          type: boolean
+        isBundledAssessment:
+          type: boolean
+        parentAssessmentTypeId:
+          type: integer
+          format: int32
+        timeZone:
+          type: string
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created scan
+        analysisStatusType:
+          type: string
+          description: Initial analysis status
+        success:
+          type: boolean
+    MobileScanSetup:
+      type: object
+      description: Mobile scan setup configuration
+      properties:
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+        frameworkType:
+          type: string
+          enum:
+            - iOS
+            - Android
+        timeZone:
+          type: string
+    PutMobileScanSetupRequest:
+      type: object
+      description: Request body for saving mobile scan setup
+      properties:
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+        frameworkType:
+          type: string
+          enum:
+            - iOS
+            - Android
+        timeZone:
+          type: string
+    PutMobileScanSetupResponse:
+      type: object
+      description: Response after saving mobile scan setup
+      properties:
+        success:
+          type: boolean
+    PostAuditActionRequest:
+      type: object
+      description: Request body for setting audit action on vulnerabilities
+      properties:
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              vulnId:
+                type: integer
+                format: int32
+              analysisStatusType:
+                type: string
+              comment:
+                type: string
+    GetAuditOptionsResponse:
+      type: object
+      description: Available audit options
+      properties:
+        analysisStatusTypes:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              value:
+                type: string
+    GetImportScanSessionIdResponse:
+      type: object
+      description: Response with import scan session ID
+      properties:
+        importScanSessionId:
+          type: string
+          description: Session identifier for importing scan results
+    FortifyConnectNetworkListResponse:
+      type: object
+      description: List of Fortify Connect networks
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              networkId:
+                type: integer
+                format: int32
+              networkName:
+                type: string
+              status:
+                type: string
+        totalCount:
+          type: integer
+          format: int32
+    DeleteResponse:
+      type: object
+      description: Generic delete response
+      properties:
+        success:
+          type: boolean
+          description: Whether the delete operation succeeded
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

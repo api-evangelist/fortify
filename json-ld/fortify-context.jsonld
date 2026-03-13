@@ -1,0 +1,172 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "fortify": "https://www.opentext.com/products/fortify/vocab#",
+    "schema": "https://schema.org/",
+    "sec": "https://w3id.org/security#",
+    "sarif": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/vocab#",
+    "cwe": "https://cwe.mitre.org/data/definitions/",
+    "cve": "https://www.cve.org/",
+    "spdx": "https://spdx.org/rdf/terms#",
+
+    "Application": {
+      "@id": "schema:SoftwareApplication",
+      "@context": {
+        "applicationId": "schema:identifier",
+        "applicationName": "schema:name",
+        "applicationDescription": "schema:description",
+        "applicationCreatedDate": "schema:dateCreated",
+        "businessCriticalityType": "fortify:businessCriticality",
+        "sdlcStatusType": "fortify:sdlcStatus",
+        "emailList": "schema:email",
+        "hasMicroservices": "fortify:hasMicroservices",
+        "url": "schema:url"
+      }
+    },
+
+    "Release": {
+      "@id": "schema:SoftwareApplication",
+      "@context": {
+        "releaseId": "schema:identifier",
+        "releaseName": "schema:name",
+        "releaseDescription": "schema:description",
+        "applicationId": "schema:isPartOf",
+        "sdlcStatusType": "fortify:sdlcStatus",
+        "rating": "schema:ratingValue",
+        "issueCount": "fortify:issueCount",
+        "isPassed": "fortify:passesSecurityPolicy"
+      }
+    },
+
+    "ProjectVersion": {
+      "@id": "schema:SoftwareApplication",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "description": "schema:description",
+        "active": "fortify:isActive",
+        "committed": "fortify:isCommitted",
+        "createdBy": "schema:creator",
+        "creationDate": "schema:dateCreated",
+        "issueTemplateId": "fortify:issueTemplateId"
+      }
+    },
+
+    "Vulnerability": {
+      "@id": "sec:Vulnerability",
+      "@context": {
+        "vulnId": "schema:identifier",
+        "issueInstanceId": "fortify:instanceId",
+        "category": "fortify:vulnerabilityCategory",
+        "kingdom": "fortify:vulnerabilityKingdom",
+        "severity": "sec:severity",
+        "severityString": "fortify:severityLabel",
+        "scanType": "fortify:scanType",
+        "status": "fortify:auditStatus",
+        "isSuppressed": "fortify:isSuppressed",
+        "assignedUser": "schema:assignee",
+        "primaryLocation": "sarif:physicalLocation",
+        "lineNumber": "sarif:startLine",
+        "fullFileName": "sarif:uri",
+        "introducedDate": "schema:dateCreated",
+        "removedDate": "fortify:dateRemoved",
+        "analyzer": "sarif:tool",
+        "confidence": "sarif:confidence",
+        "impact": "sec:impact",
+        "likelihood": "sec:likelihood",
+        "cweId": "cwe:id"
+      }
+    },
+
+    "Scan": {
+      "@id": "fortify:SecurityScan",
+      "@context": {
+        "scanId": "schema:identifier",
+        "scanType": "fortify:scanType",
+        "analysisStatusType": "fortify:analysisStatus",
+        "startedDateTime": "schema:startDate",
+        "completedDateTime": "schema:endDate",
+        "totalIssues": "fortify:totalIssues",
+        "issueCountCritical": "fortify:criticalIssueCount",
+        "issueCountHigh": "fortify:highIssueCount",
+        "issueCountMedium": "fortify:mediumIssueCount",
+        "issueCountLow": "fortify:lowIssueCount",
+        "passFailStatus": "fortify:passesSecurityPolicy",
+        "technologyStack": "schema:programmingLanguage"
+      }
+    },
+
+    "DastScan": {
+      "@id": "fortify:DastScan",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "status": "fortify:scanStatus",
+        "startTime": "schema:startDate",
+        "endTime": "schema:endDate",
+        "totalVulnerabilities": "fortify:totalIssues",
+        "criticalCount": "fortify:criticalIssueCount",
+        "highCount": "fortify:highIssueCount",
+        "mediumCount": "fortify:mediumIssueCount",
+        "lowCount": "fortify:lowIssueCount",
+        "sensorId": "fortify:sensorId",
+        "sensorName": "fortify:sensorName"
+      }
+    },
+
+    "Artifact": {
+      "@id": "schema:DigitalDocument",
+      "@context": {
+        "id": "schema:identifier",
+        "fileName": "schema:name",
+        "fileSize": "schema:contentSize",
+        "status": "fortify:processingStatus",
+        "uploadDate": "schema:uploadDate",
+        "scanTypes": "fortify:scanTypes"
+      }
+    },
+
+    "OpenSourceComponent": {
+      "@id": "spdx:Package",
+      "@context": {
+        "componentName": "spdx:name",
+        "componentVersion": "spdx:versionInfo",
+        "license": "spdx:licenseDeclared",
+        "vulnerabilityCount": "fortify:vulnerabilityCount"
+      }
+    },
+
+    "User": {
+      "@id": "schema:Person",
+      "@context": {
+        "userId": "schema:identifier",
+        "userName": "schema:alternateName",
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "email": "schema:email"
+      }
+    },
+
+    "Sensor": {
+      "@id": "fortify:DastSensor",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "hostName": "schema:url",
+        "ipAddress": "fortify:ipAddress",
+        "status": "fortify:sensorStatus",
+        "webInspectVersion": "schema:softwareVersion",
+        "operatingSystem": "schema:operatingSystem"
+      }
+    },
+
+    "ScanPolicy": {
+      "@id": "fortify:ScanPolicy",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "description": "schema:description"
+      }
+    }
+  }
+}

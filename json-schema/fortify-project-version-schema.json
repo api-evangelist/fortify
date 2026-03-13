@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/fortify/json-schema/fortify-project-version-schema.json",
+  "title": "Fortify Project Version",
+  "description": "Represents a project version (application version) in Fortify Software Security Center. Project versions are the primary unit of work in SSC, containing scan artifacts, issue data, and audit information for a specific version of an application.",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the project version"
+    },
+    "name": {
+      "type": "string",
+      "description": "Version name",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Version description"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the version is active",
+      "default": true
+    },
+    "committed": {
+      "type": "boolean",
+      "description": "Whether the version has been committed (activated for use)",
+      "default": false
+    },
+    "project": {
+      "type": "object",
+      "description": "Parent project reference",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Project identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Project name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Project description"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Project creation date"
+        },
+        "issueTemplateId": {
+          "type": "string",
+          "description": "Issue template identifier"
+        }
+      }
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Username of the creator"
+    },
+    "creationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date when the version was created"
+    },
+    "issueTemplateId": {
+      "type": "string",
+      "description": "Issue template identifier for this version"
+    },
+    "currentState": {
+      "type": "object",
+      "description": "Current processing state of the version",
+      "properties": {
+        "committed": {
+          "type": "boolean",
+          "description": "Whether the version is committed"
+        },
+        "analysisResultsExist": {
+          "type": "boolean",
+          "description": "Whether analysis results have been uploaded"
+        },
+        "hasCustomIssues": {
+          "type": "boolean",
+          "description": "Whether custom issues exist"
+        },
+        "auditEnabled": {
+          "type": "boolean",
+          "description": "Whether auditing is enabled"
+        },
+        "batchBugSubmissionExists": {
+          "type": "boolean",
+          "description": "Whether batch bug submissions exist"
+        }
+      }
+    },
+    "attributes": {
+      "type": "array",
+      "description": "Attribute values assigned to this version",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attributeDefinitionId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Attribute definition identifier"
+          },
+          "guid": {
+            "type": "string",
+            "description": "Attribute GUID"
+          },
+          "value": {
+            "type": "string",
+            "description": "Attribute value"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "guid": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

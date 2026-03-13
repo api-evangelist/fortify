@@ -1,0 +1,1572 @@
+openapi: 3.1.0
+info:
+  title: Fortify ScanCentral DAST API
+  description: >-
+    REST API for Fortify ScanCentral DAST, which provides centralized dynamic
+    application security testing management. Enables orchestration of DAST scans
+    across distributed WebInspect sensors, management of scan settings and
+    policies, sensor pool configuration, and CI/CD pipeline integration.
+    Authentication uses FortifyToken obtained from Fortify Software Security
+    Center.
+  version: v2
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+externalDocs:
+  description: Fortify ScanCentral DAST Documentation
+  url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/
+servers:
+  - url: '{protocol}://{host}/api'
+    description: ScanCentral DAST API Server
+    variables:
+      protocol:
+        default: https
+        enum:
+          - https
+          - http
+      host:
+        default: localhost:8500
+        description: Your ScanCentral DAST server hostname and port
+security:
+  - fortifyToken: []
+tags:
+  - name: Scans
+    description: Manage and initiate DAST scans
+  - name: Scan Settings
+    description: Manage scan configuration settings
+  - name: Scan Policies
+    description: Manage scan policies
+  - name: Sensors
+    description: Manage WebInspect sensors
+  - name: Sensor Pools
+    description: Manage sensor pools for scan distribution
+  - name: Scan Schedules
+    description: Manage scheduled scans
+  - name: CI/CD
+    description: CI/CD pipeline integration endpoints
+  - name: System
+    description: System health and configuration
+paths:
+  /scans:
+    get:
+      operationId: listScans
+      summary: List scans
+      description: >-
+        Retrieves a paginated list of DAST scans. Supports filtering by
+        status, settings, and other criteria.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - name: status
+          in: query
+          description: Filter by scan status
+          schema:
+            type: string
+            enum:
+              - Queued
+              - Pending
+              - Running
+              - Complete
+              - Failed
+              - Paused
+              - ImportingScanResults
+              - Unknown
+        - name: scanSettingsId
+          in: query
+          description: Filter by scan settings identifier
+          schema:
+            type: string
+            format: uuid
+        - name: orderBy
+          in: query
+          description: Field to sort results by
+          schema:
+            type: string
+        - name: orderByDirection
+          in: query
+          description: Sort direction
+          schema:
+            type: string
+            enum:
+              - ASC
+              - DESC
+      responses:
+        '200':
+          description: Successful response with list of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /scans/{scanId}:
+    get:
+      operationId: getScan
+      summary: Get scan
+      description: Retrieves details for a specific scan by identifier.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ScanId'
+      responses:
+        '200':
+          description: Successful response with scan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DastScan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteScan
+      summary: Delete scan
+      description: Deletes a specific scan and its results.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ScanId'
+      responses:
+        '200':
+          description: Scan deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scans/{scanId}/action:
+    post:
+      operationId: performScanAction
+      summary: Perform scan action
+      description: >-
+        Performs an action on a scan such as pausing, resuming, cancelling, or
+        retrying.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ScanId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScanActionRequest'
+      responses:
+        '200':
+          description: Action performed successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scans/{scanId}/scan-log:
+    get:
+      operationId: getScanLog
+      summary: Get scan log
+      description: Retrieves the scan log for a specific scan.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ScanId'
+      responses:
+        '200':
+          description: Successful response with scan log content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scans/{scanId}/scan-summary:
+    get:
+      operationId: getScanSummary
+      summary: Get scan summary
+      description: >-
+        Retrieves a summary of the scan results including vulnerability counts
+        and scan metrics.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/ScanId'
+      responses:
+        '200':
+          description: Successful response with scan summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DastScanSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scans/start-scan:
+    post:
+      operationId: startScan
+      summary: Start scan
+      description: >-
+        Starts a new DAST scan using the specified scan settings configuration.
+      tags:
+        - Scans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartScanRequest'
+      responses:
+        '200':
+          description: Scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /scans/start-scan-cicd:
+    post:
+      operationId: startScanCicd
+      summary: Start scan from CI/CD
+      description: >-
+        Starts a new DAST scan from a CI/CD pipeline using a pre-configured
+        CI/CD token that references the scan settings. This is the primary
+        endpoint for CI/CD integration.
+      tags:
+        - CI/CD
+        - Scans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartScanCicdRequest'
+      responses:
+        '200':
+          description: Scan started successfully from CI/CD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /scan-settings:
+    get:
+      operationId: listScanSettings
+      summary: List scan settings
+      description: >-
+        Retrieves a paginated list of scan settings configurations, which
+        define how scans are executed.
+      tags:
+        - Scan Settings
+      parameters:
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - name: searchText
+          in: query
+          description: Search text to filter settings by name
+          schema:
+            type: string
+        - name: orderBy
+          in: query
+          description: Field to sort results by
+          schema:
+            type: string
+        - name: orderByDirection
+          in: query
+          description: Sort direction
+          schema:
+            type: string
+            enum:
+              - ASC
+              - DESC
+      responses:
+        '200':
+          description: Successful response with list of scan settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSettingsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createScanSettings
+      summary: Create scan settings
+      description: >-
+        Creates a new scan settings configuration defining target URL,
+        authentication, scan policy, and other parameters.
+      tags:
+        - Scan Settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScanSettingsRequest'
+      responses:
+        '201':
+          description: Scan settings created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /scan-settings/{scanSettingsId}:
+    get:
+      operationId: getScanSettings
+      summary: Get scan settings
+      description: Retrieves details for a specific scan settings configuration.
+      tags:
+        - Scan Settings
+      parameters:
+        - name: scanSettingsId
+          in: path
+          required: true
+          description: Unique identifier of the scan settings
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response with scan settings details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateScanSettings
+      summary: Update scan settings
+      description: Updates an existing scan settings configuration.
+      tags:
+        - Scan Settings
+      parameters:
+        - name: scanSettingsId
+          in: path
+          required: true
+          description: Unique identifier of the scan settings
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScanSettingsRequest'
+      responses:
+        '200':
+          description: Scan settings updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteScanSettings
+      summary: Delete scan settings
+      description: Deletes a scan settings configuration.
+      tags:
+        - Scan Settings
+      parameters:
+        - name: scanSettingsId
+          in: path
+          required: true
+          description: Unique identifier of the scan settings
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Scan settings deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scan-settings/{scanSettingsId}/cicd-token:
+    get:
+      operationId: getScanSettingsCicdToken
+      summary: Get CI/CD token
+      description: >-
+        Retrieves the CI/CD token for a scan settings configuration, used to
+        trigger scans from CI/CD pipelines.
+      tags:
+        - Scan Settings
+        - CI/CD
+      parameters:
+        - name: scanSettingsId
+          in: path
+          required: true
+          description: Unique identifier of the scan settings
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response with CI/CD token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cicdToken:
+                    type: string
+                    format: uuid
+                    description: CI/CD token for triggering scans
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: regenerateScanSettingsCicdToken
+      summary: Regenerate CI/CD token
+      description: >-
+        Regenerates the CI/CD token for a scan settings configuration,
+        invalidating the previous token.
+      tags:
+        - Scan Settings
+        - CI/CD
+      parameters:
+        - name: scanSettingsId
+          in: path
+          required: true
+          description: Unique identifier of the scan settings
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: CI/CD token regenerated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cicdToken:
+                    type: string
+                    format: uuid
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scan-policies:
+    get:
+      operationId: listScanPolicies
+      summary: List scan policies
+      description: >-
+        Retrieves a list of available scan policies that control which
+        vulnerability checks are performed during scans.
+      tags:
+        - Scan Policies
+      parameters:
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scan policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanPolicyListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scan-policies/{scanPolicyId}:
+    get:
+      operationId: getScanPolicy
+      summary: Get scan policy
+      description: Retrieves details for a specific scan policy.
+      tags:
+        - Scan Policies
+      parameters:
+        - name: scanPolicyId
+          in: path
+          required: true
+          description: Unique identifier of the scan policy
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response with scan policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanPolicy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sensors:
+    get:
+      operationId: listSensors
+      summary: List sensors
+      description: >-
+        Retrieves a list of WebInspect sensors registered with ScanCentral
+        DAST, including their status and capabilities.
+      tags:
+        - Sensors
+      parameters:
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+        - name: status
+          in: query
+          description: Filter by sensor status
+          schema:
+            type: string
+            enum:
+              - Active
+              - Inactive
+              - Disabled
+        - name: sensorPoolId
+          in: query
+          description: Filter by sensor pool
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response with list of sensors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /sensors/{sensorId}:
+    get:
+      operationId: getSensor
+      summary: Get sensor
+      description: Retrieves details for a specific sensor.
+      tags:
+        - Sensors
+      parameters:
+        - name: sensorId
+          in: path
+          required: true
+          description: Unique identifier of the sensor
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response with sensor details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sensor'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSensor
+      summary: Update sensor
+      description: Updates a sensor's configuration such as pool assignment.
+      tags:
+        - Sensors
+      parameters:
+        - name: sensorId
+          in: path
+          required: true
+          description: Unique identifier of the sensor
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSensorRequest'
+      responses:
+        '200':
+          description: Sensor updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sensor'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSensor
+      summary: Delete sensor
+      description: Removes a sensor from ScanCentral DAST.
+      tags:
+        - Sensors
+      parameters:
+        - name: sensorId
+          in: path
+          required: true
+          description: Unique identifier of the sensor
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Sensor deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sensor-pools:
+    get:
+      operationId: listSensorPools
+      summary: List sensor pools
+      description: >-
+        Retrieves a list of sensor pools used to group sensors for scan
+        distribution.
+      tags:
+        - Sensor Pools
+      parameters:
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of sensor pools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorPoolListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSensorPool
+      summary: Create sensor pool
+      description: Creates a new sensor pool for organizing sensors.
+      tags:
+        - Sensor Pools
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSensorPoolRequest'
+      responses:
+        '201':
+          description: Sensor pool created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorPool'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sensor-pools/{sensorPoolId}:
+    get:
+      operationId: getSensorPool
+      summary: Get sensor pool
+      description: Retrieves details for a specific sensor pool.
+      tags:
+        - Sensor Pools
+      parameters:
+        - name: sensorPoolId
+          in: path
+          required: true
+          description: Unique identifier of the sensor pool
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response with sensor pool details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorPool'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSensorPool
+      summary: Update sensor pool
+      description: Updates a sensor pool's properties.
+      tags:
+        - Sensor Pools
+      parameters:
+        - name: sensorPoolId
+          in: path
+          required: true
+          description: Unique identifier of the sensor pool
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSensorPoolRequest'
+      responses:
+        '200':
+          description: Sensor pool updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorPool'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSensorPool
+      summary: Delete sensor pool
+      description: Deletes a sensor pool.
+      tags:
+        - Sensor Pools
+      parameters:
+        - name: sensorPoolId
+          in: path
+          required: true
+          description: Unique identifier of the sensor pool
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Sensor pool deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scan-schedules:
+    get:
+      operationId: listScanSchedules
+      summary: List scan schedules
+      description: Retrieves a list of scheduled scans.
+      tags:
+        - Scan Schedules
+      parameters:
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scan schedules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanScheduleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createScanSchedule
+      summary: Create scan schedule
+      description: Creates a new scheduled scan configuration.
+      tags:
+        - Scan Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScanScheduleRequest'
+      responses:
+        '201':
+          description: Scan schedule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSchedule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scan-schedules/{scanScheduleId}:
+    get:
+      operationId: getScanSchedule
+      summary: Get scan schedule
+      description: Retrieves details for a specific scan schedule.
+      tags:
+        - Scan Schedules
+      parameters:
+        - name: scanScheduleId
+          in: path
+          required: true
+          description: Unique identifier of the scan schedule
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response with scan schedule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateScanSchedule
+      summary: Update scan schedule
+      description: Updates an existing scan schedule.
+      tags:
+        - Scan Schedules
+      parameters:
+        - name: scanScheduleId
+          in: path
+          required: true
+          description: Unique identifier of the scan schedule
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScanScheduleRequest'
+      responses:
+        '200':
+          description: Scan schedule updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSchedule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteScanSchedule
+      summary: Delete scan schedule
+      description: Deletes a scan schedule.
+      tags:
+        - Scan Schedules
+      parameters:
+        - name: scanScheduleId
+          in: path
+          required: true
+          description: Unique identifier of the scan schedule
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Scan schedule deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /health:
+    get:
+      operationId: getHealth
+      summary: Get system health
+      description: >-
+        Returns the health status of the ScanCentral DAST system, including
+        database connectivity and service availability.
+      tags:
+        - System
+      security: []
+      responses:
+        '200':
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: System is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+components:
+  securitySchemes:
+    fortifyToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Fortify token-based authentication. Pass as: FORTIFYTOKEN <token_value>.
+        Obtain a CI token from SSC Administration or use an SSC auth token.
+  parameters:
+    ScanId:
+      name: scanId
+      in: path
+      required: true
+      description: Unique identifier of the scan
+      schema:
+        type: string
+        format: uuid
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+  schemas:
+    DastScan:
+      type: object
+      description: Represents a DAST scan
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier of the scan
+        name:
+          type: string
+          description: Name of the scan
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Identifier of the scan settings used
+        scanSettingsName:
+          type: string
+          description: Name of the scan settings
+        status:
+          type: string
+          description: Current scan status
+          enum:
+            - Queued
+            - Pending
+            - Running
+            - Complete
+            - Failed
+            - Paused
+            - ImportingScanResults
+            - Unknown
+        sensorId:
+          type: string
+          format: uuid
+          description: Identifier of the assigned sensor
+        sensorName:
+          type: string
+          description: Name of the assigned sensor
+        startTime:
+          type: string
+          format: date-time
+          description: Scan start time
+        endTime:
+          type: string
+          format: date-time
+          description: Scan end time
+        totalVulnerabilities:
+          type: integer
+          format: int32
+          description: Total number of vulnerabilities found
+        criticalCount:
+          type: integer
+          format: int32
+          description: Number of critical vulnerabilities
+        highCount:
+          type: integer
+          format: int32
+          description: Number of high vulnerabilities
+        mediumCount:
+          type: integer
+          format: int32
+          description: Number of medium vulnerabilities
+        lowCount:
+          type: integer
+          format: int32
+          description: Number of low vulnerabilities
+        infoCount:
+          type: integer
+          format: int32
+          description: Number of informational findings
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+          description: SSC application version identifier
+        createdDate:
+          type: string
+          format: date-time
+          description: Date when the scan was created
+    DastScanSummary:
+      type: object
+      description: Summary of a DAST scan
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Scan identifier
+        status:
+          type: string
+          description: Scan status
+        totalVulnerabilities:
+          type: integer
+          format: int32
+          description: Total vulnerabilities found
+        criticalCount:
+          type: integer
+          format: int32
+        highCount:
+          type: integer
+          format: int32
+        mediumCount:
+          type: integer
+          format: int32
+        lowCount:
+          type: integer
+          format: int32
+        infoCount:
+          type: integer
+          format: int32
+        pagesScanned:
+          type: integer
+          format: int32
+          description: Number of pages scanned
+        requestsMade:
+          type: integer
+          format: int32
+          description: Number of HTTP requests made
+        scanDuration:
+          type: string
+          description: Duration of the scan
+    ScanSettings:
+      type: object
+      description: Scan settings configuration
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Settings name
+        startUrl:
+          type: string
+          format: uri
+          description: Starting URL for the scan
+        scanPolicyId:
+          type: string
+          format: uuid
+          description: Scan policy to use
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Sensor pool for scan execution
+        loginMacroEnabled:
+          type: boolean
+          description: Whether login macro is configured
+        crawlAuditMode:
+          type: string
+          description: Crawl and audit mode
+          enum:
+            - CrawlAndAudit
+            - CrawlOnly
+            - AuditOnly
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+          description: SSC application version for results upload
+        cicdToken:
+          type: string
+          format: uuid
+          description: Token for CI/CD integration
+        createdDate:
+          type: string
+          format: date-time
+          description: Date when the settings were created
+        modifiedDate:
+          type: string
+          format: date-time
+          description: Date when the settings were last modified
+    ScanPolicy:
+      type: object
+      description: A scan policy controlling vulnerability checks
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Policy name
+        description:
+          type: string
+          description: Policy description
+        isDefault:
+          type: boolean
+          description: Whether this is the default policy
+    Sensor:
+      type: object
+      description: A WebInspect sensor
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Sensor name
+        hostName:
+          type: string
+          description: Host name of the sensor machine
+        ipAddress:
+          type: string
+          description: IP address of the sensor
+        status:
+          type: string
+          description: Current sensor status
+          enum:
+            - Active
+            - Inactive
+            - Disabled
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Assigned sensor pool
+        sensorPoolName:
+          type: string
+          description: Name of the assigned sensor pool
+        webInspectVersion:
+          type: string
+          description: Version of WebInspect on the sensor
+        lastHeartbeat:
+          type: string
+          format: date-time
+          description: Last heartbeat timestamp
+        operatingSystem:
+          type: string
+          description: Operating system of the sensor
+        isRunning:
+          type: boolean
+          description: Whether the sensor is currently running a scan
+    SensorPool:
+      type: object
+      description: A sensor pool for grouping sensors
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Pool name
+        description:
+          type: string
+          description: Pool description
+        sensorCount:
+          type: integer
+          format: int32
+          description: Number of sensors in the pool
+        isDefault:
+          type: boolean
+          description: Whether this is the default pool
+    ScanSchedule:
+      type: object
+      description: A scheduled scan configuration
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Schedule name
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        scheduleType:
+          type: string
+          description: Type of schedule
+          enum:
+            - Once
+            - Daily
+            - Weekly
+            - Monthly
+        startDateTime:
+          type: string
+          format: date-time
+          description: Scheduled start date and time
+        enabled:
+          type: boolean
+          description: Whether the schedule is enabled
+        timeZone:
+          type: string
+          description: Time zone for the schedule
+    StartScanRequest:
+      type: object
+      description: Request to start a scan
+      required:
+        - scanSettingsId
+      properties:
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        name:
+          type: string
+          description: Optional name for the scan
+        overrides:
+          type: object
+          description: Optional scan parameter overrides
+          properties:
+            startUrl:
+              type: string
+              format: uri
+            scanPolicyId:
+              type: string
+              format: uuid
+            sensorPoolId:
+              type: string
+              format: uuid
+    StartScanCicdRequest:
+      type: object
+      description: Request to start a scan from CI/CD pipeline
+      required:
+        - cicdToken
+      properties:
+        cicdToken:
+          type: string
+          format: uuid
+          description: CI/CD token that references scan settings
+        name:
+          type: string
+          description: Optional name for the scan
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Identifier of the newly created scan
+        status:
+          type: string
+          description: Initial scan status
+    ScanActionRequest:
+      type: object
+      description: Request to perform an action on a scan
+      required:
+        - actionType
+      properties:
+        actionType:
+          type: string
+          description: Type of action to perform
+          enum:
+            - Pause
+            - Resume
+            - Cancel
+            - Retry
+    CreateScanSettingsRequest:
+      type: object
+      description: Request to create scan settings
+      required:
+        - name
+        - startUrl
+      properties:
+        name:
+          type: string
+          description: Settings name
+        startUrl:
+          type: string
+          format: uri
+          description: Starting URL for the scan
+        scanPolicyId:
+          type: string
+          format: uuid
+          description: Scan policy to use
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Sensor pool for execution
+        crawlAuditMode:
+          type: string
+          enum:
+            - CrawlAndAudit
+            - CrawlOnly
+            - AuditOnly
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+          description: SSC application version for results
+    UpdateScanSettingsRequest:
+      type: object
+      description: Request to update scan settings
+      properties:
+        name:
+          type: string
+        startUrl:
+          type: string
+          format: uri
+        scanPolicyId:
+          type: string
+          format: uuid
+        sensorPoolId:
+          type: string
+          format: uuid
+        crawlAuditMode:
+          type: string
+          enum:
+            - CrawlAndAudit
+            - CrawlOnly
+            - AuditOnly
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+    UpdateSensorRequest:
+      type: object
+      description: Request to update a sensor
+      properties:
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Sensor pool to assign the sensor to
+        status:
+          type: string
+          description: Sensor status
+          enum:
+            - Active
+            - Disabled
+    CreateSensorPoolRequest:
+      type: object
+      description: Request to create a sensor pool
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Pool name
+        description:
+          type: string
+          description: Pool description
+    UpdateSensorPoolRequest:
+      type: object
+      description: Request to update a sensor pool
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    CreateScanScheduleRequest:
+      type: object
+      description: Request to create a scan schedule
+      required:
+        - name
+        - scanSettingsId
+        - scheduleType
+        - startDateTime
+      properties:
+        name:
+          type: string
+          description: Schedule name
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        scheduleType:
+          type: string
+          enum:
+            - Once
+            - Daily
+            - Weekly
+            - Monthly
+        startDateTime:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+          default: true
+        timeZone:
+          type: string
+    UpdateScanScheduleRequest:
+      type: object
+      description: Request to update a scan schedule
+      properties:
+        name:
+          type: string
+        scanSettingsId:
+          type: string
+          format: uuid
+        scheduleType:
+          type: string
+          enum:
+            - Once
+            - Daily
+            - Weekly
+            - Monthly
+        startDateTime:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+        timeZone:
+          type: string
+    HealthResponse:
+      type: object
+      description: System health status
+      properties:
+        status:
+          type: string
+          description: Overall health status
+          enum:
+            - Healthy
+            - Degraded
+            - Unhealthy
+        checks:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Health check name
+              status:
+                type: string
+                description: Check status
+              description:
+                type: string
+                description: Check description
+    ScanListResponse:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DastScan'
+        totalCount:
+          type: integer
+          format: int32
+    ScanSettingsListResponse:
+      type: object
+      description: Paginated list of scan settings
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanSettings'
+        totalCount:
+          type: integer
+          format: int32
+    ScanPolicyListResponse:
+      type: object
+      description: List of scan policies
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanPolicy'
+        totalCount:
+          type: integer
+          format: int32
+    SensorListResponse:
+      type: object
+      description: List of sensors
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sensor'
+        totalCount:
+          type: integer
+          format: int32
+    SensorPoolListResponse:
+      type: object
+      description: List of sensor pools
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SensorPool'
+        totalCount:
+          type: integer
+          format: int32
+    ScanScheduleListResponse:
+      type: object
+      description: List of scan schedules
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanSchedule'
+        totalCount:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
