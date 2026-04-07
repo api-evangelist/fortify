@@ -56,7 +56,7 @@ paths:
   /scans:
     get:
       operationId: listScans
-      summary: List scans
+      summary: Fortify List scans
       description: >-
         Retrieves a paginated list of DAST scans. Supports filtering by
         status, settings, and other criteria.
@@ -112,7 +112,7 @@ paths:
   /scans/{scanId}:
     get:
       operationId: getScan
-      summary: Get scan
+      summary: Fortify Get scan
       description: Retrieves details for a specific scan by identifier.
       tags:
         - Scans
@@ -131,7 +131,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteScan
-      summary: Delete scan
+      summary: Fortify Delete scan
       description: Deletes a specific scan and its results.
       tags:
         - Scans
@@ -147,7 +147,7 @@ paths:
   /scans/{scanId}/action:
     post:
       operationId: performScanAction
-      summary: Perform scan action
+      summary: Fortify Perform scan action
       description: >-
         Performs an action on a scan such as pausing, resuming, cancelling, or
         retrying.
@@ -173,7 +173,7 @@ paths:
   /scans/{scanId}/scan-log:
     get:
       operationId: getScanLog
-      summary: Get scan log
+      summary: Fortify Get scan log
       description: Retrieves the scan log for a specific scan.
       tags:
         - Scans
@@ -194,7 +194,7 @@ paths:
   /scans/{scanId}/scan-summary:
     get:
       operationId: getScanSummary
-      summary: Get scan summary
+      summary: Fortify Get scan summary
       description: >-
         Retrieves a summary of the scan results including vulnerability counts
         and scan metrics.
@@ -216,7 +216,7 @@ paths:
   /scans/start-scan:
     post:
       operationId: startScan
-      summary: Start scan
+      summary: Fortify Start scan
       description: >-
         Starts a new DAST scan using the specified scan settings configuration.
       tags:
@@ -243,7 +243,7 @@ paths:
   /scans/start-scan-cicd:
     post:
       operationId: startScanCicd
-      summary: Start scan from CI/CD
+      summary: Fortify Start scan from CI/CD
       description: >-
         Starts a new DAST scan from a CI/CD pipeline using a pre-configured
         CI/CD token that references the scan settings. This is the primary
@@ -273,7 +273,7 @@ paths:
   /scan-settings:
     get:
       operationId: listScanSettings
-      summary: List scan settings
+      summary: Fortify List scan settings
       description: >-
         Retrieves a paginated list of scan settings configurations, which
         define how scans are executed.
@@ -313,7 +313,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createScanSettings
-      summary: Create scan settings
+      summary: Fortify Create scan settings
       description: >-
         Creates a new scan settings configuration defining target URL,
         authentication, scan policy, and other parameters.
@@ -341,7 +341,7 @@ paths:
   /scan-settings/{scanSettingsId}:
     get:
       operationId: getScanSettings
-      summary: Get scan settings
+      summary: Fortify Get scan settings
       description: Retrieves details for a specific scan settings configuration.
       tags:
         - Scan Settings
@@ -366,7 +366,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateScanSettings
-      summary: Update scan settings
+      summary: Fortify Update scan settings
       description: Updates an existing scan settings configuration.
       tags:
         - Scan Settings
@@ -399,7 +399,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteScanSettings
-      summary: Delete scan settings
+      summary: Fortify Delete scan settings
       description: Deletes a scan settings configuration.
       tags:
         - Scan Settings
@@ -421,7 +421,7 @@ paths:
   /scan-settings/{scanSettingsId}/cicd-token:
     get:
       operationId: getScanSettingsCicdToken
-      summary: Get CI/CD token
+      summary: Fortify Get CI/CD token
       description: >-
         Retrieves the CI/CD token for a scan settings configuration, used to
         trigger scans from CI/CD pipelines.
@@ -454,7 +454,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: regenerateScanSettingsCicdToken
-      summary: Regenerate CI/CD token
+      summary: Fortify Regenerate CI/CD token
       description: >-
         Regenerates the CI/CD token for a scan settings configuration,
         invalidating the previous token.
@@ -487,7 +487,7 @@ paths:
   /scan-policies:
     get:
       operationId: listScanPolicies
-      summary: List scan policies
+      summary: Fortify List scan policies
       description: >-
         Retrieves a list of available scan policies that control which
         vulnerability checks are performed during scans.
@@ -508,7 +508,7 @@ paths:
   /scan-policies/{scanPolicyId}:
     get:
       operationId: getScanPolicy
-      summary: Get scan policy
+      summary: Fortify Get scan policy
       description: Retrieves details for a specific scan policy.
       tags:
         - Scan Policies
@@ -534,7 +534,7 @@ paths:
   /sensors:
     get:
       operationId: listSensors
-      summary: List sensors
+      summary: Fortify List sensors
       description: >-
         Retrieves a list of WebInspect sensors registered with ScanCentral
         DAST, including their status and capabilities.
@@ -572,7 +572,7 @@ paths:
   /sensors/{sensorId}:
     get:
       operationId: getSensor
-      summary: Get sensor
+      summary: Fortify Get sensor
       description: Retrieves details for a specific sensor.
       tags:
         - Sensors
@@ -597,7 +597,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateSensor
-      summary: Update sensor
+      summary: Fortify Update sensor
       description: Updates a sensor's configuration such as pool assignment.
       tags:
         - Sensors
@@ -630,7 +630,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteSensor
-      summary: Delete sensor
+      summary: Fortify Delete sensor
       description: Removes a sensor from ScanCentral DAST.
       tags:
         - Sensors
@@ -652,7 +652,7 @@ paths:
   /sensor-pools:
     get:
       operationId: listSensorPools
-      summary: List sensor pools
+      summary: Fortify List sensor pools
       description: >-
         Retrieves a list of sensor pools used to group sensors for scan
         distribution.
@@ -672,7 +672,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createSensorPool
-      summary: Create sensor pool
+      summary: Fortify Create sensor pool
       description: Creates a new sensor pool for organizing sensors.
       tags:
         - Sensor Pools
@@ -696,7 +696,7 @@ paths:
   /sensor-pools/{sensorPoolId}:
     get:
       operationId: getSensorPool
-      summary: Get sensor pool
+      summary: Fortify Get sensor pool
       description: Retrieves details for a specific sensor pool.
       tags:
         - Sensor Pools
@@ -721,7 +721,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateSensorPool
-      summary: Update sensor pool
+      summary: Fortify Update sensor pool
       description: Updates a sensor pool's properties.
       tags:
         - Sensor Pools
@@ -754,7 +754,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteSensorPool
-      summary: Delete sensor pool
+      summary: Fortify Delete sensor pool
       description: Deletes a sensor pool.
       tags:
         - Sensor Pools
@@ -776,7 +776,7 @@ paths:
   /scan-schedules:
     get:
       operationId: listScanSchedules
-      summary: List scan schedules
+      summary: Fortify List scan schedules
       description: Retrieves a list of scheduled scans.
       tags:
         - Scan Schedules
@@ -794,7 +794,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createScanSchedule
-      summary: Create scan schedule
+      summary: Fortify Create scan schedule
       description: Creates a new scheduled scan configuration.
       tags:
         - Scan Schedules
@@ -818,7 +818,7 @@ paths:
   /scan-schedules/{scanScheduleId}:
     get:
       operationId: getScanSchedule
-      summary: Get scan schedule
+      summary: Fortify Get scan schedule
       description: Retrieves details for a specific scan schedule.
       tags:
         - Scan Schedules
@@ -843,7 +843,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateScanSchedule
-      summary: Update scan schedule
+      summary: Fortify Update scan schedule
       description: Updates an existing scan schedule.
       tags:
         - Scan Schedules
@@ -876,7 +876,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteScanSchedule
-      summary: Delete scan schedule
+      summary: Fortify Delete scan schedule
       description: Deletes a scan schedule.
       tags:
         - Scan Schedules
@@ -898,7 +898,7 @@ paths:
   /health:
     get:
       operationId: getHealth
-      summary: Get system health
+      summary: Fortify Get system health
       description: >-
         Returns the health status of the ScanCentral DAST system, including
         database connectivity and service availability.

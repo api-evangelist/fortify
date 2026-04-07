@@ -73,7 +73,7 @@ paths:
   /api/v3/applications:
     get:
       operationId: listApplications
-      summary: List applications
+      summary: Fortify List applications
       description: >-
         Retrieves a paginated collection of applications accessible to the
         authenticated user. Supports filtering, sorting, and field selection.
@@ -107,7 +107,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     post:
       operationId: createApplication
-      summary: Create application
+      summary: Fortify Create application
       description: >-
         Creates a new application along with an initial release. Requires
         manage-apps scope.
@@ -137,7 +137,7 @@ paths:
   /api/v3/applications/{applicationId}:
     get:
       operationId: getApplication
-      summary: Get application
+      summary: Fortify Get application
       description: Retrieves an individual application by its unique identifier.
       tags:
         - Applications
@@ -160,7 +160,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     put:
       operationId: updateApplication
-      summary: Update application
+      summary: Fortify Update application
       description: Updates an existing application's properties and configuration.
       tags:
         - Applications
@@ -191,7 +191,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     delete:
       operationId: deleteApplication
-      summary: Delete application
+      summary: Fortify Delete application
       description: >-
         Permanently deletes an application and all associated releases, scans,
         and vulnerability data.
@@ -217,7 +217,7 @@ paths:
   /api/v3/applications/{applicationId}/releases:
     get:
       operationId: listApplicationReleases
-      summary: List application releases
+      summary: Fortify List application releases
       description: >-
         Returns a paginated list of releases belonging to the specified
         application.
@@ -256,7 +256,7 @@ paths:
   /api/v3/applications/{applicationId}/scans:
     get:
       operationId: listApplicationScans
-      summary: List application scans
+      summary: Fortify List application scans
       description: Returns a paginated list of scans for the specified application.
       tags:
         - Applications
@@ -286,7 +286,7 @@ paths:
   /api/v3/applications/{applicationId}/issue-count-by-severity:
     get:
       operationId: getApplicationIssueCountBySeverity
-      summary: Get issue count by severity
+      summary: Fortify Get issue count by severity
       description: >-
         Retrieves the number of issues grouped by severity level for the
         specified application.
@@ -313,7 +313,7 @@ paths:
   /api/v3/applications/{applicationId}/users:
     get:
       operationId: listApplicationUsers
-      summary: List application users
+      summary: Fortify List application users
       description: >-
         Returns a list of users that have access to the specified application.
       tags:
@@ -338,7 +338,7 @@ paths:
   /api/v3/applications/{applicationId}/microservices:
     get:
       operationId: listApplicationMicroservices
-      summary: List application microservices
+      summary: Fortify List application microservices
       description: >-
         Retrieves a list of microservices associated with the specified
         application.
@@ -369,7 +369,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     post:
       operationId: createApplicationMicroservice
-      summary: Create application microservice
+      summary: Fortify Create application microservice
       description: Adds a new microservice to the specified application.
       tags:
         - Applications
@@ -402,7 +402,7 @@ paths:
   /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}:
     get:
       operationId: getApplicationVulnerability
-      summary: Get application vulnerability
+      summary: Fortify Get application vulnerability
       description: >-
         Returns a list of vulnerabilities matching the specified instance
         identifier within an application.
@@ -457,7 +457,7 @@ paths:
   /api/v3/applications/owners:
     get:
       operationId: listApplicationOwners
-      summary: List application owners
+      summary: Fortify List application owners
       description: >-
         Returns a list of users available for application ownership assignment.
       tags:
@@ -478,7 +478,7 @@ paths:
   /api/v3/applications/open-source-components:
     get:
       operationId: listOpenSourceComponents
-      summary: List open source components
+      summary: Fortify List open source components
       description: >-
         Retrieves a collection of open source components across all
         applications.
@@ -521,7 +521,7 @@ paths:
   /api/v3/releases:
     get:
       operationId: listReleases
-      summary: List releases
+      summary: Fortify List releases
       description: >-
         Returns a paginated list of all releases accessible to the
         authenticated user.
@@ -555,7 +555,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     post:
       operationId: createRelease
-      summary: Create release
+      summary: Fortify Create release
       description: Creates a new release within an existing application.
       tags:
         - Releases
@@ -583,7 +583,7 @@ paths:
   /api/v3/releases/{releaseId}:
     get:
       operationId: getRelease
-      summary: Get release
+      summary: Fortify Get release
       description: Retrieves details for a specific release by identifier.
       tags:
         - Releases
@@ -606,7 +606,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     put:
       operationId: updateRelease
-      summary: Update release
+      summary: Fortify Update release
       description: Updates an existing release's properties and configuration.
       tags:
         - Releases
@@ -637,7 +637,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     delete:
       operationId: deleteRelease
-      summary: Delete release
+      summary: Fortify Delete release
       description: Permanently deletes the specified release and associated data.
       tags:
         - Releases
@@ -661,7 +661,7 @@ paths:
   /api/v3/releases/{releaseId}/scans:
     get:
       operationId: listReleaseScans
-      summary: List release scans
+      summary: Fortify List release scans
       description: Returns a paginated list of scans for the specified release.
       tags:
         - Releases
@@ -691,7 +691,7 @@ paths:
   /api/v3/releases/{releaseId}/scans/{scanId}:
     get:
       operationId: getReleaseScan
-      summary: Get release scan
+      summary: Fortify Get release scan
       description: Returns summary information for the specified scan.
       tags:
         - Releases
@@ -723,7 +723,7 @@ paths:
   /api/v3/releases/{releaseId}/scans/{scanId}/polling-summary:
     get:
       operationId: getReleaseScanPollingSummary
-      summary: Get scan polling summary
+      summary: Fortify Get scan polling summary
       description: >-
         Returns the current scan status for a specific scan, useful for
         polling scan progress.
@@ -757,7 +757,7 @@ paths:
   /api/v3/releases/{releaseId}/fpr:
     get:
       operationId: downloadReleaseFpr
-      summary: Download release FPR
+      summary: Fortify Download release FPR
       description: >-
         Downloads the Fortify Project Results (FPR) file for the specified
         release and scan type.
@@ -797,7 +797,7 @@ paths:
   /api/v3/releases/{releaseId}/category-rollups:
     get:
       operationId: listReleaseCategoryRollups
-      summary: List vulnerability category rollups
+      summary: Fortify List vulnerability category rollups
       description: >-
         Returns a list and count of vulnerability categories grouped by
         severity for the specified release.
@@ -836,7 +836,7 @@ paths:
   /api/v3/releases/{releaseId}/assessment-types:
     get:
       operationId: listReleaseAssessmentTypes
-      summary: List assessment types
+      summary: Fortify List assessment types
       description: >-
         Returns a list of available assessment types and entitlements for the
         specified release.
@@ -880,7 +880,7 @@ paths:
   /api/v3/releases/{releaseId}/static-scan-options:
     get:
       operationId: getReleaseStaticScanOptions
-      summary: Get static scan options
+      summary: Fortify Get static scan options
       description: >-
         Retrieves available options for starting a static scan on the specified
         release, including technology stacks and language levels.
@@ -928,7 +928,7 @@ paths:
   /api/v3/releases/{releaseId}/audit-action:
     post:
       operationId: setReleaseAuditAction
-      summary: Set audit action
+      summary: Fortify Set audit action
       description: >-
         Sets the audit action (such as approve or reject) for vulnerabilities
         in the specified release.
@@ -959,7 +959,7 @@ paths:
   /api/v3/releases/{releaseId}/audit-options:
     get:
       operationId: getReleaseAuditOptions
-      summary: Get audit options
+      summary: Fortify Get audit options
       description: >-
         Retrieves the available audit options for the specified release,
         including statuses and custom fields.
@@ -986,7 +986,7 @@ paths:
   /api/v3/releases/{releaseId}/dast-automated-scans/scan-setup:
     get:
       operationId: getDastAutomatedScanSetup
-      summary: Get DAST automated scan setup
+      summary: Fortify Get DAST automated scan setup
       description: >-
         Retrieves the current DAST automated scan setup configuration for the
         specified release.
@@ -1012,7 +1012,7 @@ paths:
   /api/v3/releases/{releaseId}/dast-automated-scans/website-scan-setup:
     put:
       operationId: saveDastAutomatedWebsiteScanSetup
-      summary: Save DAST automated website scan setup
+      summary: Fortify Save DAST automated website scan setup
       description: >-
         Saves the DAST automated website scan setup configuration for the
         specified release.
@@ -1042,7 +1042,7 @@ paths:
   /api/v3/releases/{releaseId}/dast-automated-scans/openapi-scan-setup:
     put:
       operationId: saveDastAutomatedOpenApiScanSetup
-      summary: Save DAST automated OpenAPI scan setup
+      summary: Fortify Save DAST automated OpenAPI scan setup
       description: >-
         Saves the DAST automated OpenAPI scan setup configuration for the
         specified release.
@@ -1072,7 +1072,7 @@ paths:
   /api/v3/releases/{releaseId}/dast-automated-scans/start-scan:
     post:
       operationId: startDastAutomatedScan
-      summary: Start DAST automated scan
+      summary: Fortify Start DAST automated scan
       description: >-
         Initiates a DAST automated scan for the specified release using the
         current scan setup configuration.
@@ -1106,7 +1106,7 @@ paths:
   /api/v3/releases/{releaseId}/dynamic-scans/scan-setup:
     get:
       operationId: getDynamicScanSetup
-      summary: Get dynamic scan setup
+      summary: Fortify Get dynamic scan setup
       description: >-
         Retrieves the current dynamic scan setup configuration for the
         specified release.
@@ -1131,7 +1131,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     put:
       operationId: saveDynamicScanSetup
-      summary: Save dynamic scan setup
+      summary: Fortify Save dynamic scan setup
       description: >-
         Saves the dynamic scan setup configuration for the specified release.
       tags:
@@ -1164,7 +1164,7 @@ paths:
   /api/v3/releases/{releaseId}/dynamic-scans/start-scan:
     post:
       operationId: startDynamicScan
-      summary: Start dynamic scan
+      summary: Fortify Start dynamic scan
       description: >-
         Initiates a dynamic scan for the specified release using the current
         scan setup configuration.
@@ -1204,7 +1204,7 @@ paths:
   /api/v3/releases/{releaseId}/mobile-scans/scan-setup:
     get:
       operationId: getMobileScanSetup
-      summary: Get mobile scan setup
+      summary: Fortify Get mobile scan setup
       description: >-
         Retrieves the current mobile scan setup configuration for the
         specified release.
@@ -1229,7 +1229,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     put:
       operationId: saveMobileScanSetup
-      summary: Save mobile scan setup
+      summary: Fortify Save mobile scan setup
       description: >-
         Saves the mobile scan setup configuration for the specified release.
       tags:
@@ -1262,7 +1262,7 @@ paths:
   /api/v3/releases/{releaseId}/mobile-scans/start-scan:
     post:
       operationId: startMobileScan
-      summary: Start mobile scan
+      summary: Fortify Start mobile scan
       description: >-
         Initiates a mobile scan for the specified release by uploading a
         mobile application binary.
@@ -1331,7 +1331,7 @@ paths:
   /api/v3/releases/{releaseId}/open-source-scans/start-scan:
     post:
       operationId: startOpenSourceScan
-      summary: Start open source scan
+      summary: Fortify Start open source scan
       description: >-
         Initiates an open source / software composition analysis scan for the
         specified release.
@@ -1371,7 +1371,7 @@ paths:
   /api/v3/releases/{releaseId}/import-scan-session-id:
     get:
       operationId: getReleaseImportScanSessionId
-      summary: Get import scan session ID
+      summary: Fortify Get import scan session ID
       description: >-
         Initiates an import scan session and returns a session identifier for
         uploading third-party scan results.
@@ -1398,7 +1398,7 @@ paths:
   /api/v3/open-source-scans/{scanId}/sbom:
     get:
       operationId: downloadOpenSourceSbom
-      summary: Download open source SBOM
+      summary: Fortify Download open source SBOM
       description: >-
         Downloads the Software Bill of Materials (SBOM) file for the specified
         open source scan.
@@ -1436,7 +1436,7 @@ paths:
   /api/v3/api-keys:
     get:
       operationId: listApiKeys
-      summary: List API keys
+      summary: Fortify List API keys
       description: Returns a paginated list of API keys for the tenant.
       tags:
         - API Keys
@@ -1458,7 +1458,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     post:
       operationId: createApiKey
-      summary: Create API key
+      summary: Fortify Create API key
       description: Creates a new API key for programmatic access.
       tags:
         - API Keys
@@ -1486,7 +1486,7 @@ paths:
   /api/v3/api-keys/{apiKeyId}:
     get:
       operationId: getApiKey
-      summary: Get API key
+      summary: Fortify Get API key
       description: Returns details for a specific API key.
       tags:
         - API Keys
@@ -1515,7 +1515,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     put:
       operationId: updateApiKey
-      summary: Update API key
+      summary: Fortify Update API key
       description: Updates an existing API key's properties.
       tags:
         - API Keys
@@ -1552,7 +1552,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     delete:
       operationId: deleteApiKey
-      summary: Delete API key
+      summary: Fortify Delete API key
       description: Permanently deletes the specified API key.
       tags:
         - API Keys
@@ -1582,7 +1582,7 @@ paths:
   /api/v3/personal-access-tokens:
     get:
       operationId: listPersonalAccessTokens
-      summary: List personal access tokens
+      summary: Fortify List personal access tokens
       description: Returns a list of personal access tokens for the authenticated user.
       tags:
         - Personal Access Tokens
@@ -1605,7 +1605,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     post:
       operationId: createPersonalAccessToken
-      summary: Create personal access token
+      summary: Fortify Create personal access token
       description: Creates a new personal access token for the authenticated user.
       tags:
         - Personal Access Tokens
@@ -1633,7 +1633,7 @@ paths:
   /api/v3/personal-access-tokens/{personalAccessTokenId}:
     get:
       operationId: getPersonalAccessToken
-      summary: Get personal access token
+      summary: Fortify Get personal access token
       description: Returns details for a specific personal access token.
       tags:
         - Personal Access Tokens
@@ -1662,7 +1662,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     put:
       operationId: updatePersonalAccessToken
-      summary: Update personal access token
+      summary: Fortify Update personal access token
       description: Updates an existing personal access token.
       tags:
         - Personal Access Tokens
@@ -1695,7 +1695,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     delete:
       operationId: deletePersonalAccessToken
-      summary: Delete personal access token
+      summary: Fortify Delete personal access token
       description: Permanently deletes the specified personal access token.
       tags:
         - Personal Access Tokens
@@ -1721,7 +1721,7 @@ paths:
   /api/v3/attributes:
     get:
       operationId: listAttributes
-      summary: List attributes
+      summary: Fortify List attributes
       description: >-
         Retrieves a list of application attributes defined for the tenant.
       tags:
@@ -1743,7 +1743,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     post:
       operationId: createAttribute
-      summary: Create attribute
+      summary: Fortify Create attribute
       description: Creates a new application attribute for the tenant.
       tags:
         - Attributes
@@ -1771,7 +1771,7 @@ paths:
   /api/v3/attributes/{attributeId}:
     put:
       operationId: updateAttribute
-      summary: Update attribute
+      summary: Fortify Update attribute
       description: Updates an existing application attribute.
       tags:
         - Attributes
@@ -1808,7 +1808,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
     delete:
       operationId: deleteAttribute
-      summary: Delete attribute
+      summary: Fortify Delete attribute
       description: Permanently deletes the specified attribute.
       tags:
         - Attributes
@@ -1838,7 +1838,7 @@ paths:
   /api/v3/notifications/unread:
     get:
       operationId: listUnreadNotifications
-      summary: List unread notifications
+      summary: Fortify List unread notifications
       description: >-
         Retrieves a paginated list of unread notifications for the
         authenticated user.
@@ -1867,7 +1867,7 @@ paths:
   /api/v3/notifications/read:
     get:
       operationId: listReadNotifications
-      summary: List read notifications
+      summary: Fortify List read notifications
       description: >-
         Retrieves a paginated list of read notifications for the authenticated
         user.
@@ -1896,7 +1896,7 @@ paths:
   /api/v3/notifications/markasread:
     post:
       operationId: markNotificationsAsRead
-      summary: Mark notifications as read
+      summary: Fortify Mark notifications as read
       description: Marks one or more notifications as read.
       tags:
         - Notifications
@@ -1920,7 +1920,7 @@ paths:
   /api/v3/lookup-items:
     get:
       operationId: listLookupItems
-      summary: List lookup items
+      summary: Fortify List lookup items
       description: >-
         Returns a list of lookup items for the specified type, providing
         reference data such as scan types, time zones, and status values.
@@ -1972,7 +1972,7 @@ paths:
   /api/v3/eventlogs/download:
     get:
       operationId: downloadEventLogs
-      summary: Download event logs
+      summary: Fortify Download event logs
       description: >-
         Downloads the last 24 hours of event log data in CSV format for the
         tenant.

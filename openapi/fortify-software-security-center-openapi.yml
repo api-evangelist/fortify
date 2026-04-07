@@ -76,7 +76,7 @@ paths:
   /projects:
     get:
       operationId: listProjects
-      summary: List projects
+      summary: Fortify List projects
       description: >-
         Retrieves a paginated list of projects. Projects are the top-level
         organizational unit containing one or more application versions.
@@ -101,7 +101,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createProject
-      summary: Create project
+      summary: Fortify Create project
       description: Creates a new project for organizing application versions.
       tags:
         - Projects
@@ -127,7 +127,7 @@ paths:
   /projects/{id}:
     get:
       operationId: getProject
-      summary: Get project
+      summary: Fortify Get project
       description: Retrieves details for a specific project by identifier.
       tags:
         - Projects
@@ -147,7 +147,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateProject
-      summary: Update project
+      summary: Fortify Update project
       description: Updates an existing project's properties.
       tags:
         - Projects
@@ -174,7 +174,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteProject
-      summary: Delete project
+      summary: Fortify Delete project
       description: >-
         Permanently deletes a project and all associated versions and data.
       tags:
@@ -195,7 +195,7 @@ paths:
   /projectVersions:
     get:
       operationId: listProjectVersions
-      summary: List project versions
+      summary: Fortify List project versions
       description: >-
         Retrieves a paginated list of all project versions (application versions)
         accessible to the authenticated user.
@@ -220,7 +220,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createProjectVersion
-      summary: Create project version
+      summary: Fortify Create project version
       description: >-
         Creates a new project version. Requires committing the version after
         creation to activate it.
@@ -248,7 +248,7 @@ paths:
   /projectVersions/{parentId}:
     get:
       operationId: getProjectVersion
-      summary: Get project version
+      summary: Fortify Get project version
       description: Retrieves details for a specific project version by identifier.
       tags:
         - Project Versions
@@ -268,7 +268,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateProjectVersion
-      summary: Update project version
+      summary: Fortify Update project version
       description: Updates an existing project version's properties.
       tags:
         - Project Versions
@@ -295,7 +295,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteProjectVersion
-      summary: Delete project version
+      summary: Fortify Delete project version
       description: >-
         Permanently deletes a project version and all associated scan data.
       tags:
@@ -316,7 +316,7 @@ paths:
   /projectVersions/{parentId}/action:
     post:
       operationId: performProjectVersionAction
-      summary: Perform project version action
+      summary: Fortify Perform project version action
       description: >-
         Performs an action on a project version such as committing, copying
         state, or sending for analysis.
@@ -346,7 +346,7 @@ paths:
   /projectVersions/{parentId}/issues:
     get:
       operationId: listProjectVersionIssues
-      summary: List project version issues
+      summary: Fortify List project version issues
       description: >-
         Retrieves a paginated list of vulnerability issues for the specified
         project version. Supports filtering using Fortify search syntax.
@@ -401,7 +401,7 @@ paths:
   /projectVersions/{parentId}/issues/{id}:
     get:
       operationId: getProjectVersionIssue
-      summary: Get project version issue
+      summary: Fortify Get project version issue
       description: Retrieves details for a specific issue within a project version.
       tags:
         - Issues
@@ -423,7 +423,7 @@ paths:
   /projectVersions/{parentId}/artifacts:
     get:
       operationId: listProjectVersionArtifacts
-      summary: List project version artifacts
+      summary: Fortify List project version artifacts
       description: >-
         Retrieves a paginated list of artifacts (uploaded scan results) for the
         specified project version.
@@ -448,7 +448,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: uploadProjectVersionArtifact
-      summary: Upload artifact
+      summary: Fortify Upload artifact
       description: >-
         Uploads a scan artifact (FPR file) to the specified project version
         for processing.
@@ -483,7 +483,7 @@ paths:
   /projectVersions/{parentId}/artifacts/{id}:
     get:
       operationId: getProjectVersionArtifact
-      summary: Get artifact
+      summary: Fortify Get artifact
       description: Retrieves details for a specific artifact.
       tags:
         - Artifacts
@@ -504,7 +504,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteProjectVersionArtifact
-      summary: Delete artifact
+      summary: Fortify Delete artifact
       description: Deletes a specific artifact from the project version.
       tags:
         - Artifacts
@@ -525,7 +525,7 @@ paths:
   /projectVersions/{parentId}/attributes:
     get:
       operationId: listProjectVersionAttributes
-      summary: List project version attributes
+      summary: Fortify List project version attributes
       description: >-
         Retrieves attribute values assigned to the specified project version.
       tags:
@@ -546,7 +546,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateProjectVersionAttributes
-      summary: Update project version attributes
+      summary: Fortify Update project version attributes
       description: Updates attribute values for the specified project version.
       tags:
         - Attributes
@@ -576,7 +576,7 @@ paths:
   /projectVersions/{parentId}/authEntities:
     get:
       operationId: listProjectVersionAuthEntities
-      summary: List project version auth entities
+      summary: Fortify List project version auth entities
       description: >-
         Retrieves authentication entities (users and LDAP groups) assigned to
         the specified project version.
@@ -600,7 +600,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateProjectVersionAuthEntities
-      summary: Update project version auth entities
+      summary: Fortify Update project version auth entities
       description: >-
         Assigns or updates authentication entities for the specified project
         version.
@@ -632,7 +632,7 @@ paths:
   /projectVersions/{parentId}/issueSelectorSet:
     get:
       operationId: getProjectVersionIssueSelectorSet
-      summary: Get issue selector set
+      summary: Fortify Get issue selector set
       description: >-
         Retrieves the issue selector set (filter metadata) for the specified
         project version, providing available groupings, filters, and filter
@@ -656,7 +656,7 @@ paths:
   /projectVersions/{parentId}/customTags:
     get:
       operationId: listProjectVersionCustomTags
-      summary: List project version custom tags
+      summary: Fortify List project version custom tags
       description: >-
         Retrieves custom tags configured for the specified project version.
       tags:
@@ -680,7 +680,7 @@ paths:
   /tokens:
     post:
       operationId: createToken
-      summary: Create authentication token
+      summary: Fortify Create authentication token
       description: >-
         Creates an authentication token for API access. Supports
         UnifiedLoginToken, AnalysisUploadToken, AuditToken, and
@@ -710,7 +710,7 @@ paths:
   /tokens/{id}:
     delete:
       operationId: revokeToken
-      summary: Revoke authentication token
+      summary: Fortify Revoke authentication token
       description: Revokes an existing authentication token.
       tags:
         - Authentication
@@ -730,7 +730,7 @@ paths:
   /localUsers:
     get:
       operationId: listLocalUsers
-      summary: List local users
+      summary: Fortify List local users
       description: Retrieves a paginated list of local user accounts.
       tags:
         - Users
@@ -752,7 +752,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createLocalUser
-      summary: Create local user
+      summary: Fortify Create local user
       description: Creates a new local user account.
       tags:
         - Users
@@ -778,7 +778,7 @@ paths:
   /localUsers/{id}:
     get:
       operationId: getLocalUser
-      summary: Get local user
+      summary: Fortify Get local user
       description: Retrieves details for a specific local user.
       tags:
         - Users
@@ -798,7 +798,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateLocalUser
-      summary: Update local user
+      summary: Fortify Update local user
       description: Updates an existing local user account.
       tags:
         - Users
@@ -825,7 +825,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteLocalUser
-      summary: Delete local user
+      summary: Fortify Delete local user
       description: Permanently deletes a local user account.
       tags:
         - Users
@@ -845,7 +845,7 @@ paths:
   /attributeDefinitions:
     get:
       operationId: listAttributeDefinitions
-      summary: List attribute definitions
+      summary: Fortify List attribute definitions
       description: >-
         Retrieves the list of attribute definitions configured in the system.
       tags:
@@ -866,7 +866,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAttributeDefinition
-      summary: Create attribute definition
+      summary: Fortify Create attribute definition
       description: Creates a new attribute definition.
       tags:
         - Attributes
@@ -890,7 +890,7 @@ paths:
   /reportDefinitions:
     get:
       operationId: listReportDefinitions
-      summary: List report definitions
+      summary: Fortify List report definitions
       description: >-
         Retrieves the list of available report definitions that can be used
         to generate reports.
@@ -913,7 +913,7 @@ paths:
   /savedReports:
     get:
       operationId: listSavedReports
-      summary: List saved reports
+      summary: Fortify List saved reports
       description: Retrieves a list of generated reports.
       tags:
         - Saved Reports
@@ -933,7 +933,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: generateReport
-      summary: Generate report
+      summary: Fortify Generate report
       description: >-
         Schedules a report for generation based on a report definition and
         parameters.
@@ -959,7 +959,7 @@ paths:
   /savedReports/{id}:
     get:
       operationId: getSavedReport
-      summary: Get saved report
+      summary: Fortify Get saved report
       description: Retrieves details for a specific saved report.
       tags:
         - Saved Reports
@@ -979,7 +979,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteSavedReport
-      summary: Delete saved report
+      summary: Fortify Delete saved report
       description: Deletes a saved report.
       tags:
         - Saved Reports
@@ -999,7 +999,7 @@ paths:
   /jobs:
     get:
       operationId: listJobs
-      summary: List jobs
+      summary: Fortify List jobs
       description: >-
         Retrieves a paginated list of processing jobs (artifact processing,
         report generation, etc.).
@@ -1022,7 +1022,7 @@ paths:
   /jobs/{id}:
     get:
       operationId: getJob
-      summary: Get job
+      summary: Fortify Get job
       description: Retrieves details for a specific processing job.
       tags:
         - Jobs
@@ -1043,7 +1043,7 @@ paths:
   /features:
     get:
       operationId: listFeatures
-      summary: List features
+      summary: Fortify List features
       description: >-
         Retrieves a list of system features and connectivity information,
         useful for verifying API availability.
@@ -1061,7 +1061,7 @@ paths:
   /customTags/{id}:
     get:
       operationId: getCustomTag
-      summary: Get custom tag
+      summary: Fortify Get custom tag
       description: Retrieves details for a specific custom tag.
       tags:
         - Custom Tags
@@ -1082,7 +1082,7 @@ paths:
   /fileTokens:
     post:
       operationId: createFileToken
-      summary: Create file token
+      summary: Fortify Create file token
       description: >-
         Creates a single-use file transfer token for uploading or downloading
         artifacts.
@@ -1108,7 +1108,7 @@ paths:
   /alertDefinitions:
     get:
       operationId: listAlertDefinitions
-      summary: List alert definitions
+      summary: Fortify List alert definitions
       description: Retrieves a list of configured alert definitions.
       tags:
         - Alert Definitions
@@ -1128,7 +1128,7 @@ paths:
   /cloudpools:
     get:
       operationId: listCloudPools
-      summary: List cloud pools
+      summary: Fortify List cloud pools
       description: Retrieves a list of cloud scan worker pools.
       tags:
         - Cloud Pools
@@ -1148,7 +1148,7 @@ paths:
   /performanceIndicators:
     get:
       operationId: listPerformanceIndicators
-      summary: List performance indicators
+      summary: Fortify List performance indicators
       description: >-
         Retrieves performance indicator data for monitoring SSC system health.
       tags:
