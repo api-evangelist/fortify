@@ -36,20 +36,20 @@ servers:
 security:
   - fortifyToken: []
 tags:
-  - name: Scans
-    description: Manage and initiate DAST scans
-  - name: Scan Settings
-    description: Manage scan configuration settings
-  - name: Scan Policies
-    description: Manage scan policies
-  - name: Sensors
-    description: Manage WebInspect sensors
-  - name: Sensor Pools
-    description: Manage sensor pools for scan distribution
-  - name: Scan Schedules
-    description: Manage scheduled scans
   - name: CI/CD
     description: CI/CD pipeline integration endpoints
+  - name: Scan Policies
+    description: Manage scan policies
+  - name: Scan Schedules
+    description: Manage scheduled scans
+  - name: Scan Settings
+    description: Manage scan configuration settings
+  - name: Scans
+    description: Manage and initiate DAST scans
+  - name: Sensor Pools
+    description: Manage sensor pools for scan distribution
+  - name: Sensors
+    description: Manage WebInspect sensors
   - name: System
     description: System health and configuration
 paths:
@@ -426,8 +426,8 @@ paths:
         Retrieves the CI/CD token for a scan settings configuration, used to
         trigger scans from CI/CD pipelines.
       tags:
-        - Scan Settings
         - CI/CD
+        - Scan Settings
       parameters:
         - name: scanSettingsId
           in: path
@@ -459,8 +459,8 @@ paths:
         Regenerates the CI/CD token for a scan settings configuration,
         invalidating the previous token.
       tags:
-        - Scan Settings
         - CI/CD
+        - Scan Settings
       parameters:
         - name: scanSettingsId
           in: path

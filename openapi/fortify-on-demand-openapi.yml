@@ -31,44 +31,44 @@ servers:
 security:
   - bearerAuth: []
 tags:
-  - name: Applications
-    description: Manage applications and their configurations
-  - name: Releases
-    description: Manage releases within applications
-  - name: Scans
-    description: View and manage security scans
-  - name: Static Scans
-    description: Configure and start static application security testing scans
-  - name: Dynamic Scans
-    description: Configure and start dynamic application security testing scans
-  - name: DAST Automated Scans
-    description: Configure and start DAST automated scans
-  - name: Mobile Scans
-    description: Configure and start mobile application security testing scans
-  - name: Open Source Scans
-    description: Manage open source / software composition analysis scans
-  - name: Vulnerabilities
-    description: Access and manage vulnerability findings
   - name: API Keys
     description: Manage API keys for programmatic access
-  - name: Personal Access Tokens
-    description: Manage personal access tokens
+  - name: Applications
+    description: Manage applications and their configurations
   - name: Attributes
     description: Manage application attributes
   - name: Audit Templates
     description: Manage audit templates for vulnerability triage
-  - name: Notifications
-    description: Manage user notifications
-  - name: Lookup Items
-    description: Retrieve lookup and reference data
+  - name: DAST Automated Scans
+    description: Configure and start DAST automated scans
+  - name: Dynamic Scans
+    description: Configure and start dynamic application security testing scans
   - name: Event Logs
     description: Access tenant event logs
+  - name: Lookup Items
+    description: Retrieve lookup and reference data
   - name: Microservices
     description: Manage microservices within applications
+  - name: Mobile Scans
+    description: Configure and start mobile application security testing scans
+  - name: Notifications
+    description: Manage user notifications
   - name: Open Source Components
     description: View open source component data
+  - name: Open Source Scans
+    description: Manage open source / software composition analysis scans
+  - name: Personal Access Tokens
+    description: Manage personal access tokens
+  - name: Releases
+    description: Manage releases within applications
   - name: Reports
     description: Generate and download reports
+  - name: Scans
+    description: View and manage security scans
+  - name: Static Scans
+    description: Configure and start static application security testing scans
+  - name: Vulnerabilities
+    description: Access and manage vulnerability findings
 paths:
   /api/v3/applications:
     get:
@@ -933,8 +933,8 @@ paths:
         Sets the audit action (such as approve or reject) for vulnerabilities
         in the specified release.
       tags:
-        - Releases
         - Audit Templates
+        - Releases
       parameters:
         - $ref: '#/components/parameters/ReleaseId'
       requestBody:
@@ -964,8 +964,8 @@ paths:
         Retrieves the available audit options for the specified release,
         including statuses and custom fields.
       tags:
-        - Releases
         - Audit Templates
+        - Releases
       parameters:
         - $ref: '#/components/parameters/ReleaseId'
       responses:

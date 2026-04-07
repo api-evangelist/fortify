@@ -36,42 +36,42 @@ servers:
 security:
   - fortifyToken: []
 tags:
-  - name: Projects
-    description: Manage top-level projects
-  - name: Project Versions
-    description: Manage application versions within projects
-  - name: Issues
-    description: Access and manage vulnerability issues
-  - name: Artifacts
-    description: Manage scan artifacts and uploads
-  - name: Authentication
-    description: Manage authentication tokens
-  - name: Users
-    description: Manage local user accounts
-  - name: Auth Entities
-    description: Manage authentication entities (users and LDAP groups)
-  - name: Attributes
-    description: Manage attribute definitions and values
-  - name: Custom Tags
-    description: Manage custom tags for issue triage
-  - name: Reports
-    description: Generate and manage reports
-  - name: Jobs
-    description: Monitor processing jobs
-  - name: Issue Selectors
-    description: Retrieve issue filter metadata
-  - name: Features
-    description: System feature and connectivity information
   - name: Alert Definitions
     description: Manage alert definitions
+  - name: Artifacts
+    description: Manage scan artifacts and uploads
+  - name: Attributes
+    description: Manage attribute definitions and values
+  - name: Auth Entities
+    description: Manage authentication entities (users and LDAP groups)
+  - name: Authentication
+    description: Manage authentication tokens
   - name: Cloud Pools
     description: Manage cloud scan worker pools
+  - name: Custom Tags
+    description: Manage custom tags for issue triage
+  - name: Features
+    description: System feature and connectivity information
   - name: File Tokens
     description: Manage file transfer tokens
+  - name: Issue Selectors
+    description: Retrieve issue filter metadata
+  - name: Issues
+    description: Access and manage vulnerability issues
+  - name: Jobs
+    description: Monitor processing jobs
   - name: Performance Indicators
     description: Access performance indicator data
+  - name: Project Versions
+    description: Manage application versions within projects
+  - name: Projects
+    description: Manage top-level projects
+  - name: Reports
+    description: Generate and manage reports
   - name: Saved Reports
     description: Manage saved report configurations
+  - name: Users
+    description: Manage local user accounts
 paths:
   /projects:
     get:
