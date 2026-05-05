@@ -1,0 +1,13 @@
+{
+  "repo": "fortify",
+  "feeds": [
+    {
+      "source": "https://community.opentext.com/cyberres/b/cybersecurity-blog",
+      "feed_url": "https://community.opentext.com/rss",
+      "saved": 10,
+      "title": ""
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:29:07Z"
+}
