@@ -1,0 +1,2313 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides
+    programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability
+    results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows
+    for authentication.
+  tags:
+  - Fortify
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: fortify
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{FORTIFY_TOKEN}}'
+    resources:
+    - name: api-v3-applications
+      path: /api/v3/applications
+      operations:
+      - name: listapplications
+        method: GET
+        description: Fortify List applications
+        inputParameters:
+        - name: modifiedStartDate
+          in: query
+          type: string
+          description: Filter applications modified after this date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapplication
+        method: POST
+        description: Fortify Create application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-applicationid
+      path: /api/v3/applications/{applicationId}
+      operations:
+      - name: getapplication
+        method: GET
+        description: Fortify Get application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapplication
+        method: PUT
+        description: Fortify Update application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteapplication
+        method: DELETE
+        description: Fortify Delete application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-applicationid-releases
+      path: /api/v3/applications/{applicationId}/releases
+      operations:
+      - name: listapplicationreleases
+        method: GET
+        description: Fortify List application releases
+        inputParameters:
+        - name: modifiedStartDate
+          in: query
+          type: string
+          description: Filter releases modified after this date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-applicationid-scans
+      path: /api/v3/applications/{applicationId}/scans
+      operations:
+      - name: listapplicationscans
+        method: GET
+        description: Fortify List application scans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-applicationid-issue-count-by
+      path: /api/v3/applications/{applicationId}/issue-count-by-severity
+      operations:
+      - name: getapplicationissuecountbyseverity
+        method: GET
+        description: Fortify Get issue count by severity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-applicationid-users
+      path: /api/v3/applications/{applicationId}/users
+      operations:
+      - name: listapplicationusers
+        method: GET
+        description: Fortify List application users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-applicationid-microservices
+      path: /api/v3/applications/{applicationId}/microservices
+      operations:
+      - name: listapplicationmicroservices
+        method: GET
+        description: Fortify List application microservices
+        inputParameters:
+        - name: includeReleases
+          in: query
+          type: boolean
+          description: Whether to include release information for each microservice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapplicationmicroservice
+        method: POST
+        description: Fortify Create application microservice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-applicationid-vulnerabilitie
+      path: /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}
+      operations:
+      - name: getapplicationvulnerability
+        method: GET
+        description: Fortify Get application vulnerability
+        inputParameters:
+        - name: vulnerabilityId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the vulnerability
+        - name: includeFixed
+          in: query
+          type: boolean
+          description: Include fixed vulnerabilities in results
+        - name: includeSuppressed
+          in: query
+          type: boolean
+          description: Include suppressed vulnerabilities in results
+        - name: keywordSearch
+          in: query
+          type: string
+          description: Keyword search filter for vulnerabilities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-owners
+      path: /api/v3/applications/owners
+      operations:
+      - name: listapplicationowners
+        method: GET
+        description: Fortify List application owners
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-open-source-components
+      path: /api/v3/applications/open-source-components
+      operations:
+      - name: listopensourcecomponents
+        method: GET
+        description: Fortify List open source components
+        inputParameters:
+        - name: openSourceScanType
+          in: query
+          type: string
+          description: Type of open source scan engine
+        - name: returnTotalComponentCount
+          in: query
+          type: boolean
+          description: Whether to include total count in response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases
+      path: /api/v3/releases
+      operations:
+      - name: listreleases
+        method: GET
+        description: Fortify List releases
+        inputParameters:
+        - name: modifiedStartDate
+          in: query
+          type: string
+          description: Filter releases modified after this date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrelease
+        method: POST
+        description: Fortify Create release
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid
+      path: /api/v3/releases/{releaseId}
+      operations:
+      - name: getrelease
+        method: GET
+        description: Fortify Get release
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updaterelease
+        method: PUT
+        description: Fortify Update release
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleterelease
+        method: DELETE
+        description: Fortify Delete release
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-scans
+      path: /api/v3/releases/{releaseId}/scans
+      operations:
+      - name: listreleasescans
+        method: GET
+        description: Fortify List release scans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-scans-scanid
+      path: /api/v3/releases/{releaseId}/scans/{scanId}
+      operations:
+      - name: getreleasescan
+        method: GET
+        description: Fortify Get release scan
+        inputParameters:
+        - name: scanId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-scans-scanid-polling-s
+      path: /api/v3/releases/{releaseId}/scans/{scanId}/polling-summary
+      operations:
+      - name: getreleasescanpollingsummary
+        method: GET
+        description: Fortify Get scan polling summary
+        inputParameters:
+        - name: scanId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-fpr
+      path: /api/v3/releases/{releaseId}/fpr
+      operations:
+      - name: downloadreleasefpr
+        method: GET
+        description: Fortify Download release FPR
+        inputParameters:
+        - name: scanType
+          in: query
+          type: string
+          description: Type of scan to download FPR for
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-category-rollups
+      path: /api/v3/releases/{releaseId}/category-rollups
+      operations:
+      - name: listreleasecategoryrollups
+        method: GET
+        description: Fortify List vulnerability category rollups
+        inputParameters:
+        - name: showFixed
+          in: query
+          type: boolean
+          description: Include fixed vulnerabilities
+        - name: vulnerabilitiesSeverityType
+          in: query
+          type: string
+          description: Filter by severity type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-assessment-types
+      path: /api/v3/releases/{releaseId}/assessment-types
+      operations:
+      - name: listreleaseassessmenttypes
+        method: GET
+        description: Fortify List assessment types
+        inputParameters:
+        - name: scanType
+          in: query
+          type: string
+          required: true
+          description: Type of scan to retrieve assessment types for
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-static-scan-options
+      path: /api/v3/releases/{releaseId}/static-scan-options
+      operations:
+      - name: getreleasestaticscanoptions
+        method: GET
+        description: Fortify Get static scan options
+        inputParameters:
+        - name: technologyStack
+          in: query
+          type: string
+          description: Technology stack identifier
+        - name: languageLevel
+          in: query
+          type: string
+          description: Language level identifier
+        - name: assessmentTypeId
+          in: query
+          type: integer
+          description: Assessment type identifier
+        - name: entitlementFrequencyType
+          in: query
+          type: string
+          description: Entitlement frequency type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-audit-action
+      path: /api/v3/releases/{releaseId}/audit-action
+      operations:
+      - name: setreleaseauditaction
+        method: POST
+        description: Fortify Set audit action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-audit-options
+      path: /api/v3/releases/{releaseId}/audit-options
+      operations:
+      - name: getreleaseauditoptions
+        method: GET
+        description: Fortify Get audit options
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-dast-automated-scans-s
+      path: /api/v3/releases/{releaseId}/dast-automated-scans/scan-setup
+      operations:
+      - name: getdastautomatedscansetup
+        method: GET
+        description: Fortify Get DAST automated scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-dast-automated-scans-w
+      path: /api/v3/releases/{releaseId}/dast-automated-scans/website-scan-setup
+      operations:
+      - name: savedastautomatedwebsitescansetup
+        method: PUT
+        description: Fortify Save DAST automated website scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-dast-automated-scans-o
+      path: /api/v3/releases/{releaseId}/dast-automated-scans/openapi-scan-setup
+      operations:
+      - name: savedastautomatedopenapiscansetup
+        method: PUT
+        description: Fortify Save DAST automated OpenAPI scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-dast-automated-scans-s
+      path: /api/v3/releases/{releaseId}/dast-automated-scans/start-scan
+      operations:
+      - name: startdastautomatedscan
+        method: POST
+        description: Fortify Start DAST automated scan
+        inputParameters:
+        - name: networkName
+          in: query
+          type: string
+          description: Name of the Fortify on Demand Connect network to use for scanning
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-dynamic-scans-scan-set
+      path: /api/v3/releases/{releaseId}/dynamic-scans/scan-setup
+      operations:
+      - name: getdynamicscansetup
+        method: GET
+        description: Fortify Get dynamic scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: savedynamicscansetup
+        method: PUT
+        description: Fortify Save dynamic scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-dynamic-scans-start-sc
+      path: /api/v3/releases/{releaseId}/dynamic-scans/start-scan
+      operations:
+      - name: startdynamicscan
+        method: POST
+        description: Fortify Start dynamic scan
+        inputParameters:
+        - name: networkName
+          in: query
+          type: string
+          description: Name of the Fortify on Demand Connect network to use for scanning
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-mobile-scans-scan-setu
+      path: /api/v3/releases/{releaseId}/mobile-scans/scan-setup
+      operations:
+      - name: getmobilescansetup
+        method: GET
+        description: Fortify Get mobile scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: savemobilescansetup
+        method: PUT
+        description: Fortify Save mobile scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-mobile-scans-start-sca
+      path: /api/v3/releases/{releaseId}/mobile-scans/start-scan
+      operations:
+      - name: startmobilescan
+        method: POST
+        description: Fortify Start mobile scan
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+          description: Scheduled start date for the scan
+        - name: assessmentTypeId
+          in: query
+          type: integer
+          description: Assessment type identifier
+        - name: frameworkType
+          in: query
+          type: string
+          description: Mobile framework type
+        - name: timeZone
+          in: query
+          type: string
+          description: Time zone for scheduled scans
+        - name: entitlementId
+          in: query
+          type: integer
+          description: Entitlement identifier
+        - name: entitlementFrequencyType
+          in: query
+          type: string
+          description: Entitlement frequency type
+        - name: isRemediationScan
+          in: query
+          type: boolean
+          description: Whether this is a remediation scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-open-source-scans-star
+      path: /api/v3/releases/{releaseId}/open-source-scans/start-scan
+      operations:
+      - name: startopensourcescan
+        method: POST
+        description: Fortify Start open source scan
+        inputParameters:
+        - name: fragNo
+          in: query
+          type: integer
+          description: Fragment number for chunked upload
+        - name: offset
+          in: query
+          type: integer
+          description: Byte offset for chunked upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-releases-releaseid-import-scan-session-id
+      path: /api/v3/releases/{releaseId}/import-scan-session-id
+      operations:
+      - name: getreleaseimportscansessionid
+        method: GET
+        description: Fortify Get import scan session ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-open-source-scans-scanid-sbom
+      path: /api/v3/open-source-scans/{scanId}/sbom
+      operations:
+      - name: downloadopensourcesbom
+        method: GET
+        description: Fortify Download open source SBOM
+        inputParameters:
+        - name: scanId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the open source scan
+        - name: format
+          in: query
+          type: string
+          description: SBOM output format
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-api-keys
+      path: /api/v3/api-keys
+      operations:
+      - name: listapikeys
+        method: GET
+        description: Fortify List API keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapikey
+        method: POST
+        description: Fortify Create API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-api-keys-apikeyid
+      path: /api/v3/api-keys/{apiKeyId}
+      operations:
+      - name: getapikey
+        method: GET
+        description: Fortify Get API key
+        inputParameters:
+        - name: apiKeyId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapikey
+        method: PUT
+        description: Fortify Update API key
+        inputParameters:
+        - name: apiKeyId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteapikey
+        method: DELETE
+        description: Fortify Delete API key
+        inputParameters:
+        - name: apiKeyId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-personal-access-tokens
+      path: /api/v3/personal-access-tokens
+      operations:
+      - name: listpersonalaccesstokens
+        method: GET
+        description: Fortify List personal access tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpersonalaccesstoken
+        method: POST
+        description: Fortify Create personal access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-personal-access-tokens-personalaccesstoke
+      path: /api/v3/personal-access-tokens/{personalAccessTokenId}
+      operations:
+      - name: getpersonalaccesstoken
+        method: GET
+        description: Fortify Get personal access token
+        inputParameters:
+        - name: personalAccessTokenId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the personal access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatepersonalaccesstoken
+        method: PUT
+        description: Fortify Update personal access token
+        inputParameters:
+        - name: personalAccessTokenId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the personal access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletepersonalaccesstoken
+        method: DELETE
+        description: Fortify Delete personal access token
+        inputParameters:
+        - name: personalAccessTokenId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the personal access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-attributes
+      path: /api/v3/attributes
+      operations:
+      - name: listattributes
+        method: GET
+        description: Fortify List attributes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createattribute
+        method: POST
+        description: Fortify Create attribute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-attributes-attributeid
+      path: /api/v3/attributes/{attributeId}
+      operations:
+      - name: updateattribute
+        method: PUT
+        description: Fortify Update attribute
+        inputParameters:
+        - name: attributeId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the attribute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteattribute
+        method: DELETE
+        description: Fortify Delete attribute
+        inputParameters:
+        - name: attributeId
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier of the attribute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-notifications-unread
+      path: /api/v3/notifications/unread
+      operations:
+      - name: listunreadnotifications
+        method: GET
+        description: Fortify List unread notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-notifications-read
+      path: /api/v3/notifications/read
+      operations:
+      - name: listreadnotifications
+        method: GET
+        description: Fortify List read notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-notifications-markasread
+      path: /api/v3/notifications/markasread
+      operations:
+      - name: marknotificationsasread
+        method: POST
+        description: Fortify Mark notifications as read
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-lookup-items
+      path: /api/v3/lookup-items
+      operations:
+      - name: listlookupitems
+        method: GET
+        description: Fortify List lookup items
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          required: true
+          description: The type of lookup items to retrieve
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-eventlogs-download
+      path: /api/v3/eventlogs/download
+      operations:
+      - name: downloadeventlogs
+        method: GET
+        description: Fortify Download event logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: fortify-rest
+    description: REST adapter for Fortify on Demand API.
+    resources:
+    - path: /api/v3/applications
+      name: listapplications
+      operations:
+      - method: GET
+        name: listapplications
+        description: Fortify List applications
+        call: fortify.listapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications
+      name: createapplication
+      operations:
+      - method: POST
+        name: createapplication
+        description: Fortify Create application
+        call: fortify.createapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}
+      name: getapplication
+      operations:
+      - method: GET
+        name: getapplication
+        description: Fortify Get application
+        call: fortify.getapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}
+      name: updateapplication
+      operations:
+      - method: PUT
+        name: updateapplication
+        description: Fortify Update application
+        call: fortify.updateapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}
+      name: deleteapplication
+      operations:
+      - method: DELETE
+        name: deleteapplication
+        description: Fortify Delete application
+        call: fortify.deleteapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}/releases
+      name: listapplicationreleases
+      operations:
+      - method: GET
+        name: listapplicationreleases
+        description: Fortify List application releases
+        call: fortify.listapplicationreleases
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}/scans
+      name: listapplicationscans
+      operations:
+      - method: GET
+        name: listapplicationscans
+        description: Fortify List application scans
+        call: fortify.listapplicationscans
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}/issue-count-by-severity
+      name: getapplicationissuecountbyseverity
+      operations:
+      - method: GET
+        name: getapplicationissuecountbyseverity
+        description: Fortify Get issue count by severity
+        call: fortify.getapplicationissuecountbyseverity
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}/users
+      name: listapplicationusers
+      operations:
+      - method: GET
+        name: listapplicationusers
+        description: Fortify List application users
+        call: fortify.listapplicationusers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}/microservices
+      name: listapplicationmicroservices
+      operations:
+      - method: GET
+        name: listapplicationmicroservices
+        description: Fortify List application microservices
+        call: fortify.listapplicationmicroservices
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}/microservices
+      name: createapplicationmicroservice
+      operations:
+      - method: POST
+        name: createapplicationmicroservice
+        description: Fortify Create application microservice
+        call: fortify.createapplicationmicroservice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}
+      name: getapplicationvulnerability
+      operations:
+      - method: GET
+        name: getapplicationvulnerability
+        description: Fortify Get application vulnerability
+        call: fortify.getapplicationvulnerability
+        with:
+          vulnerabilityId: rest.vulnerabilityId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/owners
+      name: listapplicationowners
+      operations:
+      - method: GET
+        name: listapplicationowners
+        description: Fortify List application owners
+        call: fortify.listapplicationowners
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/applications/open-source-components
+      name: listopensourcecomponents
+      operations:
+      - method: GET
+        name: listopensourcecomponents
+        description: Fortify List open source components
+        call: fortify.listopensourcecomponents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases
+      name: listreleases
+      operations:
+      - method: GET
+        name: listreleases
+        description: Fortify List releases
+        call: fortify.listreleases
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases
+      name: createrelease
+      operations:
+      - method: POST
+        name: createrelease
+        description: Fortify Create release
+        call: fortify.createrelease
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}
+      name: getrelease
+      operations:
+      - method: GET
+        name: getrelease
+        description: Fortify Get release
+        call: fortify.getrelease
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}
+      name: updaterelease
+      operations:
+      - method: PUT
+        name: updaterelease
+        description: Fortify Update release
+        call: fortify.updaterelease
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}
+      name: deleterelease
+      operations:
+      - method: DELETE
+        name: deleterelease
+        description: Fortify Delete release
+        call: fortify.deleterelease
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/scans
+      name: listreleasescans
+      operations:
+      - method: GET
+        name: listreleasescans
+        description: Fortify List release scans
+        call: fortify.listreleasescans
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/scans/{scanId}
+      name: getreleasescan
+      operations:
+      - method: GET
+        name: getreleasescan
+        description: Fortify Get release scan
+        call: fortify.getreleasescan
+        with:
+          scanId: rest.scanId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/scans/{scanId}/polling-summary
+      name: getreleasescanpollingsummary
+      operations:
+      - method: GET
+        name: getreleasescanpollingsummary
+        description: Fortify Get scan polling summary
+        call: fortify.getreleasescanpollingsummary
+        with:
+          scanId: rest.scanId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/fpr
+      name: downloadreleasefpr
+      operations:
+      - method: GET
+        name: downloadreleasefpr
+        description: Fortify Download release FPR
+        call: fortify.downloadreleasefpr
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/category-rollups
+      name: listreleasecategoryrollups
+      operations:
+      - method: GET
+        name: listreleasecategoryrollups
+        description: Fortify List vulnerability category rollups
+        call: fortify.listreleasecategoryrollups
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/assessment-types
+      name: listreleaseassessmenttypes
+      operations:
+      - method: GET
+        name: listreleaseassessmenttypes
+        description: Fortify List assessment types
+        call: fortify.listreleaseassessmenttypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/static-scan-options
+      name: getreleasestaticscanoptions
+      operations:
+      - method: GET
+        name: getreleasestaticscanoptions
+        description: Fortify Get static scan options
+        call: fortify.getreleasestaticscanoptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/audit-action
+      name: setreleaseauditaction
+      operations:
+      - method: POST
+        name: setreleaseauditaction
+        description: Fortify Set audit action
+        call: fortify.setreleaseauditaction
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/audit-options
+      name: getreleaseauditoptions
+      operations:
+      - method: GET
+        name: getreleaseauditoptions
+        description: Fortify Get audit options
+        call: fortify.getreleaseauditoptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/dast-automated-scans/scan-setup
+      name: getdastautomatedscansetup
+      operations:
+      - method: GET
+        name: getdastautomatedscansetup
+        description: Fortify Get DAST automated scan setup
+        call: fortify.getdastautomatedscansetup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/dast-automated-scans/website-scan-setup
+      name: savedastautomatedwebsitescansetup
+      operations:
+      - method: PUT
+        name: savedastautomatedwebsitescansetup
+        description: Fortify Save DAST automated website scan setup
+        call: fortify.savedastautomatedwebsitescansetup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/dast-automated-scans/openapi-scan-setup
+      name: savedastautomatedopenapiscansetup
+      operations:
+      - method: PUT
+        name: savedastautomatedopenapiscansetup
+        description: Fortify Save DAST automated OpenAPI scan setup
+        call: fortify.savedastautomatedopenapiscansetup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/dast-automated-scans/start-scan
+      name: startdastautomatedscan
+      operations:
+      - method: POST
+        name: startdastautomatedscan
+        description: Fortify Start DAST automated scan
+        call: fortify.startdastautomatedscan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/dynamic-scans/scan-setup
+      name: getdynamicscansetup
+      operations:
+      - method: GET
+        name: getdynamicscansetup
+        description: Fortify Get dynamic scan setup
+        call: fortify.getdynamicscansetup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/dynamic-scans/scan-setup
+      name: savedynamicscansetup
+      operations:
+      - method: PUT
+        name: savedynamicscansetup
+        description: Fortify Save dynamic scan setup
+        call: fortify.savedynamicscansetup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/dynamic-scans/start-scan
+      name: startdynamicscan
+      operations:
+      - method: POST
+        name: startdynamicscan
+        description: Fortify Start dynamic scan
+        call: fortify.startdynamicscan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/mobile-scans/scan-setup
+      name: getmobilescansetup
+      operations:
+      - method: GET
+        name: getmobilescansetup
+        description: Fortify Get mobile scan setup
+        call: fortify.getmobilescansetup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/mobile-scans/scan-setup
+      name: savemobilescansetup
+      operations:
+      - method: PUT
+        name: savemobilescansetup
+        description: Fortify Save mobile scan setup
+        call: fortify.savemobilescansetup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/mobile-scans/start-scan
+      name: startmobilescan
+      operations:
+      - method: POST
+        name: startmobilescan
+        description: Fortify Start mobile scan
+        call: fortify.startmobilescan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/open-source-scans/start-scan
+      name: startopensourcescan
+      operations:
+      - method: POST
+        name: startopensourcescan
+        description: Fortify Start open source scan
+        call: fortify.startopensourcescan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/releases/{releaseId}/import-scan-session-id
+      name: getreleaseimportscansessionid
+      operations:
+      - method: GET
+        name: getreleaseimportscansessionid
+        description: Fortify Get import scan session ID
+        call: fortify.getreleaseimportscansessionid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/open-source-scans/{scanId}/sbom
+      name: downloadopensourcesbom
+      operations:
+      - method: GET
+        name: downloadopensourcesbom
+        description: Fortify Download open source SBOM
+        call: fortify.downloadopensourcesbom
+        with:
+          scanId: rest.scanId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/api-keys
+      name: listapikeys
+      operations:
+      - method: GET
+        name: listapikeys
+        description: Fortify List API keys
+        call: fortify.listapikeys
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/api-keys
+      name: createapikey
+      operations:
+      - method: POST
+        name: createapikey
+        description: Fortify Create API key
+        call: fortify.createapikey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/api-keys/{apiKeyId}
+      name: getapikey
+      operations:
+      - method: GET
+        name: getapikey
+        description: Fortify Get API key
+        call: fortify.getapikey
+        with:
+          apiKeyId: rest.apiKeyId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/api-keys/{apiKeyId}
+      name: updateapikey
+      operations:
+      - method: PUT
+        name: updateapikey
+        description: Fortify Update API key
+        call: fortify.updateapikey
+        with:
+          apiKeyId: rest.apiKeyId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/api-keys/{apiKeyId}
+      name: deleteapikey
+      operations:
+      - method: DELETE
+        name: deleteapikey
+        description: Fortify Delete API key
+        call: fortify.deleteapikey
+        with:
+          apiKeyId: rest.apiKeyId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/personal-access-tokens
+      name: listpersonalaccesstokens
+      operations:
+      - method: GET
+        name: listpersonalaccesstokens
+        description: Fortify List personal access tokens
+        call: fortify.listpersonalaccesstokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/personal-access-tokens
+      name: createpersonalaccesstoken
+      operations:
+      - method: POST
+        name: createpersonalaccesstoken
+        description: Fortify Create personal access token
+        call: fortify.createpersonalaccesstoken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/personal-access-tokens/{personalAccessTokenId}
+      name: getpersonalaccesstoken
+      operations:
+      - method: GET
+        name: getpersonalaccesstoken
+        description: Fortify Get personal access token
+        call: fortify.getpersonalaccesstoken
+        with:
+          personalAccessTokenId: rest.personalAccessTokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/personal-access-tokens/{personalAccessTokenId}
+      name: updatepersonalaccesstoken
+      operations:
+      - method: PUT
+        name: updatepersonalaccesstoken
+        description: Fortify Update personal access token
+        call: fortify.updatepersonalaccesstoken
+        with:
+          personalAccessTokenId: rest.personalAccessTokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/personal-access-tokens/{personalAccessTokenId}
+      name: deletepersonalaccesstoken
+      operations:
+      - method: DELETE
+        name: deletepersonalaccesstoken
+        description: Fortify Delete personal access token
+        call: fortify.deletepersonalaccesstoken
+        with:
+          personalAccessTokenId: rest.personalAccessTokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/attributes
+      name: listattributes
+      operations:
+      - method: GET
+        name: listattributes
+        description: Fortify List attributes
+        call: fortify.listattributes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/attributes
+      name: createattribute
+      operations:
+      - method: POST
+        name: createattribute
+        description: Fortify Create attribute
+        call: fortify.createattribute
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/attributes/{attributeId}
+      name: updateattribute
+      operations:
+      - method: PUT
+        name: updateattribute
+        description: Fortify Update attribute
+        call: fortify.updateattribute
+        with:
+          attributeId: rest.attributeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/attributes/{attributeId}
+      name: deleteattribute
+      operations:
+      - method: DELETE
+        name: deleteattribute
+        description: Fortify Delete attribute
+        call: fortify.deleteattribute
+        with:
+          attributeId: rest.attributeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/notifications/unread
+      name: listunreadnotifications
+      operations:
+      - method: GET
+        name: listunreadnotifications
+        description: Fortify List unread notifications
+        call: fortify.listunreadnotifications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/notifications/read
+      name: listreadnotifications
+      operations:
+      - method: GET
+        name: listreadnotifications
+        description: Fortify List read notifications
+        call: fortify.listreadnotifications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/notifications/markasread
+      name: marknotificationsasread
+      operations:
+      - method: POST
+        name: marknotificationsasread
+        description: Fortify Mark notifications as read
+        call: fortify.marknotificationsasread
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/lookup-items
+      name: listlookupitems
+      operations:
+      - method: GET
+        name: listlookupitems
+        description: Fortify List lookup items
+        call: fortify.listlookupitems
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v3/eventlogs/download
+      name: downloadeventlogs
+      operations:
+      - method: GET
+        name: downloadeventlogs
+        description: Fortify Download event logs
+        call: fortify.downloadeventlogs
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: fortify-mcp
+    transport: http
+    description: MCP adapter for Fortify on Demand API for AI agent use.
+    tools:
+    - name: listapplications
+      description: Fortify List applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listapplications
+      with:
+        modifiedStartDate: tools.modifiedStartDate
+      inputParameters:
+      - name: modifiedStartDate
+        type: string
+        description: Filter applications modified after this date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createapplication
+      description: Fortify Create application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.createapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplication
+      description: Fortify Get application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateapplication
+      description: Fortify Update application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.updateapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteapplication
+      description: Fortify Delete application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fortify.deleteapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplicationreleases
+      description: Fortify List application releases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listapplicationreleases
+      with:
+        modifiedStartDate: tools.modifiedStartDate
+      inputParameters:
+      - name: modifiedStartDate
+        type: string
+        description: Filter releases modified after this date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplicationscans
+      description: Fortify List application scans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listapplicationscans
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplicationissuecountbyseverity
+      description: Fortify Get issue count by severity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getapplicationissuecountbyseverity
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplicationusers
+      description: Fortify List application users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listapplicationusers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplicationmicroservices
+      description: Fortify List application microservices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listapplicationmicroservices
+      with:
+        includeReleases: tools.includeReleases
+      inputParameters:
+      - name: includeReleases
+        type: boolean
+        description: Whether to include release information for each microservice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createapplicationmicroservice
+      description: Fortify Create application microservice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.createapplicationmicroservice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplicationvulnerability
+      description: Fortify Get application vulnerability
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getapplicationvulnerability
+      with:
+        vulnerabilityId: tools.vulnerabilityId
+        includeFixed: tools.includeFixed
+        includeSuppressed: tools.includeSuppressed
+        keywordSearch: tools.keywordSearch
+      inputParameters:
+      - name: vulnerabilityId
+        type: integer
+        description: Unique identifier of the vulnerability
+        required: true
+      - name: includeFixed
+        type: boolean
+        description: Include fixed vulnerabilities in results
+      - name: includeSuppressed
+        type: boolean
+        description: Include suppressed vulnerabilities in results
+      - name: keywordSearch
+        type: string
+        description: Keyword search filter for vulnerabilities
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplicationowners
+      description: Fortify List application owners
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listapplicationowners
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listopensourcecomponents
+      description: Fortify List open source components
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listopensourcecomponents
+      with:
+        openSourceScanType: tools.openSourceScanType
+        returnTotalComponentCount: tools.returnTotalComponentCount
+      inputParameters:
+      - name: openSourceScanType
+        type: string
+        description: Type of open source scan engine
+      - name: returnTotalComponentCount
+        type: boolean
+        description: Whether to include total count in response
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listreleases
+      description: Fortify List releases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listreleases
+      with:
+        modifiedStartDate: tools.modifiedStartDate
+      inputParameters:
+      - name: modifiedStartDate
+        type: string
+        description: Filter releases modified after this date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createrelease
+      description: Fortify Create release
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.createrelease
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrelease
+      description: Fortify Get release
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getrelease
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updaterelease
+      description: Fortify Update release
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.updaterelease
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleterelease
+      description: Fortify Delete release
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fortify.deleterelease
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listreleasescans
+      description: Fortify List release scans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listreleasescans
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getreleasescan
+      description: Fortify Get release scan
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getreleasescan
+      with:
+        scanId: tools.scanId
+      inputParameters:
+      - name: scanId
+        type: integer
+        description: Unique identifier of the scan
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getreleasescanpollingsummary
+      description: Fortify Get scan polling summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getreleasescanpollingsummary
+      with:
+        scanId: tools.scanId
+      inputParameters:
+      - name: scanId
+        type: integer
+        description: Unique identifier of the scan
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloadreleasefpr
+      description: Fortify Download release FPR
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.downloadreleasefpr
+      with:
+        scanType: tools.scanType
+      inputParameters:
+      - name: scanType
+        type: string
+        description: Type of scan to download FPR for
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listreleasecategoryrollups
+      description: Fortify List vulnerability category rollups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listreleasecategoryrollups
+      with:
+        showFixed: tools.showFixed
+        vulnerabilitiesSeverityType: tools.vulnerabilitiesSeverityType
+      inputParameters:
+      - name: showFixed
+        type: boolean
+        description: Include fixed vulnerabilities
+      - name: vulnerabilitiesSeverityType
+        type: string
+        description: Filter by severity type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listreleaseassessmenttypes
+      description: Fortify List assessment types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listreleaseassessmenttypes
+      with:
+        scanType: tools.scanType
+      inputParameters:
+      - name: scanType
+        type: string
+        description: Type of scan to retrieve assessment types for
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getreleasestaticscanoptions
+      description: Fortify Get static scan options
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getreleasestaticscanoptions
+      with:
+        technologyStack: tools.technologyStack
+        languageLevel: tools.languageLevel
+        assessmentTypeId: tools.assessmentTypeId
+        entitlementFrequencyType: tools.entitlementFrequencyType
+      inputParameters:
+      - name: technologyStack
+        type: string
+        description: Technology stack identifier
+      - name: languageLevel
+        type: string
+        description: Language level identifier
+      - name: assessmentTypeId
+        type: integer
+        description: Assessment type identifier
+      - name: entitlementFrequencyType
+        type: string
+        description: Entitlement frequency type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: setreleaseauditaction
+      description: Fortify Set audit action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.setreleaseauditaction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getreleaseauditoptions
+      description: Fortify Get audit options
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getreleaseauditoptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getdastautomatedscansetup
+      description: Fortify Get DAST automated scan setup
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getdastautomatedscansetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: savedastautomatedwebsitescansetup
+      description: Fortify Save DAST automated website scan setup
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.savedastautomatedwebsitescansetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: savedastautomatedopenapiscansetup
+      description: Fortify Save DAST automated OpenAPI scan setup
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.savedastautomatedopenapiscansetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: startdastautomatedscan
+      description: Fortify Start DAST automated scan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.startdastautomatedscan
+      with:
+        networkName: tools.networkName
+      inputParameters:
+      - name: networkName
+        type: string
+        description: Name of the Fortify on Demand Connect network to use for scanning
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getdynamicscansetup
+      description: Fortify Get dynamic scan setup
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getdynamicscansetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: savedynamicscansetup
+      description: Fortify Save dynamic scan setup
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.savedynamicscansetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: startdynamicscan
+      description: Fortify Start dynamic scan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.startdynamicscan
+      with:
+        networkName: tools.networkName
+      inputParameters:
+      - name: networkName
+        type: string
+        description: Name of the Fortify on Demand Connect network to use for scanning
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmobilescansetup
+      description: Fortify Get mobile scan setup
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getmobilescansetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: savemobilescansetup
+      description: Fortify Save mobile scan setup
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.savemobilescansetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: startmobilescan
+      description: Fortify Start mobile scan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.startmobilescan
+      with:
+        startDate: tools.startDate
+        assessmentTypeId: tools.assessmentTypeId
+        frameworkType: tools.frameworkType
+        timeZone: tools.timeZone
+        entitlementId: tools.entitlementId
+        entitlementFrequencyType: tools.entitlementFrequencyType
+        isRemediationScan: tools.isRemediationScan
+      inputParameters:
+      - name: startDate
+        type: string
+        description: Scheduled start date for the scan
+      - name: assessmentTypeId
+        type: integer
+        description: Assessment type identifier
+      - name: frameworkType
+        type: string
+        description: Mobile framework type
+      - name: timeZone
+        type: string
+        description: Time zone for scheduled scans
+      - name: entitlementId
+        type: integer
+        description: Entitlement identifier
+      - name: entitlementFrequencyType
+        type: string
+        description: Entitlement frequency type
+      - name: isRemediationScan
+        type: boolean
+        description: Whether this is a remediation scan
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: startopensourcescan
+      description: Fortify Start open source scan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.startopensourcescan
+      with:
+        fragNo: tools.fragNo
+        offset: tools.offset
+      inputParameters:
+      - name: fragNo
+        type: integer
+        description: Fragment number for chunked upload
+      - name: offset
+        type: integer
+        description: Byte offset for chunked upload
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getreleaseimportscansessionid
+      description: Fortify Get import scan session ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getreleaseimportscansessionid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloadopensourcesbom
+      description: Fortify Download open source SBOM
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.downloadopensourcesbom
+      with:
+        scanId: tools.scanId
+        format: tools.format
+      inputParameters:
+      - name: scanId
+        type: integer
+        description: Unique identifier of the open source scan
+        required: true
+      - name: format
+        type: string
+        description: SBOM output format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapikeys
+      description: Fortify List API keys
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listapikeys
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createapikey
+      description: Fortify Create API key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.createapikey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapikey
+      description: Fortify Get API key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getapikey
+      with:
+        apiKeyId: tools.apiKeyId
+      inputParameters:
+      - name: apiKeyId
+        type: integer
+        description: Unique identifier of the API key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateapikey
+      description: Fortify Update API key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.updateapikey
+      with:
+        apiKeyId: tools.apiKeyId
+      inputParameters:
+      - name: apiKeyId
+        type: integer
+        description: Unique identifier of the API key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteapikey
+      description: Fortify Delete API key
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fortify.deleteapikey
+      with:
+        apiKeyId: tools.apiKeyId
+      inputParameters:
+      - name: apiKeyId
+        type: integer
+        description: Unique identifier of the API key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpersonalaccesstokens
+      description: Fortify List personal access tokens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listpersonalaccesstokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createpersonalaccesstoken
+      description: Fortify Create personal access token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.createpersonalaccesstoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpersonalaccesstoken
+      description: Fortify Get personal access token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.getpersonalaccesstoken
+      with:
+        personalAccessTokenId: tools.personalAccessTokenId
+      inputParameters:
+      - name: personalAccessTokenId
+        type: integer
+        description: Unique identifier of the personal access token
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatepersonalaccesstoken
+      description: Fortify Update personal access token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.updatepersonalaccesstoken
+      with:
+        personalAccessTokenId: tools.personalAccessTokenId
+      inputParameters:
+      - name: personalAccessTokenId
+        type: integer
+        description: Unique identifier of the personal access token
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletepersonalaccesstoken
+      description: Fortify Delete personal access token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fortify.deletepersonalaccesstoken
+      with:
+        personalAccessTokenId: tools.personalAccessTokenId
+      inputParameters:
+      - name: personalAccessTokenId
+        type: integer
+        description: Unique identifier of the personal access token
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listattributes
+      description: Fortify List attributes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listattributes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createattribute
+      description: Fortify Create attribute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.createattribute
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateattribute
+      description: Fortify Update attribute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fortify.updateattribute
+      with:
+        attributeId: tools.attributeId
+      inputParameters:
+      - name: attributeId
+        type: integer
+        description: Unique identifier of the attribute
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteattribute
+      description: Fortify Delete attribute
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fortify.deleteattribute
+      with:
+        attributeId: tools.attributeId
+      inputParameters:
+      - name: attributeId
+        type: integer
+        description: Unique identifier of the attribute
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listunreadnotifications
+      description: Fortify List unread notifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listunreadnotifications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listreadnotifications
+      description: Fortify List read notifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listreadnotifications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marknotificationsasread
+      description: Fortify Mark notifications as read
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fortify.marknotificationsasread
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listlookupitems
+      description: Fortify List lookup items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.listlookupitems
+      with:
+        type: tools.type
+      inputParameters:
+      - name: type
+        type: string
+        description: The type of lookup items to retrieve
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloadeventlogs
+      description: Fortify Download event logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fortify.downloadeventlogs
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    FORTIFY_TOKEN: FORTIFY_TOKEN
