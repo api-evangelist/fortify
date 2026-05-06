@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,150 +9,82 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Fortify
 providerId: fortify
-publisherName: Fortify
-serviceCategory: API
+publisherName: Open Text Corporation
+serviceCategory: Application Security
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Application Security
-  - DAST
   - DevSecOps
   - SAST
+  - DAST
   - SCA
-  - Security Testing
-  - Vulnerability Scanning
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Fortify API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: FOCUS-aligned FinOps mapping for Fortify (OpenText) — annual subscription application-security tooling billed per application (Fortify on Demand SaaS) or per developer seat / scan engine (self-hosted SCA + SSC + WebInspect).
+notes: No public price list. Meters reflect typical OpenText/Fortify invoice line items.
+sources:
+  - https://www.opentext.com/products/fortify-on-demand
+  - https://www.opentext.com/products/fortify
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Tiered Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
+    - Usage
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Credit
 focusColumns:
-  ServiceName: Fortify
-  ServiceCategory: Developer Tools / API
-  ProviderName: Fortify
-  PublisherName: Fortify
-  InvoiceIssuerName: Fortify
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceName: Fortify (OpenText)
+  ServiceCategory: Application Security
+  ProviderName: Open Text Corporation
+  PublisherName: Open Text Corporation
+  InvoiceIssuerName: Open Text Corporation
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: applications_scanned
+    description: Distinct applications under Fortify on Demand subscription
+    unit: application-year
+    aggregation: max
+    dimensions:
+      - product
+      - business_unit
+  - name: developer_seats
+    description: Developer / contributor seats licensed for self-hosted Fortify
+    unit: seat-year
+    aggregation: max
+    dimensions:
+      - product
+  - name: scan_engines
+    description: SCA / WebInspect / ScanCentral engine licenses
+    unit: engine-year
+    aggregation: max
+    dimensions:
+      - engine_type
+  - name: scans_executed
+    description: Static, dynamic, mobile, or SCA scans executed
+    unit: scan
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - scan_type
+      - application
+  - name: lines_of_code_scanned
+    description: LOC analyzed (used as a tier-sizing metric for some FoD agreements)
+    unit: line
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Fortify on Demand API
-    baseURL: https://api.ams.fortify.com
-    tags:
-      - Application Security
-      - DAST
-      - SAST
-      - Security Testing
-      - Vulnerability Management
-    serviceName: Fortify on Demand API
-    serviceCategory: API
-  - name: Fortify Software Security Center API
-    baseURL: https://your-ssc-server/ssc/api/v1
-    tags:
-      - Application Security
-      - Compliance
-      - On-Premise
-      - Security Analytics
-      - Vulnerability Management
-    serviceName: Fortify Software Security Center API
-    serviceCategory: API
-  - name: Fortify ScanCentral DAST API
-    baseURL: https://your-scancentral-dast-server/api/
-    tags:
-      - CI/CD
-      - DAST
-      - Dynamic Analysis
-      - Security Testing
-      - Web Application Security
-    serviceName: Fortify ScanCentral DAST API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
-maintainers:
-  - name: Kin Lane
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
+      - language
+principles:
+  - name: Visibility
+    description: Pull Fortify on Demand and SSC reporting APIs into your data warehouse; track scans-per-application and scan-pass-rate to expose unused application licenses.
+  - name: Allocation
+    description: Tag applications in FoD/SSC with business-unit metadata so license consumption is allocable.
+  - name: Optimization
+    description: Right-size FoD application tier (LOC bands) annually based on actual codebase size; consolidate dormant applications; consider on-prem ScanCentral for high-volume CI scanning where it is cheaper than per-app FoD subscriptions.
+  - name: Accountability
+    description: AppSec engineering owns the Fortify contract; finance reviews application count and scan utilization quarterly ahead of OpenText renewal.
+maintainers: []
