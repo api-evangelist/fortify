@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify Software Security Center API — Custom Tags
+  description: 'Fortify Software Security Center API — Custom Tags. 2 operations. Lead operation: Fortify Get custom tag.
+    Self-contained Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Custom Tags
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: software-security-center-custom-tags
+    baseUri: ''
+    description: Fortify Software Security Center API — Custom Tags business capability. Self-contained, no shared references.
+    resources:
+    - name: customTags-id
+      path: /customTags/{id}
+      operations:
+      - name: getcustomtag
+        method: GET
+        description: Fortify Get custom tag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projectVersions-parentId-customTags
+      path: /projectVersions/{parentId}/customTags
+      operations:
+      - name: listprojectversioncustomtags
+        method: GET
+        description: Fortify List project version custom tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.FORTIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: software-security-center-custom-tags-rest
+    port: 8080
+    description: REST adapter for Fortify Software Security Center API — Custom Tags. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/customtags/{id}
+      name: customtags-id
+      description: REST surface for customTags-id.
+      operations:
+      - method: GET
+        name: getcustomtag
+        description: Fortify Get custom tag
+        call: software-security-center-custom-tags.getcustomtag
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projectversions/{parentid}/customtags
+      name: projectversions-parentid-customtags
+      description: REST surface for projectVersions-parentId-customTags.
+      operations:
+      - method: GET
+        name: listprojectversioncustomtags
+        description: Fortify List project version custom tags
+        call: software-security-center-custom-tags.listprojectversioncustomtags
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: software-security-center-custom-tags-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify Software Security Center API — Custom Tags. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: fortify-get-custom-tag
+      description: Fortify Get custom tag
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: software-security-center-custom-tags.getcustomtag
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-list-project-version-custom
+      description: Fortify List project version custom tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: software-security-center-custom-tags.listprojectversioncustomtags
+      outputParameters:
+      - type: object
+        mapping: $.

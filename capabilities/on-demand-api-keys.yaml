@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API — API Keys
+  description: 'Fortify on Demand API — API Keys. 5 operations. Lead operation: Fortify List API keys. Self-contained Naftiko
+    capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - API Keys
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: on-demand-api-keys
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API — API Keys business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-api-keys
+      path: /api/v3/api-keys
+      operations:
+      - name: listapikeys
+        method: GET
+        description: Fortify List API keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapikey
+        method: POST
+        description: Fortify Create API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v3-api-keys-apiKeyId
+      path: /api/v3/api-keys/{apiKeyId}
+      operations:
+      - name: getapikey
+        method: GET
+        description: Fortify Get API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiKeyId
+          in: path
+          type: integer
+          description: Unique identifier of the API key
+          required: true
+      - name: updateapikey
+        method: PUT
+        description: Fortify Update API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiKeyId
+          in: path
+          type: integer
+          description: Unique identifier of the API key
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapikey
+        method: DELETE
+        description: Fortify Delete API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiKeyId
+          in: path
+          type: integer
+          description: Unique identifier of the API key
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORTIFY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: on-demand-api-keys-rest
+    port: 8080
+    description: REST adapter for Fortify on Demand API — API Keys. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/api-keys
+      name: api-v3-api-keys
+      description: REST surface for api-v3-api-keys.
+      operations:
+      - method: GET
+        name: listapikeys
+        description: Fortify List API keys
+        call: on-demand-api-keys.listapikeys
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapikey
+        description: Fortify Create API key
+        call: on-demand-api-keys.createapikey
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v3/api-keys/{apikeyid}
+      name: api-v3-api-keys-apikeyid
+      description: REST surface for api-v3-api-keys-apiKeyId.
+      operations:
+      - method: GET
+        name: getapikey
+        description: Fortify Get API key
+        call: on-demand-api-keys.getapikey
+        with:
+          apiKeyId: rest.apiKeyId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateapikey
+        description: Fortify Update API key
+        call: on-demand-api-keys.updateapikey
+        with:
+          apiKeyId: rest.apiKeyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapikey
+        description: Fortify Delete API key
+        call: on-demand-api-keys.deleteapikey
+        with:
+          apiKeyId: rest.apiKeyId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: on-demand-api-keys-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify on Demand API — API Keys. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: fortify-list-api-keys
+      description: Fortify List API keys
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-api-keys.listapikeys
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-create-api-key
+      description: Fortify Create API key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: on-demand-api-keys.createapikey
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-get-api-key
+      description: Fortify Get API key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-api-keys.getapikey
+      with:
+        apiKeyId: tools.apiKeyId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-update-api-key
+      description: Fortify Update API key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: on-demand-api-keys.updateapikey
+      with:
+        apiKeyId: tools.apiKeyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-delete-api-key
+      description: Fortify Delete API key
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: on-demand-api-keys.deleteapikey
+      with:
+        apiKeyId: tools.apiKeyId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API — Lookup Items
+  description: 'Fortify on Demand API — Lookup Items. 1 operations. Lead operation: Fortify List lookup items. Self-contained
+    Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Lookup Items
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: on-demand-lookup-items
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API — Lookup Items business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-lookup-items
+      path: /api/v3/lookup-items
+      operations:
+      - name: listlookupitems
+        method: GET
+        description: Fortify List lookup items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: The type of lookup items to retrieve
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORTIFY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: on-demand-lookup-items-rest
+    port: 8080
+    description: REST adapter for Fortify on Demand API — Lookup Items. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/lookup-items
+      name: api-v3-lookup-items
+      description: REST surface for api-v3-lookup-items.
+      operations:
+      - method: GET
+        name: listlookupitems
+        description: Fortify List lookup items
+        call: on-demand-lookup-items.listlookupitems
+        with:
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: on-demand-lookup-items-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify on Demand API — Lookup Items. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: fortify-list-lookup-items
+      description: Fortify List lookup items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-lookup-items.listlookupitems
+      with:
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.

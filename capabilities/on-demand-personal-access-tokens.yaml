@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API — Personal Access Tokens
+  description: 'Fortify on Demand API — Personal Access Tokens. 5 operations. Lead operation: Fortify List personal access
+    tokens. Self-contained Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Personal Access Tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: on-demand-personal-access-tokens
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API — Personal Access Tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-personal-access-tokens
+      path: /api/v3/personal-access-tokens
+      operations:
+      - name: listpersonalaccesstokens
+        method: GET
+        description: Fortify List personal access tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpersonalaccesstoken
+        method: POST
+        description: Fortify Create personal access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v3-personal-access-tokens-personalAccessTokenId
+      path: /api/v3/personal-access-tokens/{personalAccessTokenId}
+      operations:
+      - name: getpersonalaccesstoken
+        method: GET
+        description: Fortify Get personal access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: personalAccessTokenId
+          in: path
+          type: integer
+          description: Unique identifier of the personal access token
+          required: true
+      - name: updatepersonalaccesstoken
+        method: PUT
+        description: Fortify Update personal access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: personalAccessTokenId
+          in: path
+          type: integer
+          description: Unique identifier of the personal access token
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletepersonalaccesstoken
+        method: DELETE
+        description: Fortify Delete personal access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: personalAccessTokenId
+          in: path
+          type: integer
+          description: Unique identifier of the personal access token
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORTIFY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: on-demand-personal-access-tokens-rest
+    port: 8080
+    description: REST adapter for Fortify on Demand API — Personal Access Tokens. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/personal-access-tokens
+      name: api-v3-personal-access-tokens
+      description: REST surface for api-v3-personal-access-tokens.
+      operations:
+      - method: GET
+        name: listpersonalaccesstokens
+        description: Fortify List personal access tokens
+        call: on-demand-personal-access-tokens.listpersonalaccesstokens
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpersonalaccesstoken
+        description: Fortify Create personal access token
+        call: on-demand-personal-access-tokens.createpersonalaccesstoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v3/personal-access-tokens/{personalaccesstokenid}
+      name: api-v3-personal-access-tokens-personalaccesstokenid
+      description: REST surface for api-v3-personal-access-tokens-personalAccessTokenId.
+      operations:
+      - method: GET
+        name: getpersonalaccesstoken
+        description: Fortify Get personal access token
+        call: on-demand-personal-access-tokens.getpersonalaccesstoken
+        with:
+          personalAccessTokenId: rest.personalAccessTokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepersonalaccesstoken
+        description: Fortify Update personal access token
+        call: on-demand-personal-access-tokens.updatepersonalaccesstoken
+        with:
+          personalAccessTokenId: rest.personalAccessTokenId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepersonalaccesstoken
+        description: Fortify Delete personal access token
+        call: on-demand-personal-access-tokens.deletepersonalaccesstoken
+        with:
+          personalAccessTokenId: rest.personalAccessTokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: on-demand-personal-access-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify on Demand API — Personal Access Tokens. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: fortify-list-personal-access-tokens
+      description: Fortify List personal access tokens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-personal-access-tokens.listpersonalaccesstokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-create-personal-access-token
+      description: Fortify Create personal access token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: on-demand-personal-access-tokens.createpersonalaccesstoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-get-personal-access-token
+      description: Fortify Get personal access token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-personal-access-tokens.getpersonalaccesstoken
+      with:
+        personalAccessTokenId: tools.personalAccessTokenId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-update-personal-access-token
+      description: Fortify Update personal access token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: on-demand-personal-access-tokens.updatepersonalaccesstoken
+      with:
+        personalAccessTokenId: tools.personalAccessTokenId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-delete-personal-access-token
+      description: Fortify Delete personal access token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: on-demand-personal-access-tokens.deletepersonalaccesstoken
+      with:
+        personalAccessTokenId: tools.personalAccessTokenId
+      outputParameters:
+      - type: object
+        mapping: $.

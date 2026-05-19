@@ -1,0 +1,97 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API — Static Scans
+  description: 'Fortify on Demand API — Static Scans. 1 operations. Lead operation: Fortify Get static scan options. Self-contained
+    Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Static Scans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: on-demand-static-scans
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API — Static Scans business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-releases-releaseId-static-scan-options
+      path: /api/v3/releases/{releaseId}/static-scan-options
+      operations:
+      - name: getreleasestaticscanoptions
+        method: GET
+        description: Fortify Get static scan options
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: technologyStack
+          in: query
+          type: string
+          description: Technology stack identifier
+        - name: languageLevel
+          in: query
+          type: string
+          description: Language level identifier
+        - name: assessmentTypeId
+          in: query
+          type: integer
+          description: Assessment type identifier
+        - name: entitlementFrequencyType
+          in: query
+          type: string
+          description: Entitlement frequency type
+    authentication:
+      type: bearer
+      token: '{{env.FORTIFY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: on-demand-static-scans-rest
+    port: 8080
+    description: REST adapter for Fortify on Demand API — Static Scans. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/releases/{releaseid}/static-scan-options
+      name: api-v3-releases-releaseid-static-scan-options
+      description: REST surface for api-v3-releases-releaseId-static-scan-options.
+      operations:
+      - method: GET
+        name: getreleasestaticscanoptions
+        description: Fortify Get static scan options
+        call: on-demand-static-scans.getreleasestaticscanoptions
+        with:
+          technologyStack: rest.technologyStack
+          languageLevel: rest.languageLevel
+          assessmentTypeId: rest.assessmentTypeId
+          entitlementFrequencyType: rest.entitlementFrequencyType
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: on-demand-static-scans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify on Demand API — Static Scans. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: fortify-get-static-scan-options
+      description: Fortify Get static scan options
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-static-scans.getreleasestaticscanoptions
+      with:
+        technologyStack: tools.technologyStack
+        languageLevel: tools.languageLevel
+        assessmentTypeId: tools.assessmentTypeId
+        entitlementFrequencyType: tools.entitlementFrequencyType
+      outputParameters:
+      - type: object
+        mapping: $.

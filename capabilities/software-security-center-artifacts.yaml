@@ -1,0 +1,164 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify Software Security Center API — Artifacts
+  description: 'Fortify Software Security Center API — Artifacts. 4 operations. Lead operation: Fortify List project version
+    artifacts. Self-contained Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Artifacts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: software-security-center-artifacts
+    baseUri: ''
+    description: Fortify Software Security Center API — Artifacts business capability. Self-contained, no shared references.
+    resources:
+    - name: projectVersions-parentId-artifacts
+      path: /projectVersions/{parentId}/artifacts
+      operations:
+      - name: listprojectversionartifacts
+        method: GET
+        description: Fortify List project version artifacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: uploadprojectversionartifact
+        method: POST
+        description: Fortify Upload artifact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projectVersions-parentId-artifacts-id
+      path: /projectVersions/{parentId}/artifacts/{id}
+      operations:
+      - name: getprojectversionartifact
+        method: GET
+        description: Fortify Get artifact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteprojectversionartifact
+        method: DELETE
+        description: Fortify Delete artifact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.FORTIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: software-security-center-artifacts-rest
+    port: 8080
+    description: REST adapter for Fortify Software Security Center API — Artifacts. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/projectversions/{parentid}/artifacts
+      name: projectversions-parentid-artifacts
+      description: REST surface for projectVersions-parentId-artifacts.
+      operations:
+      - method: GET
+        name: listprojectversionartifacts
+        description: Fortify List project version artifacts
+        call: software-security-center-artifacts.listprojectversionartifacts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: uploadprojectversionartifact
+        description: Fortify Upload artifact
+        call: software-security-center-artifacts.uploadprojectversionartifact
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projectversions/{parentid}/artifacts/{id}
+      name: projectversions-parentid-artifacts-id
+      description: REST surface for projectVersions-parentId-artifacts-id.
+      operations:
+      - method: GET
+        name: getprojectversionartifact
+        description: Fortify Get artifact
+        call: software-security-center-artifacts.getprojectversionartifact
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteprojectversionartifact
+        description: Fortify Delete artifact
+        call: software-security-center-artifacts.deleteprojectversionartifact
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: software-security-center-artifacts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify Software Security Center API — Artifacts. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: fortify-list-project-version-artifacts
+      description: Fortify List project version artifacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: software-security-center-artifacts.listprojectversionartifacts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-upload-artifact
+      description: Fortify Upload artifact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: software-security-center-artifacts.uploadprojectversionartifact
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-get-artifact
+      description: Fortify Get artifact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: software-security-center-artifacts.getprojectversionartifact
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-delete-artifact
+      description: Fortify Delete artifact
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: software-security-center-artifacts.deleteprojectversionartifact
+      outputParameters:
+      - type: object
+        mapping: $.

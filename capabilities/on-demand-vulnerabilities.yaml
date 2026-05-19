@@ -1,0 +1,177 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API — Vulnerabilities
+  description: 'Fortify on Demand API — Vulnerabilities. 3 operations. Lead operation: Fortify Get issue count by severity.
+    Self-contained Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Vulnerabilities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: on-demand-vulnerabilities
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API — Vulnerabilities business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-applications-applicationId-issue-count-by-severity
+      path: /api/v3/applications/{applicationId}/issue-count-by-severity
+      operations:
+      - name: getapplicationissuecountbyseverity
+        method: GET
+        description: Fortify Get issue count by severity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-applications-applicationId-vulnerabilities-vulnerabilityId
+      path: /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}
+      operations:
+      - name: getapplicationvulnerability
+        method: GET
+        description: Fortify Get application vulnerability
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vulnerabilityId
+          in: path
+          type: integer
+          description: Unique identifier of the vulnerability
+          required: true
+        - name: includeFixed
+          in: query
+          type: boolean
+          description: Include fixed vulnerabilities in results
+        - name: includeSuppressed
+          in: query
+          type: boolean
+          description: Include suppressed vulnerabilities in results
+        - name: keywordSearch
+          in: query
+          type: string
+          description: Keyword search filter for vulnerabilities
+    - name: api-v3-releases-releaseId-category-rollups
+      path: /api/v3/releases/{releaseId}/category-rollups
+      operations:
+      - name: listreleasecategoryrollups
+        method: GET
+        description: Fortify List vulnerability category rollups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: showFixed
+          in: query
+          type: boolean
+          description: Include fixed vulnerabilities
+        - name: vulnerabilitiesSeverityType
+          in: query
+          type: string
+          description: Filter by severity type
+    authentication:
+      type: bearer
+      token: '{{env.FORTIFY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: on-demand-vulnerabilities-rest
+    port: 8080
+    description: REST adapter for Fortify on Demand API — Vulnerabilities. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/applications/{applicationid}/issue-count-by-severity
+      name: api-v3-applications-applicationid-issue-count-by-severity
+      description: REST surface for api-v3-applications-applicationId-issue-count-by-severity.
+      operations:
+      - method: GET
+        name: getapplicationissuecountbyseverity
+        description: Fortify Get issue count by severity
+        call: on-demand-vulnerabilities.getapplicationissuecountbyseverity
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v3/applications/{applicationid}/vulnerabilities/{vulnerabilityid}
+      name: api-v3-applications-applicationid-vulnerabilities-vulnerabilityid
+      description: REST surface for api-v3-applications-applicationId-vulnerabilities-vulnerabilityId.
+      operations:
+      - method: GET
+        name: getapplicationvulnerability
+        description: Fortify Get application vulnerability
+        call: on-demand-vulnerabilities.getapplicationvulnerability
+        with:
+          vulnerabilityId: rest.vulnerabilityId
+          includeFixed: rest.includeFixed
+          includeSuppressed: rest.includeSuppressed
+          keywordSearch: rest.keywordSearch
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v3/releases/{releaseid}/category-rollups
+      name: api-v3-releases-releaseid-category-rollups
+      description: REST surface for api-v3-releases-releaseId-category-rollups.
+      operations:
+      - method: GET
+        name: listreleasecategoryrollups
+        description: Fortify List vulnerability category rollups
+        call: on-demand-vulnerabilities.listreleasecategoryrollups
+        with:
+          showFixed: rest.showFixed
+          vulnerabilitiesSeverityType: rest.vulnerabilitiesSeverityType
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: on-demand-vulnerabilities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify on Demand API — Vulnerabilities. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: fortify-get-issue-count-severity
+      description: Fortify Get issue count by severity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-vulnerabilities.getapplicationissuecountbyseverity
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-get-application-vulnerability
+      description: Fortify Get application vulnerability
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-vulnerabilities.getapplicationvulnerability
+      with:
+        vulnerabilityId: tools.vulnerabilityId
+        includeFixed: tools.includeFixed
+        includeSuppressed: tools.includeSuppressed
+        keywordSearch: tools.keywordSearch
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-list-vulnerability-category-rollups
+      description: Fortify List vulnerability category rollups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-vulnerabilities.listreleasecategoryrollups
+      with:
+        showFixed: tools.showFixed
+        vulnerabilitiesSeverityType: tools.vulnerabilitiesSeverityType
+      outputParameters:
+      - type: object
+        mapping: $.

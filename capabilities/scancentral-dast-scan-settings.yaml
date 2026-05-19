@@ -1,0 +1,324 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify ScanCentral DAST API — Scan Settings
+  description: 'Fortify ScanCentral DAST API — Scan Settings. 7 operations. Lead operation: Fortify List scan settings. Self-contained
+    Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Scan Settings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: scancentral-dast-scan-settings
+    baseUri: ''
+    description: Fortify ScanCentral DAST API — Scan Settings business capability. Self-contained, no shared references.
+    resources:
+    - name: scan-settings
+      path: /scan-settings
+      operations:
+      - name: listscansettings
+        method: GET
+        description: Fortify List scan settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: searchText
+          in: query
+          type: string
+          description: Search text to filter settings by name
+        - name: orderBy
+          in: query
+          type: string
+          description: Field to sort results by
+        - name: orderByDirection
+          in: query
+          type: string
+          description: Sort direction
+      - name: createscansettings
+        method: POST
+        description: Fortify Create scan settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: scan-settings-scanSettingsId
+      path: /scan-settings/{scanSettingsId}
+      operations:
+      - name: getscansettings
+        method: GET
+        description: Fortify Get scan settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scanSettingsId
+          in: path
+          type: string
+          description: Unique identifier of the scan settings
+          required: true
+      - name: updatescansettings
+        method: PUT
+        description: Fortify Update scan settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scanSettingsId
+          in: path
+          type: string
+          description: Unique identifier of the scan settings
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletescansettings
+        method: DELETE
+        description: Fortify Delete scan settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scanSettingsId
+          in: path
+          type: string
+          description: Unique identifier of the scan settings
+          required: true
+    - name: scan-settings-scanSettingsId-cicd-token
+      path: /scan-settings/{scanSettingsId}/cicd-token
+      operations:
+      - name: getscansettingscicdtoken
+        method: GET
+        description: Fortify Get CI/CD token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scanSettingsId
+          in: path
+          type: string
+          description: Unique identifier of the scan settings
+          required: true
+      - name: regeneratescansettingscicdtoken
+        method: POST
+        description: Fortify Regenerate CI/CD token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scanSettingsId
+          in: path
+          type: string
+          description: Unique identifier of the scan settings
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.FORTIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: scancentral-dast-scan-settings-rest
+    port: 8080
+    description: REST adapter for Fortify ScanCentral DAST API — Scan Settings. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/scan-settings
+      name: scan-settings
+      description: REST surface for scan-settings.
+      operations:
+      - method: GET
+        name: listscansettings
+        description: Fortify List scan settings
+        call: scancentral-dast-scan-settings.listscansettings
+        with:
+          searchText: rest.searchText
+          orderBy: rest.orderBy
+          orderByDirection: rest.orderByDirection
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createscansettings
+        description: Fortify Create scan settings
+        call: scancentral-dast-scan-settings.createscansettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/scan-settings/{scansettingsid}
+      name: scan-settings-scansettingsid
+      description: REST surface for scan-settings-scanSettingsId.
+      operations:
+      - method: GET
+        name: getscansettings
+        description: Fortify Get scan settings
+        call: scancentral-dast-scan-settings.getscansettings
+        with:
+          scanSettingsId: rest.scanSettingsId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatescansettings
+        description: Fortify Update scan settings
+        call: scancentral-dast-scan-settings.updatescansettings
+        with:
+          scanSettingsId: rest.scanSettingsId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletescansettings
+        description: Fortify Delete scan settings
+        call: scancentral-dast-scan-settings.deletescansettings
+        with:
+          scanSettingsId: rest.scanSettingsId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/scan-settings/{scansettingsid}/cicd-token
+      name: scan-settings-scansettingsid-cicd-token
+      description: REST surface for scan-settings-scanSettingsId-cicd-token.
+      operations:
+      - method: GET
+        name: getscansettingscicdtoken
+        description: Fortify Get CI/CD token
+        call: scancentral-dast-scan-settings.getscansettingscicdtoken
+        with:
+          scanSettingsId: rest.scanSettingsId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: regeneratescansettingscicdtoken
+        description: Fortify Regenerate CI/CD token
+        call: scancentral-dast-scan-settings.regeneratescansettingscicdtoken
+        with:
+          scanSettingsId: rest.scanSettingsId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: scancentral-dast-scan-settings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify ScanCentral DAST API — Scan Settings. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: fortify-list-scan-settings
+      description: Fortify List scan settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: scancentral-dast-scan-settings.listscansettings
+      with:
+        searchText: tools.searchText
+        orderBy: tools.orderBy
+        orderByDirection: tools.orderByDirection
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-create-scan-settings
+      description: Fortify Create scan settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: scancentral-dast-scan-settings.createscansettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-get-scan-settings
+      description: Fortify Get scan settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: scancentral-dast-scan-settings.getscansettings
+      with:
+        scanSettingsId: tools.scanSettingsId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-update-scan-settings
+      description: Fortify Update scan settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: scancentral-dast-scan-settings.updatescansettings
+      with:
+        scanSettingsId: tools.scanSettingsId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-delete-scan-settings
+      description: Fortify Delete scan settings
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: scancentral-dast-scan-settings.deletescansettings
+      with:
+        scanSettingsId: tools.scanSettingsId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-get-ci-cd-token
+      description: Fortify Get CI/CD token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: scancentral-dast-scan-settings.getscansettingscicdtoken
+      with:
+        scanSettingsId: tools.scanSettingsId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-regenerate-ci-cd-token
+      description: Fortify Regenerate CI/CD token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: scancentral-dast-scan-settings.regeneratescansettingscicdtoken
+      with:
+        scanSettingsId: tools.scanSettingsId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify Software Security Center API — Performance Indicators
+  description: 'Fortify Software Security Center API — Performance Indicators. 1 operations. Lead operation: Fortify List
+    performance indicators. Self-contained Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Performance Indicators
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: software-security-center-performance-indicators
+    baseUri: ''
+    description: Fortify Software Security Center API — Performance Indicators business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: performanceIndicators
+      path: /performanceIndicators
+      operations:
+      - name: listperformanceindicators
+        method: GET
+        description: Fortify List performance indicators
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.FORTIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: software-security-center-performance-indicators-rest
+    port: 8080
+    description: REST adapter for Fortify Software Security Center API — Performance Indicators. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/performanceindicators
+      name: performanceindicators
+      description: REST surface for performanceIndicators.
+      operations:
+      - method: GET
+        name: listperformanceindicators
+        description: Fortify List performance indicators
+        call: software-security-center-performance-indicators.listperformanceindicators
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: software-security-center-performance-indicators-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify Software Security Center API — Performance Indicators. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: fortify-list-performance-indicators
+      description: Fortify List performance indicators
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: software-security-center-performance-indicators.listperformanceindicators
+      outputParameters:
+      - type: object
+        mapping: $.

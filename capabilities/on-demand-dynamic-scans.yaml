@@ -1,0 +1,153 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API — Dynamic Scans
+  description: 'Fortify on Demand API — Dynamic Scans. 3 operations. Lead operation: Fortify Get dynamic scan setup. Self-contained
+    Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Dynamic Scans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: on-demand-dynamic-scans
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API — Dynamic Scans business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-releases-releaseId-dynamic-scans-scan-setup
+      path: /api/v3/releases/{releaseId}/dynamic-scans/scan-setup
+      operations:
+      - name: getdynamicscansetup
+        method: GET
+        description: Fortify Get dynamic scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: savedynamicscansetup
+        method: PUT
+        description: Fortify Save dynamic scan setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v3-releases-releaseId-dynamic-scans-start-scan
+      path: /api/v3/releases/{releaseId}/dynamic-scans/start-scan
+      operations:
+      - name: startdynamicscan
+        method: POST
+        description: Fortify Start dynamic scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: networkName
+          in: query
+          type: string
+          description: Name of the Fortify on Demand Connect network to use for scanning
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORTIFY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: on-demand-dynamic-scans-rest
+    port: 8080
+    description: REST adapter for Fortify on Demand API — Dynamic Scans. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/releases/{releaseid}/dynamic-scans/scan-setup
+      name: api-v3-releases-releaseid-dynamic-scans-scan-setup
+      description: REST surface for api-v3-releases-releaseId-dynamic-scans-scan-setup.
+      operations:
+      - method: GET
+        name: getdynamicscansetup
+        description: Fortify Get dynamic scan setup
+        call: on-demand-dynamic-scans.getdynamicscansetup
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: savedynamicscansetup
+        description: Fortify Save dynamic scan setup
+        call: on-demand-dynamic-scans.savedynamicscansetup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v3/releases/{releaseid}/dynamic-scans/start-scan
+      name: api-v3-releases-releaseid-dynamic-scans-start-scan
+      description: REST surface for api-v3-releases-releaseId-dynamic-scans-start-scan.
+      operations:
+      - method: POST
+        name: startdynamicscan
+        description: Fortify Start dynamic scan
+        call: on-demand-dynamic-scans.startdynamicscan
+        with:
+          networkName: rest.networkName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: on-demand-dynamic-scans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify on Demand API — Dynamic Scans. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: fortify-get-dynamic-scan-setup
+      description: Fortify Get dynamic scan setup
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-dynamic-scans.getdynamicscansetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-save-dynamic-scan-setup
+      description: Fortify Save dynamic scan setup
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: on-demand-dynamic-scans.savedynamicscansetup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-start-dynamic-scan
+      description: Fortify Start dynamic scan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: on-demand-dynamic-scans.startdynamicscan
+      with:
+        networkName: tools.networkName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

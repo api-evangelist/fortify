@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API — Notifications
+  description: 'Fortify on Demand API — Notifications. 3 operations. Lead operation: Fortify Mark notifications as read. Self-contained
+    Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Notifications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: on-demand-notifications
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API — Notifications business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-notifications-markasread
+      path: /api/v3/notifications/markasread
+      operations:
+      - name: marknotificationsasread
+        method: POST
+        description: Fortify Mark notifications as read
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v3-notifications-read
+      path: /api/v3/notifications/read
+      operations:
+      - name: listreadnotifications
+        method: GET
+        description: Fortify List read notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v3-notifications-unread
+      path: /api/v3/notifications/unread
+      operations:
+      - name: listunreadnotifications
+        method: GET
+        description: Fortify List unread notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FORTIFY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: on-demand-notifications-rest
+    port: 8080
+    description: REST adapter for Fortify on Demand API — Notifications. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/notifications/markasread
+      name: api-v3-notifications-markasread
+      description: REST surface for api-v3-notifications-markasread.
+      operations:
+      - method: POST
+        name: marknotificationsasread
+        description: Fortify Mark notifications as read
+        call: on-demand-notifications.marknotificationsasread
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v3/notifications/read
+      name: api-v3-notifications-read
+      description: REST surface for api-v3-notifications-read.
+      operations:
+      - method: GET
+        name: listreadnotifications
+        description: Fortify List read notifications
+        call: on-demand-notifications.listreadnotifications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v3/notifications/unread
+      name: api-v3-notifications-unread
+      description: REST surface for api-v3-notifications-unread.
+      operations:
+      - method: GET
+        name: listunreadnotifications
+        description: Fortify List unread notifications
+        call: on-demand-notifications.listunreadnotifications
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: on-demand-notifications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify on Demand API — Notifications. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: fortify-mark-notifications-read
+      description: Fortify Mark notifications as read
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: on-demand-notifications.marknotificationsasread
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-list-read-notifications
+      description: Fortify List read notifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-notifications.listreadnotifications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-list-unread-notifications
+      description: Fortify List unread notifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-notifications.listunreadnotifications
+      outputParameters:
+      - type: object
+        mapping: $.

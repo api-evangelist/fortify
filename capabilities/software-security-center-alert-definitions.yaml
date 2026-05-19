@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify Software Security Center API — Alert Definitions
+  description: 'Fortify Software Security Center API — Alert Definitions. 1 operations. Lead operation: Fortify List alert
+    definitions. Self-contained Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Alert Definitions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: software-security-center-alert-definitions
+    baseUri: ''
+    description: Fortify Software Security Center API — Alert Definitions business capability. Self-contained, no shared references.
+    resources:
+    - name: alertDefinitions
+      path: /alertDefinitions
+      operations:
+      - name: listalertdefinitions
+        method: GET
+        description: Fortify List alert definitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.FORTIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: software-security-center-alert-definitions-rest
+    port: 8080
+    description: REST adapter for Fortify Software Security Center API — Alert Definitions. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/alertdefinitions
+      name: alertdefinitions
+      description: REST surface for alertDefinitions.
+      operations:
+      - method: GET
+        name: listalertdefinitions
+        description: Fortify List alert definitions
+        call: software-security-center-alert-definitions.listalertdefinitions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: software-security-center-alert-definitions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify Software Security Center API — Alert Definitions. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: fortify-list-alert-definitions
+      description: Fortify List alert definitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: software-security-center-alert-definitions.listalertdefinitions
+      outputParameters:
+      - type: object
+        mapping: $.

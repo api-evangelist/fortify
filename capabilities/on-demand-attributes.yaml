@@ -1,0 +1,189 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify on Demand API — Attributes
+  description: 'Fortify on Demand API — Attributes. 4 operations. Lead operation: Fortify List attributes. Self-contained
+    Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Attributes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: on-demand-attributes
+    baseUri: https://api.ams.fortify.com
+    description: Fortify on Demand API — Attributes business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v3-attributes
+      path: /api/v3/attributes
+      operations:
+      - name: listattributes
+        method: GET
+        description: Fortify List attributes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createattribute
+        method: POST
+        description: Fortify Create attribute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v3-attributes-attributeId
+      path: /api/v3/attributes/{attributeId}
+      operations:
+      - name: updateattribute
+        method: PUT
+        description: Fortify Update attribute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: attributeId
+          in: path
+          type: integer
+          description: Unique identifier of the attribute
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteattribute
+        method: DELETE
+        description: Fortify Delete attribute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: attributeId
+          in: path
+          type: integer
+          description: Unique identifier of the attribute
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORTIFY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: on-demand-attributes-rest
+    port: 8080
+    description: REST adapter for Fortify on Demand API — Attributes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v3/attributes
+      name: api-v3-attributes
+      description: REST surface for api-v3-attributes.
+      operations:
+      - method: GET
+        name: listattributes
+        description: Fortify List attributes
+        call: on-demand-attributes.listattributes
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createattribute
+        description: Fortify Create attribute
+        call: on-demand-attributes.createattribute
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v3/attributes/{attributeid}
+      name: api-v3-attributes-attributeid
+      description: REST surface for api-v3-attributes-attributeId.
+      operations:
+      - method: PUT
+        name: updateattribute
+        description: Fortify Update attribute
+        call: on-demand-attributes.updateattribute
+        with:
+          attributeId: rest.attributeId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteattribute
+        description: Fortify Delete attribute
+        call: on-demand-attributes.deleteattribute
+        with:
+          attributeId: rest.attributeId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: on-demand-attributes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify on Demand API — Attributes. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: fortify-list-attributes
+      description: Fortify List attributes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: on-demand-attributes.listattributes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-create-attribute
+      description: Fortify Create attribute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: on-demand-attributes.createattribute
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-update-attribute
+      description: Fortify Update attribute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: on-demand-attributes.updateattribute
+      with:
+        attributeId: tools.attributeId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-delete-attribute
+      description: Fortify Delete attribute
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: on-demand-attributes.deleteattribute
+      with:
+        attributeId: tools.attributeId
+      outputParameters:
+      - type: object
+        mapping: $.

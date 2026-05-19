@@ -1,0 +1,137 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fortify Software Security Center API — Issues
+  description: 'Fortify Software Security Center API — Issues. 2 operations. Lead operation: Fortify List project version
+    issues. Self-contained Naftiko capability covering one Fortify business surface.'
+  tags:
+  - Fortify
+  - Issues
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORTIFY_API_KEY: FORTIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: software-security-center-issues
+    baseUri: ''
+    description: Fortify Software Security Center API — Issues business capability. Self-contained, no shared references.
+    resources:
+    - name: projectVersions-parentId-issues
+      path: /projectVersions/{parentId}/issues
+      operations:
+      - name: listprojectversionissues
+        method: GET
+        description: Fortify List project version issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: qm
+          in: query
+          type: string
+          description: Query mode for filtering (e.g., issues, hidden, removed, suppressed)
+        - name: filter
+          in: query
+          type: string
+          description: Named filter to apply
+        - name: filterset
+          in: query
+          type: string
+          description: Filter set GUID to use
+        - name: groupid
+          in: query
+          type: string
+          description: Group identifier for issue grouping
+        - name: groupingtype
+          in: query
+          type: string
+          description: Type of grouping to apply
+    - name: projectVersions-parentId-issues-id
+      path: /projectVersions/{parentId}/issues/{id}
+      operations:
+      - name: getprojectversionissue
+        method: GET
+        description: Fortify Get project version issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.FORTIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: software-security-center-issues-rest
+    port: 8080
+    description: REST adapter for Fortify Software Security Center API — Issues. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/projectversions/{parentid}/issues
+      name: projectversions-parentid-issues
+      description: REST surface for projectVersions-parentId-issues.
+      operations:
+      - method: GET
+        name: listprojectversionissues
+        description: Fortify List project version issues
+        call: software-security-center-issues.listprojectversionissues
+        with:
+          qm: rest.qm
+          filter: rest.filter
+          filterset: rest.filterset
+          groupid: rest.groupid
+          groupingtype: rest.groupingtype
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projectversions/{parentid}/issues/{id}
+      name: projectversions-parentid-issues-id
+      description: REST surface for projectVersions-parentId-issues-id.
+      operations:
+      - method: GET
+        name: getprojectversionissue
+        description: Fortify Get project version issue
+        call: software-security-center-issues.getprojectversionissue
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: software-security-center-issues-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fortify Software Security Center API — Issues. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: fortify-list-project-version-issues
+      description: Fortify List project version issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: software-security-center-issues.listprojectversionissues
+      with:
+        qm: tools.qm
+        filter: tools.filter
+        filterset: tools.filterset
+        groupid: tools.groupid
+        groupingtype: tools.groupingtype
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fortify-get-project-version-issue
+      description: Fortify Get project version issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: software-security-center-issues.getprojectversionissue
+      outputParameters:
+      - type: object
+        mapping: $.
