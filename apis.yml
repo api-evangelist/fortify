@@ -8,7 +8,7 @@ description: >-
 image: https://www.microfocus.com/brand/fortify-logo.png
 url: https://www.opentext.com/products/fortify-on-demand
 created: '2024-01-15'
-modified: '2026-04-28'
+modified: '2026-05-19'
 specificationVersion: '0.18'
 apis:
   - name: Fortify on Demand API
@@ -148,3 +148,6 @@ common:
     url: json-schema/fortify-release-schema.json
   - type: JSON Schema
     url: json-schema/fortify-project-version-schema.json
+  - name: Agent Skills
+    url: https://github.com/fortify/skills
+    type: AgentSkill
