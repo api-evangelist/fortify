@@ -1,234 +1,148 @@
 name: Fortify
-description: Fortify is a comprehensive application security platform from OpenText that provides static application security
-  testing (SAST), dynamic application security testing (DAST), and software composition analysis (SCA) capabilities. It helps
-  organizations identify and remediate vulnerabilities across the software development lifecycle.
+description: >-
+  Fortify is a comprehensive application security platform from OpenText that provides static application security
+  testing (SAST), dynamic application security testing (DAST), and software composition analysis (SCA) capabilities. It
+  helps organizations identify and remediate vulnerabilities across the software development lifecycle.
 image: https://www.microfocus.com/brand/fortify-logo.png
 url: https://www.opentext.com/products/fortify-on-demand
 created: '2024-01-15'
 modified: '2026-05-19'
 specificationVersion: '0.18'
 apis:
-- name: Fortify on Demand API
-  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides
-    programmatic access to manage applications, initiate scans, and retrieve vulnerability results.
-  image: https://www.microfocus.com/brand/fortify-logo.png
-  baseURL: https://api.ams.fortify.com
-  humanURL: https://www.opentext.com/products/fortify-on-demand
-  tags:
+  - name: Fortify on Demand API
+    description: >-
+      REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides
+      programmatic access to manage applications, initiate scans, and retrieve vulnerability results.
+    image: https://www.microfocus.com/brand/fortify-logo.png
+    baseURL: https://api.ams.fortify.com
+    humanURL: https://www.opentext.com/products/fortify-on-demand
+    tags:
+      - Application Security
+      - DAST
+      - SAST
+      - Security Testing
+      - Vulnerability Management
+    properties:
+      - type: Documentation
+        url: https://www.microfocus.com/documentation/fortify-on-demand/
+      - type: OpenAPI
+        url: https://api.ams.fortify.com/swagger/docs/v3
+      - type: OpenAPI
+        url: openapi/fortify-on-demand-openapi.yml
+      - type: APIReference
+        url: https://api.ams.fortify.com/swagger/ui/index
+      - type: Authentication
+        url: https://api.ams.fortify.com/oauth/token
+      - type: GettingStarted
+        url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    contact:
+      - type: Support
+        url: https://www.opentext.com/support
+      - type: Email
+        url: fortify-support@microfocus.com
+  - name: Fortify Software Security Center API
+    description: >-
+      REST API for the on-premise Fortify Software Security Center (SSC), which provides centralized management and
+      reporting of security assessment data across an organization's application portfolio.
+    image: https://www.microfocus.com/brand/fortify-logo.png
+    baseURL: https://your-ssc-server/ssc/api/v1
+    humanURL: https://www.microfocus.com/documentation/fortify-software-security-center/
+    tags:
+      - Application Security
+      - Compliance
+      - On-Premise
+      - Security Analytics
+      - Vulnerability Management
+    properties:
+      - type: Documentation
+        url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+      - type: OpenAPI
+        url: openapi/fortify-software-security-center-openapi.yml
+      - type: APIReference
+        url: https://your-ssc-server/ssc/html/docs/api-reference/
+      - type: Authentication
+        url: https://your-ssc-server/ssc/api/v1/auth
+      - type: GettingStarted
+        url: https://www.microfocus.com/documentation/fortify-software-security-center/
+      - type: SDKs
+        url: https://github.com/fortify/ssc-restapi-client
+  - name: Fortify ScanCentral DAST API
+    description: >-
+      REST API for Fortify ScanCentral DAST, which provides centralized dynamic application security testing management.
+      Enables orchestration of DAST scans across distributed sensors and integration with CI/CD pipelines.
+    image: https://www.microfocus.com/brand/fortify-logo.png
+    baseURL: https://your-scancentral-dast-server/api/
+    humanURL: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/
+    tags:
+      - CI/CD
+      - DAST
+      - Dynamic Analysis
+      - Security Testing
+      - Web Application Security
+    properties:
+      - type: Documentation
+        url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+      - type: OpenAPI
+        url: openapi/fortify-scancentral-dast-openapi.yml
+      - type: GettingStarted
+        url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+maintainers:
+  - name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://apievangelist.com
+tags:
   - Application Security
   - DAST
+  - DevSecOps
   - SAST
+  - SCA
   - Security Testing
-  - Vulnerability Management
-  properties:
+  - Vulnerability Scanning
+common:
+  - type: Portal
+    url: https://ams.fortify.com/
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-on-demand/
-  - type: OpenAPI
-    url: https://api.ams.fortify.com/swagger/docs/v3
-  - type: OpenAPI
-    url: openapi/fortify-on-demand-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Authentication
-    url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
-  - type: NaftikoCapability
-    url: capabilities/on-demand-api-keys.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-applications.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-attributes.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-audit-templates.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-dast-automated-scans.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-dynamic-scans.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-event-logs.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-lookup-items.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-microservices.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-mobile-scans.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-notifications.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-open-source-components.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-open-source-scans.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-personal-access-tokens.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-releases.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-reports.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-scans.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-static-scans.yaml
-  - type: NaftikoCapability
-    url: capabilities/on-demand-vulnerabilities.yaml
-  contact:
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: Authentication
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Blog
+    url: https://community.opentext.com/cyberres/b/cybersecurity-blog
+  - type: StatusPage
+    url: https://status.fortify.com/
   - type: Support
     url: https://www.opentext.com/support
-  - type: Email
-    url: fortify-support@microfocus.com
-- name: Fortify Software Security Center API
-  description: REST API for the on-premise Fortify Software Security Center (SSC), which provides centralized management and
-    reporting of security assessment data across an organization's application portfolio.
-  image: https://www.microfocus.com/brand/fortify-logo.png
-  baseURL: https://your-ssc-server/ssc/api/v1
-  humanURL: https://www.microfocus.com/documentation/fortify-software-security-center/
-  tags:
-  - Application Security
-  - Compliance
-  - On-Premise
-  - Security Analytics
-  - Vulnerability Management
-  properties:
-  - type: Documentation
-    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
-  - type: OpenAPI
-    url: openapi/fortify-software-security-center-openapi.yml
-  - type: APIReference
-    url: https://your-ssc-server/ssc/html/docs/api-reference/
-  - type: Authentication
-    url: https://your-ssc-server/ssc/api/v1/auth
-  - type: GettingStarted
-    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: TermsOfService
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  - type: PrivacyPolicy
+    url: https://www.opentext.com/about/privacy
+  - type: GitHubOrganization
+    url: https://github.com/fortify
+  - type: Community
+    url: https://community.opentext.com/cybersec/fortify
+  - type: Website
+    url: https://www.opentext.com/products/fortify-on-demand
+  - type: Login
+    url: https://ams.fortify.com/
+  - type: SignUp
+    url: https://www.opentext.com/products/fortify-on-demand/trial
+  - type: ChangeLog
+    url: https://community.opentext.com/cybersec/fortify/w/tips
   - type: SDKs
-    url: https://github.com/fortify/ssc-restapi-client
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-alert-definitions.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-artifacts.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-attributes.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-auth-entities.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-authentication.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-cloud-pools.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-custom-tags.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-features.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-file-tokens.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-issue-selectors.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-issues.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-jobs.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-performance-indicators.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-project-versions.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-projects.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-reports.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-saved-reports.yaml
-  - type: NaftikoCapability
-    url: capabilities/software-security-center-users.yaml
-- name: Fortify ScanCentral DAST API
-  description: REST API for Fortify ScanCentral DAST, which provides centralized dynamic application security testing management.
-    Enables orchestration of DAST scans across distributed sensors and integration with CI/CD pipelines.
-  image: https://www.microfocus.com/brand/fortify-logo.png
-  baseURL: https://your-scancentral-dast-server/api/
-  humanURL: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/
-  tags:
-  - CI/CD
-  - DAST
-  - Dynamic Analysis
-  - Security Testing
-  - Web Application Security
-  properties:
-  - type: Documentation
-    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
-  - type: OpenAPI
-    url: openapi/fortify-scancentral-dast-openapi.yml
-  - type: GettingStarted
-    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
-  - type: NaftikoCapability
-    url: capabilities/scancentral-dast-ci-cd.yaml
-  - type: NaftikoCapability
-    url: capabilities/scancentral-dast-scan-policies.yaml
-  - type: NaftikoCapability
-    url: capabilities/scancentral-dast-scan-schedules.yaml
-  - type: NaftikoCapability
-    url: capabilities/scancentral-dast-scan-settings.yaml
-  - type: NaftikoCapability
-    url: capabilities/scancentral-dast-scans.yaml
-  - type: NaftikoCapability
-    url: capabilities/scancentral-dast-sensor-pools.yaml
-  - type: NaftikoCapability
-    url: capabilities/scancentral-dast-sensors.yaml
-  - type: NaftikoCapability
-    url: capabilities/scancentral-dast-system.yaml
-maintainers:
-- name: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
-tags:
-- Application Security
-- DAST
-- DevSecOps
-- SAST
-- SCA
-- Security Testing
-- Vulnerability Scanning
-common:
-- type: Portal
-  url: https://ams.fortify.com/
-- type: Documentation
-  url: https://www.microfocus.com/documentation/fortify-on-demand/
-- type: GettingStarted
-  url: https://www.microfocus.com/documentation/fortify-on-demand/
-- type: Authentication
-  url: https://api.ams.fortify.com/swagger/ui/index
-- type: Blog
-  url: https://community.opentext.com/cyberres/b/cybersecurity-blog
-- type: StatusPage
-  url: https://status.fortify.com/
-- type: Support
-  url: https://www.opentext.com/support
-- type: TermsOfService
-  url: https://www.opentext.com/about/legal/website-terms-of-use
-- type: PrivacyPolicy
-  url: https://www.opentext.com/about/privacy
-- type: GitHubOrganization
-  url: https://github.com/fortify
-- type: Community
-  url: https://community.opentext.com/cybersec/fortify
-- type: Website
-  url: https://www.opentext.com/products/fortify-on-demand
-- type: Login
-  url: https://ams.fortify.com/
-- type: SignUp
-  url: https://www.opentext.com/products/fortify-on-demand/trial
-- type: ChangeLog
-  url: https://community.opentext.com/cybersec/fortify/w/tips
-- type: SDKs
-  url: https://github.com/fortify/fortify-client-api
-- type: JSON-LD Context
-  url: json-ld/fortify-context.jsonld
-- type: JSON Schema
-  url: json-schema/fortify-application-schema.json
-- type: JSON Schema
-  url: json-schema/fortify-vulnerability-schema.json
-- type: JSON Schema
-  url: json-schema/fortify-scan-schema.json
-- type: JSON Schema
-  url: json-schema/fortify-release-schema.json
-- type: JSON Schema
-  url: json-schema/fortify-project-version-schema.json
-- name: Agent Skills
-  url: https://github.com/fortify/skills
-  type: AgentSkill
+    url: https://github.com/fortify/fortify-client-api
+  - type: JSON-LD Context
+    url: json-ld/fortify-context.jsonld
+  - type: JSON Schema
+    url: json-schema/fortify-application-schema.json
+  - type: JSON Schema
+    url: json-schema/fortify-vulnerability-schema.json
+  - type: JSON Schema
+    url: json-schema/fortify-scan-schema.json
+  - type: JSON Schema
+    url: json-schema/fortify-release-schema.json
+  - type: JSON Schema
+    url: json-schema/fortify-project-version-schema.json
+  - name: Agent Skills
+    url: https://github.com/fortify/skills
+    type: AgentSkill
