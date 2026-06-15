@@ -1,0 +1,1827 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              },
+              {
+                "name": "modifiedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter applications modified after this date"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated collection of applications accessible to the authenticated user. Supports filtering, sorting, and field selection."
+        },
+        {
+          "info": {
+            "name": "Fortify Create application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new application along with an initial release. Requires manage-apps scope."
+        },
+        {
+          "info": {
+            "name": "Fortify Get application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              }
+            ]
+          },
+          "docs": "Retrieves an individual application by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Fortify Update application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing application's properties and configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              }
+            ]
+          },
+          "docs": "Permanently deletes an application and all associated releases, scans, and vulnerability data."
+        },
+        {
+          "info": {
+            "name": "Fortify List application releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/releases",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              },
+              {
+                "name": "modifiedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter releases modified after this date"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of releases belonging to the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify List application scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/scans",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of scans for the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify Get issue count by severity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/issue-count-by-severity",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              }
+            ]
+          },
+          "docs": "Retrieves the number of issues grouped by severity level for the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify List application users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/users",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              }
+            ]
+          },
+          "docs": "Returns a list of users that have access to the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify List application microservices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/microservices",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              },
+              {
+                "name": "includeReleases",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include release information for each microservice"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of microservices associated with the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify Create application microservice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/microservices",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new microservice to the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify Get application vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/vulnerabilities/:vulnerabilityId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              },
+              {
+                "name": "vulnerabilityId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the vulnerability"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              },
+              {
+                "name": "includeFixed",
+                "value": "",
+                "type": "query",
+                "description": "Include fixed vulnerabilities in results"
+              },
+              {
+                "name": "includeSuppressed",
+                "value": "",
+                "type": "query",
+                "description": "Include suppressed vulnerabilities in results"
+              },
+              {
+                "name": "keywordSearch",
+                "value": "",
+                "type": "query",
+                "description": "Keyword search filter for vulnerabilities"
+              }
+            ]
+          },
+          "docs": "Returns a list of vulnerabilities matching the specified instance identifier within an application."
+        },
+        {
+          "info": {
+            "name": "Fortify List application owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/owners"
+          },
+          "docs": "Returns a list of users available for application ownership assignment."
+        },
+        {
+          "info": {
+            "name": "List Fortify Connect networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/fortify-on-demand-connect-networks"
+          },
+          "docs": "Retrieves a list of Fortify on Demand Connect networks configured for the tenant, enabling scanning of internal applications."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Open Source Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List open source components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/open-source-components",
+            "params": [
+              {
+                "name": "openSourceScanType",
+                "value": "",
+                "type": "query",
+                "description": "Type of open source scan engine"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              },
+              {
+                "name": "returnTotalComponentCount",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include total count in response"
+              }
+            ]
+          },
+          "docs": "Retrieves a collection of open source components across all applications."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Releases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              },
+              {
+                "name": "modifiedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter releases modified after this date"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all releases accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fortify Create release",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new release within an existing application."
+        },
+        {
+          "info": {
+            "name": "Fortify Get release",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific release by identifier."
+        },
+        {
+          "info": {
+            "name": "Fortify Update release",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing release's properties and configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete release",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Permanently deletes the specified release and associated data."
+        },
+        {
+          "info": {
+            "name": "Fortify List release scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of scans for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get release scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans/:scanId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Returns summary information for the specified scan."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan polling summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans/:scanId/polling-summary",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Returns the current scan status for a specific scan, useful for polling scan progress."
+        },
+        {
+          "info": {
+            "name": "Fortify Download release FPR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/fpr",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanType",
+                "value": "",
+                "type": "query",
+                "description": "Type of scan to download FPR for"
+              }
+            ]
+          },
+          "docs": "Downloads the Fortify Project Results (FPR) file for the specified release and scan type."
+        },
+        {
+          "info": {
+            "name": "Fortify List vulnerability category rollups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/category-rollups",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "showFixed",
+                "value": "",
+                "type": "query",
+                "description": "Include fixed vulnerabilities"
+              },
+              {
+                "name": "vulnerabilitiesSeverityType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity type"
+              }
+            ]
+          },
+          "docs": "Returns a list and count of vulnerability categories grouped by severity for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify List assessment types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/assessment-types",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanType",
+                "value": "",
+                "type": "query",
+                "description": "Type of scan to retrieve assessment types for"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a list of available assessment types and entitlements for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get static scan options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/static-scan-options",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "technologyStack",
+                "value": "",
+                "type": "query",
+                "description": "Technology stack identifier"
+              },
+              {
+                "name": "languageLevel",
+                "value": "",
+                "type": "query",
+                "description": "Language level identifier"
+              },
+              {
+                "name": "assessmentTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Assessment type identifier"
+              },
+              {
+                "name": "entitlementFrequencyType",
+                "value": "",
+                "type": "query",
+                "description": "Entitlement frequency type"
+              }
+            ]
+          },
+          "docs": "Retrieves available options for starting a static scan on the specified release, including technology stacks and language levels."
+        },
+        {
+          "info": {
+            "name": "Fortify Get import scan session ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/import-scan-session-id",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Initiates an import scan session and returns a session identifier for uploading third-party scan results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audit Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Set audit action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/audit-action",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the audit action (such as approve or reject) for vulnerabilities in the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get audit options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/audit-options",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves the available audit options for the specified release, including statuses and custom fields."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DAST Automated Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Get DAST automated scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/dast-automated-scans/scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves the current DAST automated scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Save DAST automated website scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/dast-automated-scans/website-scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves the DAST automated website scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Save DAST automated OpenAPI scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/dast-automated-scans/openapi-scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves the DAST automated OpenAPI scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Start DAST automated scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/dast-automated-scans/start-scan",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "networkName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the Fortify on Demand Connect network to use for scanning"
+              }
+            ]
+          },
+          "docs": "Initiates a DAST automated scan for the specified release using the current scan setup configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dynamic Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Get dynamic scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/dynamic-scans/scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves the current dynamic scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Save dynamic scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/dynamic-scans/scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves the dynamic scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Start dynamic scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/dynamic-scans/start-scan",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "networkName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the Fortify on Demand Connect network to use for scanning"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a dynamic scan for the specified release using the current scan setup configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Mobile Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Get mobile scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves the current mobile scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Save mobile scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves the mobile scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Start mobile scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/mobile-scans/start-scan",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Scheduled start date for the scan"
+              },
+              {
+                "name": "assessmentTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Assessment type identifier"
+              },
+              {
+                "name": "frameworkType",
+                "value": "",
+                "type": "query",
+                "description": "Mobile framework type"
+              },
+              {
+                "name": "timeZone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone for scheduled scans"
+              },
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "query",
+                "description": "Entitlement identifier"
+              },
+              {
+                "name": "entitlementFrequencyType",
+                "value": "",
+                "type": "query",
+                "description": "Entitlement frequency type"
+              },
+              {
+                "name": "isRemediationScan",
+                "value": "",
+                "type": "query",
+                "description": "Whether this is a remediation scan"
+              }
+            ]
+          },
+          "docs": "Initiates a mobile scan for the specified release by uploading a mobile application binary."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Open Source Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Start open source scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/open-source-scans/start-scan",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "fragNo",
+                "value": "",
+                "type": "query",
+                "description": "Fragment number for chunked upload"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Byte offset for chunked upload"
+              }
+            ]
+          },
+          "docs": "Initiates an open source / software composition analysis scan for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Download open source SBOM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/open-source-scans/:scanId/sbom",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the open source scan"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "SBOM output format"
+              }
+            ]
+          },
+          "docs": "Downloads the Software Bill of Materials (SBOM) file for the specified open source scan."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "API Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/api-keys",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of API keys for the tenant."
+        },
+        {
+          "info": {
+            "name": "Fortify Create API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/api-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API key for programmatic access."
+        },
+        {
+          "info": {
+            "name": "Fortify Get API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/api-keys/:apiKeyId",
+            "params": [
+              {
+                "name": "apiKeyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the API key"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific API key."
+        },
+        {
+          "info": {
+            "name": "Fortify Update API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/api-keys/:apiKeyId",
+            "params": [
+              {
+                "name": "apiKeyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the API key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing API key's properties."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/api/v3/api-keys/:apiKeyId",
+            "params": [
+              {
+                "name": "apiKeyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the API key"
+              }
+            ]
+          },
+          "docs": "Permanently deletes the specified API key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Personal Access Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List personal access tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              }
+            ]
+          },
+          "docs": "Returns a list of personal access tokens for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fortify Create personal access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new personal access token for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fortify Get personal access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens/:personalAccessTokenId",
+            "params": [
+              {
+                "name": "personalAccessTokenId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the personal access token"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific personal access token."
+        },
+        {
+          "info": {
+            "name": "Fortify Update personal access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens/:personalAccessTokenId",
+            "params": [
+              {
+                "name": "personalAccessTokenId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the personal access token"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing personal access token."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete personal access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens/:personalAccessTokenId",
+            "params": [
+              {
+                "name": "personalAccessTokenId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the personal access token"
+              }
+            ]
+          },
+          "docs": "Permanently deletes the specified personal access token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/attributes",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of application attributes defined for the tenant."
+        },
+        {
+          "info": {
+            "name": "Fortify Create attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/attributes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new application attribute for the tenant."
+        },
+        {
+          "info": {
+            "name": "Fortify Update attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/attributes/:attributeId",
+            "params": [
+              {
+                "name": "attributeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the attribute"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing application attribute."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/api/v3/attributes/:attributeId",
+            "params": [
+              {
+                "name": "attributeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the attribute"
+              }
+            ]
+          },
+          "docs": "Permanently deletes the specified attribute."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List unread notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/notifications/unread",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of unread notifications for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fortify List read notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/notifications/read",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of read notifications for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fortify Mark notifications as read",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/notifications/markasread",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks one or more notifications as read."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lookup Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List lookup items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/lookup-items",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of lookup items to retrieve"
+              }
+            ]
+          },
+          "docs": "Returns a list of lookup items for the specified type, providing reference data such as scan types, time zones, and status values."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Event Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Download event logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/eventlogs/download"
+          },
+          "docs": "Downloads the last 24 hours of event log data in CSV format for the tenant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

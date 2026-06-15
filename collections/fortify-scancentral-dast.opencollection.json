@@ -1,0 +1,772 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify ScanCentral DAST API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scans",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scan status"
+              },
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scan settings identifier"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of DAST scans. Supports filtering by status, settings, and other criteria."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan by identifier."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{protocol}://{host}/api/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Deletes a specific scan and its results."
+        },
+        {
+          "info": {
+            "name": "Fortify Perform scan action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{protocol}://{host}/api/scans/:scanId/action",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs an action on a scan such as pausing, resuming, cancelling, or retrying."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scans/:scanId/scan-log",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Retrieves the scan log for a specific scan."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scans/:scanId/scan-summary",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Retrieves a summary of the scan results including vulnerability counts and scan metrics."
+        },
+        {
+          "info": {
+            "name": "Fortify Start scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{protocol}://{host}/api/scans/start-scan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new DAST scan using the specified scan settings configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CI/CD",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Start scan from CI/CD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{protocol}://{host}/api/scans/start-scan-cicd",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new DAST scan from a CI/CD pipeline using a pre-configured CI/CD token that references the scan settings. This is the primary endpoint for CI/CD integration."
+        },
+        {
+          "info": {
+            "name": "Fortify Get CI/CD token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scan-settings/:scanSettingsId/cicd-token",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Retrieves the CI/CD token for a scan settings configuration, used to trigger scans from CI/CD pipelines."
+        },
+        {
+          "info": {
+            "name": "Fortify Regenerate CI/CD token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{protocol}://{host}/api/scan-settings/:scanSettingsId/cicd-token",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Regenerates the CI/CD token for a scan settings configuration, invalidating the previous token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scan Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scan-settings",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text to filter settings by name"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of scan settings configurations, which define how scans are executed."
+        },
+        {
+          "info": {
+            "name": "Fortify Create scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{protocol}://{host}/api/scan-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new scan settings configuration defining target URL, authentication, scan policy, and other parameters."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scan-settings/:scanSettingsId",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan settings configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Update scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{protocol}://{host}/api/scan-settings/:scanSettingsId",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing scan settings configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{protocol}://{host}/api/scan-settings/:scanSettingsId",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Deletes a scan settings configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scan Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List scan policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scan-policies",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of available scan policies that control which vulnerability checks are performed during scans."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scan-policies/:scanPolicyId",
+            "params": [
+              {
+                "name": "scanPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan policy"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan policy."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sensors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List sensors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/sensors",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sensor status"
+              },
+              {
+                "name": "sensorPoolId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sensor pool"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of WebInspect sensors registered with ScanCentral DAST, including their status and capabilities."
+        },
+        {
+          "info": {
+            "name": "Fortify Get sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/sensors/:sensorId",
+            "params": [
+              {
+                "name": "sensorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific sensor."
+        },
+        {
+          "info": {
+            "name": "Fortify Update sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{protocol}://{host}/api/sensors/:sensorId",
+            "params": [
+              {
+                "name": "sensorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a sensor's configuration such as pool assignment."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{protocol}://{host}/api/sensors/:sensorId",
+            "params": [
+              {
+                "name": "sensorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor"
+              }
+            ]
+          },
+          "docs": "Removes a sensor from ScanCentral DAST."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sensor Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List sensor pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/sensor-pools",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of sensor pools used to group sensors for scan distribution."
+        },
+        {
+          "info": {
+            "name": "Fortify Create sensor pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{protocol}://{host}/api/sensor-pools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new sensor pool for organizing sensors."
+        },
+        {
+          "info": {
+            "name": "Fortify Get sensor pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/sensor-pools/:sensorPoolId",
+            "params": [
+              {
+                "name": "sensorPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor pool"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific sensor pool."
+        },
+        {
+          "info": {
+            "name": "Fortify Update sensor pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{protocol}://{host}/api/sensor-pools/:sensorPoolId",
+            "params": [
+              {
+                "name": "sensorPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor pool"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a sensor pool's properties."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete sensor pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{protocol}://{host}/api/sensor-pools/:sensorPoolId",
+            "params": [
+              {
+                "name": "sensorPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor pool"
+              }
+            ]
+          },
+          "docs": "Deletes a sensor pool."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scan Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List scan schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scan-schedules",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of scheduled scans."
+        },
+        {
+          "info": {
+            "name": "Fortify Create scan schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{protocol}://{host}/api/scan-schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new scheduled scan configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/scan-schedules/:scanScheduleId",
+            "params": [
+              {
+                "name": "scanScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan schedule"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan schedule."
+        },
+        {
+          "info": {
+            "name": "Fortify Update scan schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{protocol}://{host}/api/scan-schedules/:scanScheduleId",
+            "params": [
+              {
+                "name": "scanScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan schedule"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing scan schedule."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete scan schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{protocol}://{host}/api/scan-schedules/:scanScheduleId",
+            "params": [
+              {
+                "name": "scanScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan schedule"
+              }
+            ]
+          },
+          "docs": "Deletes a scan schedule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Get system health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{protocol}://{host}/api/health"
+          },
+          "docs": "Returns the health status of the ScanCentral DAST system, including database connectivity and service availability."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
