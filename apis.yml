@@ -125,24 +125,24 @@ common:
     url: https://www.opentext.com/products/fortify-on-demand
   - type: Login
     url: https://ams.fortify.com/
-  - type: SignUp
+  - type: Signup
     url: https://www.opentext.com/products/fortify-on-demand/trial
   - type: ChangeLog
     url: https://community.opentext.com/cybersec/fortify/w/tips
   - type: SDKs
     url: https://github.com/fortify/fortify-client-api
-  - type: JSON-LD Context
+  - type: JSONLDContext
     url: json-ld/fortify-context.jsonld
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/fortify-application-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/fortify-vulnerability-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/fortify-scan-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/fortify-release-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/fortify-project-version-schema.json
   - name: Agent Skills
     url: https://github.com/fortify/skills
-    type: AgentSkill
+    type: AgentSkills
