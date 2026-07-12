@@ -99,6 +99,10 @@ tags:
   - Security Testing
   - Vulnerability Scanning
 common:
+  - type: DomainSecurity
+    url: security/fortify-domain-security.yml
+  - type: Authentication
+    url: authentication/fortify-authentication.yml
   - type: Portal
     url: https://ams.fortify.com/
   - type: Documentation

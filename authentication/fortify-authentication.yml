@@ -1,0 +1,35 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/fortify-on-demand-openapi.yml, openapi/fortify-scancentral-dast-openapi.yml,
+  openapi/fortify-software-security-center-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials
+    or password grant type.
+  sources:
+  - openapi/fortify-on-demand-openapi.yml
+- name: fortifyToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Fortify token-based authentication. Pass as: FORTIFYTOKEN <token_value>. Obtain
+    a CI token from SSC Administration or use an SSC auth token.'
+  sources:
+  - openapi/fortify-scancentral-dast-openapi.yml
+  - openapi/fortify-software-security-center-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication. Only supported on the /tokens endpoint for obtaining
+    API tokens.
+  sources:
+  - openapi/fortify-software-security-center-openapi.yml
