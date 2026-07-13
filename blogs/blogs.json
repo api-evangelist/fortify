@@ -2,13 +2,14 @@
   "repo": "fortify",
   "feeds": [
     {
-      "source": "https://community.opentext.com/cyberres/b/cybersecurity-blog",
-      "feed_url": "",
-      "saved": 1,
-      "method": "agent-scrape"
+      "source": "https://api.ams.fortify.com/swagger/ui/index",
+      "feed_url": "https://api.ams.fortify.com/swagger/ui/index",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 12,
-  "fetched": "2026-06-27T12:42:46Z",
+  "post_count": 14,
+  "fetched": "2026-07-11T11:50:51Z",
   "agent_pulled": "2026-06-27"
 }
