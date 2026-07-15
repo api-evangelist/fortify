@@ -99,6 +99,8 @@ tags:
   - Security Testing
   - Vulnerability Scanning
 common:
+  - type: AgenticAccess
+    url: agentic-access/fortify-agentic-access.yml
   - type: DomainSecurity
     url: security/fortify-domain-security.yml
   - type: Authentication
