@@ -1,0 +1,298 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Issues API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Issues
+  description: Access and manage vulnerability issues
+paths:
+  /projectVersions/{parentId}/issues:
+    get:
+      operationId: listProjectVersionIssues
+      summary: Fortify List project version issues
+      description: Retrieves a paginated list of vulnerability issues for the specified project version. Supports filtering using Fortify search syntax.
+      tags:
+      - Issues
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Q'
+      - name: qm
+        in: query
+        description: Query mode for filtering (e.g., issues, hidden, removed, suppressed)
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Named filter to apply
+        schema:
+          type: string
+      - name: filterset
+        in: query
+        description: Filter set GUID to use
+        schema:
+          type: string
+      - name: groupid
+        in: query
+        description: Group identifier for issue grouping
+        schema:
+          type: string
+      - name: groupingtype
+        in: query
+        description: Type of grouping to apply
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/issues/{id}:
+    get:
+      operationId: getProjectVersionIssue
+      summary: Fortify Get project version issue
+      description: Retrieves details for a specific issue within a project version.
+      tags:
+      - Issues
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultIssue'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    OrderBy:
+      name: orderby
+      in: query
+      description: Sort field and direction (e.g., name for ascending, -name for descending)
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  schemas:
+    ApiResultIssue:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Issue'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    IssueListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        count:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+    Issue:
+      type: object
+      description: Represents a vulnerability issue
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        issueInstanceId:
+          type: string
+          description: Instance identifier
+        issueName:
+          type: string
+          description: Name of the issue
+        primaryLocation:
+          type: string
+          description: Primary source file location
+        lineNumber:
+          type: integer
+          format: int32
+          description: Line number of the issue
+        fullFileName:
+          type: string
+          description: Full file path
+        frilessSeverity:
+          type: number
+          format: float
+          description: Friless severity score
+        severity:
+          type: number
+          format: float
+          description: Numeric severity score
+        confidence:
+          type: number
+          format: float
+          description: Confidence score
+        kingdom:
+          type: string
+          description: Vulnerability kingdom
+        issueStatus:
+          type: string
+          description: Current issue status
+        removedDate:
+          type: string
+          format: date-time
+          description: Date when the issue was removed
+        foundDate:
+          type: string
+          format: date-time
+          description: Date when the issue was first found
+        hasAttachments:
+          type: boolean
+          description: Whether the issue has attachments
+        hasCorrelatedIssues:
+          type: boolean
+          description: Whether the issue has correlated issues
+        scanStatus:
+          type: string
+          description: Scan status
+        engineCategory:
+          type: string
+          description: Engine category
+        audienceSet:
+          type: boolean
+          description: Whether the audience is set
+        reviewed:
+          type: boolean
+          description: Whether the issue has been reviewed
+        issueState:
+          type: string
+          description: State of the issue
+        analyzer:
+          type: string
+          description: Analyzer that found the issue
+        primaryTag:
+          type: string
+          description: Primary tag value
+        folderGuid:
+          type: string
+          description: Folder GUID
+        projectVersionId:
+          type: integer
+          format: int64
+          description: Parent project version identifier
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

@@ -1,0 +1,196 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Custom Tags API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Custom Tags
+  description: Manage custom tags for issue triage
+paths:
+  /projectVersions/{parentId}/customTags:
+    get:
+      operationId: listProjectVersionCustomTags
+      summary: Fortify List project version custom tags
+      description: Retrieves custom tags configured for the specified project version.
+      tags:
+      - Custom Tags
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with custom tags
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTagListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /customTags/{id}:
+    get:
+      operationId: getCustomTag
+      summary: Fortify Get custom tag
+      description: Retrieves details for a specific custom tag.
+      tags:
+      - Custom Tags
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with custom tag details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultCustomTag'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ApiResultCustomTag:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomTag'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    CustomTag:
+      type: object
+      description: A custom tag for issue classification
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        guid:
+          type: string
+          description: GUID of the custom tag
+        name:
+          type: string
+          description: Custom tag name
+        valueType:
+          type: string
+          description: Value type
+        valueList:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              lookupValue:
+                type: string
+              lookupIndex:
+                type: integer
+                format: int32
+    CustomTagListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTag'
+        count:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

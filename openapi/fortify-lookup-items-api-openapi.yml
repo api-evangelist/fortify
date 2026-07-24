@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Lookup Items API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Lookup Items
+  description: Retrieve lookup and reference data
+paths:
+  /api/v3/lookup-items:
+    get:
+      operationId: listLookupItems
+      summary: Fortify List lookup items
+      description: Returns a list of lookup items for the specified type, providing reference data such as scan types, time zones, and status values.
+      tags:
+      - Lookup Items
+      parameters:
+      - name: type
+        in: query
+        required: true
+        description: The type of lookup items to retrieve
+        schema:
+          type: string
+          enum:
+          - AnalysisStatusTypes
+          - ApplicationTypes
+          - AssessmentTypes
+          - AuditActionTypes
+          - AuditTemplateConditionTypes
+          - BusinessCriticalityTypes
+          - DynamicScanEnvironmentFacingTypes
+          - MobileScanFrameworkTypes
+          - MobileScanPlatformTypes
+          - ScanStatusTypes
+          - ScanTypes
+          - SDLCStatusTypes
+          - TimeZones
+          - TechnologyTypes
+          - LanguageLevels
+          - AuditPreferenceTypes
+          - EntitlementFrequencyTypes
+          - ReportTypes
+          - ReportStatusTypes
+          - ReportFormats
+          - DastAutomatedScanTypes
+          - RepeatScheduleTypes
+      responses:
+        '200':
+          description: Successful response with list of lookup items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupItemListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    LookupItemListResponse:
+      type: object
+      description: List of lookup items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LookupItem'
+        totalCount:
+          type: integer
+          format: int32
+    LookupItem:
+      type: object
+      description: Represents a reference/lookup data item
+      properties:
+        text:
+          type: string
+          description: Display text
+        value:
+          type: string
+          description: Value
+        group:
+          type: string
+          description: Group classification
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

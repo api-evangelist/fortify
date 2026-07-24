@@ -1,0 +1,271 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Mobile Scans API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Mobile Scans
+  description: Configure and start mobile application security testing scans
+paths:
+  /api/v3/releases/{releaseId}/mobile-scans/scan-setup:
+    get:
+      operationId: getMobileScanSetup
+      summary: Fortify Get mobile scan setup
+      description: Retrieves the current mobile scan setup configuration for the specified release.
+      tags:
+      - Mobile Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with mobile scan setup details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileScanSetup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: saveMobileScanSetup
+      summary: Fortify Save mobile scan setup
+      description: Saves the mobile scan setup configuration for the specified release.
+      tags:
+      - Mobile Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutMobileScanSetupRequest'
+      responses:
+        '200':
+          description: Mobile scan setup saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutMobileScanSetupResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/mobile-scans/start-scan:
+    post:
+      operationId: startMobileScan
+      summary: Fortify Start mobile scan
+      description: Initiates a mobile scan for the specified release by uploading a mobile application binary.
+      tags:
+      - Mobile Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: startDate
+        in: query
+        description: Scheduled start date for the scan
+        schema:
+          type: string
+          format: date-time
+      - name: assessmentTypeId
+        in: query
+        description: Assessment type identifier
+        schema:
+          type: integer
+          format: int32
+      - name: frameworkType
+        in: query
+        description: Mobile framework type
+        schema:
+          type: string
+          enum:
+          - iOS
+          - Android
+      - name: timeZone
+        in: query
+        description: Time zone for scheduled scans
+        schema:
+          type: string
+      - name: entitlementId
+        in: query
+        description: Entitlement identifier
+        schema:
+          type: integer
+          format: int32
+      - name: entitlementFrequencyType
+        in: query
+        description: Entitlement frequency type
+        schema:
+          type: string
+      - name: isRemediationScan
+        in: query
+        description: Whether this is a remediation scan
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Mobile scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+  schemas:
+    PutMobileScanSetupResponse:
+      type: object
+      description: Response after saving mobile scan setup
+      properties:
+        success:
+          type: boolean
+    MobileScanSetup:
+      type: object
+      description: Mobile scan setup configuration
+      properties:
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+        frameworkType:
+          type: string
+          enum:
+          - iOS
+          - Android
+        timeZone:
+          type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    PutMobileScanSetupRequest:
+      type: object
+      description: Request body for saving mobile scan setup
+      properties:
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+        frameworkType:
+          type: string
+          enum:
+          - iOS
+          - Android
+        timeZone:
+          type: string
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created scan
+        analysisStatusType:
+          type: string
+          description: Initial analysis status
+        success:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

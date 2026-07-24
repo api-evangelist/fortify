@@ -1,0 +1,264 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Dynamic Scans API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Dynamic Scans
+  description: Configure and start dynamic application security testing scans
+paths:
+  /api/v3/releases/{releaseId}/dynamic-scans/scan-setup:
+    get:
+      operationId: getDynamicScanSetup
+      summary: Fortify Get dynamic scan setup
+      description: Retrieves the current dynamic scan setup configuration for the specified release.
+      tags:
+      - Dynamic Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with dynamic scan setup details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDynamicScanSetupResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: saveDynamicScanSetup
+      summary: Fortify Save dynamic scan setup
+      description: Saves the dynamic scan setup configuration for the specified release.
+      tags:
+      - Dynamic Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutDynamicScanSetupRequest'
+      responses:
+        '200':
+          description: Dynamic scan setup saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutDynamicScanSetupResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/dynamic-scans/start-scan:
+    post:
+      operationId: startDynamicScan
+      summary: Fortify Start dynamic scan
+      description: Initiates a dynamic scan for the specified release using the current scan setup configuration.
+      tags:
+      - Dynamic Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: networkName
+        in: query
+        description: Name of the Fortify on Demand Connect network to use for scanning
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartDynamicScanRequest'
+      responses:
+        '200':
+          description: Dynamic scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    PutDynamicScanSetupRequest:
+      type: object
+      description: Request body for saving dynamic scan setup
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        dynamicSiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        networkAuthenticationUserName:
+          type: string
+        networkAuthenticationPassword:
+          type: string
+        timeZone:
+          type: string
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+    PutDynamicScanSetupResponse:
+      type: object
+      description: Response after saving dynamic scan setup
+      properties:
+        success:
+          type: boolean
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    StartDynamicScanRequest:
+      type: object
+      description: Request body for starting a dynamic scan
+      properties:
+        startDate:
+          type: string
+          format: date-time
+          description: Scheduled start date
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+        isRemediationScan:
+          type: boolean
+        isBundledAssessment:
+          type: boolean
+        parentAssessmentTypeId:
+          type: integer
+          format: int32
+        timeZone:
+          type: string
+    GetDynamicScanSetupResponse:
+      type: object
+      description: Dynamic scan setup configuration
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        dynamicSiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        timeZone:
+          type: string
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created scan
+        analysisStatusType:
+          type: string
+          description: Initial analysis status
+        success:
+          type: boolean
+  parameters:
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

@@ -1,0 +1,1016 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Applications API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Applications
+  description: Manage applications and their configurations
+paths:
+  /api/v3/applications:
+    get:
+      operationId: listApplications
+      summary: Fortify List applications
+      description: Retrieves a paginated collection of applications accessible to the authenticated user. Supports filtering, sorting, and field selection.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: modifiedStartDate
+        in: query
+        description: Filter applications modified after this date
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Successful response with list of applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createApplication
+      summary: Fortify Create application
+      description: Creates a new application along with an initial release. Requires manage-apps scope.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostApplicationRequest'
+      responses:
+        '201':
+          description: Application created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostApplicationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Fortify Get application
+      description: Retrieves an individual application by its unique identifier.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Successful response with application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateApplication
+      summary: Fortify Update application
+      description: Updates an existing application's properties and configuration.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutApplicationRequest'
+      responses:
+        '200':
+          description: Application updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutApplicationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteApplication
+      summary: Fortify Delete application
+      description: Permanently deletes an application and all associated releases, scans, and vulnerability data.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Application deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/releases:
+    get:
+      operationId: listApplicationReleases
+      summary: Fortify List application releases
+      description: Returns a paginated list of releases belonging to the specified application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: modifiedStartDate
+        in: query
+        description: Filter releases modified after this date
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Successful response with list of releases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/scans:
+    get:
+      operationId: listApplicationScans
+      summary: Fortify List application scans
+      description: Returns a paginated list of scans for the specified application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/issue-count-by-severity:
+    get:
+      operationId: getApplicationIssueCountBySeverity
+      summary: Fortify Get issue count by severity
+      description: Retrieves the number of issues grouped by severity level for the specified application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Successful response with issue counts by severity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationIssueCountListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/users:
+    get:
+      operationId: listApplicationUsers
+      summary: Fortify List application users
+      description: Returns a list of users that have access to the specified application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Successful response with list of application users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationUserListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/microservices:
+    get:
+      operationId: listApplicationMicroservices
+      summary: Fortify List application microservices
+      description: Retrieves a list of microservices associated with the specified application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      - name: includeReleases
+        in: query
+        description: Whether to include release information for each microservice
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response with list of microservices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicroserviceListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createApplicationMicroservice
+      summary: Fortify Create application microservice
+      description: Adds a new microservice to the specified application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMicroserviceRequest'
+      responses:
+        '201':
+          description: Microservice created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMicroserviceResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}:
+    get:
+      operationId: getApplicationVulnerability
+      summary: Fortify Get application vulnerability
+      description: Returns a list of vulnerabilities matching the specified instance identifier within an application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      - name: vulnerabilityId
+        in: path
+        required: true
+        description: Unique identifier of the vulnerability
+        schema:
+          type: integer
+          format: int32
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: includeFixed
+        in: query
+        description: Include fixed vulnerabilities in results
+        schema:
+          type: boolean
+      - name: includeSuppressed
+        in: query
+        description: Include suppressed vulnerabilities in results
+        schema:
+          type: boolean
+      - name: keywordSearch
+        in: query
+        description: Keyword search filter for vulnerabilities
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with vulnerability details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/owners:
+    get:
+      operationId: listApplicationOwners
+      summary: Fortify List application owners
+      description: Returns a list of users available for application ownership assignment.
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: Successful response with list of potential application owners
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationUserListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/fortify-on-demand-connect-networks:
+    get:
+      operationId: listFortifyConnectNetworks
+      summary: List Fortify Connect networks
+      description: Retrieves a list of Fortify on Demand Connect networks configured for the tenant, enabling scanning of internal applications.
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: Successful response with list of Fortify Connect networks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FortifyConnectNetworkListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+  schemas:
+    Release:
+      type: object
+      description: Represents a release within an application
+      properties:
+        releaseId:
+          type: integer
+          format: int32
+          description: Unique identifier of the release
+        releaseName:
+          type: string
+          description: Name of the release
+        releaseDescription:
+          type: string
+          description: Description of the release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+        applicationName:
+          type: string
+          description: Name of the parent application
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+        rating:
+          type: number
+          format: double
+          description: Security rating for the release
+        critical:
+          type: integer
+          format: int32
+          description: Number of critical severity issues
+        high:
+          type: integer
+          format: int32
+          description: Number of high severity issues
+        medium:
+          type: integer
+          format: int32
+          description: Number of medium severity issues
+        low:
+          type: integer
+          format: int32
+          description: Number of low severity issues
+        issueCount:
+          type: integer
+          format: int32
+          description: Total number of issues
+        isPassed:
+          type: boolean
+          description: Whether the release passes the security policy
+        passFailReasonType:
+          type: string
+          description: Reason for pass or fail status
+        currentStaticScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current static scan
+        currentDynamicScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current dynamic scan
+        currentMobileScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current mobile scan
+    PostMicroserviceRequest:
+      type: object
+      description: Request body for creating a microservice
+      required:
+      - microserviceName
+      properties:
+        microserviceName:
+          type: string
+          description: Name of the microservice
+    Scan:
+      type: object
+      description: Represents a security scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        scanType:
+          type: string
+          description: Type of scan performed
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - OpenSource
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        startedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan started
+        completedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan completed
+        totalIssues:
+          type: integer
+          format: int32
+          description: Total number of issues found
+        issueCountCritical:
+          type: integer
+          format: int32
+          description: Number of critical issues found
+        issueCountHigh:
+          type: integer
+          format: int32
+          description: Number of high issues found
+        issueCountMedium:
+          type: integer
+          format: int32
+          description: Number of medium issues found
+        issueCountLow:
+          type: integer
+          format: int32
+          description: Number of low issues found
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the associated application
+    ApplicationUserListResponse:
+      type: object
+      description: List of users associated with an application
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalCount:
+          type: integer
+          format: int32
+    ScanListResponse:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of scans matching the query
+    User:
+      type: object
+      description: Represents a user in the system
+      properties:
+        userId:
+          type: integer
+          format: int32
+          description: Unique identifier of the user
+        userName:
+          type: string
+          description: Username
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        email:
+          type: string
+          description: Email address
+    ReleaseListResponse:
+      type: object
+      description: Paginated list of releases
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Release'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of releases matching the query
+    Application:
+      type: object
+      description: Represents an application in Fortify on Demand
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Unique identifier of the application
+        applicationName:
+          type: string
+          description: Name of the application
+        applicationDescription:
+          type: string
+          description: Description of the application
+        applicationCreatedDate:
+          type: string
+          format: date-time
+          description: Date when the application was created
+        businessCriticalityType:
+          type: string
+          description: Business criticality classification
+        emailList:
+          type: string
+          description: Comma-separated list of notification email addresses
+        hasMicroservices:
+          type: boolean
+          description: Whether the application has microservices configured
+        attributes:
+          type: array
+          description: Application attributes
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    PostApplicationRequest:
+      type: object
+      description: Request body for creating an application
+      required:
+      - applicationName
+      - applicationDescription
+      - businessCriticalityType
+      - releaseName
+      - sdlcStatusType
+      properties:
+        applicationName:
+          type: string
+          description: Name of the application
+        applicationDescription:
+          type: string
+          description: Description of the application
+        businessCriticalityType:
+          type: string
+          description: Business criticality classification
+          enum:
+          - High
+          - Medium
+          - Low
+        releaseName:
+          type: string
+          description: Name of the initial release
+        releaseDescription:
+          type: string
+          description: Description of the initial release
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+          enum:
+          - Development
+          - QA
+          - Production
+          - Retired
+        emailList:
+          type: string
+          description: Comma-separated list of notification email addresses
+        hasMicroservices:
+          type: boolean
+          description: Whether the application uses microservices
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    PostApplicationResponse:
+      type: object
+      description: Response after creating an application
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created application
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the initial release
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    ApplicationIssueCountListResponse:
+      type: object
+      description: Issue counts grouped by severity for an application
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              severityValue:
+                type: integer
+                format: int32
+              count:
+                type: integer
+                format: int32
+              scanType:
+                type: string
+    Microservice:
+      type: object
+      description: Represents a microservice within an application
+      properties:
+        microserviceId:
+          type: integer
+          format: int32
+          description: Unique identifier of the microservice
+        microserviceName:
+          type: string
+          description: Name of the microservice
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+    PostMicroserviceResponse:
+      type: object
+      description: Response after creating a microservice
+      properties:
+        microserviceId:
+          type: integer
+          format: int32
+        success:
+          type: boolean
+    Vulnerability:
+      type: object
+      description: Represents a vulnerability finding
+      properties:
+        vulnId:
+          type: integer
+          format: int32
+          description: Unique identifier of the vulnerability
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        category:
+          type: string
+          description: Vulnerability category
+        kingdom:
+          type: string
+          description: Vulnerability kingdom classification
+        severity:
+          type: integer
+          format: int32
+          description: Severity level (1-4, where 4 is critical)
+        severityString:
+          type: string
+          description: Human-readable severity string
+        assignedUser:
+          type: string
+          description: User assigned to the vulnerability
+        isSuppressed:
+          type: boolean
+          description: Whether the vulnerability is suppressed
+        hasComments:
+          type: boolean
+          description: Whether the vulnerability has comments
+        status:
+          type: string
+          description: Current audit status
+        scanType:
+          type: string
+          description: Type of scan that found the vulnerability
+        primaryLocation:
+          type: string
+          description: Primary source location of the vulnerability
+        lineNumber:
+          type: integer
+          format: int32
+          description: Line number of the vulnerability
+        introducedDate:
+          type: string
+          format: date-time
+          description: Date when the vulnerability was first found
+        removedDate:
+          type: string
+          format: date-time
+          description: Date when the vulnerability was resolved
+    DeleteResponse:
+      type: object
+      description: Generic delete response
+      properties:
+        success:
+          type: boolean
+          description: Whether the delete operation succeeded
+    PutApplicationRequest:
+      type: object
+      description: Request body for updating an application
+      properties:
+        applicationName:
+          type: string
+          description: Name of the application
+        applicationDescription:
+          type: string
+          description: Description of the application
+        businessCriticalityType:
+          type: string
+          description: Business criticality classification
+        emailList:
+          type: string
+          description: Comma-separated list of notification email addresses
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    VulnerabilityListResponse:
+      type: object
+      description: Paginated list of vulnerabilities
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of vulnerabilities matching the query
+    ApplicationListResponse:
+      type: object
+      description: Paginated list of applications
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of applications matching the query
+    PutApplicationResponse:
+      type: object
+      description: Response after updating an application
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    MicroserviceListResponse:
+      type: object
+      description: List of microservices
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Microservice'
+        totalCount:
+          type: integer
+          format: int32
+    ApplicationAttribute:
+      type: object
+      description: An attribute value assigned to an application
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Attribute identifier
+        name:
+          type: string
+          description: Attribute name
+        value:
+          type: string
+          description: Attribute value
+    FortifyConnectNetworkListResponse:
+      type: object
+      description: List of Fortify Connect networks
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              networkId:
+                type: integer
+                format: int32
+              networkName:
+                type: string
+              status:
+                type: string
+        totalCount:
+          type: integer
+          format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

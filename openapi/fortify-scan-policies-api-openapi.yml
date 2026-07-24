@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Scan Policies API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Scan Policies
+  description: Manage scan policies
+paths:
+  /scan-policies:
+    get:
+      operationId: listScanPolicies
+      summary: Fortify List scan policies
+      description: Retrieves a list of available scan policies that control which vulnerability checks are performed during scans.
+      tags:
+      - Scan Policies
+      parameters:
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scan policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanPolicyListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scan-policies/{scanPolicyId}:
+    get:
+      operationId: getScanPolicy
+      summary: Fortify Get scan policy
+      description: Retrieves details for a specific scan policy.
+      tags:
+      - Scan Policies
+      parameters:
+      - name: scanPolicyId
+        in: path
+        required: true
+        description: Unique identifier of the scan policy
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response with scan policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanPolicy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ScanPolicy:
+      type: object
+      description: A scan policy controlling vulnerability checks
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Policy name
+        description:
+          type: string
+          description: Policy description
+        isDefault:
+          type: boolean
+          description: Whether this is the default policy
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    ScanPolicyListResponse:
+      type: object
+      description: List of scan policies
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanPolicy'
+        totalCount:
+          type: integer
+          format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

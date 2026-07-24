@@ -1,0 +1,191 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Open Source Components API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Open Source Components
+  description: View open source component data
+paths:
+  /api/v3/applications/open-source-components:
+    get:
+      operationId: listOpenSourceComponents
+      summary: Fortify List open source components
+      description: Retrieves a collection of open source components across all applications.
+      tags:
+      - Open Source Components
+      parameters:
+      - name: openSourceScanType
+        in: query
+        description: Type of open source scan engine
+        schema:
+          type: string
+          enum:
+          - Sonatype
+          - CycloneDx
+          - Debricked
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: returnTotalComponentCount
+        in: query
+        description: Whether to include total count in response
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response with list of open source components
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenSourceComponentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+  schemas:
+    OpenSourceComponent:
+      type: object
+      description: Represents an open source component
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+        componentVersion:
+          type: string
+          description: Version of the component
+        license:
+          type: string
+          description: License of the component
+        applicationName:
+          type: string
+          description: Parent application name
+        releaseName:
+          type: string
+          description: Parent release name
+        vulnerabilityCount:
+          type: integer
+          format: int32
+          description: Number of known vulnerabilities
+    OpenSourceComponentListResponse:
+      type: object
+      description: Paginated list of open source components
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpenSourceComponent'
+        totalCount:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

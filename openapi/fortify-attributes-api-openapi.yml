@@ -1,0 +1,557 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Attributes API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Attributes
+  description: Manage application attributes
+paths:
+  /api/v3/attributes:
+    get:
+      operationId: listAttributes
+      summary: Fortify List attributes
+      description: Retrieves a list of application attributes defined for the tenant.
+      tags:
+      - Attributes
+      parameters:
+      - $ref: '#/components/parameters/Filters'
+      responses:
+        '200':
+          description: Successful response with list of attributes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createAttribute
+      summary: Fortify Create attribute
+      description: Creates a new application attribute for the tenant.
+      tags:
+      - Attributes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAttributeRequest'
+      responses:
+        '201':
+          description: Attribute created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAttributeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/attributes/{attributeId}:
+    put:
+      operationId: updateAttribute
+      summary: Fortify Update attribute
+      description: Updates an existing application attribute.
+      tags:
+      - Attributes
+      parameters:
+      - name: attributeId
+        in: path
+        required: true
+        description: Unique identifier of the attribute
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutAttributeRequest'
+      responses:
+        '200':
+          description: Attribute updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutAttributeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteAttribute
+      summary: Fortify Delete attribute
+      description: Permanently deletes the specified attribute.
+      tags:
+      - Attributes
+      parameters:
+      - name: attributeId
+        in: path
+        required: true
+        description: Unique identifier of the attribute
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Attribute deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /projectVersions/{parentId}/attributes:
+    get:
+      operationId: listProjectVersionAttributes
+      summary: Fortify List project version attributes
+      description: Retrieves attribute values assigned to the specified project version.
+      tags:
+      - Attributes
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with attribute values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeValueListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProjectVersionAttributes
+      summary: Fortify Update project version attributes
+      description: Updates attribute values for the specified project version.
+      tags:
+      - Attributes
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AttributeValue'
+      responses:
+        '200':
+          description: Attributes updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeValueListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /attributeDefinitions:
+    get:
+      operationId: listAttributeDefinitions
+      summary: Fortify List attribute definitions
+      description: Retrieves the list of attribute definitions configured in the system.
+      tags:
+      - Attributes
+      parameters:
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Q'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with attribute definitions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeDefinitionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+    post:
+      operationId: createAttributeDefinition
+      summary: Fortify Create attribute definition
+      description: Creates a new attribute definition.
+      tags:
+      - Attributes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAttributeDefinitionRequest'
+      responses:
+        '201':
+          description: Attribute definition created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultAttributeDefinition'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized_2:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    CreateAttributeDefinitionRequest:
+      type: object
+      required:
+      - name
+      - type
+      - category
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - TEXT
+          - LONG_TEXT
+          - SINGLE
+          - MULTIPLE
+          - INTEGER
+          - BOOLEAN
+          - DATE
+        category:
+          type: string
+          enum:
+          - TECHNICAL
+          - BUSINESS
+          - ORGANIZATION
+        required:
+          type: boolean
+        hidden:
+          type: boolean
+        description:
+          type: string
+    ErrorResponse_2:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+    AttributeValue:
+      type: object
+      description: An attribute value assignment
+      properties:
+        attributeDefinitionId:
+          type: integer
+          format: int64
+          description: Attribute definition identifier
+        guid:
+          type: string
+          description: Attribute GUID
+        value:
+          type: string
+          description: Attribute value
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              guid:
+                type: string
+              name:
+                type: string
+    ApiResultAttributeDefinition:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AttributeDefinition'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    AttributeDefinitionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeDefinition'
+        count:
+          type: integer
+          format: int32
+    PutAttributeResponse:
+      type: object
+      description: Response after updating an attribute
+      properties:
+        success:
+          type: boolean
+    PutAttributeRequest:
+      type: object
+      description: Request body for updating an attribute
+      properties:
+        name:
+          type: string
+        attributeType:
+          type: string
+        isRequired:
+          type: boolean
+    PostAttributeRequest:
+      type: object
+      description: Request body for creating an attribute
+      required:
+      - name
+      - attributeType
+      properties:
+        name:
+          type: string
+        attributeType:
+          type: string
+        attributeDataType:
+          type: string
+        isRequired:
+          type: boolean
+    AttributeListResponse:
+      type: object
+      description: List of attributes
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        totalCount:
+          type: integer
+          format: int32
+    Attribute:
+      type: object
+      description: Represents an application attribute definition
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier
+        name:
+          type: string
+          description: Attribute name
+        attributeType:
+          type: string
+          description: Type of attribute
+        attributeDataType:
+          type: string
+          description: Data type of the attribute
+        isRequired:
+          type: boolean
+          description: Whether the attribute is required
+    PostAttributeResponse:
+      type: object
+      description: Response after creating an attribute
+      properties:
+        attributeId:
+          type: integer
+          format: int32
+        success:
+          type: boolean
+    DeleteResponse:
+      type: object
+      description: Generic delete response
+      properties:
+        success:
+          type: boolean
+          description: Whether the delete operation succeeded
+    AttributeValueListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeValue'
+        count:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    AttributeDefinition:
+      type: object
+      description: Represents an attribute definition
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        guid:
+          type: string
+          description: GUID of the attribute
+        name:
+          type: string
+          description: Attribute name
+        category:
+          type: string
+          description: Attribute category
+          enum:
+          - TECHNICAL
+          - BUSINESS
+          - ORGANIZATION
+          - DYNAMIC_SCAN_REQUEST
+        type:
+          type: string
+          description: Attribute data type
+          enum:
+          - TEXT
+          - LONG_TEXT
+          - SINGLE
+          - MULTIPLE
+          - INTEGER
+          - BOOLEAN
+          - DATE
+          - FILE
+          - SENSITIVE_TEXT
+        required:
+          type: boolean
+          description: Whether the attribute is required
+        hidden:
+          type: boolean
+          description: Whether the attribute is hidden
+  parameters:
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

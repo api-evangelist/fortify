@@ -1,0 +1,998 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Releases API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Releases
+  description: Manage releases within applications
+paths:
+  /api/v3/applications/{applicationId}/releases:
+    get:
+      operationId: listApplicationReleases
+      summary: Fortify List application releases
+      description: Returns a paginated list of releases belonging to the specified application.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: modifiedStartDate
+        in: query
+        description: Filter releases modified after this date
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Successful response with list of releases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases:
+    get:
+      operationId: listReleases
+      summary: Fortify List releases
+      description: Returns a paginated list of all releases accessible to the authenticated user.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: modifiedStartDate
+        in: query
+        description: Filter releases modified after this date
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Successful response with list of releases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createRelease
+      summary: Fortify Create release
+      description: Creates a new release within an existing application.
+      tags:
+      - Releases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostReleaseRequest'
+      responses:
+        '201':
+          description: Release created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostReleaseResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}:
+    get:
+      operationId: getRelease
+      summary: Fortify Get release
+      description: Retrieves details for a specific release by identifier.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with release details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateRelease
+      summary: Fortify Update release
+      description: Updates an existing release's properties and configuration.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutReleaseRequest'
+      responses:
+        '200':
+          description: Release updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutReleaseResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteRelease
+      summary: Fortify Delete release
+      description: Permanently deletes the specified release and associated data.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Release deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans:
+    get:
+      operationId: listReleaseScans
+      summary: Fortify List release scans
+      description: Returns a paginated list of scans for the specified release.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans/{scanId}:
+    get:
+      operationId: getReleaseScan
+      summary: Fortify Get release scan
+      description: Returns summary information for the specified scan.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: scanId
+        in: path
+        required: true
+        description: Unique identifier of the scan
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response with scan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans/{scanId}/polling-summary:
+    get:
+      operationId: getReleaseScanPollingSummary
+      summary: Fortify Get scan polling summary
+      description: Returns the current scan status for a specific scan, useful for polling scan progress.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: scanId
+        in: path
+        required: true
+        description: Unique identifier of the scan
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response with scan polling summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollingScanSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/fpr:
+    get:
+      operationId: downloadReleaseFpr
+      summary: Fortify Download release FPR
+      description: Downloads the Fortify Project Results (FPR) file for the specified release and scan type.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: scanType
+        in: query
+        description: Type of scan to download FPR for
+        schema:
+          type: string
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - Monitoring
+          - Network
+          - OpenSource
+      responses:
+        '200':
+          description: FPR file download
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/category-rollups:
+    get:
+      operationId: listReleaseCategoryRollups
+      summary: Fortify List vulnerability category rollups
+      description: Returns a list and count of vulnerability categories grouped by severity for the specified release.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - name: showFixed
+        in: query
+        description: Include fixed vulnerabilities
+        schema:
+          type: boolean
+      - name: vulnerabilitiesSeverityType
+        in: query
+        description: Filter by severity type
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with category rollup data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryRollupsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/assessment-types:
+    get:
+      operationId: listReleaseAssessmentTypes
+      summary: Fortify List assessment types
+      description: Returns a list of available assessment types and entitlements for the specified release.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: scanType
+        in: query
+        required: true
+        description: Type of scan to retrieve assessment types for
+        schema:
+          type: string
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - OpenSource
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with assessment types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseAssessmentTypeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/static-scan-options:
+    get:
+      operationId: getReleaseStaticScanOptions
+      summary: Fortify Get static scan options
+      description: Retrieves available options for starting a static scan on the specified release, including technology stacks and language levels.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: technologyStack
+        in: query
+        description: Technology stack identifier
+        schema:
+          type: string
+      - name: languageLevel
+        in: query
+        description: Language level identifier
+        schema:
+          type: string
+      - name: assessmentTypeId
+        in: query
+        description: Assessment type identifier
+        schema:
+          type: integer
+          format: int32
+      - name: entitlementFrequencyType
+        in: query
+        description: Entitlement frequency type
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with static scan options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetStaticScanOptionsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/audit-action:
+    post:
+      operationId: setReleaseAuditAction
+      summary: Fortify Set audit action
+      description: Sets the audit action (such as approve or reject) for vulnerabilities in the specified release.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAuditActionRequest'
+      responses:
+        '204':
+          description: Audit action applied successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/audit-options:
+    get:
+      operationId: getReleaseAuditOptions
+      summary: Fortify Get audit options
+      description: Retrieves the available audit options for the specified release, including statuses and custom fields.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with audit options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAuditOptionsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/import-scan-session-id:
+    get:
+      operationId: getReleaseImportScanSessionId
+      summary: Fortify Get import scan session ID
+      description: Initiates an import scan session and returns a session identifier for uploading third-party scan results.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with import scan session ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetImportScanSessionIdResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    PostAuditActionRequest:
+      type: object
+      description: Request body for setting audit action on vulnerabilities
+      properties:
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              vulnId:
+                type: integer
+                format: int32
+              analysisStatusType:
+                type: string
+              comment:
+                type: string
+    PostReleaseRequest:
+      type: object
+      description: Request body for creating a release
+      required:
+      - applicationId
+      - releaseName
+      - sdlcStatusType
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+        releaseName:
+          type: string
+          description: Name of the release
+        releaseDescription:
+          type: string
+          description: Description of the release
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+          enum:
+          - Development
+          - QA
+          - Production
+          - Retired
+        microserviceId:
+          type: integer
+          format: int32
+          description: Optional microservice identifier
+    Release:
+      type: object
+      description: Represents a release within an application
+      properties:
+        releaseId:
+          type: integer
+          format: int32
+          description: Unique identifier of the release
+        releaseName:
+          type: string
+          description: Name of the release
+        releaseDescription:
+          type: string
+          description: Description of the release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+        applicationName:
+          type: string
+          description: Name of the parent application
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+        rating:
+          type: number
+          format: double
+          description: Security rating for the release
+        critical:
+          type: integer
+          format: int32
+          description: Number of critical severity issues
+        high:
+          type: integer
+          format: int32
+          description: Number of high severity issues
+        medium:
+          type: integer
+          format: int32
+          description: Number of medium severity issues
+        low:
+          type: integer
+          format: int32
+          description: Number of low severity issues
+        issueCount:
+          type: integer
+          format: int32
+          description: Total number of issues
+        isPassed:
+          type: boolean
+          description: Whether the release passes the security policy
+        passFailReasonType:
+          type: string
+          description: Reason for pass or fail status
+        currentStaticScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current static scan
+        currentDynamicScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current dynamic scan
+        currentMobileScanId:
+          type: integer
+          format: int32
+          description: Identifier of the current mobile scan
+    PollingScanSummary:
+      type: object
+      description: Scan status for polling
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        analysisStatusTypeValue:
+          type: integer
+          format: int32
+          description: Numeric value of the analysis status
+        pauseDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              reason:
+                type: string
+              notes:
+                type: string
+        passFailStatus:
+          type: boolean
+          description: Whether the scan passes the security policy
+    AssessmentType:
+      type: object
+      description: Represents an assessment type
+      properties:
+        assessmentTypeId:
+          type: integer
+          format: int32
+          description: Unique identifier
+        name:
+          type: string
+          description: Assessment type name
+        scanType:
+          type: string
+          description: Scan type
+        entitlementId:
+          type: integer
+          format: int32
+          description: Associated entitlement
+        frequencyType:
+          type: string
+          description: Frequency type
+    Scan:
+      type: object
+      description: Represents a security scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        scanType:
+          type: string
+          description: Type of scan performed
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - OpenSource
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        startedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan started
+        completedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan completed
+        totalIssues:
+          type: integer
+          format: int32
+          description: Total number of issues found
+        issueCountCritical:
+          type: integer
+          format: int32
+          description: Number of critical issues found
+        issueCountHigh:
+          type: integer
+          format: int32
+          description: Number of high issues found
+        issueCountMedium:
+          type: integer
+          format: int32
+          description: Number of medium issues found
+        issueCountLow:
+          type: integer
+          format: int32
+          description: Number of low issues found
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the associated application
+    ScanListResponse:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of scans matching the query
+    GetImportScanSessionIdResponse:
+      type: object
+      description: Response with import scan session ID
+      properties:
+        importScanSessionId:
+          type: string
+          description: Session identifier for importing scan results
+    ReleaseListResponse:
+      type: object
+      description: Paginated list of releases
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Release'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of releases matching the query
+    ReleaseAssessmentTypeListResponse:
+      type: object
+      description: List of available assessment types for a release
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentType'
+        totalCount:
+          type: integer
+          format: int32
+    PutReleaseRequest:
+      type: object
+      description: Request body for updating a release
+      properties:
+        releaseName:
+          type: string
+          description: Name of the release
+        releaseDescription:
+          type: string
+          description: Description of the release
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+    CategoryRollupsResponse:
+      type: object
+      description: Vulnerability category rollup data
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Category name
+              critical:
+                type: integer
+                format: int32
+              high:
+                type: integer
+                format: int32
+              medium:
+                type: integer
+                format: int32
+              low:
+                type: integer
+                format: int32
+    GetStaticScanOptionsResponse:
+      type: object
+      description: Available options for starting a static scan
+      properties:
+        technologyStacks:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              text:
+                type: string
+        languageLevels:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              text:
+                type: string
+    PostReleaseResponse:
+      type: object
+      description: Response after creating a release
+      properties:
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created release
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    DeleteResponse:
+      type: object
+      description: Generic delete response
+      properties:
+        success:
+          type: boolean
+          description: Whether the delete operation succeeded
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    PutReleaseResponse:
+      type: object
+      description: Response after updating a release
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    GetAuditOptionsResponse:
+      type: object
+      description: Available audit options
+      properties:
+        analysisStatusTypes:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              value:
+                type: string
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

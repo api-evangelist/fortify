@@ -1,0 +1,259 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Sensor Pools API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Sensor Pools
+  description: Manage sensor pools for scan distribution
+paths:
+  /sensor-pools:
+    get:
+      operationId: listSensorPools
+      summary: Fortify List sensor pools
+      description: Retrieves a list of sensor pools used to group sensors for scan distribution.
+      tags:
+      - Sensor Pools
+      parameters:
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of sensor pools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorPoolListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSensorPool
+      summary: Fortify Create sensor pool
+      description: Creates a new sensor pool for organizing sensors.
+      tags:
+      - Sensor Pools
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSensorPoolRequest'
+      responses:
+        '201':
+          description: Sensor pool created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorPool'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sensor-pools/{sensorPoolId}:
+    get:
+      operationId: getSensorPool
+      summary: Fortify Get sensor pool
+      description: Retrieves details for a specific sensor pool.
+      tags:
+      - Sensor Pools
+      parameters:
+      - name: sensorPoolId
+        in: path
+        required: true
+        description: Unique identifier of the sensor pool
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response with sensor pool details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorPool'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSensorPool
+      summary: Fortify Update sensor pool
+      description: Updates a sensor pool's properties.
+      tags:
+      - Sensor Pools
+      parameters:
+      - name: sensorPoolId
+        in: path
+        required: true
+        description: Unique identifier of the sensor pool
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSensorPoolRequest'
+      responses:
+        '200':
+          description: Sensor pool updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorPool'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSensorPool
+      summary: Fortify Delete sensor pool
+      description: Deletes a sensor pool.
+      tags:
+      - Sensor Pools
+      parameters:
+      - name: sensorPoolId
+        in: path
+        required: true
+        description: Unique identifier of the sensor pool
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Sensor pool deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    UpdateSensorPoolRequest:
+      type: object
+      description: Request to update a sensor pool
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    CreateSensorPoolRequest:
+      type: object
+      description: Request to create a sensor pool
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Pool name
+        description:
+          type: string
+          description: Pool description
+    SensorPool:
+      type: object
+      description: A sensor pool for grouping sensors
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Pool name
+        description:
+          type: string
+          description: Pool description
+        sensorCount:
+          type: integer
+          format: int32
+          description: Number of sensors in the pool
+        isDefault:
+          type: boolean
+          description: Whether this is the default pool
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    SensorPoolListResponse:
+      type: object
+      description: List of sensor pools
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SensorPool'
+        totalCount:
+          type: integer
+          format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

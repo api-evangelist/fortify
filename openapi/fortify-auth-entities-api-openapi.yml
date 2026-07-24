@@ -1,0 +1,175 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Auth Entities API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Auth Entities
+  description: Manage authentication entities (users and LDAP groups)
+paths:
+  /projectVersions/{parentId}/authEntities:
+    get:
+      operationId: listProjectVersionAuthEntities
+      summary: Fortify List project version auth entities
+      description: Retrieves authentication entities (users and LDAP groups) assigned to the specified project version.
+      tags:
+      - Auth Entities
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with auth entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthEntityListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProjectVersionAuthEntities
+      summary: Fortify Update project version auth entities
+      description: Assigns or updates authentication entities for the specified project version.
+      tags:
+      - Auth Entities
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AuthEntity'
+      responses:
+        '200':
+          description: Auth entities updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthEntityListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    AuthEntity:
+      type: object
+      description: An authentication entity (user or LDAP group)
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        entityName:
+          type: string
+          description: Entity name
+        isLdap:
+          type: boolean
+          description: Whether this is an LDAP entity
+    AuthEntityListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthEntity'
+        count:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

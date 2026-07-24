@@ -1,0 +1,287 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Artifacts API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Artifacts
+  description: Manage scan artifacts and uploads
+paths:
+  /projectVersions/{parentId}/artifacts:
+    get:
+      operationId: listProjectVersionArtifacts
+      summary: Fortify List project version artifacts
+      description: Retrieves a paginated list of artifacts (uploaded scan results) for the specified project version.
+      tags:
+      - Artifacts
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Q'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of artifacts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtifactListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: uploadProjectVersionArtifact
+      summary: Fortify Upload artifact
+      description: Uploads a scan artifact (FPR file) to the specified project version for processing.
+      tags:
+      - Artifacts
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The FPR or scan results file to upload
+      responses:
+        '201':
+          description: Artifact uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultArtifact'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /projectVersions/{parentId}/artifacts/{id}:
+    get:
+      operationId: getProjectVersionArtifact
+      summary: Fortify Get artifact
+      description: Retrieves details for a specific artifact.
+      tags:
+      - Artifacts
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with artifact details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultArtifact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteProjectVersionArtifact
+      summary: Fortify Delete artifact
+      description: Deletes a specific artifact from the project version.
+      tags:
+      - Artifacts
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Artifact deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Artifact:
+      type: object
+      description: Represents an uploaded scan artifact
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        fileName:
+          type: string
+          description: Name of the uploaded file
+        fileSize:
+          type: integer
+          format: int64
+          description: File size in bytes
+        status:
+          type: string
+          description: Processing status
+          enum:
+          - SCHED_PROCESSING
+          - PROCESSING
+          - PROCESS_COMPLETE
+          - ERROR_PROCESSING
+          - REQUIRE_AUTH
+          - DELETED
+        uploadDate:
+          type: string
+          format: date-time
+          description: Date when the artifact was uploaded
+        messages:
+          type: string
+          description: Processing messages
+        allowDelete:
+          type: boolean
+          description: Whether the artifact can be deleted
+        allowApprove:
+          type: boolean
+          description: Whether the artifact requires approval
+        allowPurge:
+          type: boolean
+          description: Whether the artifact can be purged
+        scanTypes:
+          type: array
+          description: Types of scans in this artifact
+          items:
+            type: string
+    ArtifactListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artifact'
+        count:
+          type: integer
+          format: int32
+    ApiResultVoid:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+    ApiResultArtifact:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Artifact'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

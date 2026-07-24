@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Reports API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Reports
+  description: Generate and download reports
+paths:
+  /api/v3/releases/{releaseId}/fpr:
+    get:
+      operationId: downloadReleaseFpr
+      summary: Fortify Download release FPR
+      description: Downloads the Fortify Project Results (FPR) file for the specified release and scan type.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: scanType
+        in: query
+        description: Type of scan to download FPR for
+        schema:
+          type: string
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - Monitoring
+          - Network
+          - OpenSource
+      responses:
+        '200':
+          description: FPR file download
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /reportDefinitions:
+    get:
+      operationId: listReportDefinitions
+      summary: Fortify List report definitions
+      description: Retrieves the list of available report definitions that can be used to generate reports.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Q'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with report definitions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportDefinitionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized_2:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  schemas:
+    ReportDefinitionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportDefinition'
+        count:
+          type: integer
+          format: int32
+    ErrorResponse_2:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+    ReportDefinition:
+      type: object
+      description: A report definition template
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        name:
+          type: string
+          description: Report name
+        templateDocId:
+          type: integer
+          format: int64
+          description: Template document identifier
+        type:
+          type: string
+          description: Report type
+          enum:
+          - ISSUE
+          - PROJECT
+          - PORTFOLIO
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              identifier:
+                type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

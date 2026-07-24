@@ -1,0 +1,307 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Personal Access Tokens API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Personal Access Tokens
+  description: Manage personal access tokens
+paths:
+  /api/v3/personal-access-tokens:
+    get:
+      operationId: listPersonalAccessTokens
+      summary: Fortify List personal access tokens
+      description: Returns a list of personal access tokens for the authenticated user.
+      tags:
+      - Personal Access Tokens
+      parameters:
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      responses:
+        '200':
+          description: Successful response with list of personal access tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessTokenListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createPersonalAccessToken
+      summary: Fortify Create personal access token
+      description: Creates a new personal access token for the authenticated user.
+      tags:
+      - Personal Access Tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostPersonalAccessTokenRequest'
+      responses:
+        '201':
+          description: Personal access token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePersonalAccessTokenResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/personal-access-tokens/{personalAccessTokenId}:
+    get:
+      operationId: getPersonalAccessToken
+      summary: Fortify Get personal access token
+      description: Returns details for a specific personal access token.
+      tags:
+      - Personal Access Tokens
+      parameters:
+      - name: personalAccessTokenId
+        in: path
+        required: true
+        description: Unique identifier of the personal access token
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response with personal access token details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessToken'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updatePersonalAccessToken
+      summary: Fortify Update personal access token
+      description: Updates an existing personal access token.
+      tags:
+      - Personal Access Tokens
+      parameters:
+      - name: personalAccessTokenId
+        in: path
+        required: true
+        description: Unique identifier of the personal access token
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutPersonalAccessTokenRequest'
+      responses:
+        '200':
+          description: Personal access token updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deletePersonalAccessToken
+      summary: Fortify Delete personal access token
+      description: Permanently deletes the specified personal access token.
+      tags:
+      - Personal Access Tokens
+      parameters:
+      - name: personalAccessTokenId
+        in: path
+        required: true
+        description: Unique identifier of the personal access token
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Personal access token deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+  schemas:
+    PersonalAccessTokenListResponse:
+      type: object
+      description: List of personal access tokens
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonalAccessToken'
+        totalCount:
+          type: integer
+          format: int32
+    PostPersonalAccessTokenRequest:
+      type: object
+      description: Request body for creating a personal access token
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the token
+        secretLifetimeDays:
+          type: integer
+          format: int32
+          description: Number of days until the secret expires
+        secretExpirationDate:
+          type: string
+          format: date-time
+          description: Specific expiration date for the secret
+    PutPersonalAccessTokenRequest:
+      type: object
+      description: Request body for updating a personal access token
+      properties:
+        name:
+          type: string
+          description: Name of the token
+    PersonalAccessToken:
+      type: object
+      description: Represents a personal access token
+      properties:
+        personalAccessTokenId:
+          type: integer
+          format: int32
+          description: Unique identifier
+        name:
+          type: string
+          description: Name of the token
+        userName:
+          type: string
+          description: User who owns the token
+        secretExpirationDate:
+          type: string
+          format: date-time
+          description: Expiration date of the token secret
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    CreatePersonalAccessTokenResult:
+      type: object
+      description: Response after creating a personal access token
+      properties:
+        personalAccessTokenId:
+          type: integer
+          format: int32
+        secret:
+          type: string
+          description: The token secret (only returned on creation)
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

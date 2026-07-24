@@ -1,0 +1,194 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Jobs API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Jobs
+  description: Monitor processing jobs
+paths:
+  /jobs:
+    get:
+      operationId: listJobs
+      summary: Fortify List jobs
+      description: Retrieves a paginated list of processing jobs (artifact processing, report generation, etc.).
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Q'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jobs/{id}:
+    get:
+      operationId: getJob
+      summary: Fortify Get job
+      description: Retrieves details for a specific processing job.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Job:
+      type: object
+      description: Represents a processing job
+      properties:
+        jobName:
+          type: string
+          description: Name of the job
+        jobGroup:
+          type: string
+          description: Job group
+        jobClassName:
+          type: string
+          description: Java class name
+        state:
+          type: string
+          description: Job state
+          enum:
+          - PREPARED
+          - RUNNING
+          - FINISHED
+          - FAILED
+          - CANCELLED
+          - WAITING_FOR_WORKER
+        priority:
+          type: integer
+          format: int32
+        projectVersionId:
+          type: integer
+          format: int64
+        artifactId:
+          type: integer
+          format: int64
+    ApiResultJob:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Job'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    JobListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        count:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

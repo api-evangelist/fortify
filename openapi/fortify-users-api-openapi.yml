@@ -1,0 +1,339 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Users API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Users
+  description: Manage local user accounts
+paths:
+  /localUsers:
+    get:
+      operationId: listLocalUsers
+      summary: Fortify List local users
+      description: Retrieves a paginated list of local user accounts.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Q'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with list of local users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalUserListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createLocalUser
+      summary: Fortify Create local user
+      description: Creates a new local user account.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLocalUserRequest'
+      responses:
+        '201':
+          description: Local user created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultLocalUser'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /localUsers/{id}:
+    get:
+      operationId: getLocalUser
+      summary: Fortify Get local user
+      description: Retrieves details for a specific local user.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with local user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultLocalUser'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateLocalUser
+      summary: Fortify Update local user
+      description: Updates an existing local user account.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLocalUserRequest'
+      responses:
+        '200':
+          description: Local user updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultLocalUser'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteLocalUser
+      summary: Fortify Delete local user
+      description: Permanently deletes a local user account.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Local user deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  schemas:
+    CreateLocalUserRequest:
+      type: object
+      required:
+      - userName
+      - firstName
+      - lastName
+      - email
+      - password
+      properties:
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        passwordNeverExpires:
+          type: boolean
+        suspended:
+          type: boolean
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+    ApiResultVoid:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    LocalUser:
+      type: object
+      description: Represents a local user account
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        userName:
+          type: string
+          description: Username
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        email:
+          type: string
+          description: Email address
+        suspended:
+          type: boolean
+          description: Whether the account is suspended
+        roles:
+          type: array
+          description: Assigned roles
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+    ApiResultLocalUser:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LocalUser'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+    UpdateLocalUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        suspended:
+          type: boolean
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+    LocalUserListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalUser'
+        count:
+          type: integer
+          format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

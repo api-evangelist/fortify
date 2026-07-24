@@ -1,0 +1,305 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Scan Schedules API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Scan Schedules
+  description: Manage scheduled scans
+paths:
+  /scan-schedules:
+    get:
+      operationId: listScanSchedules
+      summary: Fortify List scan schedules
+      description: Retrieves a list of scheduled scans.
+      tags:
+      - Scan Schedules
+      parameters:
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scan schedules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanScheduleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createScanSchedule
+      summary: Fortify Create scan schedule
+      description: Creates a new scheduled scan configuration.
+      tags:
+      - Scan Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScanScheduleRequest'
+      responses:
+        '201':
+          description: Scan schedule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSchedule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scan-schedules/{scanScheduleId}:
+    get:
+      operationId: getScanSchedule
+      summary: Fortify Get scan schedule
+      description: Retrieves details for a specific scan schedule.
+      tags:
+      - Scan Schedules
+      parameters:
+      - name: scanScheduleId
+        in: path
+        required: true
+        description: Unique identifier of the scan schedule
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response with scan schedule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateScanSchedule
+      summary: Fortify Update scan schedule
+      description: Updates an existing scan schedule.
+      tags:
+      - Scan Schedules
+      parameters:
+      - name: scanScheduleId
+        in: path
+        required: true
+        description: Unique identifier of the scan schedule
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScanScheduleRequest'
+      responses:
+        '200':
+          description: Scan schedule updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSchedule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteScanSchedule
+      summary: Fortify Delete scan schedule
+      description: Deletes a scan schedule.
+      tags:
+      - Scan Schedules
+      parameters:
+      - name: scanScheduleId
+        in: path
+        required: true
+        description: Unique identifier of the scan schedule
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Scan schedule deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    UpdateScanScheduleRequest:
+      type: object
+      description: Request to update a scan schedule
+      properties:
+        name:
+          type: string
+        scanSettingsId:
+          type: string
+          format: uuid
+        scheduleType:
+          type: string
+          enum:
+          - Once
+          - Daily
+          - Weekly
+          - Monthly
+        startDateTime:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+        timeZone:
+          type: string
+    CreateScanScheduleRequest:
+      type: object
+      description: Request to create a scan schedule
+      required:
+      - name
+      - scanSettingsId
+      - scheduleType
+      - startDateTime
+      properties:
+        name:
+          type: string
+          description: Schedule name
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        scheduleType:
+          type: string
+          enum:
+          - Once
+          - Daily
+          - Weekly
+          - Monthly
+        startDateTime:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+          default: true
+        timeZone:
+          type: string
+    ScanSchedule:
+      type: object
+      description: A scheduled scan configuration
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Schedule name
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        scheduleType:
+          type: string
+          description: Type of schedule
+          enum:
+          - Once
+          - Daily
+          - Weekly
+          - Monthly
+        startDateTime:
+          type: string
+          format: date-time
+          description: Scheduled start date and time
+        enabled:
+          type: boolean
+          description: Whether the schedule is enabled
+        timeZone:
+          type: string
+          description: Time zone for the schedule
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    ScanScheduleListResponse:
+      type: object
+      description: List of scan schedules
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanSchedule'
+        totalCount:
+          type: integer
+          format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

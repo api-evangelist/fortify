@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Issue Selectors API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Issue Selectors
+  description: Retrieve issue filter metadata
+paths:
+  /projectVersions/{parentId}/issueSelectorSet:
+    get:
+      operationId: getProjectVersionIssueSelectorSet
+      summary: Fortify Get issue selector set
+      description: Retrieves the issue selector set (filter metadata) for the specified project version, providing available groupings, filters, and filter sets for issue queries.
+      tags:
+      - Issue Selectors
+      parameters:
+      - $ref: '#/components/parameters/ParentId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with issue selector set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueSelectorSetResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    IssueSelectorSetResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            filterSets:
+              type: array
+              items:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                  title:
+                    type: string
+                  defaultFilterSet:
+                    type: boolean
+            groupBySet:
+              type: array
+              items:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                  displayName:
+                    type: string
+                  entityType:
+                    type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

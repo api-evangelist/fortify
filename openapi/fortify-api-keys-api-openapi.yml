@@ -1,0 +1,315 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions API Keys API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: API Keys
+  description: Manage API keys for programmatic access
+paths:
+  /api/v3/api-keys:
+    get:
+      operationId: listApiKeys
+      summary: Fortify List API keys
+      description: Returns a paginated list of API keys for the tenant.
+      tags:
+      - API Keys
+      parameters:
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of API keys
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      operationId: createApiKey
+      summary: Fortify Create API key
+      description: Creates a new API key for programmatic access.
+      tags:
+      - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '201':
+          description: API key created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostApiKeyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/api-keys/{apiKeyId}:
+    get:
+      operationId: getApiKey
+      summary: Fortify Get API key
+      description: Returns details for a specific API key.
+      tags:
+      - API Keys
+      parameters:
+      - name: apiKeyId
+        in: path
+        required: true
+        description: Unique identifier of the API key
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response with API key details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      operationId: updateApiKey
+      summary: Fortify Update API key
+      description: Updates an existing API key's properties.
+      tags:
+      - API Keys
+      parameters:
+      - name: apiKeyId
+        in: path
+        required: true
+        description: Unique identifier of the API key
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '201':
+          description: API key updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    delete:
+      operationId: deleteApiKey
+      summary: Fortify Delete API key
+      description: Permanently deletes the specified API key.
+      tags:
+      - API Keys
+      parameters:
+      - name: apiKeyId
+        in: path
+        required: true
+        description: Unique identifier of the API key
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: API key deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    ApiKeyRequest:
+      type: object
+      description: Request body for creating or updating an API key
+      required:
+      - apiKeyName
+      properties:
+        apiKeyName:
+          type: string
+          description: Name of the API key
+        callerIpRange:
+          type: string
+          description: Allowed IP range
+    PostApiKeyResponse:
+      type: object
+      description: Response after creating an API key
+      properties:
+        apiKeyId:
+          type: integer
+          format: int32
+        apiKeySecret:
+          type: string
+        success:
+          type: boolean
+    ApiKey:
+      type: object
+      description: Represents an API key
+      properties:
+        apiKeyId:
+          type: integer
+          format: int32
+          description: Unique identifier of the API key
+        apiKeyName:
+          type: string
+          description: Name of the API key
+        callerIpRange:
+          type: string
+          description: Allowed IP range for the API key
+        apiKeySecret:
+          type: string
+          description: Secret value of the API key
+        createdDate:
+          type: string
+          format: date-time
+          description: Date when the API key was created
+    DeleteResponse:
+      type: object
+      description: Generic delete response
+      properties:
+        success:
+          type: boolean
+          description: Whether the delete operation succeeded
+    ApiKeyResponse:
+      type: object
+      description: Response for API key operations
+      properties:
+        success:
+          type: boolean
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    ApiKeyListResponse:
+      type: object
+      description: Paginated list of API keys
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+        totalCount:
+          type: integer
+          format: int32
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

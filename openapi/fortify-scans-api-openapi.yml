@@ -1,0 +1,900 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Scans API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Scans
+  description: View and manage security scans
+paths:
+  /api/v3/applications/{applicationId}/scans:
+    get:
+      operationId: listApplicationScans
+      summary: Fortify List application scans
+      description: Returns a paginated list of scans for the specified application.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans:
+    get:
+      operationId: listReleaseScans
+      summary: Fortify List release scans
+      description: Returns a paginated list of scans for the specified release.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with list of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans/{scanId}:
+    get:
+      operationId: getReleaseScan
+      summary: Fortify Get release scan
+      description: Returns summary information for the specified scan.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: scanId
+        in: path
+        required: true
+        description: Unique identifier of the scan
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response with scan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/scans/{scanId}/polling-summary:
+    get:
+      operationId: getReleaseScanPollingSummary
+      summary: Fortify Get scan polling summary
+      description: Returns the current scan status for a specific scan, useful for polling scan progress.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: scanId
+        in: path
+        required: true
+        description: Unique identifier of the scan
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response with scan polling summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollingScanSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/assessment-types:
+    get:
+      operationId: listReleaseAssessmentTypes
+      summary: Fortify List assessment types
+      description: Returns a list of available assessment types and entitlements for the specified release.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: scanType
+        in: query
+        required: true
+        description: Type of scan to retrieve assessment types for
+        schema:
+          type: string
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - OpenSource
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Successful response with assessment types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseAssessmentTypeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/import-scan-session-id:
+    get:
+      operationId: getReleaseImportScanSessionId
+      summary: Fortify Get import scan session ID
+      description: Initiates an import scan session and returns a session identifier for uploading third-party scan results.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with import scan session ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetImportScanSessionIdResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /scans:
+    get:
+      operationId: listScans
+      summary: Fortify List scans
+      description: Retrieves a paginated list of DAST scans. Supports filtering by status, settings, and other criteria.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit_2'
+      - name: status
+        in: query
+        description: Filter by scan status
+        schema:
+          type: string
+          enum:
+          - Queued
+          - Pending
+          - Running
+          - Complete
+          - Failed
+          - Paused
+          - ImportingScanResults
+          - Unknown
+      - name: scanSettingsId
+        in: query
+        description: Filter by scan settings identifier
+        schema:
+          type: string
+          format: uuid
+      - name: orderBy
+        in: query
+        description: Field to sort results by
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: Sort direction
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      responses:
+        '200':
+          description: Successful response with list of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse_2'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '403':
+          $ref: '#/components/responses/Forbidden_2'
+  /scans/{scanId}:
+    get:
+      operationId: getScan
+      summary: Fortify Get scan
+      description: Retrieves details for a specific scan by identifier.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ScanId'
+      responses:
+        '200':
+          description: Successful response with scan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DastScan'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteScan
+      summary: Fortify Delete scan
+      description: Deletes a specific scan and its results.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ScanId'
+      responses:
+        '200':
+          description: Scan deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scans/{scanId}/action:
+    post:
+      operationId: performScanAction
+      summary: Fortify Perform scan action
+      description: Performs an action on a scan such as pausing, resuming, cancelling, or retrying.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ScanId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScanActionRequest'
+      responses:
+        '200':
+          description: Action performed successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scans/{scanId}/scan-log:
+    get:
+      operationId: getScanLog
+      summary: Fortify Get scan log
+      description: Retrieves the scan log for a specific scan.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ScanId'
+      responses:
+        '200':
+          description: Successful response with scan log content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scans/{scanId}/scan-summary:
+    get:
+      operationId: getScanSummary
+      summary: Fortify Get scan summary
+      description: Retrieves a summary of the scan results including vulnerability counts and scan metrics.
+      tags:
+      - Scans
+      parameters:
+      - $ref: '#/components/parameters/ScanId'
+      responses:
+        '200':
+          description: Successful response with scan summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DastScanSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scans/start-scan:
+    post:
+      operationId: startScan
+      summary: Fortify Start scan
+      description: Starts a new DAST scan using the specified scan settings configuration.
+      tags:
+      - Scans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartScanRequest'
+      responses:
+        '200':
+          description: Scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '403':
+          $ref: '#/components/responses/Forbidden_2'
+  /scans/start-scan-cicd:
+    post:
+      operationId: startScanCicd
+      summary: Fortify Start scan from CI/CD
+      description: Starts a new DAST scan from a CI/CD pipeline using a pre-configured CI/CD token that references the scan settings. This is the primary endpoint for CI/CD integration.
+      tags:
+      - Scans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartScanCicdRequest'
+      responses:
+        '200':
+          description: Scan started successfully from CI/CD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '403':
+          $ref: '#/components/responses/Forbidden_2'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized_2:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
+    Forbidden_2:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
+  parameters:
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    Limit_2:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    ScanId:
+      name: scanId
+      in: path
+      required: true
+      description: Unique identifier of the scan
+      schema:
+        type: string
+        format: uuid
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+  schemas:
+    ErrorResponse_2:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    PollingScanSummary:
+      type: object
+      description: Scan status for polling
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        analysisStatusTypeValue:
+          type: integer
+          format: int32
+          description: Numeric value of the analysis status
+        pauseDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              reason:
+                type: string
+              notes:
+                type: string
+        passFailStatus:
+          type: boolean
+          description: Whether the scan passes the security policy
+    AssessmentType:
+      type: object
+      description: Represents an assessment type
+      properties:
+        assessmentTypeId:
+          type: integer
+          format: int32
+          description: Unique identifier
+        name:
+          type: string
+          description: Assessment type name
+        scanType:
+          type: string
+          description: Scan type
+        entitlementId:
+          type: integer
+          format: int32
+          description: Associated entitlement
+        frequencyType:
+          type: string
+          description: Frequency type
+    Scan:
+      type: object
+      description: Represents a security scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        scanType:
+          type: string
+          description: Type of scan performed
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - OpenSource
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        startedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan started
+        completedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan completed
+        totalIssues:
+          type: integer
+          format: int32
+          description: Total number of issues found
+        issueCountCritical:
+          type: integer
+          format: int32
+          description: Number of critical issues found
+        issueCountHigh:
+          type: integer
+          format: int32
+          description: Number of high issues found
+        issueCountMedium:
+          type: integer
+          format: int32
+          description: Number of medium issues found
+        issueCountLow:
+          type: integer
+          format: int32
+          description: Number of low issues found
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the associated application
+    ScanListResponse:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of scans matching the query
+    GetImportScanSessionIdResponse:
+      type: object
+      description: Response with import scan session ID
+      properties:
+        importScanSessionId:
+          type: string
+          description: Session identifier for importing scan results
+    ReleaseAssessmentTypeListResponse:
+      type: object
+      description: List of available assessment types for a release
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentType'
+        totalCount:
+          type: integer
+          format: int32
+    ScanListResponse_2:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DastScan'
+        totalCount:
+          type: integer
+          format: int32
+    DastScan:
+      type: object
+      description: Represents a DAST scan
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier of the scan
+        name:
+          type: string
+          description: Name of the scan
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Identifier of the scan settings used
+        scanSettingsName:
+          type: string
+          description: Name of the scan settings
+        status:
+          type: string
+          description: Current scan status
+          enum:
+          - Queued
+          - Pending
+          - Running
+          - Complete
+          - Failed
+          - Paused
+          - ImportingScanResults
+          - Unknown
+        sensorId:
+          type: string
+          format: uuid
+          description: Identifier of the assigned sensor
+        sensorName:
+          type: string
+          description: Name of the assigned sensor
+        startTime:
+          type: string
+          format: date-time
+          description: Scan start time
+        endTime:
+          type: string
+          format: date-time
+          description: Scan end time
+        totalVulnerabilities:
+          type: integer
+          format: int32
+          description: Total number of vulnerabilities found
+        criticalCount:
+          type: integer
+          format: int32
+          description: Number of critical vulnerabilities
+        highCount:
+          type: integer
+          format: int32
+          description: Number of high vulnerabilities
+        mediumCount:
+          type: integer
+          format: int32
+          description: Number of medium vulnerabilities
+        lowCount:
+          type: integer
+          format: int32
+          description: Number of low vulnerabilities
+        infoCount:
+          type: integer
+          format: int32
+          description: Number of informational findings
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+          description: SSC application version identifier
+        createdDate:
+          type: string
+          format: date-time
+          description: Date when the scan was created
+    ScanActionRequest:
+      type: object
+      description: Request to perform an action on a scan
+      required:
+      - actionType
+      properties:
+        actionType:
+          type: string
+          description: Type of action to perform
+          enum:
+          - Pause
+          - Resume
+          - Cancel
+          - Retry
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    StartScanRequest:
+      type: object
+      description: Request to start a scan
+      required:
+      - scanSettingsId
+      properties:
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        name:
+          type: string
+          description: Optional name for the scan
+        overrides:
+          type: object
+          description: Optional scan parameter overrides
+          properties:
+            startUrl:
+              type: string
+              format: uri
+            scanPolicyId:
+              type: string
+              format: uuid
+            sensorPoolId:
+              type: string
+              format: uuid
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Identifier of the newly created scan
+        status:
+          type: string
+          description: Initial scan status
+    DastScanSummary:
+      type: object
+      description: Summary of a DAST scan
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Scan identifier
+        status:
+          type: string
+          description: Scan status
+        totalVulnerabilities:
+          type: integer
+          format: int32
+          description: Total vulnerabilities found
+        criticalCount:
+          type: integer
+          format: int32
+        highCount:
+          type: integer
+          format: int32
+        mediumCount:
+          type: integer
+          format: int32
+        lowCount:
+          type: integer
+          format: int32
+        infoCount:
+          type: integer
+          format: int32
+        pagesScanned:
+          type: integer
+          format: int32
+          description: Number of pages scanned
+        requestsMade:
+          type: integer
+          format: int32
+          description: Number of HTTP requests made
+        scanDuration:
+          type: string
+          description: Duration of the scan
+    StartScanCicdRequest:
+      type: object
+      description: Request to start a scan from CI/CD pipeline
+      required:
+      - cicdToken
+      properties:
+        cicdToken:
+          type: string
+          format: uuid
+          description: CI/CD token that references scan settings
+        name:
+          type: string
+          description: Optional name for the scan
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

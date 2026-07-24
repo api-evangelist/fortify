@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Audit Templates API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Audit Templates
+  description: Manage audit templates for vulnerability triage
+paths:
+  /api/v3/releases/{releaseId}/audit-action:
+    post:
+      operationId: setReleaseAuditAction
+      summary: Fortify Set audit action
+      description: Sets the audit action (such as approve or reject) for vulnerabilities in the specified release.
+      tags:
+      - Audit Templates
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAuditActionRequest'
+      responses:
+        '204':
+          description: Audit action applied successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/audit-options:
+    get:
+      operationId: getReleaseAuditOptions
+      summary: Fortify Get audit options
+      description: Retrieves the available audit options for the specified release, including statuses and custom fields.
+      tags:
+      - Audit Templates
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      responses:
+        '200':
+          description: Successful response with audit options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAuditOptionsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    PostAuditActionRequest:
+      type: object
+      description: Request body for setting audit action on vulnerabilities
+      properties:
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              vulnId:
+                type: integer
+                format: int32
+              analysisStatusType:
+                type: string
+              comment:
+                type: string
+    GetAuditOptionsResponse:
+      type: object
+      description: Available audit options
+      properties:
+        analysisStatusTypes:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              value:
+                type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+  parameters:
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

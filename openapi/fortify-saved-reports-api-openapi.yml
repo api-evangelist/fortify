@@ -1,0 +1,280 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Saved Reports API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Saved Reports
+  description: Manage saved report configurations
+paths:
+  /savedReports:
+    get:
+      operationId: listSavedReports
+      summary: Fortify List saved reports
+      description: Retrieves a list of generated reports.
+      tags:
+      - Saved Reports
+      parameters:
+      - $ref: '#/components/parameters/Start'
+      - $ref: '#/components/parameters/PageLimit'
+      - $ref: '#/components/parameters/Q'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with saved reports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedReportListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: generateReport
+      summary: Fortify Generate report
+      description: Schedules a report for generation based on a report definition and parameters.
+      tags:
+      - Saved Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateReportRequest'
+      responses:
+        '201':
+          description: Report generation scheduled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultSavedReport'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /savedReports/{id}:
+    get:
+      operationId: getSavedReport
+      summary: Fortify Get saved report
+      description: Retrieves details for a specific saved report.
+      tags:
+      - Saved Reports
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Successful response with saved report details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultSavedReport'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSavedReport
+      summary: Fortify Delete saved report
+      description: Deletes a saved report.
+      tags:
+      - Saved Reports
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Report deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResultVoid'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    GenerateReportRequest:
+      type: object
+      required:
+      - name
+      - reportDefinitionId
+      properties:
+        name:
+          type: string
+          description: Name for the generated report
+        reportDefinitionId:
+          type: integer
+          format: int64
+          description: Report definition to use
+        format:
+          type: string
+          description: Output format
+          enum:
+          - PDF
+          - DOC
+          - XLS
+        inputReportParameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              identifier:
+                type: string
+              paramValue:
+                type: string
+    ApiResultVoid:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    SavedReportListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SavedReport'
+        count:
+          type: integer
+          format: int32
+    ApiResultSavedReport:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SavedReport'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+    SavedReport:
+      type: object
+      description: A generated report
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        name:
+          type: string
+          description: Report name
+        status:
+          type: string
+          description: Report generation status
+          enum:
+          - SCHED_PROCESSING
+          - PROCESSING
+          - PROCESS_COMPLETE
+          - ERROR_PROCESSING
+        format:
+          type: string
+          description: Report output format
+        generationDate:
+          type: string
+          format: date-time
+          description: Date when the report was generated
+        reportDefinitionId:
+          type: integer
+          format: int64
+          description: Source report definition
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

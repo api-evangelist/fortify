@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Sensors API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Sensors
+  description: Manage WebInspect sensors
+paths:
+  /sensors:
+    get:
+      operationId: listSensors
+      summary: Fortify List sensors
+      description: Retrieves a list of WebInspect sensors registered with ScanCentral DAST, including their status and capabilities.
+      tags:
+      - Sensors
+      parameters:
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: status
+        in: query
+        description: Filter by sensor status
+        schema:
+          type: string
+          enum:
+          - Active
+          - Inactive
+          - Disabled
+      - name: sensorPoolId
+        in: query
+        description: Filter by sensor pool
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response with list of sensors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /sensors/{sensorId}:
+    get:
+      operationId: getSensor
+      summary: Fortify Get sensor
+      description: Retrieves details for a specific sensor.
+      tags:
+      - Sensors
+      parameters:
+      - name: sensorId
+        in: path
+        required: true
+        description: Unique identifier of the sensor
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response with sensor details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sensor'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSensor
+      summary: Fortify Update sensor
+      description: Updates a sensor's configuration such as pool assignment.
+      tags:
+      - Sensors
+      parameters:
+      - name: sensorId
+        in: path
+        required: true
+        description: Unique identifier of the sensor
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSensorRequest'
+      responses:
+        '200':
+          description: Sensor updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sensor'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSensor
+      summary: Fortify Delete sensor
+      description: Removes a sensor from ScanCentral DAST.
+      tags:
+      - Sensors
+      parameters:
+      - name: sensorId
+        in: path
+        required: true
+        description: Unique identifier of the sensor
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Sensor deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  schemas:
+    UpdateSensorRequest:
+      type: object
+      description: Request to update a sensor
+      properties:
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Sensor pool to assign the sensor to
+        status:
+          type: string
+          description: Sensor status
+          enum:
+          - Active
+          - Disabled
+    SensorListResponse:
+      type: object
+      description: List of sensors
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sensor'
+        totalCount:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    Sensor:
+      type: object
+      description: A WebInspect sensor
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Sensor name
+        hostName:
+          type: string
+          description: Host name of the sensor machine
+        ipAddress:
+          type: string
+          description: IP address of the sensor
+        status:
+          type: string
+          description: Current sensor status
+          enum:
+          - Active
+          - Inactive
+          - Disabled
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Assigned sensor pool
+        sensorPoolName:
+          type: string
+          description: Name of the assigned sensor pool
+        webInspectVersion:
+          type: string
+          description: Version of WebInspect on the sensor
+        lastHeartbeat:
+          type: string
+          format: date-time
+          description: Last heartbeat timestamp
+        operatingSystem:
+          type: string
+          description: Operating system of the sensor
+        isRunning:
+          type: boolean
+          description: Whether the sensor is currently running a scan
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

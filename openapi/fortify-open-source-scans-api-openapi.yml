@@ -1,0 +1,179 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Open Source Scans API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Open Source Scans
+  description: Manage open source / software composition analysis scans
+paths:
+  /api/v3/releases/{releaseId}/open-source-scans/start-scan:
+    post:
+      operationId: startOpenSourceScan
+      summary: Fortify Start open source scan
+      description: Initiates an open source / software composition analysis scan for the specified release.
+      tags:
+      - Open Source Scans
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - name: fragNo
+        in: query
+        description: Fragment number for chunked upload
+        schema:
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Byte offset for chunked upload
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Open source scan started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/open-source-scans/{scanId}/sbom:
+    get:
+      operationId: downloadOpenSourceSbom
+      summary: Fortify Download open source SBOM
+      description: Downloads the Software Bill of Materials (SBOM) file for the specified open source scan.
+      tags:
+      - Open Source Scans
+      parameters:
+      - name: scanId
+        in: path
+        required: true
+        description: Unique identifier of the open source scan
+        schema:
+          type: integer
+          format: int32
+      - name: format
+        in: query
+        description: SBOM output format
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SBOM file download
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created scan
+        analysisStatusType:
+          type: string
+          description: Initial analysis status
+        success:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

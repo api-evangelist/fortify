@@ -1,0 +1,358 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Vulnerabilities API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Vulnerabilities
+  description: Access and manage vulnerability findings
+paths:
+  /api/v3/applications/{applicationId}/issue-count-by-severity:
+    get:
+      operationId: getApplicationIssueCountBySeverity
+      summary: Fortify Get issue count by severity
+      description: Retrieves the number of issues grouped by severity level for the specified application.
+      tags:
+      - Vulnerabilities
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Successful response with issue counts by severity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationIssueCountListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}:
+    get:
+      operationId: getApplicationVulnerability
+      summary: Fortify Get application vulnerability
+      description: Returns a list of vulnerabilities matching the specified instance identifier within an application.
+      tags:
+      - Vulnerabilities
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      - name: vulnerabilityId
+        in: path
+        required: true
+        description: Unique identifier of the vulnerability
+        schema:
+          type: integer
+          format: int32
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: includeFixed
+        in: query
+        description: Include fixed vulnerabilities in results
+        schema:
+          type: boolean
+      - name: includeSuppressed
+        in: query
+        description: Include suppressed vulnerabilities in results
+        schema:
+          type: boolean
+      - name: keywordSearch
+        in: query
+        description: Keyword search filter for vulnerabilities
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with vulnerability details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /api/v3/releases/{releaseId}/category-rollups:
+    get:
+      operationId: listReleaseCategoryRollups
+      summary: Fortify List vulnerability category rollups
+      description: Returns a list and count of vulnerability categories grouped by severity for the specified release.
+      tags:
+      - Vulnerabilities
+      parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/OrderByDirection'
+      - name: showFixed
+        in: query
+        description: Include fixed vulnerabilities
+        schema:
+          type: boolean
+      - name: vulnerabilitiesSeverityType
+        in: query
+        description: Filter by severity type
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with category rollup data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryRollupsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+  schemas:
+    Vulnerability:
+      type: object
+      description: Represents a vulnerability finding
+      properties:
+        vulnId:
+          type: integer
+          format: int32
+          description: Unique identifier of the vulnerability
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        category:
+          type: string
+          description: Vulnerability category
+        kingdom:
+          type: string
+          description: Vulnerability kingdom classification
+        severity:
+          type: integer
+          format: int32
+          description: Severity level (1-4, where 4 is critical)
+        severityString:
+          type: string
+          description: Human-readable severity string
+        assignedUser:
+          type: string
+          description: User assigned to the vulnerability
+        isSuppressed:
+          type: boolean
+          description: Whether the vulnerability is suppressed
+        hasComments:
+          type: boolean
+          description: Whether the vulnerability has comments
+        status:
+          type: string
+          description: Current audit status
+        scanType:
+          type: string
+          description: Type of scan that found the vulnerability
+        primaryLocation:
+          type: string
+          description: Primary source location of the vulnerability
+        lineNumber:
+          type: integer
+          format: int32
+          description: Line number of the vulnerability
+        introducedDate:
+          type: string
+          format: date-time
+          description: Date when the vulnerability was first found
+        removedDate:
+          type: string
+          format: date-time
+          description: Date when the vulnerability was resolved
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    ApplicationIssueCountListResponse:
+      type: object
+      description: Issue counts grouped by severity for an application
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              severityValue:
+                type: integer
+                format: int32
+              count:
+                type: integer
+                format: int32
+              scanType:
+                type: string
+    CategoryRollupsResponse:
+      type: object
+      description: Vulnerability category rollup data
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Category name
+              critical:
+                type: integer
+                format: int32
+              high:
+                type: integer
+                format: int32
+              medium:
+                type: integer
+                format: int32
+              low:
+                type: integer
+                format: int32
+    VulnerabilityListResponse:
+      type: object
+      description: Paginated list of vulnerabilities
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of vulnerabilities matching the query
+  responses:
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

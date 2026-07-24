@@ -1,0 +1,411 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions Scan Settings API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: Scan Settings
+  description: Manage scan configuration settings
+paths:
+  /scan-settings:
+    get:
+      operationId: listScanSettings
+      summary: Fortify List scan settings
+      description: Retrieves a paginated list of scan settings configurations, which define how scans are executed.
+      tags:
+      - Scan Settings
+      parameters:
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - name: searchText
+        in: query
+        description: Search text to filter settings by name
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: Field to sort results by
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: Sort direction
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      responses:
+        '200':
+          description: Successful response with list of scan settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSettingsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createScanSettings
+      summary: Fortify Create scan settings
+      description: Creates a new scan settings configuration defining target URL, authentication, scan policy, and other parameters.
+      tags:
+      - Scan Settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScanSettingsRequest'
+      responses:
+        '201':
+          description: Scan settings created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /scan-settings/{scanSettingsId}:
+    get:
+      operationId: getScanSettings
+      summary: Fortify Get scan settings
+      description: Retrieves details for a specific scan settings configuration.
+      tags:
+      - Scan Settings
+      parameters:
+      - name: scanSettingsId
+        in: path
+        required: true
+        description: Unique identifier of the scan settings
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response with scan settings details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateScanSettings
+      summary: Fortify Update scan settings
+      description: Updates an existing scan settings configuration.
+      tags:
+      - Scan Settings
+      parameters:
+      - name: scanSettingsId
+        in: path
+        required: true
+        description: Unique identifier of the scan settings
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScanSettingsRequest'
+      responses:
+        '200':
+          description: Scan settings updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteScanSettings
+      summary: Fortify Delete scan settings
+      description: Deletes a scan settings configuration.
+      tags:
+      - Scan Settings
+      parameters:
+      - name: scanSettingsId
+        in: path
+        required: true
+        description: Unique identifier of the scan settings
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Scan settings deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scan-settings/{scanSettingsId}/cicd-token:
+    get:
+      operationId: getScanSettingsCicdToken
+      summary: Fortify Get CI/CD token
+      description: Retrieves the CI/CD token for a scan settings configuration, used to trigger scans from CI/CD pipelines.
+      tags:
+      - Scan Settings
+      parameters:
+      - name: scanSettingsId
+        in: path
+        required: true
+        description: Unique identifier of the scan settings
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response with CI/CD token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cicdToken:
+                    type: string
+                    format: uuid
+                    description: CI/CD token for triggering scans
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: regenerateScanSettingsCicdToken
+      summary: Fortify Regenerate CI/CD token
+      description: Regenerates the CI/CD token for a scan settings configuration, invalidating the previous token.
+      tags:
+      - Scan Settings
+      parameters:
+      - name: scanSettingsId
+        in: path
+        required: true
+        description: Unique identifier of the scan settings
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: CI/CD token regenerated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cicdToken:
+                    type: string
+                    format: uuid
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    UpdateScanSettingsRequest:
+      type: object
+      description: Request to update scan settings
+      properties:
+        name:
+          type: string
+        startUrl:
+          type: string
+          format: uri
+        scanPolicyId:
+          type: string
+          format: uuid
+        sensorPoolId:
+          type: string
+          format: uuid
+        crawlAuditMode:
+          type: string
+          enum:
+          - CrawlAndAudit
+          - CrawlOnly
+          - AuditOnly
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+    ScanSettingsListResponse:
+      type: object
+      description: Paginated list of scan settings
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanSettings'
+        totalCount:
+          type: integer
+          format: int32
+    CreateScanSettingsRequest:
+      type: object
+      description: Request to create scan settings
+      required:
+      - name
+      - startUrl
+      properties:
+        name:
+          type: string
+          description: Settings name
+        startUrl:
+          type: string
+          format: uri
+          description: Starting URL for the scan
+        scanPolicyId:
+          type: string
+          format: uuid
+          description: Scan policy to use
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Sensor pool for execution
+        crawlAuditMode:
+          type: string
+          enum:
+          - CrawlAndAudit
+          - CrawlOnly
+          - AuditOnly
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+          description: SSC application version for results
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    ScanSettings:
+      type: object
+      description: Scan settings configuration
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        name:
+          type: string
+          description: Settings name
+        startUrl:
+          type: string
+          format: uri
+          description: Starting URL for the scan
+        scanPolicyId:
+          type: string
+          format: uuid
+          description: Scan policy to use
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Sensor pool for scan execution
+        loginMacroEnabled:
+          type: boolean
+          description: Whether login macro is configured
+        crawlAuditMode:
+          type: string
+          description: Crawl and audit mode
+          enum:
+          - CrawlAndAudit
+          - CrawlOnly
+          - AuditOnly
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+          description: SSC application version for results upload
+        cicdToken:
+          type: string
+          format: uuid
+          description: Token for CI/CD integration
+        createdDate:
+          type: string
+          format: date-time
+          description: Date when the settings were created
+        modifiedDate:
+          type: string
+          format: date-time
+          description: Date when the settings were last modified
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index

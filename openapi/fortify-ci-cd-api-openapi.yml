@@ -1,0 +1,184 @@
+openapi: 3.1.0
+info:
+  title: Fortify on Demand Alert Definitions CI/CD API
+  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
+  version: v3
+  contact:
+    name: OpenText Fortify Support
+    url: https://www.opentext.com/support
+    email: fortify-support@microfocus.com
+  license:
+    name: Proprietary
+    url: https://www.opentext.com/about/legal/website-terms-of-use
+  x-logo:
+    url: https://www.microfocus.com/brand/fortify-logo.png
+servers:
+- url: https://api.ams.fortify.com
+  description: Fortify on Demand - Americas
+- url: https://api.emea.fortify.com
+  description: Fortify on Demand - EMEA
+- url: https://api.apac.fortify.com
+  description: Fortify on Demand - APAC
+security:
+- bearerAuth: []
+tags:
+- name: CI/CD
+  description: CI/CD pipeline integration endpoints
+paths:
+  /scans/start-scan-cicd:
+    post:
+      operationId: startScanCicd
+      summary: Fortify Start scan from CI/CD
+      description: Starts a new DAST scan from a CI/CD pipeline using a pre-configured CI/CD token that references the scan settings. This is the primary endpoint for CI/CD integration.
+      tags:
+      - CI/CD
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartScanCicdRequest'
+      responses:
+        '200':
+          description: Scan started successfully from CI/CD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartScanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /scan-settings/{scanSettingsId}/cicd-token:
+    get:
+      operationId: getScanSettingsCicdToken
+      summary: Fortify Get CI/CD token
+      description: Retrieves the CI/CD token for a scan settings configuration, used to trigger scans from CI/CD pipelines.
+      tags:
+      - CI/CD
+      parameters:
+      - name: scanSettingsId
+        in: path
+        required: true
+        description: Unique identifier of the scan settings
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response with CI/CD token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cicdToken:
+                    type: string
+                    format: uuid
+                    description: CI/CD token for triggering scans
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: regenerateScanSettingsCicdToken
+      summary: Fortify Regenerate CI/CD token
+      description: Regenerates the CI/CD token for a scan settings configuration, invalidating the previous token.
+      tags:
+      - CI/CD
+      parameters:
+      - name: scanSettingsId
+        in: path
+        required: true
+        description: Unique identifier of the scan settings
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: CI/CD token regenerated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cicdToken:
+                    type: string
+                    format: uuid
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    StartScanCicdRequest:
+      type: object
+      description: Request to start a scan from CI/CD pipeline
+      required:
+      - cicdToken
+      properties:
+        cicdToken:
+          type: string
+          format: uuid
+          description: CI/CD token that references scan settings
+        name:
+          type: string
+          description: Optional name for the scan
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Identifier of the newly created scan
+        status:
+          type: string
+          description: Initial scan status
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+externalDocs:
+  description: Fortify on Demand API Reference
+  url: https://api.ams.fortify.com/swagger/ui/index
