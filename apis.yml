@@ -3,89 +3,1453 @@ description: >-
   Fortify is a comprehensive application security platform from OpenText that provides static application security
   testing (SAST), dynamic application security testing (DAST), and software composition analysis (SCA) capabilities. It
   helps organizations identify and remediate vulnerabilities across the software development lifecycle.
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.microfocus.com/brand/fortify-logo.png
 url: https://www.opentext.com/products/fortify-on-demand
 created: '2024-01-15'
 modified: '2026-05-19'
 specificationVersion: '0.18'
 apis:
-  - name: Fortify on Demand API
-    description: >-
-      REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides
-      programmatic access to manage applications, initiate scans, and retrieve vulnerability results.
-    image: https://www.microfocus.com/brand/fortify-logo.png
-    baseURL: https://api.ams.fortify.com
-    humanURL: https://www.opentext.com/products/fortify-on-demand
-    tags:
-      - Application Security
-      - DAST
-      - SAST
-      - Security Testing
-      - Vulnerability Management
-    properties:
-      - type: Documentation
-        url: https://www.microfocus.com/documentation/fortify-on-demand/
-      - type: OpenAPI
-        url: https://api.ams.fortify.com/swagger/docs/v3
-      - type: OpenAPI
-        url: openapi/fortify-on-demand-openapi.yml
-      - type: APIReference
-        url: https://api.ams.fortify.com/swagger/ui/index
-      - type: Authentication
-        url: https://api.ams.fortify.com/oauth/token
-      - type: GettingStarted
-        url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
-    contact:
-      - type: Support
-        url: https://www.opentext.com/support
-      - type: Email
-        url: fortify-support@microfocus.com
-  - name: Fortify Software Security Center API
-    description: >-
-      REST API for the on-premise Fortify Software Security Center (SSC), which provides centralized management and
-      reporting of security assessment data across an organization's application portfolio.
-    image: https://www.microfocus.com/brand/fortify-logo.png
-    baseURL: https://your-ssc-server/ssc/api/v1
-    humanURL: https://www.microfocus.com/documentation/fortify-software-security-center/
-    tags:
-      - Application Security
-      - Compliance
-      - On-Premise
-      - Security Analytics
-      - Vulnerability Management
-    properties:
-      - type: Documentation
-        url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
-      - type: OpenAPI
-        url: openapi/fortify-software-security-center-openapi.yml
-      - type: APIReference
-        url: https://your-ssc-server/ssc/html/docs/api-reference/
-      - type: Authentication
-        url: https://your-ssc-server/ssc/api/v1/auth
-      - type: GettingStarted
-        url: https://www.microfocus.com/documentation/fortify-software-security-center/
-      - type: SDKs
-        url: https://github.com/fortify/ssc-restapi-client
-  - name: Fortify ScanCentral DAST API
-    description: >-
-      REST API for Fortify ScanCentral DAST, which provides centralized dynamic application security testing management.
-      Enables orchestration of DAST scans across distributed sensors and integration with CI/CD pipelines.
-    image: https://www.microfocus.com/brand/fortify-logo.png
-    baseURL: https://your-scancentral-dast-server/api/
-    humanURL: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/
-    tags:
-      - CI/CD
-      - DAST
-      - Dynamic Analysis
-      - Security Testing
-      - Web Application Security
-    properties:
-      - type: Documentation
-        url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
-      - type: OpenAPI
-        url: openapi/fortify-scancentral-dast-openapi.yml
-      - type: GettingStarted
-        url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-alert-definitions-api
+  name: Fortify Alert Definitions API
+  description: Manage alert definitions
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Alert Definitions
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-alert-definitions-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-api-keys-api
+  name: Fortify API Keys API
+  description: Manage API keys for programmatic access
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-applications-api
+  name: Fortify Applications API
+  description: Manage applications and their configurations
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-applications-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-artifacts-api
+  name: Fortify Artifacts API
+  description: Manage scan artifacts and uploads
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Artifacts
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-artifacts-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-attributes-api
+  name: Fortify Attributes API
+  description: Manage application attributes
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-attributes-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-audit-templates-api
+  name: Fortify Audit Templates API
+  description: Manage audit templates for vulnerability triage
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Audit Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-audit-templates-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-auth-entities-api
+  name: Fortify Auth Entities API
+  description: Manage authentication entities (users and LDAP groups)
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Auth Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-auth-entities-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-authentication-api
+  name: Fortify Authentication API
+  description: Manage authentication tokens
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-ci-cd-api
+  name: Fortify CI/CD API
+  description: CI/CD pipeline integration endpoints
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - CI/CD
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-ci-cd-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-cloud-pools-api
+  name: Fortify Cloud Pools API
+  description: Manage cloud scan worker pools
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Cloud Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-cloud-pools-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-custom-tags-api
+  name: Fortify Custom Tags API
+  description: Manage custom tags for issue triage
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Custom Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-custom-tags-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-dast-automated-scans-api
+  name: Fortify DAST Automated Scans API
+  description: Configure and start DAST automated scans
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - DAST Automated Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-dast-automated-scans-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-dynamic-scans-api
+  name: Fortify Dynamic Scans API
+  description: Configure and start dynamic application security testing scans
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Dynamic Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-dynamic-scans-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-event-logs-api
+  name: Fortify Event Logs API
+  description: Access tenant event logs
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Event Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-event-logs-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-features-api
+  name: Fortify Features API
+  description: System feature and connectivity information
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Features
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-features-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-file-tokens-api
+  name: Fortify File Tokens API
+  description: Manage file transfer tokens
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - File Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-file-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-issue-selectors-api
+  name: Fortify Issue Selectors API
+  description: Retrieve issue filter metadata
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Issue Selectors
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-issue-selectors-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-issues-api
+  name: Fortify Issues API
+  description: Access and manage vulnerability issues
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-issues-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-jobs-api
+  name: Fortify Jobs API
+  description: Monitor processing jobs
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-lookup-items-api
+  name: Fortify Lookup Items API
+  description: Retrieve lookup and reference data
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Lookup Items
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-lookup-items-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-microservices-api
+  name: Fortify Microservices API
+  description: Manage microservices within applications
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Microservices
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-microservices-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-mobile-scans-api
+  name: Fortify Mobile Scans API
+  description: Configure and start mobile application security testing scans
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Mobile Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-mobile-scans-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-notifications-api
+  name: Fortify Notifications API
+  description: Manage user notifications
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-open-source-components-api
+  name: Fortify Open Source Components API
+  description: View open source component data
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Open Source Components
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-open-source-components-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-open-source-scans-api
+  name: Fortify Open Source Scans API
+  description: Manage open source / software composition analysis scans
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Open Source Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-open-source-scans-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-performance-indicators-api
+  name: Fortify Performance Indicators API
+  description: Access performance indicator data
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Performance Indicators
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-performance-indicators-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-personal-access-tokens-api
+  name: Fortify Personal Access Tokens API
+  description: Manage personal access tokens
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Personal Access Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-personal-access-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-project-versions-api
+  name: Fortify Project Versions API
+  description: Manage application versions within projects
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Project Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-project-versions-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-projects-api
+  name: Fortify Projects API
+  description: Manage top-level projects
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-projects-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-releases-api
+  name: Fortify Releases API
+  description: Manage releases within applications
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Releases
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-releases-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-reports-api
+  name: Fortify Reports API
+  description: Generate and download reports
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-reports-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-saved-reports-api
+  name: Fortify Saved Reports API
+  description: Manage saved report configurations
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Saved Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-saved-reports-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-scan-policies-api
+  name: Fortify Scan Policies API
+  description: Manage scan policies
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Scan Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-scan-policies-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-scan-schedules-api
+  name: Fortify Scan Schedules API
+  description: Manage scheduled scans
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Scan Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-scan-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-scan-settings-api
+  name: Fortify Scan Settings API
+  description: Manage scan configuration settings
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Scan Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-scan-settings-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-scans-api
+  name: Fortify Scans API
+  description: View and manage security scans
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-scans-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-sensor-pools-api
+  name: Fortify Sensor Pools API
+  description: Manage sensor pools for scan distribution
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Sensor Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-sensor-pools-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-sensors-api
+  name: Fortify Sensors API
+  description: Manage WebInspect sensors
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Sensors
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-sensors-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-static-scans-api
+  name: Fortify Static Scans API
+  description: Configure and start static application security testing scans
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Static Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-static-scans-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-system-api
+  name: Fortify System API
+  description: System health and configuration
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-system-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-users-api
+  name: Fortify Users API
+  description: Manage local user accounts
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+- aid: fortify:fortify-vulnerabilities-api
+  name: Fortify Vulnerabilities API
+  description: Access and manage vulnerability findings
+  humanURL: https://www.opentext.com/products/fortify-on-demand
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Vulnerabilities
+  properties:
+  - type: OpenAPI
+    url: openapi/fortify-vulnerabilities-api-openapi.yml
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-on-demand/
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Authentication
+    url: https://api.ams.fortify.com/oauth/token
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
+  - type: APIReference
+    url: https://your-ssc-server/ssc/html/docs/api-reference/
+  - type: Authentication
+    url: https://your-ssc-server/ssc/api/v1/auth
+  - type: GettingStarted
+    url: https://www.microfocus.com/documentation/fortify-software-security-center/
+  - type: SDKs
+    url: https://github.com/fortify/ssc-restapi-client
+  - type: Documentation
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
+  - type: GettingStarted
+    url: >-
+      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
@@ -99,6 +1463,8 @@ tags:
   - Security Testing
   - Vulnerability Scanning
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/fortify/overview
   - type: AgenticAccess
     url: agentic-access/fortify-agentic-access.yml
   - type: DomainSecurity
