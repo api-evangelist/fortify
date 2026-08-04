@@ -1,0 +1,441 @@
+{
+  "info": {
+    "_postman_id": "4aa014c8-f7f4-48bd-8fae-2e2a990fcd6e",
+    "name": "Fortify on Demand Alert Definitions Jobs API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:05.000Z",
+    "updatedAt": "2026-07-28T01:43:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4aa014c8-f7f4-48bd-8fae-2e2a990fcd6e"
+  },
+  "item": [
+    {
+      "name": "jobs",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fortify Get job",
+              "id": "6a377d9d-4e55-4d47-8d90-fd4acd957813",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs/:id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "7982b494-7ae2-4fab-8b3a-16249b213fd8",
+                      "key": "id",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific processing job."
+              },
+              "response": [
+                {
+                  "id": "a13ede25-5f2a-440e-9f35-a6cd217ab213",
+                  "name": "Successful response with job details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"jobName\": \"<string>\",\n    \"jobGroup\": \"<string>\",\n    \"jobClassName\": \"<string>\",\n    \"state\": \"FAILED\",\n    \"priority\": \"<integer>\",\n    \"projectVersionId\": \"<long>\",\n    \"artifactId\": \"<long>\"\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:05.000Z",
+                  "updatedAt": "2026-07-28T01:43:05.000Z",
+                  "uid": "35240-a13ede25-5f2a-440e-9f35-a6cd217ab213"
+                },
+                {
+                  "id": "29c8bfc3-011d-438e-8842-6f4b2fb087a2",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:05.000Z",
+                  "updatedAt": "2026-07-28T01:43:05.000Z",
+                  "uid": "35240-29c8bfc3-011d-438e-8842-6f4b2fb087a2"
+                },
+                {
+                  "id": "e6cb8255-851d-4d9e-b6a0-ce4fac6e09f2",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:05.000Z",
+                  "updatedAt": "2026-07-28T01:43:05.000Z",
+                  "uid": "35240-e6cb8255-851d-4d9e-b6a0-ce4fac6e09f2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:05.000Z",
+              "updatedAt": "2026-07-28T01:43:05.000Z",
+              "uid": "35240-6a377d9d-4e55-4d47-8d90-fd4acd957813"
+            }
+          ],
+          "id": "9f9598f7-20db-4616-a5c9-62799af6ed79",
+          "createdAt": "2026-07-28T01:43:05.000Z",
+          "updatedAt": "2026-07-28T01:43:05.000Z",
+          "uid": "35240-9f9598f7-20db-4616-a5c9-62799af6ed79"
+        },
+        {
+          "name": "Fortify List jobs",
+          "id": "4be56469-aa38-4fe7-bdd1-b97744ba5d4a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/jobs?start=0&limit=200&q=<string>&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jobs"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves a paginated list of processing jobs (artifact processing, report generation, etc.)."
+          },
+          "response": [
+            {
+              "id": "b018f00f-0102-4d82-a6b7-5c68740da004",
+              "name": "Successful response with list of jobs",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs?start=0&limit=200&q=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"jobName\": \"<string>\",\n      \"jobGroup\": \"<string>\",\n      \"jobClassName\": \"<string>\",\n      \"state\": \"PREPARED\",\n      \"priority\": \"<integer>\",\n      \"projectVersionId\": \"<long>\",\n      \"artifactId\": \"<long>\"\n    },\n    {\n      \"jobName\": \"<string>\",\n      \"jobGroup\": \"<string>\",\n      \"jobClassName\": \"<string>\",\n      \"state\": \"RUNNING\",\n      \"priority\": \"<integer>\",\n      \"projectVersionId\": \"<long>\",\n      \"artifactId\": \"<long>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:05.000Z",
+              "updatedAt": "2026-07-28T01:43:05.000Z",
+              "uid": "35240-b018f00f-0102-4d82-a6b7-5c68740da004"
+            },
+            {
+              "id": "f2cb1d8b-929f-4ac6-ae05-4f6e38581acf",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs?start=0&limit=200&q=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:05.000Z",
+              "updatedAt": "2026-07-28T01:43:05.000Z",
+              "uid": "35240-f2cb1d8b-929f-4ac6-ae05-4f6e38581acf"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:05.000Z",
+          "updatedAt": "2026-07-28T01:43:05.000Z",
+          "uid": "35240-4be56469-aa38-4fe7-bdd1-b97744ba5d4a"
+        }
+      ],
+      "id": "378622ae-274e-4290-8bcc-b3348c37ff72",
+      "createdAt": "2026-07-28T01:43:05.000Z",
+      "updatedAt": "2026-07-28T01:43:05.000Z",
+      "uid": "35240-378622ae-274e-4290-8bcc-b3348c37ff72"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

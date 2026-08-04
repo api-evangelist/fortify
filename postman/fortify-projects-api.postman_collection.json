@@ -1,0 +1,1280 @@
+{
+  "info": {
+    "_postman_id": "ed374a13-5896-4ef9-a28d-9317384fda64",
+    "name": "Fortify on Demand Alert Definitions Projects API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:34.000Z",
+    "updatedAt": "2026-07-28T01:43:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ed374a13-5896-4ef9-a28d-9317384fda64"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fortify Get project",
+              "id": "365a3b9d-1a37-4104-98b0-31c77ec94a41",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "2641ae77-b066-4d21-84f3-d12ffcc23481",
+                      "key": "id",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific project by identifier."
+              },
+              "response": [
+                {
+                  "id": "0dcbed9b-8eff-494c-9235-893f5aca8532",
+                  "name": "Successful response with project details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"creationDate\": \"<dateTime>\",\n    \"issueTemplateId\": \"<string>\"\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-0dcbed9b-8eff-494c-9235-893f5aca8532"
+                },
+                {
+                  "id": "62d85da1-e4bf-4cbe-ae43-332945752822",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-62d85da1-e4bf-4cbe-ae43-332945752822"
+                },
+                {
+                  "id": "df960189-7f33-471c-9ba9-fd764a5651b5",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-df960189-7f33-471c-9ba9-fd764a5651b5"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-365a3b9d-1a37-4104-98b0-31c77ec94a41"
+            },
+            {
+              "name": "Fortify Update project",
+              "id": "0b9fb2ac-5add-437e-92c6-70c63a9aabf3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a2ef65e8-982a-4341-be57-7e506ae2c449",
+                      "key": "id",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Updates an existing project's properties."
+              },
+              "response": [
+                {
+                  "id": "eba84577-9294-4dbf-86c9-ea0149f3dccb",
+                  "name": "Project updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"creationDate\": \"<dateTime>\",\n    \"issueTemplateId\": \"<string>\"\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-eba84577-9294-4dbf-86c9-ea0149f3dccb"
+                },
+                {
+                  "id": "c17e13b5-d487-4f1a-a764-d0232cef5eb1",
+                  "name": "Bad request - invalid parameters or request body",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-c17e13b5-d487-4f1a-a764-d0232cef5eb1"
+                },
+                {
+                  "id": "44293916-770f-47e2-b84e-0e508de85934",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-44293916-770f-47e2-b84e-0e508de85934"
+                },
+                {
+                  "id": "15530348-1d42-47c3-9b2d-039bce283f6e",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-15530348-1d42-47c3-9b2d-039bce283f6e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-0b9fb2ac-5add-437e-92c6-70c63a9aabf3"
+            },
+            {
+              "name": "Fortify Delete project",
+              "id": "cb257031-a447-4338-977a-f3fd4e288f66",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "efe51958-17be-464f-966f-06bf370333c3",
+                      "key": "id",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Permanently deletes a project and all associated versions and data."
+              },
+              "response": [
+                {
+                  "id": "35f5a11e-a49b-4d00-b413-24b00ff79959",
+                  "name": "Project deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-35f5a11e-a49b-4d00-b413-24b00ff79959"
+                },
+                {
+                  "id": "ff71a8a8-4229-4977-a44f-cb334a143cfe",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-ff71a8a8-4229-4977-a44f-cb334a143cfe"
+                },
+                {
+                  "id": "7ab91a49-85e6-485c-87d2-53d34f10bf5f",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:34.000Z",
+                  "updatedAt": "2026-07-28T01:43:34.000Z",
+                  "uid": "35240-7ab91a49-85e6-485c-87d2-53d34f10bf5f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-cb257031-a447-4338-977a-f3fd4e288f66"
+            }
+          ],
+          "id": "bc7fe1e2-b789-42a5-9105-1bf92fd57d74",
+          "createdAt": "2026-07-28T01:43:34.000Z",
+          "updatedAt": "2026-07-28T01:43:34.000Z",
+          "uid": "35240-bc7fe1e2-b789-42a5-9105-1bf92fd57d74"
+        },
+        {
+          "name": "Fortify List projects",
+          "id": "68abced7-8ce0-4e93-a625-abc367876906",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects?start=0&limit=200&q=<string>&orderby=<string>&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort field and direction (e.g., name for ascending, -name for descending)",
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves a paginated list of projects. Projects are the top-level organizational unit containing one or more application versions."
+          },
+          "response": [
+            {
+              "id": "a74f2395-7f0d-4616-b6df-d8188f9e8053",
+              "name": "Successful response with list of projects",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects?start=0&limit=200&q=<string>&orderby=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field and direction (e.g., name for ascending, -name for descending)",
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"issueTemplateId\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"issueTemplateId\": \"<string>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-a74f2395-7f0d-4616-b6df-d8188f9e8053"
+            },
+            {
+              "id": "19c67037-7c68-495b-8c8d-a15e2b1aef5f",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects?start=0&limit=200&q=<string>&orderby=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field and direction (e.g., name for ascending, -name for descending)",
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-19c67037-7c68-495b-8c8d-a15e2b1aef5f"
+            },
+            {
+              "id": "7cbb893d-bc7c-4549-82cb-f34b2aaa0aff",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects?start=0&limit=200&q=<string>&orderby=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field and direction (e.g., name for ascending, -name for descending)",
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-7cbb893d-bc7c-4549-82cb-f34b2aaa0aff"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:34.000Z",
+          "updatedAt": "2026-07-28T01:43:34.000Z",
+          "uid": "35240-68abced7-8ce0-4e93-a625-abc367876906"
+        },
+        {
+          "name": "Fortify Create project",
+          "id": "d815bb9c-f1e0-41eb-909f-0d9ddab2316b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "Creates a new project for organizing application versions."
+          },
+          "response": [
+            {
+              "id": "a844e000-2991-446e-9e88-ef3462dc25b2",
+              "name": "Project created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"creationDate\": \"<dateTime>\",\n    \"issueTemplateId\": \"<string>\"\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-a844e000-2991-446e-9e88-ef3462dc25b2"
+            },
+            {
+              "id": "15bd8580-48f4-440d-901b-cd8a7b44486a",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-15bd8580-48f4-440d-901b-cd8a7b44486a"
+            },
+            {
+              "id": "8af0a1a3-d7d3-4fd3-b7b1-dd72add9b3fb",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-8af0a1a3-d7d3-4fd3-b7b1-dd72add9b3fb"
+            },
+            {
+              "id": "43964be6-bef0-4f71-832b-036b717491c8",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:34.000Z",
+              "updatedAt": "2026-07-28T01:43:34.000Z",
+              "uid": "35240-43964be6-bef0-4f71-832b-036b717491c8"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:34.000Z",
+          "updatedAt": "2026-07-28T01:43:34.000Z",
+          "uid": "35240-d815bb9c-f1e0-41eb-909f-0d9ddab2316b"
+        }
+      ],
+      "id": "ff45ba81-7c28-4a44-bf68-a28f38f07c54",
+      "createdAt": "2026-07-28T01:43:34.000Z",
+      "updatedAt": "2026-07-28T01:43:34.000Z",
+      "uid": "35240-ff45ba81-7c28-4a44-bf68-a28f38f07c54"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

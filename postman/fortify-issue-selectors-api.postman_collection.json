@@ -1,0 +1,273 @@
+{
+  "info": {
+    "_postman_id": "ae1cf219-5fd2-4a91-9053-09d5bc6ea52c",
+    "name": "Fortify on Demand Alert Definitions Issue Selectors API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:00.000Z",
+    "updatedAt": "2026-07-28T01:43:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ae1cf219-5fd2-4a91-9053-09d5bc6ea52c"
+  },
+  "item": [
+    {
+      "name": "projectVersions",
+      "item": [
+        {
+          "name": "{parentId}",
+          "item": [
+            {
+              "name": "issueSelectorSet",
+              "item": [
+                {
+                  "name": "Fortify Get issue selector set",
+                  "id": "808168e3-248d-46bf-b09b-0badd379c365",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/issueSelectorSet?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "issueSelectorSet"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "ceededdd-d5ba-4caf-9930-cc62d7ad1c0a",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the issue selector set (filter metadata) for the specified project version, providing available groupings, filters, and filter sets for issue queries."
+                  },
+                  "response": [
+                    {
+                      "id": "4c20eb22-c9c8-4692-93cd-6fdd9d1039fa",
+                      "name": "Successful response with issue selector set",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/issueSelectorSet?fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "issueSelectorSet"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"filterSets\": [\n      {\n        \"guid\": \"<string>\",\n        \"title\": \"<string>\",\n        \"defaultFilterSet\": \"<boolean>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"title\": \"<string>\",\n        \"defaultFilterSet\": \"<boolean>\"\n      }\n    ],\n    \"groupBySet\": [\n      {\n        \"guid\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"entityType\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"entityType\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T01:43:00.000Z",
+                      "updatedAt": "2026-07-28T01:43:00.000Z",
+                      "uid": "35240-4c20eb22-c9c8-4692-93cd-6fdd9d1039fa"
+                    },
+                    {
+                      "id": "57080ab3-6ce3-427e-a2f1-2debd168d0bf",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/issueSelectorSet?fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "issueSelectorSet"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:43:00.000Z",
+                      "updatedAt": "2026-07-28T01:43:00.000Z",
+                      "uid": "35240-57080ab3-6ce3-427e-a2f1-2debd168d0bf"
+                    },
+                    {
+                      "id": "d1cee13c-b89c-4121-9968-86c357e382b2",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/issueSelectorSet?fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "issueSelectorSet"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:43:00.000Z",
+                      "updatedAt": "2026-07-28T01:43:00.000Z",
+                      "uid": "35240-d1cee13c-b89c-4121-9968-86c357e382b2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:43:00.000Z",
+                  "updatedAt": "2026-07-28T01:43:00.000Z",
+                  "uid": "35240-808168e3-248d-46bf-b09b-0badd379c365"
+                }
+              ],
+              "id": "395a7d91-ef97-4eac-97f8-5829614a1eb2",
+              "createdAt": "2026-07-28T01:43:00.000Z",
+              "updatedAt": "2026-07-28T01:43:00.000Z",
+              "uid": "35240-395a7d91-ef97-4eac-97f8-5829614a1eb2"
+            }
+          ],
+          "id": "235ffd18-bdcd-432f-8229-9ca304214404",
+          "createdAt": "2026-07-28T01:43:00.000Z",
+          "updatedAt": "2026-07-28T01:43:00.000Z",
+          "uid": "35240-235ffd18-bdcd-432f-8229-9ca304214404"
+        }
+      ],
+      "id": "fc6c26d4-88b6-4eb0-9064-bc5c864de1c6",
+      "createdAt": "2026-07-28T01:43:00.000Z",
+      "updatedAt": "2026-07-28T01:43:00.000Z",
+      "uid": "35240-fc6c26d4-88b6-4eb0-9064-bc5c864de1c6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

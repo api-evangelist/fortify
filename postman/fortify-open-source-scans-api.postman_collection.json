@@ -1,0 +1,891 @@
+{
+  "info": {
+    "_postman_id": "d00afa09-120d-457c-933f-6ec34b5727cb",
+    "name": "Fortify on Demand Alert Definitions Open Source Scans API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:25.000Z",
+    "updatedAt": "2026-07-28T01:43:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d00afa09-120d-457c-933f-6ec34b5727cb"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "releases",
+              "item": [
+                {
+                  "name": "{releaseId}",
+                  "item": [
+                    {
+                      "name": "open-source-scans",
+                      "item": [
+                        {
+                          "name": "start-scan",
+                          "item": [
+                            {
+                              "name": "Fortify Start open source scan",
+                              "id": "958a2733-e13d-4b38-9faa-70ba49aabf10",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/open-source-scans/start-scan?fragNo=<integer>&offset=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "open-source-scans",
+                                    "start-scan"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Fragment number for chunked upload",
+                                      "key": "fragNo",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Byte offset for chunked upload",
+                                      "key": "offset",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7dee48ab-3a22-4f4a-ae8e-cb9fd39a277c",
+                                      "key": "releaseId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the release"
+                                    }
+                                  ]
+                                },
+                                "description": "Initiates an open source / software composition analysis scan for the specified release."
+                              },
+                              "response": [
+                                {
+                                  "id": "06621832-5da7-445b-b646-95690424458b",
+                                  "name": "Open source scan started successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/open-source-scans/start-scan?fragNo=<integer>&offset=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "open-source-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Fragment number for chunked upload",
+                                          "key": "fragNo",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Byte offset for chunked upload",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"scanId\": \"<integer>\",\n  \"analysisStatusType\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-07-28T01:43:26.000Z",
+                                  "updatedAt": "2026-07-28T01:43:26.000Z",
+                                  "uid": "35240-06621832-5da7-445b-b646-95690424458b"
+                                },
+                                {
+                                  "id": "eefc359e-85ac-4f32-a805-467c37ba38c3",
+                                  "name": "Bad request - invalid parameters or request body",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/open-source-scans/start-scan?fragNo=<integer>&offset=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "open-source-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Fragment number for chunked upload",
+                                          "key": "fragNo",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Byte offset for chunked upload",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:26.000Z",
+                                  "updatedAt": "2026-07-28T01:43:26.000Z",
+                                  "uid": "35240-eefc359e-85ac-4f32-a805-467c37ba38c3"
+                                },
+                                {
+                                  "id": "4f58e790-195e-4746-8f1a-b911d05f18d6",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/open-source-scans/start-scan?fragNo=<integer>&offset=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "open-source-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Fragment number for chunked upload",
+                                          "key": "fragNo",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Byte offset for chunked upload",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:26.000Z",
+                                  "updatedAt": "2026-07-28T01:43:26.000Z",
+                                  "uid": "35240-4f58e790-195e-4746-8f1a-b911d05f18d6"
+                                },
+                                {
+                                  "id": "ca62dd59-5ebc-4d1e-8127-7c1cb39765fe",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/open-source-scans/start-scan?fragNo=<integer>&offset=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "open-source-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Fragment number for chunked upload",
+                                          "key": "fragNo",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Byte offset for chunked upload",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:26.000Z",
+                                  "updatedAt": "2026-07-28T01:43:26.000Z",
+                                  "uid": "35240-ca62dd59-5ebc-4d1e-8127-7c1cb39765fe"
+                                },
+                                {
+                                  "id": "d1c6f237-5f09-455c-b68d-af1f7662630b",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/open-source-scans/start-scan?fragNo=<integer>&offset=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "open-source-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Fragment number for chunked upload",
+                                          "key": "fragNo",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Byte offset for chunked upload",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:26.000Z",
+                                  "updatedAt": "2026-07-28T01:43:26.000Z",
+                                  "uid": "35240-d1c6f237-5f09-455c-b68d-af1f7662630b"
+                                },
+                                {
+                                  "id": "e667a7ce-66ef-47d9-8902-bdf0de2cfe99",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/open-source-scans/start-scan?fragNo=<integer>&offset=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "open-source-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Fragment number for chunked upload",
+                                          "key": "fragNo",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Byte offset for chunked upload",
+                                          "key": "offset",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:26.000Z",
+                                  "updatedAt": "2026-07-28T01:43:26.000Z",
+                                  "uid": "35240-e667a7ce-66ef-47d9-8902-bdf0de2cfe99"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:43:26.000Z",
+                              "updatedAt": "2026-07-28T01:43:26.000Z",
+                              "uid": "35240-958a2733-e13d-4b38-9faa-70ba49aabf10"
+                            }
+                          ],
+                          "id": "1e7625e3-c635-48cb-963b-425edc5b55c5",
+                          "createdAt": "2026-07-28T01:43:26.000Z",
+                          "updatedAt": "2026-07-28T01:43:26.000Z",
+                          "uid": "35240-1e7625e3-c635-48cb-963b-425edc5b55c5"
+                        }
+                      ],
+                      "id": "39537b90-b3c7-4eec-91da-001072988453",
+                      "createdAt": "2026-07-28T01:43:26.000Z",
+                      "updatedAt": "2026-07-28T01:43:26.000Z",
+                      "uid": "35240-39537b90-b3c7-4eec-91da-001072988453"
+                    }
+                  ],
+                  "id": "a1d7ad0d-5a8d-445f-aba3-e94bb16d56cb",
+                  "createdAt": "2026-07-28T01:43:26.000Z",
+                  "updatedAt": "2026-07-28T01:43:26.000Z",
+                  "uid": "35240-a1d7ad0d-5a8d-445f-aba3-e94bb16d56cb"
+                }
+              ],
+              "id": "98e8012b-742c-427c-b278-e67d0579a199",
+              "createdAt": "2026-07-28T01:43:26.000Z",
+              "updatedAt": "2026-07-28T01:43:26.000Z",
+              "uid": "35240-98e8012b-742c-427c-b278-e67d0579a199"
+            },
+            {
+              "name": "open-source-scans",
+              "item": [
+                {
+                  "name": "{scanId}",
+                  "item": [
+                    {
+                      "name": "sbom",
+                      "item": [
+                        {
+                          "name": "Fortify Download open source SBOM",
+                          "id": "cc7f2c44-43e5-4b1a-8860-2e4525c2dd2e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/open-source-scans/:scanId/sbom?format=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "open-source-scans",
+                                ":scanId",
+                                "sbom"
+                              ],
+                              "query": [
+                                {
+                                  "description": "SBOM output format",
+                                  "key": "format",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "546ae912-c7c0-4095-ab4c-f2f8e5e7ad21",
+                                  "key": "scanId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the open source scan"
+                                }
+                              ]
+                            },
+                            "description": "Downloads the Software Bill of Materials (SBOM) file for the specified open source scan."
+                          },
+                          "response": [
+                            {
+                              "id": "55ecd3bd-5cca-49b7-930d-6be146257979",
+                              "name": "SBOM file download",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/octet-stream"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/open-source-scans/:scanId/sbom?format=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "open-source-scans",
+                                    ":scanId",
+                                    "sbom"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "SBOM output format",
+                                      "key": "format",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "scanId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/octet-stream"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T01:43:26.000Z",
+                              "updatedAt": "2026-07-28T01:43:26.000Z",
+                              "uid": "35240-55ecd3bd-5cca-49b7-930d-6be146257979"
+                            },
+                            {
+                              "id": "c16049c8-7d62-4ca9-82f2-e3264ccd6e84",
+                              "name": "Unauthorized - authentication required or token expired",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/open-source-scans/:scanId/sbom?format=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "open-source-scans",
+                                    ":scanId",
+                                    "sbom"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "SBOM output format",
+                                      "key": "format",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "scanId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:26.000Z",
+                              "updatedAt": "2026-07-28T01:43:26.000Z",
+                              "uid": "35240-c16049c8-7d62-4ca9-82f2-e3264ccd6e84"
+                            },
+                            {
+                              "id": "1e39e6b0-e230-4e33-8097-9f52ba8b5aa8",
+                              "name": "Forbidden - insufficient permissions or scopes",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/open-source-scans/:scanId/sbom?format=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "open-source-scans",
+                                    ":scanId",
+                                    "sbom"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "SBOM output format",
+                                      "key": "format",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "scanId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:26.000Z",
+                              "updatedAt": "2026-07-28T01:43:26.000Z",
+                              "uid": "35240-1e39e6b0-e230-4e33-8097-9f52ba8b5aa8"
+                            },
+                            {
+                              "id": "b46ceb32-9018-4446-a3f3-149a8e93babb",
+                              "name": "Not found - the specified resource does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/open-source-scans/:scanId/sbom?format=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "open-source-scans",
+                                    ":scanId",
+                                    "sbom"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "SBOM output format",
+                                      "key": "format",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "scanId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:26.000Z",
+                              "updatedAt": "2026-07-28T01:43:26.000Z",
+                              "uid": "35240-b46ceb32-9018-4446-a3f3-149a8e93babb"
+                            },
+                            {
+                              "id": "876a1cbe-c9bb-47e3-94fd-c7b0c8e8f27a",
+                              "name": "Too many requests - rate limit exceeded",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/open-source-scans/:scanId/sbom?format=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "open-source-scans",
+                                    ":scanId",
+                                    "sbom"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "SBOM output format",
+                                      "key": "format",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "scanId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:26.000Z",
+                              "updatedAt": "2026-07-28T01:43:26.000Z",
+                              "uid": "35240-876a1cbe-c9bb-47e3-94fd-c7b0c8e8f27a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:43:26.000Z",
+                          "updatedAt": "2026-07-28T01:43:26.000Z",
+                          "uid": "35240-cc7f2c44-43e5-4b1a-8860-2e4525c2dd2e"
+                        }
+                      ],
+                      "id": "cff74c89-d799-409f-84b2-9ba0edb2a956",
+                      "createdAt": "2026-07-28T01:43:26.000Z",
+                      "updatedAt": "2026-07-28T01:43:26.000Z",
+                      "uid": "35240-cff74c89-d799-409f-84b2-9ba0edb2a956"
+                    }
+                  ],
+                  "id": "641b46b9-0a66-4102-8daf-ee8afa8c7fde",
+                  "createdAt": "2026-07-28T01:43:26.000Z",
+                  "updatedAt": "2026-07-28T01:43:26.000Z",
+                  "uid": "35240-641b46b9-0a66-4102-8daf-ee8afa8c7fde"
+                }
+              ],
+              "id": "237dff25-23c4-4f8d-9c6a-1382a7d58b8a",
+              "createdAt": "2026-07-28T01:43:26.000Z",
+              "updatedAt": "2026-07-28T01:43:26.000Z",
+              "uid": "35240-237dff25-23c4-4f8d-9c6a-1382a7d58b8a"
+            }
+          ],
+          "id": "55609c40-2e0e-4622-a595-11ac16441ed4",
+          "createdAt": "2026-07-28T01:43:26.000Z",
+          "updatedAt": "2026-07-28T01:43:26.000Z",
+          "uid": "35240-55609c40-2e0e-4622-a595-11ac16441ed4"
+        }
+      ],
+      "id": "05371dae-001f-46b3-87df-3a65b6fcee6e",
+      "createdAt": "2026-07-28T01:43:26.000Z",
+      "updatedAt": "2026-07-28T01:43:26.000Z",
+      "uid": "35240-05371dae-001f-46b3-87df-3a65b6fcee6e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

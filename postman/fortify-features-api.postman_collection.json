@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "a9a15364-80cc-4f18-9c25-3c344e223cef",
+    "name": "Fortify on Demand Alert Definitions Features API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:56.000Z",
+    "updatedAt": "2026-07-28T01:42:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a9a15364-80cc-4f18-9c25-3c344e223cef"
+  },
+  "item": [
+    {
+      "name": "features",
+      "item": [
+        {
+          "name": "Fortify List features",
+          "id": "f958e877-67e2-4060-bd3d-62b8ea72a6be",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/features",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features"
+              ]
+            },
+            "description": "Retrieves a list of system features and connectivity information, useful for verifying API availability."
+          },
+          "response": [
+            {
+              "id": "7c980bfb-160b-45e3-947a-b6c69aefe5ba",
+              "name": "Successful response with feature list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/features",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "features"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:42:56.000Z",
+              "updatedAt": "2026-07-28T01:42:56.000Z",
+              "uid": "35240-7c980bfb-160b-45e3-947a-b6c69aefe5ba"
+            },
+            {
+              "id": "8ca10974-fbca-4bee-ba30-51d6246d3849",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/features",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "features"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:42:56.000Z",
+              "updatedAt": "2026-07-28T01:42:56.000Z",
+              "uid": "35240-8ca10974-fbca-4bee-ba30-51d6246d3849"
+            }
+          ],
+          "createdAt": "2026-07-28T01:42:56.000Z",
+          "updatedAt": "2026-07-28T01:42:56.000Z",
+          "uid": "35240-f958e877-67e2-4060-bd3d-62b8ea72a6be"
+        }
+      ],
+      "id": "6f2cc83b-ee6c-4316-bec2-1324569cbebf",
+      "createdAt": "2026-07-28T01:42:56.000Z",
+      "updatedAt": "2026-07-28T01:42:56.000Z",
+      "uid": "35240-6f2cc83b-ee6c-4316-bec2-1324569cbebf"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

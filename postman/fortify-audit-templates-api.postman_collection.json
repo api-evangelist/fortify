@@ -1,0 +1,820 @@
+{
+  "info": {
+    "_postman_id": "6ee1377b-2fec-42fb-8fa7-e99fb22fea9d",
+    "name": "Fortify on Demand Alert Definitions Audit Templates API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:33.000Z",
+    "updatedAt": "2026-07-28T01:42:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6ee1377b-2fec-42fb-8fa7-e99fb22fea9d"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "releases",
+              "item": [
+                {
+                  "name": "{releaseId}",
+                  "item": [
+                    {
+                      "name": "audit-action",
+                      "item": [
+                        {
+                          "name": "Fortify Set audit action",
+                          "id": "d05acb77-f22a-467e-8b80-b18858c10632",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"values\": [\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "releases",
+                                ":releaseId",
+                                "audit-action"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "86377a39-1877-467f-a6e9-ad53dacca878",
+                                  "key": "releaseId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the release"
+                                }
+                              ]
+                            },
+                            "description": "Sets the audit action (such as approve or reject) for vulnerabilities in the specified release."
+                          },
+                          "response": [
+                            {
+                              "id": "10f42d95-68f5-40c6-8e19-6a8a61461150",
+                              "name": "Audit action applied successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"values\": [\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-action",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-action"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-10f42d95-68f5-40c6-8e19-6a8a61461150"
+                            },
+                            {
+                              "id": "2d9e05e6-05ac-46c1-803c-e34a6d828f55",
+                              "name": "Bad request - invalid parameters or request body",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"values\": [\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-action",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-action"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-2d9e05e6-05ac-46c1-803c-e34a6d828f55"
+                            },
+                            {
+                              "id": "8dbbf016-c302-4344-9d7e-91212c7525a7",
+                              "name": "Unauthorized - authentication required or token expired",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"values\": [\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-action",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-action"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-8dbbf016-c302-4344-9d7e-91212c7525a7"
+                            },
+                            {
+                              "id": "e736baf6-28c6-4185-ad6f-d90c66e1101f",
+                              "name": "Forbidden - insufficient permissions or scopes",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"values\": [\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-action",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-action"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-e736baf6-28c6-4185-ad6f-d90c66e1101f"
+                            },
+                            {
+                              "id": "483d5382-585e-42d3-ae6a-c46b949925f9",
+                              "name": "Not found - the specified resource does not exist",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"values\": [\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-action",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-action"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-483d5382-585e-42d3-ae6a-c46b949925f9"
+                            },
+                            {
+                              "id": "06e00357-0d1c-4e23-80c1-e5d5b73aea42",
+                              "name": "Too many requests - rate limit exceeded",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"values\": [\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"vulnId\": \"<integer>\",\n      \"analysisStatusType\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-action",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-action"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-06e00357-0d1c-4e23-80c1-e5d5b73aea42"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:42:34.000Z",
+                          "updatedAt": "2026-07-28T01:42:34.000Z",
+                          "uid": "35240-d05acb77-f22a-467e-8b80-b18858c10632"
+                        }
+                      ],
+                      "id": "0aaa8998-7247-4f01-8af5-f9534f49ec53",
+                      "createdAt": "2026-07-28T01:42:34.000Z",
+                      "updatedAt": "2026-07-28T01:42:34.000Z",
+                      "uid": "35240-0aaa8998-7247-4f01-8af5-f9534f49ec53"
+                    },
+                    {
+                      "name": "audit-options",
+                      "item": [
+                        {
+                          "name": "Fortify Get audit options",
+                          "id": "af6acde5-1987-4951-9311-037693887e3c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-options",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "releases",
+                                ":releaseId",
+                                "audit-options"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "97495389-b808-4515-84da-bd5ab169eb15",
+                                  "key": "releaseId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the release"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the available audit options for the specified release, including statuses and custom fields."
+                          },
+                          "response": [
+                            {
+                              "id": "ebe32c52-04dc-4809-9351-42020091f7b4",
+                              "name": "Successful response with audit options",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-options",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-options"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"analysisStatusTypes\": [\n    {\n      \"text\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-ebe32c52-04dc-4809-9351-42020091f7b4"
+                            },
+                            {
+                              "id": "e0234bd4-5033-4f83-afef-c6d64e30e22e",
+                              "name": "Unauthorized - authentication required or token expired",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-options",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-options"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-e0234bd4-5033-4f83-afef-c6d64e30e22e"
+                            },
+                            {
+                              "id": "5ed145c6-be13-4eff-b476-cc216950ed74",
+                              "name": "Forbidden - insufficient permissions or scopes",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-options",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-options"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-5ed145c6-be13-4eff-b476-cc216950ed74"
+                            },
+                            {
+                              "id": "b3dc2c43-8181-4d39-8610-bacfcded643d",
+                              "name": "Not found - the specified resource does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-options",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-options"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-b3dc2c43-8181-4d39-8610-bacfcded643d"
+                            },
+                            {
+                              "id": "ab31a157-3f2a-46d3-a578-4cdee94eb2a3",
+                              "name": "Too many requests - rate limit exceeded",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/audit-options",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "audit-options"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:42:34.000Z",
+                              "updatedAt": "2026-07-28T01:42:34.000Z",
+                              "uid": "35240-ab31a157-3f2a-46d3-a578-4cdee94eb2a3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:42:34.000Z",
+                          "updatedAt": "2026-07-28T01:42:34.000Z",
+                          "uid": "35240-af6acde5-1987-4951-9311-037693887e3c"
+                        }
+                      ],
+                      "id": "da04cd13-ec96-440c-b28a-298036bc6555",
+                      "createdAt": "2026-07-28T01:42:34.000Z",
+                      "updatedAt": "2026-07-28T01:42:34.000Z",
+                      "uid": "35240-da04cd13-ec96-440c-b28a-298036bc6555"
+                    }
+                  ],
+                  "id": "f7d9f148-64ed-4a47-93e7-471984b0b56f",
+                  "createdAt": "2026-07-28T01:42:34.000Z",
+                  "updatedAt": "2026-07-28T01:42:34.000Z",
+                  "uid": "35240-f7d9f148-64ed-4a47-93e7-471984b0b56f"
+                }
+              ],
+              "id": "11d773e1-a80d-49f4-94f1-307ee3ea290a",
+              "createdAt": "2026-07-28T01:42:34.000Z",
+              "updatedAt": "2026-07-28T01:42:34.000Z",
+              "uid": "35240-11d773e1-a80d-49f4-94f1-307ee3ea290a"
+            }
+          ],
+          "id": "9402afff-bdee-4c15-ba7d-40e02716a79f",
+          "createdAt": "2026-07-28T01:42:34.000Z",
+          "updatedAt": "2026-07-28T01:42:34.000Z",
+          "uid": "35240-9402afff-bdee-4c15-ba7d-40e02716a79f"
+        }
+      ],
+      "id": "56ace4c5-d0b6-48ff-92a9-4b5edea62f5c",
+      "createdAt": "2026-07-28T01:42:34.000Z",
+      "updatedAt": "2026-07-28T01:42:34.000Z",
+      "uid": "35240-56ace4c5-d0b6-48ff-92a9-4b5edea62f5c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

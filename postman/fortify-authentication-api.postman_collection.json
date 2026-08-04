@@ -1,0 +1,445 @@
+{
+  "info": {
+    "_postman_id": "874fdb1a-4150-419d-b429-b88b85ca232c",
+    "name": "Fortify on Demand Alert Definitions Authentication API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:44.000Z",
+    "updatedAt": "2026-07-28T01:42:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-874fdb1a-4150-419d-b429-b88b85ca232c"
+  },
+  "item": [
+    {
+      "name": "tokens",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fortify Revoke authentication token",
+              "id": "4c4d70e8-ab13-4d53-91c6-4b1613708082",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tokens/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokens",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "43dae3d0-29eb-4489-be19-49eee5e817f0",
+                      "key": "id",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Revokes an existing authentication token."
+              },
+              "response": [
+                {
+                  "id": "d2e21453-7ddc-45bb-8b4e-f40afd4dd94c",
+                  "name": "Token revoked successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tokens/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokens",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:42:44.000Z",
+                  "updatedAt": "2026-07-28T01:42:44.000Z",
+                  "uid": "35240-d2e21453-7ddc-45bb-8b4e-f40afd4dd94c"
+                },
+                {
+                  "id": "3b6f38aa-033f-4caa-88af-e7dd91249956",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tokens/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokens",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:42:44.000Z",
+                  "updatedAt": "2026-07-28T01:42:44.000Z",
+                  "uid": "35240-3b6f38aa-033f-4caa-88af-e7dd91249956"
+                },
+                {
+                  "id": "2b7418d4-47f6-41f6-8252-84a9138d70a4",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tokens/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokens",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:42:44.000Z",
+                  "updatedAt": "2026-07-28T01:42:44.000Z",
+                  "uid": "35240-2b7418d4-47f6-41f6-8252-84a9138d70a4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:42:44.000Z",
+              "updatedAt": "2026-07-28T01:42:44.000Z",
+              "uid": "35240-4c4d70e8-ab13-4d53-91c6-4b1613708082"
+            }
+          ],
+          "id": "b061374c-519d-49b4-97ea-794c4243663e",
+          "createdAt": "2026-07-28T01:42:44.000Z",
+          "updatedAt": "2026-07-28T01:42:44.000Z",
+          "uid": "35240-b061374c-519d-49b4-97ea-794c4243663e"
+        },
+        {
+          "name": "Fortify Create authentication token",
+          "id": "5fb012ee-cee9-42e7-ae53-ad550eb7ccca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"ReportFileTransferToken\",\n  \"description\": \"<string>\",\n  \"terminalDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tokens",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tokens"
+              ]
+            },
+            "description": "Creates an authentication token for API access. Supports UnifiedLoginToken, AnalysisUploadToken, AuditToken, and DownloadFileTransferToken types. This endpoint accepts HTTP Basic authentication."
+          },
+          "response": [
+            {
+              "id": "5e4618de-82b0-4c0d-ac4f-9d9dbc44402d",
+              "name": "Token created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"ReportFileTransferToken\",\n  \"description\": \"<string>\",\n  \"terminalDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tokens",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokens"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"token\": \"<string>\",\n    \"creationDate\": \"<dateTime>\",\n    \"terminalDate\": \"<dateTime>\",\n    \"remainingUsages\": \"<integer>\",\n    \"type\": \"ReportFileTransferToken\"\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:42:44.000Z",
+              "updatedAt": "2026-07-28T01:42:44.000Z",
+              "uid": "35240-5e4618de-82b0-4c0d-ac4f-9d9dbc44402d"
+            },
+            {
+              "id": "4bb3a40f-6edf-4add-9485-202471c55e76",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"ReportFileTransferToken\",\n  \"description\": \"<string>\",\n  \"terminalDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tokens",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokens"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:42:44.000Z",
+              "updatedAt": "2026-07-28T01:42:44.000Z",
+              "uid": "35240-4bb3a40f-6edf-4add-9485-202471c55e76"
+            },
+            {
+              "id": "dff817e0-ff9e-4ffd-8095-939058792cb0",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"ReportFileTransferToken\",\n  \"description\": \"<string>\",\n  \"terminalDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tokens",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokens"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:42:44.000Z",
+              "updatedAt": "2026-07-28T01:42:44.000Z",
+              "uid": "35240-dff817e0-ff9e-4ffd-8095-939058792cb0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:42:44.000Z",
+          "updatedAt": "2026-07-28T01:42:44.000Z",
+          "uid": "35240-5fb012ee-cee9-42e7-ae53-ad550eb7ccca"
+        }
+      ],
+      "id": "649c2704-4e31-4f39-bb27-8687903eda56",
+      "createdAt": "2026-07-28T01:42:44.000Z",
+      "updatedAt": "2026-07-28T01:42:44.000Z",
+      "uid": "35240-649c2704-4e31-4f39-bb27-8687903eda56"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

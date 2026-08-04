@@ -1,0 +1,1466 @@
+{
+  "info": {
+    "_postman_id": "e9473dc5-ba0d-45f5-8aaa-8d1ca6ebfc65",
+    "name": "Fortify on Demand Alert Definitions Mobile Scans API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:22.000Z",
+    "updatedAt": "2026-07-28T01:43:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e9473dc5-ba0d-45f5-8aaa-8d1ca6ebfc65"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "releases",
+              "item": [
+                {
+                  "name": "{releaseId}",
+                  "item": [
+                    {
+                      "name": "mobile-scans",
+                      "item": [
+                        {
+                          "name": "scan-setup",
+                          "item": [
+                            {
+                              "name": "Fortify Get mobile scan setup",
+                              "id": "451e388c-b91d-4b05-aa6f-453fc8c7d08d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "mobile-scans",
+                                    "scan-setup"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "02ff1e62-ca1b-4b3e-b247-bab813b7b0e5",
+                                      "key": "releaseId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the release"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves the current mobile scan setup configuration for the specified release."
+                              },
+                              "response": [
+                                {
+                                  "id": "b1151d86-80e8-4a1f-aaa7-9e1d40616dec",
+                                  "name": "Successful response with mobile scan setup details",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"frameworkType\": \"iOS\",\n  \"timeZone\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-b1151d86-80e8-4a1f-aaa7-9e1d40616dec"
+                                },
+                                {
+                                  "id": "9a915533-92ab-4635-927a-3fdb07742ce7",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-9a915533-92ab-4635-927a-3fdb07742ce7"
+                                },
+                                {
+                                  "id": "b9e53e22-c22f-43b0-bc7b-43eae3db1373",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-b9e53e22-c22f-43b0-bc7b-43eae3db1373"
+                                },
+                                {
+                                  "id": "675dfb95-b11b-48bc-bc59-5cb8afeea656",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-675dfb95-b11b-48bc-bc59-5cb8afeea656"
+                                },
+                                {
+                                  "id": "ad7f63e6-f5b8-4789-a903-f799e3ce1fe7",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-ad7f63e6-f5b8-4789-a903-f799e3ce1fe7"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:43:23.000Z",
+                              "updatedAt": "2026-07-28T01:43:23.000Z",
+                              "uid": "35240-451e388c-b91d-4b05-aa6f-453fc8c7d08d"
+                            },
+                            {
+                              "name": "Fortify Save mobile scan setup",
+                              "id": "7e653067-2234-4f79-9f57-3ec95c95f9d7",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"frameworkType\": \"iOS\",\n  \"timeZone\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "mobile-scans",
+                                    "scan-setup"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "a089316c-19b7-4093-9a03-436cafe6066d",
+                                      "key": "releaseId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the release"
+                                    }
+                                  ]
+                                },
+                                "description": "Saves the mobile scan setup configuration for the specified release."
+                              },
+                              "response": [
+                                {
+                                  "id": "762efc0f-82ff-4c25-87b4-c406d66eb0a2",
+                                  "name": "Mobile scan setup saved successfully",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"frameworkType\": \"iOS\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-762efc0f-82ff-4c25-87b4-c406d66eb0a2"
+                                },
+                                {
+                                  "id": "e5179e6f-15c8-4a76-8540-4ea9ce40884c",
+                                  "name": "Bad request - invalid parameters or request body",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"frameworkType\": \"iOS\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-e5179e6f-15c8-4a76-8540-4ea9ce40884c"
+                                },
+                                {
+                                  "id": "0b87abdd-aa8f-4186-b5f0-13cc14ab82f4",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"frameworkType\": \"iOS\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-0b87abdd-aa8f-4186-b5f0-13cc14ab82f4"
+                                },
+                                {
+                                  "id": "a5b5dd1b-c6ca-4349-a6a9-30f7da81052b",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"frameworkType\": \"iOS\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-a5b5dd1b-c6ca-4349-a6a9-30f7da81052b"
+                                },
+                                {
+                                  "id": "2f8b2820-cbfc-499c-95fc-eb0a4ccdf7a7",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"frameworkType\": \"iOS\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-2f8b2820-cbfc-499c-95fc-eb0a4ccdf7a7"
+                                },
+                                {
+                                  "id": "b6f6809e-d9cc-4838-8b09-ba7f47d229b6",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"frameworkType\": \"iOS\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-b6f6809e-d9cc-4838-8b09-ba7f47d229b6"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:43:23.000Z",
+                              "updatedAt": "2026-07-28T01:43:23.000Z",
+                              "uid": "35240-7e653067-2234-4f79-9f57-3ec95c95f9d7"
+                            }
+                          ],
+                          "id": "e92d8ee0-122d-4c34-93a2-a083c9d1a2b2",
+                          "createdAt": "2026-07-28T01:43:23.000Z",
+                          "updatedAt": "2026-07-28T01:43:23.000Z",
+                          "uid": "35240-e92d8ee0-122d-4c34-93a2-a083c9d1a2b2"
+                        },
+                        {
+                          "name": "start-scan",
+                          "item": [
+                            {
+                              "name": "Fortify Start mobile scan",
+                              "id": "ecb986fb-1218-4fd4-a7b5-3327804d2316",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/start-scan?startDate=<dateTime>&assessmentTypeId=<integer>&frameworkType=iOS&timeZone=<string>&entitlementId=<integer>&entitlementFrequencyType=<string>&isRemediationScan=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "mobile-scans",
+                                    "start-scan"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Scheduled start date for the scan",
+                                      "key": "startDate",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Assessment type identifier",
+                                      "key": "assessmentTypeId",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Mobile framework type",
+                                      "key": "frameworkType",
+                                      "value": "iOS"
+                                    },
+                                    {
+                                      "description": "Time zone for scheduled scans",
+                                      "key": "timeZone",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Entitlement identifier",
+                                      "key": "entitlementId",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Entitlement frequency type",
+                                      "key": "entitlementFrequencyType",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether this is a remediation scan",
+                                      "key": "isRemediationScan",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "92b12122-a181-4de6-a1c0-bd655542b246",
+                                      "key": "releaseId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the release"
+                                    }
+                                  ]
+                                },
+                                "description": "Initiates a mobile scan for the specified release by uploading a mobile application binary."
+                              },
+                              "response": [
+                                {
+                                  "id": "ad2a6273-e60e-4f30-832a-1adca5feb92d",
+                                  "name": "Mobile scan started successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/start-scan?startDate=<dateTime>&assessmentTypeId=<integer>&frameworkType=iOS&timeZone=<string>&entitlementId=<integer>&entitlementFrequencyType=<string>&isRemediationScan=<boolean>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Scheduled start date for the scan",
+                                          "key": "startDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "Assessment type identifier",
+                                          "key": "assessmentTypeId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Mobile framework type",
+                                          "key": "frameworkType",
+                                          "value": "iOS"
+                                        },
+                                        {
+                                          "description": "Time zone for scheduled scans",
+                                          "key": "timeZone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Entitlement identifier",
+                                          "key": "entitlementId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Entitlement frequency type",
+                                          "key": "entitlementFrequencyType",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Whether this is a remediation scan",
+                                          "key": "isRemediationScan",
+                                          "value": "<boolean>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"scanId\": \"<integer>\",\n  \"analysisStatusType\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-ad2a6273-e60e-4f30-832a-1adca5feb92d"
+                                },
+                                {
+                                  "id": "1d08e3b7-1218-4045-acec-860e0050449e",
+                                  "name": "Bad request - invalid parameters or request body",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/start-scan?startDate=<dateTime>&assessmentTypeId=<integer>&frameworkType=iOS&timeZone=<string>&entitlementId=<integer>&entitlementFrequencyType=<string>&isRemediationScan=<boolean>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Scheduled start date for the scan",
+                                          "key": "startDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "Assessment type identifier",
+                                          "key": "assessmentTypeId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Mobile framework type",
+                                          "key": "frameworkType",
+                                          "value": "iOS"
+                                        },
+                                        {
+                                          "description": "Time zone for scheduled scans",
+                                          "key": "timeZone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Entitlement identifier",
+                                          "key": "entitlementId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Entitlement frequency type",
+                                          "key": "entitlementFrequencyType",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Whether this is a remediation scan",
+                                          "key": "isRemediationScan",
+                                          "value": "<boolean>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-1d08e3b7-1218-4045-acec-860e0050449e"
+                                },
+                                {
+                                  "id": "b2a034dd-6087-41cf-ba19-adac355e6123",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/start-scan?startDate=<dateTime>&assessmentTypeId=<integer>&frameworkType=iOS&timeZone=<string>&entitlementId=<integer>&entitlementFrequencyType=<string>&isRemediationScan=<boolean>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Scheduled start date for the scan",
+                                          "key": "startDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "Assessment type identifier",
+                                          "key": "assessmentTypeId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Mobile framework type",
+                                          "key": "frameworkType",
+                                          "value": "iOS"
+                                        },
+                                        {
+                                          "description": "Time zone for scheduled scans",
+                                          "key": "timeZone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Entitlement identifier",
+                                          "key": "entitlementId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Entitlement frequency type",
+                                          "key": "entitlementFrequencyType",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Whether this is a remediation scan",
+                                          "key": "isRemediationScan",
+                                          "value": "<boolean>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-b2a034dd-6087-41cf-ba19-adac355e6123"
+                                },
+                                {
+                                  "id": "48aa0464-d816-4b1d-baa6-415a55569785",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/start-scan?startDate=<dateTime>&assessmentTypeId=<integer>&frameworkType=iOS&timeZone=<string>&entitlementId=<integer>&entitlementFrequencyType=<string>&isRemediationScan=<boolean>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Scheduled start date for the scan",
+                                          "key": "startDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "Assessment type identifier",
+                                          "key": "assessmentTypeId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Mobile framework type",
+                                          "key": "frameworkType",
+                                          "value": "iOS"
+                                        },
+                                        {
+                                          "description": "Time zone for scheduled scans",
+                                          "key": "timeZone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Entitlement identifier",
+                                          "key": "entitlementId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Entitlement frequency type",
+                                          "key": "entitlementFrequencyType",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Whether this is a remediation scan",
+                                          "key": "isRemediationScan",
+                                          "value": "<boolean>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-48aa0464-d816-4b1d-baa6-415a55569785"
+                                },
+                                {
+                                  "id": "1cfa990a-16e7-4d0e-aa5d-57a5af77f50e",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/start-scan?startDate=<dateTime>&assessmentTypeId=<integer>&frameworkType=iOS&timeZone=<string>&entitlementId=<integer>&entitlementFrequencyType=<string>&isRemediationScan=<boolean>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Scheduled start date for the scan",
+                                          "key": "startDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "Assessment type identifier",
+                                          "key": "assessmentTypeId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Mobile framework type",
+                                          "key": "frameworkType",
+                                          "value": "iOS"
+                                        },
+                                        {
+                                          "description": "Time zone for scheduled scans",
+                                          "key": "timeZone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Entitlement identifier",
+                                          "key": "entitlementId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Entitlement frequency type",
+                                          "key": "entitlementFrequencyType",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Whether this is a remediation scan",
+                                          "key": "isRemediationScan",
+                                          "value": "<boolean>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-1cfa990a-16e7-4d0e-aa5d-57a5af77f50e"
+                                },
+                                {
+                                  "id": "963c1b41-0482-4aee-8588-18ea60ab93ce",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/mobile-scans/start-scan?startDate=<dateTime>&assessmentTypeId=<integer>&frameworkType=iOS&timeZone=<string>&entitlementId=<integer>&entitlementFrequencyType=<string>&isRemediationScan=<boolean>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "mobile-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Scheduled start date for the scan",
+                                          "key": "startDate",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "description": "Assessment type identifier",
+                                          "key": "assessmentTypeId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Mobile framework type",
+                                          "key": "frameworkType",
+                                          "value": "iOS"
+                                        },
+                                        {
+                                          "description": "Time zone for scheduled scans",
+                                          "key": "timeZone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Entitlement identifier",
+                                          "key": "entitlementId",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Entitlement frequency type",
+                                          "key": "entitlementFrequencyType",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Whether this is a remediation scan",
+                                          "key": "isRemediationScan",
+                                          "value": "<boolean>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:23.000Z",
+                                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                                  "uid": "35240-963c1b41-0482-4aee-8588-18ea60ab93ce"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:43:23.000Z",
+                              "updatedAt": "2026-07-28T01:43:23.000Z",
+                              "uid": "35240-ecb986fb-1218-4fd4-a7b5-3327804d2316"
+                            }
+                          ],
+                          "id": "f24199d4-c6a0-4b1c-b79b-67eb82ab2523",
+                          "createdAt": "2026-07-28T01:43:23.000Z",
+                          "updatedAt": "2026-07-28T01:43:23.000Z",
+                          "uid": "35240-f24199d4-c6a0-4b1c-b79b-67eb82ab2523"
+                        }
+                      ],
+                      "id": "04f3df5b-7527-4025-a89f-e6ed3f0a46ab",
+                      "createdAt": "2026-07-28T01:43:23.000Z",
+                      "updatedAt": "2026-07-28T01:43:23.000Z",
+                      "uid": "35240-04f3df5b-7527-4025-a89f-e6ed3f0a46ab"
+                    }
+                  ],
+                  "id": "e4abec43-05e1-47e0-99bc-614e4fa56588",
+                  "createdAt": "2026-07-28T01:43:23.000Z",
+                  "updatedAt": "2026-07-28T01:43:23.000Z",
+                  "uid": "35240-e4abec43-05e1-47e0-99bc-614e4fa56588"
+                }
+              ],
+              "id": "b487653e-a9d8-4458-85ca-5826022896ff",
+              "createdAt": "2026-07-28T01:43:23.000Z",
+              "updatedAt": "2026-07-28T01:43:23.000Z",
+              "uid": "35240-b487653e-a9d8-4458-85ca-5826022896ff"
+            }
+          ],
+          "id": "a425485f-8f7e-4636-a448-9c75724dfe66",
+          "createdAt": "2026-07-28T01:43:23.000Z",
+          "updatedAt": "2026-07-28T01:43:23.000Z",
+          "uid": "35240-a425485f-8f7e-4636-a448-9c75724dfe66"
+        }
+      ],
+      "id": "9a6795d0-5a46-4912-be99-f017c9630856",
+      "createdAt": "2026-07-28T01:43:23.000Z",
+      "updatedAt": "2026-07-28T01:43:23.000Z",
+      "uid": "35240-9a6795d0-5a46-4912-be99-f017c9630856"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

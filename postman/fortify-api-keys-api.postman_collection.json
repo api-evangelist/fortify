@@ -1,0 +1,1696 @@
+{
+  "info": {
+    "_postman_id": "a3874bf5-6640-47c8-94ae-99f08e742d18",
+    "name": "Fortify on Demand Alert Definitions API Keys API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:29.000Z",
+    "updatedAt": "2026-07-28T01:42:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a3874bf5-6640-47c8-94ae-99f08e742d18"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "api-keys",
+              "item": [
+                {
+                  "name": "{apiKeyId}",
+                  "item": [
+                    {
+                      "name": "Fortify Get API key",
+                      "id": "a5ef7b25-a7df-4648-b98e-0cba36d884bd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys",
+                            ":apiKeyId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e9f556af-5045-42cb-b57e-f4061079e38c",
+                              "key": "apiKeyId",
+                              "value": "<integer>",
+                              "description": "(Required) Unique identifier of the API key"
+                            }
+                          ]
+                        },
+                        "description": "Returns details for a specific API key."
+                      },
+                      "response": [
+                        {
+                          "id": "b895985b-be29-4968-95e4-ed2041a323ff",
+                          "name": "Successful response with API key details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"apiKeyId\": \"<integer>\",\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\",\n  \"apiKeySecret\": \"<string>\",\n  \"createdDate\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-b895985b-be29-4968-95e4-ed2041a323ff"
+                        },
+                        {
+                          "id": "c10fc6bb-a4d9-48cd-af71-acdb3cc4cf66",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-c10fc6bb-a4d9-48cd-af71-acdb3cc4cf66"
+                        },
+                        {
+                          "id": "0fb9fa17-79c4-47c9-932a-2f7622d70d41",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-0fb9fa17-79c4-47c9-932a-2f7622d70d41"
+                        },
+                        {
+                          "id": "7421b404-67e8-460c-b23b-764cee10291a",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-7421b404-67e8-460c-b23b-764cee10291a"
+                        },
+                        {
+                          "id": "90a26860-5a0c-4043-8cb2-d2e89bb90c66",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-90a26860-5a0c-4043-8cb2-d2e89bb90c66"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-a5ef7b25-a7df-4648-b98e-0cba36d884bd"
+                    },
+                    {
+                      "name": "Fortify Update API key",
+                      "id": "a71c05e0-55de-429f-a14c-05109754e644",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys",
+                            ":apiKeyId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f9093771-2e13-4d92-8512-d73ae1394058",
+                              "key": "apiKeyId",
+                              "value": "<integer>",
+                              "description": "(Required) Unique identifier of the API key"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing API key's properties."
+                      },
+                      "response": [
+                        {
+                          "id": "ca5f14c2-2dd3-4d15-b7f4-32fc75c86af7",
+                          "name": "API key updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-ca5f14c2-2dd3-4d15-b7f4-32fc75c86af7"
+                        },
+                        {
+                          "id": "efb3c952-c1c8-4087-a32d-5da68b3c011d",
+                          "name": "Bad request - invalid parameters or request body",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-efb3c952-c1c8-4087-a32d-5da68b3c011d"
+                        },
+                        {
+                          "id": "23b37571-1eea-4aa9-82da-3439fd55a4e8",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-23b37571-1eea-4aa9-82da-3439fd55a4e8"
+                        },
+                        {
+                          "id": "f61bcc5c-0dd5-4f28-a420-99cd339a2696",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-f61bcc5c-0dd5-4f28-a420-99cd339a2696"
+                        },
+                        {
+                          "id": "78bb39b4-c1ee-4b7a-bd4b-7a0db5075a58",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-78bb39b4-c1ee-4b7a-bd4b-7a0db5075a58"
+                        },
+                        {
+                          "id": "893bd88f-6c54-4c66-987e-cbed9e8b93b4",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-893bd88f-6c54-4c66-987e-cbed9e8b93b4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-a71c05e0-55de-429f-a14c-05109754e644"
+                    },
+                    {
+                      "name": "Fortify Delete API key",
+                      "id": "7edc3214-4e9d-44eb-9264-b31d20091f4e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys",
+                            ":apiKeyId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "25954c81-606c-4062-8e1b-2be93ffe030b",
+                              "key": "apiKeyId",
+                              "value": "<integer>",
+                              "description": "(Required) Unique identifier of the API key"
+                            }
+                          ]
+                        },
+                        "description": "Permanently deletes the specified API key."
+                      },
+                      "response": [
+                        {
+                          "id": "a1b847fe-69c5-4319-aa5b-28f445e5a7cf",
+                          "name": "API key deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-a1b847fe-69c5-4319-aa5b-28f445e5a7cf"
+                        },
+                        {
+                          "id": "baf4cddf-305a-4cc2-837a-ea369f59af7d",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-baf4cddf-305a-4cc2-837a-ea369f59af7d"
+                        },
+                        {
+                          "id": "c8e11e85-0b15-490e-9ef7-685782cb6989",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-c8e11e85-0b15-490e-9ef7-685782cb6989"
+                        },
+                        {
+                          "id": "6b7e8c6a-db00-41dc-a81d-8b1dcf60f1fd",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-6b7e8c6a-db00-41dc-a81d-8b1dcf60f1fd"
+                        },
+                        {
+                          "id": "f8ba7164-1dde-4bf9-9589-23ddc37ee44d",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/api-keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "api-keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiKeyId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:30.000Z",
+                          "updatedAt": "2026-07-28T01:42:30.000Z",
+                          "uid": "35240-f8ba7164-1dde-4bf9-9589-23ddc37ee44d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-7edc3214-4e9d-44eb-9264-b31d20091f4e"
+                    }
+                  ],
+                  "id": "e4c92e28-0a99-4733-a960-5e4c5c2b1f98",
+                  "createdAt": "2026-07-28T01:42:30.000Z",
+                  "updatedAt": "2026-07-28T01:42:30.000Z",
+                  "uid": "35240-e4c92e28-0a99-4733-a960-5e4c5c2b1f98"
+                },
+                {
+                  "name": "Fortify List API keys",
+                  "id": "86a8f90e-a442-48e8-9cf8-fad584b2c07d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v3/api-keys?offset=0&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v3",
+                        "api-keys"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return (max 50)",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    },
+                    "description": "Returns a paginated list of API keys for the tenant."
+                  },
+                  "response": [
+                    {
+                      "id": "672b392a-3b3d-455a-8d5e-bce5f06e57a3",
+                      "name": "Successful response with list of API keys",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys?offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return (max 50)",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"apiKeyId\": \"<integer>\",\n      \"apiKeyName\": \"<string>\",\n      \"callerIpRange\": \"<string>\",\n      \"apiKeySecret\": \"<string>\",\n      \"createdDate\": \"<dateTime>\"\n    },\n    {\n      \"apiKeyId\": \"<integer>\",\n      \"apiKeyName\": \"<string>\",\n      \"callerIpRange\": \"<string>\",\n      \"apiKeySecret\": \"<string>\",\n      \"createdDate\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-672b392a-3b3d-455a-8d5e-bce5f06e57a3"
+                    },
+                    {
+                      "id": "79492075-39e3-45b6-8873-8871b4a5c635",
+                      "name": "Unauthorized - authentication required or token expired",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys?offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return (max 50)",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-79492075-39e3-45b6-8873-8871b4a5c635"
+                    },
+                    {
+                      "id": "b12038eb-1a87-4590-a6e3-3bef53e2495d",
+                      "name": "Forbidden - insufficient permissions or scopes",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys?offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return (max 50)",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-b12038eb-1a87-4590-a6e3-3bef53e2495d"
+                    },
+                    {
+                      "id": "3515bd3e-22a7-43ad-ad56-4a7cfe11d33d",
+                      "name": "Too many requests - rate limit exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys?offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return (max 50)",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-3515bd3e-22a7-43ad-ad56-4a7cfe11d33d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:30.000Z",
+                  "updatedAt": "2026-07-28T01:42:30.000Z",
+                  "uid": "35240-86a8f90e-a442-48e8-9cf8-fad584b2c07d"
+                },
+                {
+                  "name": "Fortify Create API key",
+                  "id": "9caeb982-1b62-4954-97cc-6a13071344e7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v3/api-keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v3",
+                        "api-keys"
+                      ]
+                    },
+                    "description": "Creates a new API key for programmatic access."
+                  },
+                  "response": [
+                    {
+                      "id": "2402f4ab-29a0-4658-b163-ada276dc46d3",
+                      "name": "API key created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"apiKeyId\": \"<integer>\",\n  \"apiKeySecret\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-2402f4ab-29a0-4658-b163-ada276dc46d3"
+                    },
+                    {
+                      "id": "105ab873-a249-49d2-af0a-e08a7c3173ff",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-105ab873-a249-49d2-af0a-e08a7c3173ff"
+                    },
+                    {
+                      "id": "ca705ac9-eacc-48e0-830b-5357d7516a3e",
+                      "name": "Unauthorized - authentication required or token expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-ca705ac9-eacc-48e0-830b-5357d7516a3e"
+                    },
+                    {
+                      "id": "78b5359d-7f8a-4a31-8afa-46cfce4f3e3a",
+                      "name": "Forbidden - insufficient permissions or scopes",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-78b5359d-7f8a-4a31-8afa-46cfce4f3e3a"
+                    },
+                    {
+                      "id": "bf2e29e9-4ee0-4d76-b670-afcdc8aeac31",
+                      "name": "Too many requests - rate limit exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"apiKeyName\": \"<string>\",\n  \"callerIpRange\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "api-keys"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:30.000Z",
+                      "updatedAt": "2026-07-28T01:42:30.000Z",
+                      "uid": "35240-bf2e29e9-4ee0-4d76-b670-afcdc8aeac31"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:30.000Z",
+                  "updatedAt": "2026-07-28T01:42:30.000Z",
+                  "uid": "35240-9caeb982-1b62-4954-97cc-6a13071344e7"
+                }
+              ],
+              "id": "049169a0-50ac-4121-a0f9-304af1eacd61",
+              "createdAt": "2026-07-28T01:42:30.000Z",
+              "updatedAt": "2026-07-28T01:42:30.000Z",
+              "uid": "35240-049169a0-50ac-4121-a0f9-304af1eacd61"
+            }
+          ],
+          "id": "47b2f0bc-8591-4d16-a7e8-24ae5d730ab0",
+          "createdAt": "2026-07-28T01:42:30.000Z",
+          "updatedAt": "2026-07-28T01:42:30.000Z",
+          "uid": "35240-47b2f0bc-8591-4d16-a7e8-24ae5d730ab0"
+        }
+      ],
+      "id": "41584037-9f31-4823-96e8-42a8fc96bc4d",
+      "createdAt": "2026-07-28T01:42:30.000Z",
+      "updatedAt": "2026-07-28T01:42:30.000Z",
+      "uid": "35240-41584037-9f31-4823-96e8-42a8fc96bc4d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

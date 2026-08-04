@@ -1,0 +1,1455 @@
+{
+  "info": {
+    "_postman_id": "bd0b0b3f-3683-41bc-b403-3cf23ac027c3",
+    "name": "Fortify on Demand Alert Definitions Vulnerabilities API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:57.000Z",
+    "updatedAt": "2026-07-28T01:43:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bd0b0b3f-3683-41bc-b403-3cf23ac027c3"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "applications",
+              "item": [
+                {
+                  "name": "{applicationId}",
+                  "item": [
+                    {
+                      "name": "issue-count-by-severity",
+                      "item": [
+                        {
+                          "name": "Fortify Get issue count by severity",
+                          "id": "71de8362-93d2-448b-a526-8272faa5a3ff",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/applications/:applicationId/issue-count-by-severity",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "applications",
+                                ":applicationId",
+                                "issue-count-by-severity"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "354f11f5-5750-4f7e-969a-d3c19032e4f0",
+                                  "key": "applicationId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the application"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the number of issues grouped by severity level for the specified application."
+                          },
+                          "response": [
+                            {
+                              "id": "619ec3de-cc54-4cf0-ba3b-ad522cfd2631",
+                              "name": "Successful response with issue counts by severity",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/applications/:applicationId/issue-count-by-severity",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "applications",
+                                    ":applicationId",
+                                    "issue-count-by-severity"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"severityValue\": \"<integer>\",\n      \"count\": \"<integer>\",\n      \"scanType\": \"<string>\"\n    },\n    {\n      \"severityValue\": \"<integer>\",\n      \"count\": \"<integer>\",\n      \"scanType\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-619ec3de-cc54-4cf0-ba3b-ad522cfd2631"
+                            },
+                            {
+                              "id": "4ac7d715-91d3-4713-8bd2-5dfcc12c9d25",
+                              "name": "Unauthorized - authentication required or token expired",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/applications/:applicationId/issue-count-by-severity",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "applications",
+                                    ":applicationId",
+                                    "issue-count-by-severity"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-4ac7d715-91d3-4713-8bd2-5dfcc12c9d25"
+                            },
+                            {
+                              "id": "00afa2c7-f5d1-4f5b-993b-d276f5343cc5",
+                              "name": "Forbidden - insufficient permissions or scopes",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/applications/:applicationId/issue-count-by-severity",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "applications",
+                                    ":applicationId",
+                                    "issue-count-by-severity"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-00afa2c7-f5d1-4f5b-993b-d276f5343cc5"
+                            },
+                            {
+                              "id": "8661a422-164a-409e-b6bf-ef272a934478",
+                              "name": "Not found - the specified resource does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/applications/:applicationId/issue-count-by-severity",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "applications",
+                                    ":applicationId",
+                                    "issue-count-by-severity"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-8661a422-164a-409e-b6bf-ef272a934478"
+                            },
+                            {
+                              "id": "37a48222-7c09-47c6-99cd-ebec395ece6d",
+                              "name": "Too many requests - rate limit exceeded",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/applications/:applicationId/issue-count-by-severity",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "applications",
+                                    ":applicationId",
+                                    "issue-count-by-severity"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-37a48222-7c09-47c6-99cd-ebec395ece6d"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:43:58.000Z",
+                          "updatedAt": "2026-07-28T01:43:58.000Z",
+                          "uid": "35240-71de8362-93d2-448b-a526-8272faa5a3ff"
+                        }
+                      ],
+                      "id": "45c8ba05-e40f-4201-802d-1cdfe83199b6",
+                      "createdAt": "2026-07-28T01:43:58.000Z",
+                      "updatedAt": "2026-07-28T01:43:58.000Z",
+                      "uid": "35240-45c8ba05-e40f-4201-802d-1cdfe83199b6"
+                    },
+                    {
+                      "name": "vulnerabilities",
+                      "item": [
+                        {
+                          "name": "{vulnerabilityId}",
+                          "item": [
+                            {
+                              "name": "Fortify Get application vulnerability",
+                              "id": "a393dbbb-807d-471c-8dff-1f0bc3b262cf",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/applications/:applicationId/vulnerabilities/:vulnerabilityId?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&includeFixed=<boolean>&includeSuppressed=<boolean>&keywordSearch=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "applications",
+                                    ":applicationId",
+                                    "vulnerabilities",
+                                    ":vulnerabilityId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                      "key": "filters",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Field name to sort results by",
+                                      "key": "orderBy",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort direction",
+                                      "key": "orderByDirection",
+                                      "value": "ASC"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of fields to include in the response",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Number of records to skip for pagination",
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Maximum number of records to return (max 50)",
+                                      "key": "limit",
+                                      "value": "50"
+                                    },
+                                    {
+                                      "description": "Include fixed vulnerabilities in results",
+                                      "key": "includeFixed",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Include suppressed vulnerabilities in results",
+                                      "key": "includeSuppressed",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Keyword search filter for vulnerabilities",
+                                      "key": "keywordSearch",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2a879de1-0c81-49be-b883-14ab0a805fd8",
+                                      "key": "applicationId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the application"
+                                    },
+                                    {
+                                      "id": "2b607b23-9303-4178-bc3c-5111d78c865a",
+                                      "key": "vulnerabilityId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the vulnerability"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of vulnerabilities matching the specified instance identifier within an application."
+                              },
+                              "response": [
+                                {
+                                  "id": "9071bd08-d5c6-413f-81d7-c5a4cb070117",
+                                  "name": "Successful response with vulnerability details",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/applications/:applicationId/vulnerabilities/:vulnerabilityId?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&includeFixed=<boolean>&includeSuppressed=<boolean>&keywordSearch=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "applications",
+                                        ":applicationId",
+                                        "vulnerabilities",
+                                        ":vulnerabilityId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                          "key": "filters",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field name to sort results by",
+                                          "key": "orderBy",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort direction",
+                                          "key": "orderByDirection",
+                                          "value": "ASC"
+                                        },
+                                        {
+                                          "description": "Comma-separated list of fields to include in the response",
+                                          "key": "fields",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Number of records to skip for pagination",
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "Maximum number of records to return (max 50)",
+                                          "key": "limit",
+                                          "value": "50"
+                                        },
+                                        {
+                                          "description": "Include fixed vulnerabilities in results",
+                                          "key": "includeFixed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Include suppressed vulnerabilities in results",
+                                          "key": "includeSuppressed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Keyword search filter for vulnerabilities",
+                                          "key": "keywordSearch",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationId"
+                                        },
+                                        {
+                                          "key": "vulnerabilityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"vulnId\": \"<integer>\",\n      \"releaseId\": \"<integer>\",\n      \"category\": \"<string>\",\n      \"kingdom\": \"<string>\",\n      \"severity\": \"<integer>\",\n      \"severityString\": \"<string>\",\n      \"assignedUser\": \"<string>\",\n      \"isSuppressed\": \"<boolean>\",\n      \"hasComments\": \"<boolean>\",\n      \"status\": \"<string>\",\n      \"scanType\": \"<string>\",\n      \"primaryLocation\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"introducedDate\": \"<dateTime>\",\n      \"removedDate\": \"<dateTime>\"\n    },\n    {\n      \"vulnId\": \"<integer>\",\n      \"releaseId\": \"<integer>\",\n      \"category\": \"<string>\",\n      \"kingdom\": \"<string>\",\n      \"severity\": \"<integer>\",\n      \"severityString\": \"<string>\",\n      \"assignedUser\": \"<string>\",\n      \"isSuppressed\": \"<boolean>\",\n      \"hasComments\": \"<boolean>\",\n      \"status\": \"<string>\",\n      \"scanType\": \"<string>\",\n      \"primaryLocation\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"introducedDate\": \"<dateTime>\",\n      \"removedDate\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T01:43:58.000Z",
+                                  "updatedAt": "2026-07-28T01:43:58.000Z",
+                                  "uid": "35240-9071bd08-d5c6-413f-81d7-c5a4cb070117"
+                                },
+                                {
+                                  "id": "5d5fabb2-8865-400c-8432-6ea1397ca6b3",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/applications/:applicationId/vulnerabilities/:vulnerabilityId?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&includeFixed=<boolean>&includeSuppressed=<boolean>&keywordSearch=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "applications",
+                                        ":applicationId",
+                                        "vulnerabilities",
+                                        ":vulnerabilityId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                          "key": "filters",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field name to sort results by",
+                                          "key": "orderBy",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort direction",
+                                          "key": "orderByDirection",
+                                          "value": "ASC"
+                                        },
+                                        {
+                                          "description": "Comma-separated list of fields to include in the response",
+                                          "key": "fields",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Number of records to skip for pagination",
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "Maximum number of records to return (max 50)",
+                                          "key": "limit",
+                                          "value": "50"
+                                        },
+                                        {
+                                          "description": "Include fixed vulnerabilities in results",
+                                          "key": "includeFixed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Include suppressed vulnerabilities in results",
+                                          "key": "includeSuppressed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Keyword search filter for vulnerabilities",
+                                          "key": "keywordSearch",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationId"
+                                        },
+                                        {
+                                          "key": "vulnerabilityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:58.000Z",
+                                  "updatedAt": "2026-07-28T01:43:58.000Z",
+                                  "uid": "35240-5d5fabb2-8865-400c-8432-6ea1397ca6b3"
+                                },
+                                {
+                                  "id": "20643ba2-1261-430c-8c4a-a0b36d8d3ff3",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/applications/:applicationId/vulnerabilities/:vulnerabilityId?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&includeFixed=<boolean>&includeSuppressed=<boolean>&keywordSearch=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "applications",
+                                        ":applicationId",
+                                        "vulnerabilities",
+                                        ":vulnerabilityId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                          "key": "filters",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field name to sort results by",
+                                          "key": "orderBy",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort direction",
+                                          "key": "orderByDirection",
+                                          "value": "ASC"
+                                        },
+                                        {
+                                          "description": "Comma-separated list of fields to include in the response",
+                                          "key": "fields",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Number of records to skip for pagination",
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "Maximum number of records to return (max 50)",
+                                          "key": "limit",
+                                          "value": "50"
+                                        },
+                                        {
+                                          "description": "Include fixed vulnerabilities in results",
+                                          "key": "includeFixed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Include suppressed vulnerabilities in results",
+                                          "key": "includeSuppressed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Keyword search filter for vulnerabilities",
+                                          "key": "keywordSearch",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationId"
+                                        },
+                                        {
+                                          "key": "vulnerabilityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:58.000Z",
+                                  "updatedAt": "2026-07-28T01:43:58.000Z",
+                                  "uid": "35240-20643ba2-1261-430c-8c4a-a0b36d8d3ff3"
+                                },
+                                {
+                                  "id": "e6d741c0-c779-44a2-8ffa-93b176586121",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/applications/:applicationId/vulnerabilities/:vulnerabilityId?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&includeFixed=<boolean>&includeSuppressed=<boolean>&keywordSearch=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "applications",
+                                        ":applicationId",
+                                        "vulnerabilities",
+                                        ":vulnerabilityId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                          "key": "filters",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field name to sort results by",
+                                          "key": "orderBy",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort direction",
+                                          "key": "orderByDirection",
+                                          "value": "ASC"
+                                        },
+                                        {
+                                          "description": "Comma-separated list of fields to include in the response",
+                                          "key": "fields",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Number of records to skip for pagination",
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "Maximum number of records to return (max 50)",
+                                          "key": "limit",
+                                          "value": "50"
+                                        },
+                                        {
+                                          "description": "Include fixed vulnerabilities in results",
+                                          "key": "includeFixed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Include suppressed vulnerabilities in results",
+                                          "key": "includeSuppressed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Keyword search filter for vulnerabilities",
+                                          "key": "keywordSearch",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationId"
+                                        },
+                                        {
+                                          "key": "vulnerabilityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:58.000Z",
+                                  "updatedAt": "2026-07-28T01:43:58.000Z",
+                                  "uid": "35240-e6d741c0-c779-44a2-8ffa-93b176586121"
+                                },
+                                {
+                                  "id": "35e48b12-f1c6-4bac-a32c-c9a4de2cc77c",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/applications/:applicationId/vulnerabilities/:vulnerabilityId?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&includeFixed=<boolean>&includeSuppressed=<boolean>&keywordSearch=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "applications",
+                                        ":applicationId",
+                                        "vulnerabilities",
+                                        ":vulnerabilityId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                          "key": "filters",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field name to sort results by",
+                                          "key": "orderBy",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort direction",
+                                          "key": "orderByDirection",
+                                          "value": "ASC"
+                                        },
+                                        {
+                                          "description": "Comma-separated list of fields to include in the response",
+                                          "key": "fields",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Number of records to skip for pagination",
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "description": "Maximum number of records to return (max 50)",
+                                          "key": "limit",
+                                          "value": "50"
+                                        },
+                                        {
+                                          "description": "Include fixed vulnerabilities in results",
+                                          "key": "includeFixed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Include suppressed vulnerabilities in results",
+                                          "key": "includeSuppressed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Keyword search filter for vulnerabilities",
+                                          "key": "keywordSearch",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationId"
+                                        },
+                                        {
+                                          "key": "vulnerabilityId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:43:58.000Z",
+                                  "updatedAt": "2026-07-28T01:43:58.000Z",
+                                  "uid": "35240-35e48b12-f1c6-4bac-a32c-c9a4de2cc77c"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-a393dbbb-807d-471c-8dff-1f0bc3b262cf"
+                            }
+                          ],
+                          "id": "bf75a701-2c05-41f7-8b47-80a5bc932d75",
+                          "createdAt": "2026-07-28T01:43:58.000Z",
+                          "updatedAt": "2026-07-28T01:43:58.000Z",
+                          "uid": "35240-bf75a701-2c05-41f7-8b47-80a5bc932d75"
+                        }
+                      ],
+                      "id": "efda60e4-6af0-4492-91ce-427ff34e9abe",
+                      "createdAt": "2026-07-28T01:43:58.000Z",
+                      "updatedAt": "2026-07-28T01:43:58.000Z",
+                      "uid": "35240-efda60e4-6af0-4492-91ce-427ff34e9abe"
+                    }
+                  ],
+                  "id": "76960936-bc07-4ef3-a56a-e43cb747118c",
+                  "createdAt": "2026-07-28T01:43:58.000Z",
+                  "updatedAt": "2026-07-28T01:43:58.000Z",
+                  "uid": "35240-76960936-bc07-4ef3-a56a-e43cb747118c"
+                }
+              ],
+              "id": "795624f4-3ba6-4694-bec9-d841af46cb21",
+              "createdAt": "2026-07-28T01:43:58.000Z",
+              "updatedAt": "2026-07-28T01:43:58.000Z",
+              "uid": "35240-795624f4-3ba6-4694-bec9-d841af46cb21"
+            },
+            {
+              "name": "releases",
+              "item": [
+                {
+                  "name": "{releaseId}",
+                  "item": [
+                    {
+                      "name": "category-rollups",
+                      "item": [
+                        {
+                          "name": "Fortify List vulnerability category rollups",
+                          "id": "fecd240a-25fd-41cf-9324-cadc720750c9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/releases/:releaseId/category-rollups?orderBy=<string>&orderByDirection=ASC&showFixed=<boolean>&vulnerabilitiesSeverityType=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "releases",
+                                ":releaseId",
+                                "category-rollups"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Include fixed vulnerabilities",
+                                  "key": "showFixed",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "Filter by severity type",
+                                  "key": "vulnerabilitiesSeverityType",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5a90b45f-d199-44de-a583-eeef6c61330a",
+                                  "key": "releaseId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the release"
+                                }
+                              ]
+                            },
+                            "description": "Returns a list and count of vulnerability categories grouped by severity for the specified release."
+                          },
+                          "response": [
+                            {
+                              "id": "51066c87-3ab4-4113-8449-3b8e7cc8ce05",
+                              "name": "Successful response with category rollup data",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/category-rollups?orderBy=<string>&orderByDirection=ASC&showFixed=<boolean>&vulnerabilitiesSeverityType=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "category-rollups"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Field name to sort results by",
+                                      "key": "orderBy",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort direction",
+                                      "key": "orderByDirection",
+                                      "value": "ASC"
+                                    },
+                                    {
+                                      "description": "Include fixed vulnerabilities",
+                                      "key": "showFixed",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by severity type",
+                                      "key": "vulnerabilitiesSeverityType",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"critical\": \"<integer>\",\n      \"high\": \"<integer>\",\n      \"medium\": \"<integer>\",\n      \"low\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"critical\": \"<integer>\",\n      \"high\": \"<integer>\",\n      \"medium\": \"<integer>\",\n      \"low\": \"<integer>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-51066c87-3ab4-4113-8449-3b8e7cc8ce05"
+                            },
+                            {
+                              "id": "4b2cbac9-095a-461f-a906-940692b02cbe",
+                              "name": "Unauthorized - authentication required or token expired",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/category-rollups?orderBy=<string>&orderByDirection=ASC&showFixed=<boolean>&vulnerabilitiesSeverityType=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "category-rollups"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Field name to sort results by",
+                                      "key": "orderBy",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort direction",
+                                      "key": "orderByDirection",
+                                      "value": "ASC"
+                                    },
+                                    {
+                                      "description": "Include fixed vulnerabilities",
+                                      "key": "showFixed",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by severity type",
+                                      "key": "vulnerabilitiesSeverityType",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-4b2cbac9-095a-461f-a906-940692b02cbe"
+                            },
+                            {
+                              "id": "033e7f7f-9d7d-456b-ae94-1331216ad091",
+                              "name": "Forbidden - insufficient permissions or scopes",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/category-rollups?orderBy=<string>&orderByDirection=ASC&showFixed=<boolean>&vulnerabilitiesSeverityType=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "category-rollups"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Field name to sort results by",
+                                      "key": "orderBy",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort direction",
+                                      "key": "orderByDirection",
+                                      "value": "ASC"
+                                    },
+                                    {
+                                      "description": "Include fixed vulnerabilities",
+                                      "key": "showFixed",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by severity type",
+                                      "key": "vulnerabilitiesSeverityType",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-033e7f7f-9d7d-456b-ae94-1331216ad091"
+                            },
+                            {
+                              "id": "883368e8-00b2-4739-890d-1718ef714e35",
+                              "name": "Not found - the specified resource does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/category-rollups?orderBy=<string>&orderByDirection=ASC&showFixed=<boolean>&vulnerabilitiesSeverityType=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "category-rollups"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Field name to sort results by",
+                                      "key": "orderBy",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort direction",
+                                      "key": "orderByDirection",
+                                      "value": "ASC"
+                                    },
+                                    {
+                                      "description": "Include fixed vulnerabilities",
+                                      "key": "showFixed",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by severity type",
+                                      "key": "vulnerabilitiesSeverityType",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-883368e8-00b2-4739-890d-1718ef714e35"
+                            },
+                            {
+                              "id": "d954eba1-9846-4d4a-8473-55c4d639f1dc",
+                              "name": "Too many requests - rate limit exceeded",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/category-rollups?orderBy=<string>&orderByDirection=ASC&showFixed=<boolean>&vulnerabilitiesSeverityType=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "category-rollups"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Field name to sort results by",
+                                      "key": "orderBy",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort direction",
+                                      "key": "orderByDirection",
+                                      "value": "ASC"
+                                    },
+                                    {
+                                      "description": "Include fixed vulnerabilities",
+                                      "key": "showFixed",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by severity type",
+                                      "key": "vulnerabilitiesSeverityType",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:58.000Z",
+                              "updatedAt": "2026-07-28T01:43:58.000Z",
+                              "uid": "35240-d954eba1-9846-4d4a-8473-55c4d639f1dc"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:43:58.000Z",
+                          "updatedAt": "2026-07-28T01:43:58.000Z",
+                          "uid": "35240-fecd240a-25fd-41cf-9324-cadc720750c9"
+                        }
+                      ],
+                      "id": "2dd23d61-bc46-4b5e-99b9-11825b1bb2da",
+                      "createdAt": "2026-07-28T01:43:58.000Z",
+                      "updatedAt": "2026-07-28T01:43:58.000Z",
+                      "uid": "35240-2dd23d61-bc46-4b5e-99b9-11825b1bb2da"
+                    }
+                  ],
+                  "id": "e85a0df7-4a55-4ada-b05e-47095fc904fa",
+                  "createdAt": "2026-07-28T01:43:58.000Z",
+                  "updatedAt": "2026-07-28T01:43:58.000Z",
+                  "uid": "35240-e85a0df7-4a55-4ada-b05e-47095fc904fa"
+                }
+              ],
+              "id": "6d540cbc-c089-419a-87d4-a7b989a43954",
+              "createdAt": "2026-07-28T01:43:58.000Z",
+              "updatedAt": "2026-07-28T01:43:58.000Z",
+              "uid": "35240-6d540cbc-c089-419a-87d4-a7b989a43954"
+            }
+          ],
+          "id": "146a3145-f9f9-476f-b5d4-abacfca0660e",
+          "createdAt": "2026-07-28T01:43:58.000Z",
+          "updatedAt": "2026-07-28T01:43:58.000Z",
+          "uid": "35240-146a3145-f9f9-476f-b5d4-abacfca0660e"
+        }
+      ],
+      "id": "bad9a41c-94dd-43d9-b993-8fc0a5df829a",
+      "createdAt": "2026-07-28T01:43:58.000Z",
+      "updatedAt": "2026-07-28T01:43:58.000Z",
+      "uid": "35240-bad9a41c-94dd-43d9-b993-8fc0a5df829a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

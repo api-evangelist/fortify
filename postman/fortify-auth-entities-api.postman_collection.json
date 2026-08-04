@@ -1,0 +1,620 @@
+{
+  "info": {
+    "_postman_id": "13a04f4d-9492-4e5d-9fc3-9b6dccc9502a",
+    "name": "Fortify on Demand Alert Definitions Auth Entities API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:34.000Z",
+    "updatedAt": "2026-07-28T01:42:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-13a04f4d-9492-4e5d-9fc3-9b6dccc9502a"
+  },
+  "item": [
+    {
+      "name": "projectVersions",
+      "item": [
+        {
+          "name": "{parentId}",
+          "item": [
+            {
+              "name": "authEntities",
+              "item": [
+                {
+                  "name": "Fortify List project version auth entities",
+                  "id": "4cb8ab84-8b05-4eeb-ac8f-73be8afdbbea",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities?start=0&limit=200&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "authEntities"
+                      ],
+                      "query": [
+                        {
+                          "description": "Starting index for pagination (0-based)",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "200"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d3f8c717-054e-441e-9d42-2431e40d3df1",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves authentication entities (users and LDAP groups) assigned to the specified project version."
+                  },
+                  "response": [
+                    {
+                      "id": "18c97e17-1487-465d-a529-9d505d3ec782",
+                      "name": "Successful response with auth entities",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities?start=0&limit=200&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "authEntities"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"entityName\": \"<string>\",\n      \"isLdap\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"entityName\": \"<string>\",\n      \"isLdap\": \"<boolean>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:35.000Z",
+                      "updatedAt": "2026-07-28T01:42:35.000Z",
+                      "uid": "35240-18c97e17-1487-465d-a529-9d505d3ec782"
+                    },
+                    {
+                      "id": "ce212579-3930-47d1-a220-f5dba9b04742",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities?start=0&limit=200&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "authEntities"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:35.000Z",
+                      "updatedAt": "2026-07-28T01:42:35.000Z",
+                      "uid": "35240-ce212579-3930-47d1-a220-f5dba9b04742"
+                    },
+                    {
+                      "id": "94550942-e6ec-48c1-9eb5-17c5a23fac55",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities?start=0&limit=200&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "authEntities"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:35.000Z",
+                      "updatedAt": "2026-07-28T01:42:35.000Z",
+                      "uid": "35240-94550942-e6ec-48c1-9eb5-17c5a23fac55"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:35.000Z",
+                  "updatedAt": "2026-07-28T01:42:35.000Z",
+                  "uid": "35240-4cb8ab84-8b05-4eeb-ac8f-73be8afdbbea"
+                },
+                {
+                  "name": "Fortify Update project version auth entities",
+                  "id": "91f45f7f-6a6d-4153-9275-f5da871b4f86",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "authEntities"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eebb58c0-105a-496b-839e-cac810fd0eab",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Assigns or updates authentication entities for the specified project version."
+                  },
+                  "response": [
+                    {
+                      "id": "910ba176-cc67-4ac4-9246-852a444689b8",
+                      "name": "Auth entities updated successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "authEntities"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"entityName\": \"<string>\",\n      \"isLdap\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"entityName\": \"<string>\",\n      \"isLdap\": \"<boolean>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:35.000Z",
+                      "updatedAt": "2026-07-28T01:42:35.000Z",
+                      "uid": "35240-910ba176-cc67-4ac4-9246-852a444689b8"
+                    },
+                    {
+                      "id": "0c15333c-6b8d-4908-bb57-2a3d1d80eb55",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "authEntities"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:35.000Z",
+                      "updatedAt": "2026-07-28T01:42:35.000Z",
+                      "uid": "35240-0c15333c-6b8d-4908-bb57-2a3d1d80eb55"
+                    },
+                    {
+                      "id": "aebfcfe5-27a4-48b4-b65f-3ef7a8193e87",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "authEntities"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:35.000Z",
+                      "updatedAt": "2026-07-28T01:42:35.000Z",
+                      "uid": "35240-aebfcfe5-27a4-48b4-b65f-3ef7a8193e87"
+                    },
+                    {
+                      "id": "4aba4b7b-9343-4341-b885-b87abac38b16",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"entityName\": \"<string>\",\n    \"isLdap\": \"<boolean>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/authEntities",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "authEntities"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:35.000Z",
+                      "updatedAt": "2026-07-28T01:42:35.000Z",
+                      "uid": "35240-4aba4b7b-9343-4341-b885-b87abac38b16"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:35.000Z",
+                  "updatedAt": "2026-07-28T01:42:35.000Z",
+                  "uid": "35240-91f45f7f-6a6d-4153-9275-f5da871b4f86"
+                }
+              ],
+              "id": "6d40a4a3-a3f8-46a8-a481-3da9ff5226eb",
+              "createdAt": "2026-07-28T01:42:35.000Z",
+              "updatedAt": "2026-07-28T01:42:35.000Z",
+              "uid": "35240-6d40a4a3-a3f8-46a8-a481-3da9ff5226eb"
+            }
+          ],
+          "id": "948b1168-25ff-466f-85be-477f05908700",
+          "createdAt": "2026-07-28T01:42:35.000Z",
+          "updatedAt": "2026-07-28T01:42:35.000Z",
+          "uid": "35240-948b1168-25ff-466f-85be-477f05908700"
+        }
+      ],
+      "id": "83be987d-6e63-4734-b532-f7db7a0b3741",
+      "createdAt": "2026-07-28T01:42:35.000Z",
+      "updatedAt": "2026-07-28T01:42:35.000Z",
+      "uid": "35240-83be987d-6e63-4734-b532-f7db7a0b3741"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "info": {
+    "_postman_id": "1a1dd20a-6256-4556-8bc2-6107a5186593",
+    "name": "Fortify on Demand Alert Definitions Cloud Pools API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:50.000Z",
+    "updatedAt": "2026-07-28T01:42:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1a1dd20a-6256-4556-8bc2-6107a5186593"
+  },
+  "item": [
+    {
+      "name": "cloudpools",
+      "item": [
+        {
+          "name": "Fortify List cloud pools",
+          "id": "57374726-ee2b-4fce-9c3f-5fc801de0bec",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cloudpools?start=0&limit=200&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cloudpools"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves a list of cloud scan worker pools."
+          },
+          "response": [
+            {
+              "id": "3e1ae5cd-0f7d-4762-a3cf-274420a63631",
+              "name": "Successful response with cloud pools",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cloudpools?start=0&limit=200&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cloudpools"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"uuid\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"uuid\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:42:51.000Z",
+              "updatedAt": "2026-07-28T01:42:51.000Z",
+              "uid": "35240-3e1ae5cd-0f7d-4762-a3cf-274420a63631"
+            },
+            {
+              "id": "e2724665-5212-44fb-924d-74b7ca4bbb1b",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cloudpools?start=0&limit=200&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cloudpools"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:42:51.000Z",
+              "updatedAt": "2026-07-28T01:42:51.000Z",
+              "uid": "35240-e2724665-5212-44fb-924d-74b7ca4bbb1b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:42:51.000Z",
+          "updatedAt": "2026-07-28T01:42:51.000Z",
+          "uid": "35240-57374726-ee2b-4fce-9c3f-5fc801de0bec"
+        }
+      ],
+      "id": "c447dfd0-4659-4932-9061-bca949a87a58",
+      "createdAt": "2026-07-28T01:42:51.000Z",
+      "updatedAt": "2026-07-28T01:42:51.000Z",
+      "uid": "35240-c447dfd0-4659-4932-9061-bca949a87a58"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

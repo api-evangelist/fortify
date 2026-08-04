@@ -1,0 +1,280 @@
+{
+  "info": {
+    "_postman_id": "ec4b8741-46a0-4656-a635-fccd05fbf8da",
+    "name": "Fortify on Demand Alert Definitions Event Logs API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:54.000Z",
+    "updatedAt": "2026-07-28T01:42:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ec4b8741-46a0-4656-a635-fccd05fbf8da"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "eventlogs",
+              "item": [
+                {
+                  "name": "download",
+                  "item": [
+                    {
+                      "name": "Fortify Download event logs",
+                      "id": "f713c12b-17f1-403e-930b-0859d1d420b6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/x-download"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/eventlogs/download",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "eventlogs",
+                            "download"
+                          ]
+                        },
+                        "description": "Downloads the last 24 hours of event log data in CSV format for the tenant."
+                      },
+                      "response": [
+                        {
+                          "id": "ef975218-b453-48be-9762-9b130b601fac",
+                          "name": "Event log CSV file download",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/x-download"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/eventlogs/download",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "eventlogs",
+                                "download"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/x-download"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-07-28T01:42:55.000Z",
+                          "updatedAt": "2026-07-28T01:42:55.000Z",
+                          "uid": "35240-ef975218-b453-48be-9762-9b130b601fac"
+                        },
+                        {
+                          "id": "99212be5-d221-494a-beb3-150f0f7a22cf",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/eventlogs/download",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "eventlogs",
+                                "download"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:55.000Z",
+                          "updatedAt": "2026-07-28T01:42:55.000Z",
+                          "uid": "35240-99212be5-d221-494a-beb3-150f0f7a22cf"
+                        },
+                        {
+                          "id": "c0cd97ae-682b-4f89-838c-a7faa3308d42",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/eventlogs/download",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "eventlogs",
+                                "download"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:55.000Z",
+                          "updatedAt": "2026-07-28T01:42:55.000Z",
+                          "uid": "35240-c0cd97ae-682b-4f89-838c-a7faa3308d42"
+                        },
+                        {
+                          "id": "3f91f2b0-f128-4bbd-a634-d9cb9ad7ac7c",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/eventlogs/download",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "eventlogs",
+                                "download"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:55.000Z",
+                          "updatedAt": "2026-07-28T01:42:55.000Z",
+                          "uid": "35240-3f91f2b0-f128-4bbd-a634-d9cb9ad7ac7c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:55.000Z",
+                      "updatedAt": "2026-07-28T01:42:55.000Z",
+                      "uid": "35240-f713c12b-17f1-403e-930b-0859d1d420b6"
+                    }
+                  ],
+                  "id": "94d2430b-3f2e-486d-a0f4-18b1b1953b6e",
+                  "createdAt": "2026-07-28T01:42:55.000Z",
+                  "updatedAt": "2026-07-28T01:42:55.000Z",
+                  "uid": "35240-94d2430b-3f2e-486d-a0f4-18b1b1953b6e"
+                }
+              ],
+              "id": "8b07d0e4-d909-4828-9368-18f79546a729",
+              "createdAt": "2026-07-28T01:42:55.000Z",
+              "updatedAt": "2026-07-28T01:42:55.000Z",
+              "uid": "35240-8b07d0e4-d909-4828-9368-18f79546a729"
+            }
+          ],
+          "id": "3bf93bb5-1863-44ab-9f5c-bf9d4c8f9a7d",
+          "createdAt": "2026-07-28T01:42:55.000Z",
+          "updatedAt": "2026-07-28T01:42:55.000Z",
+          "uid": "35240-3bf93bb5-1863-44ab-9f5c-bf9d4c8f9a7d"
+        }
+      ],
+      "id": "2134902b-ddb7-4223-8caa-452ddc9becec",
+      "createdAt": "2026-07-28T01:42:55.000Z",
+      "updatedAt": "2026-07-28T01:42:55.000Z",
+      "uid": "35240-2134902b-ddb7-4223-8caa-452ddc9becec"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

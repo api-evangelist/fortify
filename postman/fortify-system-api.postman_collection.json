@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "4d27337f-9c69-42ae-9b5b-e6508a336aec",
+    "name": "Fortify on Demand Alert Definitions System API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:55.000Z",
+    "updatedAt": "2026-07-28T01:43:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4d27337f-9c69-42ae-9b5b-e6508a336aec"
+  },
+  "item": [
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "Fortify Get system health",
+          "id": "1ee73c8a-f92f-4d0f-b7c2-8ba9ea2640dd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Returns the health status of the ScanCentral DAST system, including database connectivity and service availability."
+          },
+          "response": [
+            {
+              "id": "47b638f6-62df-4069-93d4-5fdf04941ad0",
+              "name": "System is healthy",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"Unhealthy\",\n  \"checks\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:43:55.000Z",
+              "updatedAt": "2026-07-28T01:43:55.000Z",
+              "uid": "35240-47b638f6-62df-4069-93d4-5fdf04941ad0"
+            },
+            {
+              "id": "b53119df-9e36-461a-89b9-840b82c35516",
+              "name": "System is unhealthy",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"Unhealthy\",\n  \"checks\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:43:55.000Z",
+              "updatedAt": "2026-07-28T01:43:55.000Z",
+              "uid": "35240-b53119df-9e36-461a-89b9-840b82c35516"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:55.000Z",
+          "updatedAt": "2026-07-28T01:43:55.000Z",
+          "uid": "35240-1ee73c8a-f92f-4d0f-b7c2-8ba9ea2640dd"
+        }
+      ],
+      "id": "c0eb6d7e-2774-4315-873b-811334c01c6d",
+      "createdAt": "2026-07-28T01:43:55.000Z",
+      "updatedAt": "2026-07-28T01:43:55.000Z",
+      "uid": "35240-c0eb6d7e-2774-4315-873b-811334c01c6d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

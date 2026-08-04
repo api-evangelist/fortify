@@ -1,0 +1,543 @@
+{
+  "info": {
+    "_postman_id": "6367a0be-b7b5-4a66-895a-ef7aafe83f2b",
+    "name": "Fortify on Demand Alert Definitions Custom Tags API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:51.000Z",
+    "updatedAt": "2026-07-28T01:42:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6367a0be-b7b5-4a66-895a-ef7aafe83f2b"
+  },
+  "item": [
+    {
+      "name": "projectVersions",
+      "item": [
+        {
+          "name": "{parentId}",
+          "item": [
+            {
+              "name": "customTags",
+              "item": [
+                {
+                  "name": "Fortify List project version custom tags",
+                  "id": "35bb50f3-f300-4efb-9fa1-2e1a9a48b035",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/customTags?start=0&limit=200&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "customTags"
+                      ],
+                      "query": [
+                        {
+                          "description": "Starting index for pagination (0-based)",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "200"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "00778160-b32c-421d-979c-a94d57f99262",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves custom tags configured for the specified project version."
+                  },
+                  "response": [
+                    {
+                      "id": "1727fc0d-2d60-4504-9406-71477e95e6e3",
+                      "name": "Successful response with custom tags",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/customTags?start=0&limit=200&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "customTags"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"name\": \"<string>\",\n      \"valueType\": \"<string>\",\n      \"valueList\": [\n        {\n          \"id\": \"<long>\",\n          \"lookupValue\": \"<string>\",\n          \"lookupIndex\": \"<integer>\"\n        },\n        {\n          \"id\": \"<long>\",\n          \"lookupValue\": \"<string>\",\n          \"lookupIndex\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"name\": \"<string>\",\n      \"valueType\": \"<string>\",\n      \"valueList\": [\n        {\n          \"id\": \"<long>\",\n          \"lookupValue\": \"<string>\",\n          \"lookupIndex\": \"<integer>\"\n        },\n        {\n          \"id\": \"<long>\",\n          \"lookupValue\": \"<string>\",\n          \"lookupIndex\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:52.000Z",
+                      "updatedAt": "2026-07-28T01:42:52.000Z",
+                      "uid": "35240-1727fc0d-2d60-4504-9406-71477e95e6e3"
+                    },
+                    {
+                      "id": "327535b4-1122-4045-bfed-0ce71838136f",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/customTags?start=0&limit=200&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "customTags"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:52.000Z",
+                      "updatedAt": "2026-07-28T01:42:52.000Z",
+                      "uid": "35240-327535b4-1122-4045-bfed-0ce71838136f"
+                    },
+                    {
+                      "id": "882c489b-da3e-4946-9dcd-d58b57be36eb",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/customTags?start=0&limit=200&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "customTags"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:52.000Z",
+                      "updatedAt": "2026-07-28T01:42:52.000Z",
+                      "uid": "35240-882c489b-da3e-4946-9dcd-d58b57be36eb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:52.000Z",
+                  "updatedAt": "2026-07-28T01:42:52.000Z",
+                  "uid": "35240-35bb50f3-f300-4efb-9fa1-2e1a9a48b035"
+                }
+              ],
+              "id": "762a4a75-8d3d-496d-a177-dbe30f772399",
+              "createdAt": "2026-07-28T01:42:52.000Z",
+              "updatedAt": "2026-07-28T01:42:52.000Z",
+              "uid": "35240-762a4a75-8d3d-496d-a177-dbe30f772399"
+            }
+          ],
+          "id": "a5c8d3fb-6ceb-4aac-abab-46551c70bfe3",
+          "createdAt": "2026-07-28T01:42:52.000Z",
+          "updatedAt": "2026-07-28T01:42:52.000Z",
+          "uid": "35240-a5c8d3fb-6ceb-4aac-abab-46551c70bfe3"
+        }
+      ],
+      "id": "9993f489-c3ca-4e26-ae5c-89477c379bf6",
+      "createdAt": "2026-07-28T01:42:52.000Z",
+      "updatedAt": "2026-07-28T01:42:52.000Z",
+      "uid": "35240-9993f489-c3ca-4e26-ae5c-89477c379bf6"
+    },
+    {
+      "name": "customTags",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fortify Get custom tag",
+              "id": "d71d050c-4f8b-488e-95ac-a74f0099662c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customTags/:id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customTags",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "3900417c-7cc6-439a-914f-8aa90e40114f",
+                      "key": "id",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific custom tag."
+              },
+              "response": [
+                {
+                  "id": "09561e3c-5b4e-4e94-99f3-e03755cacba6",
+                  "name": "Successful response with custom tag details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customTags/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customTags",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"valueType\": \"<string>\",\n    \"valueList\": [\n      {\n        \"id\": \"<long>\",\n        \"lookupValue\": \"<string>\",\n        \"lookupIndex\": \"<integer>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"lookupValue\": \"<string>\",\n        \"lookupIndex\": \"<integer>\"\n      }\n    ]\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:42:52.000Z",
+                  "updatedAt": "2026-07-28T01:42:52.000Z",
+                  "uid": "35240-09561e3c-5b4e-4e94-99f3-e03755cacba6"
+                },
+                {
+                  "id": "eed360ba-2a43-4e55-9706-5915344361bf",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customTags/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customTags",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:42:52.000Z",
+                  "updatedAt": "2026-07-28T01:42:52.000Z",
+                  "uid": "35240-eed360ba-2a43-4e55-9706-5915344361bf"
+                },
+                {
+                  "id": "bbcc7e5e-3bf7-480c-9d94-6828bd115a74",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customTags/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customTags",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:42:52.000Z",
+                  "updatedAt": "2026-07-28T01:42:52.000Z",
+                  "uid": "35240-bbcc7e5e-3bf7-480c-9d94-6828bd115a74"
+                }
+              ],
+              "createdAt": "2026-07-28T01:42:52.000Z",
+              "updatedAt": "2026-07-28T01:42:52.000Z",
+              "uid": "35240-d71d050c-4f8b-488e-95ac-a74f0099662c"
+            }
+          ],
+          "id": "11f63cb4-b472-4075-8644-90d5a7856bc0",
+          "createdAt": "2026-07-28T01:42:52.000Z",
+          "updatedAt": "2026-07-28T01:42:52.000Z",
+          "uid": "35240-11f63cb4-b472-4075-8644-90d5a7856bc0"
+        }
+      ],
+      "id": "f139a0b1-89b0-49b5-b2f6-a49207028d68",
+      "createdAt": "2026-07-28T01:42:52.000Z",
+      "updatedAt": "2026-07-28T01:42:52.000Z",
+      "uid": "35240-f139a0b1-89b0-49b5-b2f6-a49207028d68"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

@@ -1,0 +1,1710 @@
+{
+  "info": {
+    "_postman_id": "f46d925b-204a-43bf-b8aa-5f91e1a01ca8",
+    "name": "Fortify on Demand Alert Definitions DAST Automated Scans API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:52.000Z",
+    "updatedAt": "2026-07-28T01:42:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f46d925b-204a-43bf-b8aa-5f91e1a01ca8"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "releases",
+              "item": [
+                {
+                  "name": "{releaseId}",
+                  "item": [
+                    {
+                      "name": "dast-automated-scans",
+                      "item": [
+                        {
+                          "name": "scan-setup",
+                          "item": [
+                            {
+                              "name": "Fortify Get DAST automated scan setup",
+                              "id": "66683aa5-96b4-40b9-b4aa-f4f3c20f1041",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/scan-setup",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "dast-automated-scans",
+                                    "scan-setup"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "71ff8881-e3a4-443a-bcbb-225135db6399",
+                                      "key": "releaseId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the release"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves the current DAST automated scan setup configuration for the specified release."
+                              },
+                              "response": [
+                                {
+                                  "id": "ab0772bf-b5d3-482c-9f34-4145fd40a5de",
+                                  "name": "Successful response with DAST scan setup details",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"dynamicScanEnvironmentFacingType\": \"<string>\",\n  \"scanType\": \"<string>\",\n  \"scanPolicy\": \"<string>\",\n  \"websiteUrl\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"timeZone\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-ab0772bf-b5d3-482c-9f34-4145fd40a5de"
+                                },
+                                {
+                                  "id": "5ead95b1-2724-4996-9165-4a514fbd10de",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-5ead95b1-2724-4996-9165-4a514fbd10de"
+                                },
+                                {
+                                  "id": "34b2f621-7e1f-46b6-bece-0a50b2b3cd5f",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-34b2f621-7e1f-46b6-bece-0a50b2b3cd5f"
+                                },
+                                {
+                                  "id": "bd1da47d-8ee4-4bc2-879f-064e3d6975e1",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-bd1da47d-8ee4-4bc2-879f-064e3d6975e1"
+                                },
+                                {
+                                  "id": "ab9e09a4-5418-4d33-be33-36f96484f953",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-ab9e09a4-5418-4d33-be33-36f96484f953"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:42:53.000Z",
+                              "updatedAt": "2026-07-28T01:42:53.000Z",
+                              "uid": "35240-66683aa5-96b4-40b9-b4aa-f4f3c20f1041"
+                            }
+                          ],
+                          "id": "27eb7bfb-656f-4b99-ac38-43716ba52161",
+                          "createdAt": "2026-07-28T01:42:53.000Z",
+                          "updatedAt": "2026-07-28T01:42:53.000Z",
+                          "uid": "35240-27eb7bfb-656f-4b99-ac38-43716ba52161"
+                        },
+                        {
+                          "name": "website-scan-setup",
+                          "item": [
+                            {
+                              "name": "Fortify Save DAST automated website scan setup",
+                              "id": "1f59a671-eedd-447a-beaa-22405cbe98ec",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"websiteUrl\": \"<string>\",\n  \"scanPolicy\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/website-scan-setup",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "dast-automated-scans",
+                                    "website-scan-setup"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "74f4f696-2497-4235-a105-2f21e5fa8392",
+                                      "key": "releaseId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the release"
+                                    }
+                                  ]
+                                },
+                                "description": "Saves the DAST automated website scan setup configuration for the specified release."
+                              },
+                              "response": [
+                                {
+                                  "id": "c318ada7-a9b4-4643-a5b0-0d08062a342d",
+                                  "name": "Website scan setup saved successfully",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"websiteUrl\": \"<string>\",\n  \"scanPolicy\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/website-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "website-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-c318ada7-a9b4-4643-a5b0-0d08062a342d"
+                                },
+                                {
+                                  "id": "db6ea4e7-3a84-4d2f-8068-f4ea7734506d",
+                                  "name": "Bad request - invalid parameters or request body",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"websiteUrl\": \"<string>\",\n  \"scanPolicy\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/website-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "website-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-db6ea4e7-3a84-4d2f-8068-f4ea7734506d"
+                                },
+                                {
+                                  "id": "5e1e016a-4b90-4261-9280-f4497e617103",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"websiteUrl\": \"<string>\",\n  \"scanPolicy\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/website-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "website-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-5e1e016a-4b90-4261-9280-f4497e617103"
+                                },
+                                {
+                                  "id": "bf3c88d7-d8e0-475a-a071-3e28fdfbba68",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"websiteUrl\": \"<string>\",\n  \"scanPolicy\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/website-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "website-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-bf3c88d7-d8e0-475a-a071-3e28fdfbba68"
+                                },
+                                {
+                                  "id": "97d3b303-4020-49ed-9015-eeb17c392efe",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"websiteUrl\": \"<string>\",\n  \"scanPolicy\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/website-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "website-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-97d3b303-4020-49ed-9015-eeb17c392efe"
+                                },
+                                {
+                                  "id": "f135b332-d912-4081-b041-5956d45d7db8",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"websiteUrl\": \"<string>\",\n  \"scanPolicy\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/website-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "website-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-f135b332-d912-4081-b041-5956d45d7db8"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:42:53.000Z",
+                              "updatedAt": "2026-07-28T01:42:53.000Z",
+                              "uid": "35240-1f59a671-eedd-447a-beaa-22405cbe98ec"
+                            }
+                          ],
+                          "id": "d818f2f5-04d5-4f3e-943c-85a93b06c3a8",
+                          "createdAt": "2026-07-28T01:42:53.000Z",
+                          "updatedAt": "2026-07-28T01:42:53.000Z",
+                          "uid": "35240-d818f2f5-04d5-4f3e-943c-85a93b06c3a8"
+                        },
+                        {
+                          "name": "openapi-scan-setup",
+                          "item": [
+                            {
+                              "name": "Fortify Save DAST automated OpenAPI scan setup",
+                              "id": "9f57d360-330e-409f-8cda-7179368bf284",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"openApiUrl\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"timeZone\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/openapi-scan-setup",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "dast-automated-scans",
+                                    "openapi-scan-setup"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "a013212c-d1f8-4e1a-b02f-a4e38b2c66b1",
+                                      "key": "releaseId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the release"
+                                    }
+                                  ]
+                                },
+                                "description": "Saves the DAST automated OpenAPI scan setup configuration for the specified release."
+                              },
+                              "response": [
+                                {
+                                  "id": "182077e9-7541-4ba6-af9d-e414fa5dcb3f",
+                                  "name": "OpenAPI scan setup saved successfully",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"openApiUrl\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/openapi-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "openapi-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-182077e9-7541-4ba6-af9d-e414fa5dcb3f"
+                                },
+                                {
+                                  "id": "64f28a65-61f1-42a1-b74e-1bf8c125ffac",
+                                  "name": "Bad request - invalid parameters or request body",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"openApiUrl\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/openapi-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "openapi-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-64f28a65-61f1-42a1-b74e-1bf8c125ffac"
+                                },
+                                {
+                                  "id": "8b2576ee-b4cb-41e0-b6de-b8cec096fa02",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"openApiUrl\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/openapi-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "openapi-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-8b2576ee-b4cb-41e0-b6de-b8cec096fa02"
+                                },
+                                {
+                                  "id": "c881ceef-5d45-4442-b427-80802c7a5113",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"openApiUrl\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/openapi-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "openapi-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-c881ceef-5d45-4442-b427-80802c7a5113"
+                                },
+                                {
+                                  "id": "e5cb1948-582d-4cfe-843c-21179f33a9ae",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"openApiUrl\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/openapi-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "openapi-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-e5cb1948-582d-4cfe-843c-21179f33a9ae"
+                                },
+                                {
+                                  "id": "bdd454c5-91f4-4ea0-967d-ea01f000341c",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"Internal\",\n  \"openApiUrl\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"timeZone\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/openapi-scan-setup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "openapi-scan-setup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-bdd454c5-91f4-4ea0-967d-ea01f000341c"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:42:53.000Z",
+                              "updatedAt": "2026-07-28T01:42:53.000Z",
+                              "uid": "35240-9f57d360-330e-409f-8cda-7179368bf284"
+                            }
+                          ],
+                          "id": "f83b702d-9564-4f10-8335-35b0e93a59dc",
+                          "createdAt": "2026-07-28T01:42:53.000Z",
+                          "updatedAt": "2026-07-28T01:42:53.000Z",
+                          "uid": "35240-f83b702d-9564-4f10-8335-35b0e93a59dc"
+                        },
+                        {
+                          "name": "start-scan",
+                          "item": [
+                            {
+                              "name": "Fortify Start DAST automated scan",
+                              "id": "55e2a1c7-f5a3-4c96-8e36-063b45785d4a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/start-scan?networkName=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "dast-automated-scans",
+                                    "start-scan"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Name of the Fortify on Demand Connect network to use for scanning",
+                                      "key": "networkName",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "81c9251d-3914-4252-acea-726e0caf1c28",
+                                      "key": "releaseId",
+                                      "value": "<integer>",
+                                      "description": "(Required) Unique identifier of the release"
+                                    }
+                                  ]
+                                },
+                                "description": "Initiates a DAST automated scan for the specified release using the current scan setup configuration."
+                              },
+                              "response": [
+                                {
+                                  "id": "55effa94-5338-4663-afa3-007f55fa98b6",
+                                  "name": "DAST automated scan started successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/start-scan?networkName=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Name of the Fortify on Demand Connect network to use for scanning",
+                                          "key": "networkName",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"scanId\": \"<integer>\",\n  \"analysisStatusType\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-55effa94-5338-4663-afa3-007f55fa98b6"
+                                },
+                                {
+                                  "id": "9d48cc0a-7a76-4417-9b7a-0a4dff3876c4",
+                                  "name": "Bad request - invalid parameters or request body",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/start-scan?networkName=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Name of the Fortify on Demand Connect network to use for scanning",
+                                          "key": "networkName",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-9d48cc0a-7a76-4417-9b7a-0a4dff3876c4"
+                                },
+                                {
+                                  "id": "5b083a70-66c1-433c-9f43-cd9e277c8875",
+                                  "name": "Unauthorized - authentication required or token expired",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/start-scan?networkName=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Name of the Fortify on Demand Connect network to use for scanning",
+                                          "key": "networkName",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-5b083a70-66c1-433c-9f43-cd9e277c8875"
+                                },
+                                {
+                                  "id": "8d1604d2-48a4-48cb-bc71-4b93a580636a",
+                                  "name": "Forbidden - insufficient permissions or scopes",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/start-scan?networkName=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Name of the Fortify on Demand Connect network to use for scanning",
+                                          "key": "networkName",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-8d1604d2-48a4-48cb-bc71-4b93a580636a"
+                                },
+                                {
+                                  "id": "60a80146-d2c0-42eb-9ef1-ee1abae658fb",
+                                  "name": "Not found - the specified resource does not exist",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/start-scan?networkName=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Name of the Fortify on Demand Connect network to use for scanning",
+                                          "key": "networkName",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-60a80146-d2c0-42eb-9ef1-ee1abae658fb"
+                                },
+                                {
+                                  "id": "d158499b-fa8d-4928-a747-77b5cca75019",
+                                  "name": "Too many requests - rate limit exceeded",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v3/releases/:releaseId/dast-automated-scans/start-scan?networkName=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v3",
+                                        "releases",
+                                        ":releaseId",
+                                        "dast-automated-scans",
+                                        "start-scan"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Name of the Fortify on Demand Connect network to use for scanning",
+                                          "key": "networkName",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "releaseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:42:53.000Z",
+                                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                                  "uid": "35240-d158499b-fa8d-4928-a747-77b5cca75019"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:42:53.000Z",
+                              "updatedAt": "2026-07-28T01:42:53.000Z",
+                              "uid": "35240-55e2a1c7-f5a3-4c96-8e36-063b45785d4a"
+                            }
+                          ],
+                          "id": "b67ab0f4-d110-40d1-8d7a-b373d2c5d4e9",
+                          "createdAt": "2026-07-28T01:42:53.000Z",
+                          "updatedAt": "2026-07-28T01:42:53.000Z",
+                          "uid": "35240-b67ab0f4-d110-40d1-8d7a-b373d2c5d4e9"
+                        }
+                      ],
+                      "id": "ef05a722-e588-4cb4-8c6e-b298e1faea89",
+                      "createdAt": "2026-07-28T01:42:53.000Z",
+                      "updatedAt": "2026-07-28T01:42:53.000Z",
+                      "uid": "35240-ef05a722-e588-4cb4-8c6e-b298e1faea89"
+                    }
+                  ],
+                  "id": "17bd8586-0d9c-4f57-9317-5efa63b965c5",
+                  "createdAt": "2026-07-28T01:42:53.000Z",
+                  "updatedAt": "2026-07-28T01:42:53.000Z",
+                  "uid": "35240-17bd8586-0d9c-4f57-9317-5efa63b965c5"
+                }
+              ],
+              "id": "9410d575-0d47-4641-ae4d-45fcb92e95ec",
+              "createdAt": "2026-07-28T01:42:53.000Z",
+              "updatedAt": "2026-07-28T01:42:53.000Z",
+              "uid": "35240-9410d575-0d47-4641-ae4d-45fcb92e95ec"
+            }
+          ],
+          "id": "1347dfd3-3987-4747-ab6a-cd9e6970e43e",
+          "createdAt": "2026-07-28T01:42:53.000Z",
+          "updatedAt": "2026-07-28T01:42:53.000Z",
+          "uid": "35240-1347dfd3-3987-4747-ab6a-cd9e6970e43e"
+        }
+      ],
+      "id": "97d7433e-f2be-4e70-85d0-b3867b2996fa",
+      "createdAt": "2026-07-28T01:42:53.000Z",
+      "updatedAt": "2026-07-28T01:42:53.000Z",
+      "uid": "35240-97d7433e-f2be-4e70-85d0-b3867b2996fa"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

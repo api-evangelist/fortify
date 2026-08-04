@@ -1,0 +1,1073 @@
+{
+  "info": {
+    "_postman_id": "8b84c466-2395-4961-b7ab-183a1e8681f5",
+    "name": "Fortify on Demand Alert Definitions Scan Schedules API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:49.000Z",
+    "updatedAt": "2026-07-28T01:43:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8b84c466-2395-4961-b7ab-183a1e8681f5"
+  },
+  "item": [
+    {
+      "name": "scan-schedules",
+      "item": [
+        {
+          "name": "{scanScheduleId}",
+          "item": [
+            {
+              "name": "Fortify Get scan schedule",
+              "id": "3855b2d2-c528-4883-a449-72b57d52cd25",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-schedules",
+                    ":scanScheduleId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "65f27cb2-0f74-431a-84cf-8c8ac1d97e65",
+                      "key": "scanScheduleId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the scan schedule"
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific scan schedule."
+              },
+              "response": [
+                {
+                  "id": "fbedfef4-3765-4a49-95ad-47f8ec35abdf",
+                  "name": "Successful response with scan schedule details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Once\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": \"<boolean>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-fbedfef4-3765-4a49-95ad-47f8ec35abdf"
+                },
+                {
+                  "id": "013f1f8a-240e-4981-a705-44cdde4a276b",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-013f1f8a-240e-4981-a705-44cdde4a276b"
+                },
+                {
+                  "id": "b954ba7e-2091-41e9-9845-0698c4062959",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-b954ba7e-2091-41e9-9845-0698c4062959"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:50.000Z",
+              "updatedAt": "2026-07-28T01:43:50.000Z",
+              "uid": "35240-3855b2d2-c528-4883-a449-72b57d52cd25"
+            },
+            {
+              "name": "Fortify Update scan schedule",
+              "id": "71b21303-6d21-4db4-9f99-f3c697545284",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Daily\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": \"<boolean>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-schedules",
+                    ":scanScheduleId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "51857162-85ec-4a9f-b8b9-aaa880c88cc0",
+                      "key": "scanScheduleId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the scan schedule"
+                    }
+                  ]
+                },
+                "description": "Updates an existing scan schedule."
+              },
+              "response": [
+                {
+                  "id": "c2df8caa-b6ba-4a7b-bd05-ec6277895765",
+                  "name": "Scan schedule updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Daily\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": \"<boolean>\",\n  \"timeZone\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Once\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": \"<boolean>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-c2df8caa-b6ba-4a7b-bd05-ec6277895765"
+                },
+                {
+                  "id": "d10d886f-5982-4b3d-9513-b33e9d11cf53",
+                  "name": "Bad request - invalid parameters or request body",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Daily\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": \"<boolean>\",\n  \"timeZone\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-d10d886f-5982-4b3d-9513-b33e9d11cf53"
+                },
+                {
+                  "id": "f0e1ddfb-d365-40d0-80ae-cb42628c815b",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Daily\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": \"<boolean>\",\n  \"timeZone\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-f0e1ddfb-d365-40d0-80ae-cb42628c815b"
+                },
+                {
+                  "id": "f1cbe273-f64d-4e20-b527-61c0a7ed8111",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Daily\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": \"<boolean>\",\n  \"timeZone\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-f1cbe273-f64d-4e20-b527-61c0a7ed8111"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:50.000Z",
+              "updatedAt": "2026-07-28T01:43:50.000Z",
+              "uid": "35240-71b21303-6d21-4db4-9f99-f3c697545284"
+            },
+            {
+              "name": "Fortify Delete scan schedule",
+              "id": "7ac89e63-e609-43ca-95de-09f44fcf708e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-schedules",
+                    ":scanScheduleId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fe89bfd4-02e8-48f0-a551-e0df7ea9c66d",
+                      "key": "scanScheduleId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the scan schedule"
+                    }
+                  ]
+                },
+                "description": "Deletes a scan schedule."
+              },
+              "response": [
+                {
+                  "id": "e1d196e1-6bb7-40e7-9f15-5d7390825043",
+                  "name": "Scan schedule deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-e1d196e1-6bb7-40e7-9f15-5d7390825043"
+                },
+                {
+                  "id": "e3df1739-87c7-407c-8975-a43868213b9f",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-e3df1739-87c7-407c-8975-a43868213b9f"
+                },
+                {
+                  "id": "27c57ae4-7078-4ec8-8af8-107b58a78b54",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-schedules/:scanScheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-schedules",
+                        ":scanScheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanScheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:50.000Z",
+                  "updatedAt": "2026-07-28T01:43:50.000Z",
+                  "uid": "35240-27c57ae4-7078-4ec8-8af8-107b58a78b54"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:50.000Z",
+              "updatedAt": "2026-07-28T01:43:50.000Z",
+              "uid": "35240-7ac89e63-e609-43ca-95de-09f44fcf708e"
+            }
+          ],
+          "id": "51fec2a9-a05f-440d-b883-b99e619ab800",
+          "createdAt": "2026-07-28T01:43:50.000Z",
+          "updatedAt": "2026-07-28T01:43:50.000Z",
+          "uid": "35240-51fec2a9-a05f-440d-b883-b99e619ab800"
+        },
+        {
+          "name": "Fortify List scan schedules",
+          "id": "726888d7-b364-487e-9b32-b0a5b39bc0ca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/scan-schedules?offset=0&limit=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scan-schedules"
+              ],
+              "query": [
+                {
+                  "description": "Number of records to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Retrieves a list of scheduled scans."
+          },
+          "response": [
+            {
+              "id": "40a4af9b-ebb2-43e7-a595-11f73fac4860",
+              "name": "Successful response with list of scan schedules",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scan-schedules?offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-schedules"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"scanSettingsId\": \"<uuid>\",\n      \"scheduleType\": \"Weekly\",\n      \"startDateTime\": \"<dateTime>\",\n      \"enabled\": \"<boolean>\",\n      \"timeZone\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"scanSettingsId\": \"<uuid>\",\n      \"scheduleType\": \"Once\",\n      \"startDateTime\": \"<dateTime>\",\n      \"enabled\": \"<boolean>\",\n      \"timeZone\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:50.000Z",
+              "updatedAt": "2026-07-28T01:43:50.000Z",
+              "uid": "35240-40a4af9b-ebb2-43e7-a595-11f73fac4860"
+            },
+            {
+              "id": "c66b8049-755a-4cf0-b45c-dcea6909541a",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scan-schedules?offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-schedules"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:43:50.000Z",
+              "updatedAt": "2026-07-28T01:43:50.000Z",
+              "uid": "35240-c66b8049-755a-4cf0-b45c-dcea6909541a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:50.000Z",
+          "updatedAt": "2026-07-28T01:43:50.000Z",
+          "uid": "35240-726888d7-b364-487e-9b32-b0a5b39bc0ca"
+        },
+        {
+          "name": "Fortify Create scan schedule",
+          "id": "686a5348-a417-4e15-a890-6c07da8511e8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Once\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": true,\n  \"timeZone\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/scan-schedules",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scan-schedules"
+              ]
+            },
+            "description": "Creates a new scheduled scan configuration."
+          },
+          "response": [
+            {
+              "id": "f1c0326d-60eb-4eed-8b4b-a4990659b2d3",
+              "name": "Scan schedule created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Once\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": true,\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scan-schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-schedules"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Once\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": \"<boolean>\",\n  \"timeZone\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:43:50.000Z",
+              "updatedAt": "2026-07-28T01:43:50.000Z",
+              "uid": "35240-f1c0326d-60eb-4eed-8b4b-a4990659b2d3"
+            },
+            {
+              "id": "98dc8a29-6c23-4103-af7c-49a024c3af5e",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Once\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": true,\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scan-schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-schedules"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:43:50.000Z",
+              "updatedAt": "2026-07-28T01:43:50.000Z",
+              "uid": "35240-98dc8a29-6c23-4103-af7c-49a024c3af5e"
+            },
+            {
+              "id": "155266de-42b9-492c-9c82-a1193b1f1518",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"scanSettingsId\": \"<uuid>\",\n  \"scheduleType\": \"Once\",\n  \"startDateTime\": \"<dateTime>\",\n  \"enabled\": true,\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scan-schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-schedules"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:43:50.000Z",
+              "updatedAt": "2026-07-28T01:43:50.000Z",
+              "uid": "35240-155266de-42b9-492c-9c82-a1193b1f1518"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:50.000Z",
+          "updatedAt": "2026-07-28T01:43:50.000Z",
+          "uid": "35240-686a5348-a417-4e15-a890-6c07da8511e8"
+        }
+      ],
+      "id": "8def989c-285e-40ed-a802-9a255aaa0e0c",
+      "createdAt": "2026-07-28T01:43:50.000Z",
+      "updatedAt": "2026-07-28T01:43:50.000Z",
+      "uid": "35240-8def989c-285e-40ed-a802-9a255aaa0e0c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

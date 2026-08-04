@@ -1,0 +1,1073 @@
+{
+  "info": {
+    "_postman_id": "b4c30531-2baa-4e3e-8656-0391a5046ed2",
+    "name": "Fortify on Demand Alert Definitions Sensor Pools API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:52.000Z",
+    "updatedAt": "2026-07-28T01:43:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b4c30531-2baa-4e3e-8656-0391a5046ed2"
+  },
+  "item": [
+    {
+      "name": "sensor-pools",
+      "item": [
+        {
+          "name": "{sensorPoolId}",
+          "item": [
+            {
+              "name": "Fortify Get sensor pool",
+              "id": "0ea01ebe-c0b1-4a38-be95-b3189d01fc16",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensor-pools",
+                    ":sensorPoolId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a787e396-24dc-4e7d-862c-e0e9b202e697",
+                      "key": "sensorPoolId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the sensor pool"
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific sensor pool."
+              },
+              "response": [
+                {
+                  "id": "519cdcc1-407f-46c1-8fac-b3b58affc16d",
+                  "name": "Successful response with sensor pool details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"sensorCount\": \"<integer>\",\n  \"isDefault\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-519cdcc1-407f-46c1-8fac-b3b58affc16d"
+                },
+                {
+                  "id": "6f1e1e55-ce76-41c9-875b-96c899834083",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-6f1e1e55-ce76-41c9-875b-96c899834083"
+                },
+                {
+                  "id": "d7b01446-438a-4988-a9cb-763eb5acff95",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-d7b01446-438a-4988-a9cb-763eb5acff95"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:53.000Z",
+              "updatedAt": "2026-07-28T01:43:53.000Z",
+              "uid": "35240-0ea01ebe-c0b1-4a38-be95-b3189d01fc16"
+            },
+            {
+              "name": "Fortify Update sensor pool",
+              "id": "d3c258f4-a0e8-4ab2-8d9c-e0265448bfd6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensor-pools",
+                    ":sensorPoolId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ca5a8c58-00b9-4938-b152-07d09af5833d",
+                      "key": "sensorPoolId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the sensor pool"
+                    }
+                  ]
+                },
+                "description": "Updates a sensor pool's properties."
+              },
+              "response": [
+                {
+                  "id": "e4d4917b-8441-4148-9127-3b79160ff9c4",
+                  "name": "Sensor pool updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"sensorCount\": \"<integer>\",\n  \"isDefault\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-e4d4917b-8441-4148-9127-3b79160ff9c4"
+                },
+                {
+                  "id": "aad8c749-106c-4ff3-9da4-a3bbe4831100",
+                  "name": "Bad request - invalid parameters or request body",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-aad8c749-106c-4ff3-9da4-a3bbe4831100"
+                },
+                {
+                  "id": "edf3545f-286e-4152-89bf-b0f8ab1b5dce",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-edf3545f-286e-4152-89bf-b0f8ab1b5dce"
+                },
+                {
+                  "id": "f8575a90-8f93-4b69-b3b7-3d56e5b264ab",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-f8575a90-8f93-4b69-b3b7-3d56e5b264ab"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:53.000Z",
+              "updatedAt": "2026-07-28T01:43:53.000Z",
+              "uid": "35240-d3c258f4-a0e8-4ab2-8d9c-e0265448bfd6"
+            },
+            {
+              "name": "Fortify Delete sensor pool",
+              "id": "8094c694-ad88-4f92-8907-d803ebc44891",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensor-pools",
+                    ":sensorPoolId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "741b6259-9573-4247-be83-12dea00456c2",
+                      "key": "sensorPoolId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the sensor pool"
+                    }
+                  ]
+                },
+                "description": "Deletes a sensor pool."
+              },
+              "response": [
+                {
+                  "id": "edea03c0-898a-46ca-a2cd-d8669d79a0b8",
+                  "name": "Sensor pool deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-edea03c0-898a-46ca-a2cd-d8669d79a0b8"
+                },
+                {
+                  "id": "912dcbaf-fc44-4528-a34a-67e265d078ad",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-912dcbaf-fc44-4528-a34a-67e265d078ad"
+                },
+                {
+                  "id": "f751907c-e888-4f81-a208-2eebdb10b33b",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensor-pools/:sensorPoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensor-pools",
+                        ":sensorPoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorPoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:53.000Z",
+                  "updatedAt": "2026-07-28T01:43:53.000Z",
+                  "uid": "35240-f751907c-e888-4f81-a208-2eebdb10b33b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:53.000Z",
+              "updatedAt": "2026-07-28T01:43:53.000Z",
+              "uid": "35240-8094c694-ad88-4f92-8907-d803ebc44891"
+            }
+          ],
+          "id": "23d190c5-e8de-4856-9706-a2fea5e61413",
+          "createdAt": "2026-07-28T01:43:53.000Z",
+          "updatedAt": "2026-07-28T01:43:53.000Z",
+          "uid": "35240-23d190c5-e8de-4856-9706-a2fea5e61413"
+        },
+        {
+          "name": "Fortify List sensor pools",
+          "id": "b1440813-6fe6-4aea-b909-c95fc39b4e4f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sensor-pools?offset=0&limit=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sensor-pools"
+              ],
+              "query": [
+                {
+                  "description": "Number of records to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Retrieves a list of sensor pools used to group sensors for scan distribution."
+          },
+          "response": [
+            {
+              "id": "e8b80ab8-1ceb-45cf-9b5e-d9ed045c53a9",
+              "name": "Successful response with list of sensor pools",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sensor-pools?offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensor-pools"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"sensorCount\": \"<integer>\",\n      \"isDefault\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"sensorCount\": \"<integer>\",\n      \"isDefault\": \"<boolean>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:53.000Z",
+              "updatedAt": "2026-07-28T01:43:53.000Z",
+              "uid": "35240-e8b80ab8-1ceb-45cf-9b5e-d9ed045c53a9"
+            },
+            {
+              "id": "3eb85611-ad75-42ab-adb2-fd6de99f8f9b",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sensor-pools?offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensor-pools"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:43:53.000Z",
+              "updatedAt": "2026-07-28T01:43:53.000Z",
+              "uid": "35240-3eb85611-ad75-42ab-adb2-fd6de99f8f9b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:53.000Z",
+          "updatedAt": "2026-07-28T01:43:53.000Z",
+          "uid": "35240-b1440813-6fe6-4aea-b909-c95fc39b4e4f"
+        },
+        {
+          "name": "Fortify Create sensor pool",
+          "id": "8f34062b-9b5c-4f87-b402-05df010fa502",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sensor-pools",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sensor-pools"
+              ]
+            },
+            "description": "Creates a new sensor pool for organizing sensors."
+          },
+          "response": [
+            {
+              "id": "faf87d81-7389-4526-af2a-6211bd6c7b07",
+              "name": "Sensor pool created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sensor-pools",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensor-pools"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"sensorCount\": \"<integer>\",\n  \"isDefault\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T01:43:53.000Z",
+              "updatedAt": "2026-07-28T01:43:53.000Z",
+              "uid": "35240-faf87d81-7389-4526-af2a-6211bd6c7b07"
+            },
+            {
+              "id": "97b68041-2e3e-4c5d-a06a-703d14fbdbc6",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sensor-pools",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensor-pools"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:43:53.000Z",
+              "updatedAt": "2026-07-28T01:43:53.000Z",
+              "uid": "35240-97b68041-2e3e-4c5d-a06a-703d14fbdbc6"
+            },
+            {
+              "id": "6fe2f634-9fe8-4cb6-bf1a-9bc68402af30",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sensor-pools",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensor-pools"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:43:53.000Z",
+              "updatedAt": "2026-07-28T01:43:53.000Z",
+              "uid": "35240-6fe2f634-9fe8-4cb6-bf1a-9bc68402af30"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:53.000Z",
+          "updatedAt": "2026-07-28T01:43:53.000Z",
+          "uid": "35240-8f34062b-9b5c-4f87-b402-05df010fa502"
+        }
+      ],
+      "id": "f2e2b59a-dc1d-4eae-a003-94b4c74a3f8d",
+      "createdAt": "2026-07-28T01:43:53.000Z",
+      "updatedAt": "2026-07-28T01:43:53.000Z",
+      "uid": "35240-f2e2b59a-dc1d-4eae-a003-94b4c74a3f8d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

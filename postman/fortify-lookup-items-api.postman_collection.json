@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "2d06f6b4-626e-4b2a-be3f-e608c551e231",
+    "name": "Fortify on Demand Alert Definitions Lookup Items API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:20.000Z",
+    "updatedAt": "2026-07-28T01:43:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2d06f6b4-626e-4b2a-be3f-e608c551e231"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "lookup-items",
+              "item": [
+                {
+                  "name": "Fortify List lookup items",
+                  "id": "9d8a05f6-cfd0-4a15-ba77-d94217717741",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v3/lookup-items?type=LanguageLevels",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v3",
+                        "lookup-items"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The type of lookup items to retrieve",
+                          "key": "type",
+                          "value": "LanguageLevels"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of lookup items for the specified type, providing reference data such as scan types, time zones, and status values."
+                  },
+                  "response": [
+                    {
+                      "id": "1e732b87-833e-4a22-aa70-77759ba4876f",
+                      "name": "Successful response with list of lookup items",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/lookup-items?type=LanguageLevels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "lookup-items"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The type of lookup items to retrieve",
+                              "key": "type",
+                              "value": "LanguageLevels"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"text\": \"<string>\",\n      \"value\": \"<string>\",\n      \"group\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"value\": \"<string>\",\n      \"group\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:43:21.000Z",
+                      "updatedAt": "2026-07-28T01:43:21.000Z",
+                      "uid": "35240-1e732b87-833e-4a22-aa70-77759ba4876f"
+                    },
+                    {
+                      "id": "9d3ad8fd-d7e8-4266-9b4c-bb653ca7246c",
+                      "name": "Unauthorized - authentication required or token expired",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/lookup-items?type=LanguageLevels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "lookup-items"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The type of lookup items to retrieve",
+                              "key": "type",
+                              "value": "LanguageLevels"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:21.000Z",
+                      "updatedAt": "2026-07-28T01:43:21.000Z",
+                      "uid": "35240-9d3ad8fd-d7e8-4266-9b4c-bb653ca7246c"
+                    },
+                    {
+                      "id": "35b35625-9d4a-4cc3-96fe-f0431a79b4a6",
+                      "name": "Forbidden - insufficient permissions or scopes",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/lookup-items?type=LanguageLevels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "lookup-items"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The type of lookup items to retrieve",
+                              "key": "type",
+                              "value": "LanguageLevels"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:21.000Z",
+                      "updatedAt": "2026-07-28T01:43:21.000Z",
+                      "uid": "35240-35b35625-9d4a-4cc3-96fe-f0431a79b4a6"
+                    },
+                    {
+                      "id": "c6900e1a-f2f4-4efd-a1e3-97ed03e079ac",
+                      "name": "Too many requests - rate limit exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/lookup-items?type=LanguageLevels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "lookup-items"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The type of lookup items to retrieve",
+                              "key": "type",
+                              "value": "LanguageLevels"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:21.000Z",
+                      "updatedAt": "2026-07-28T01:43:21.000Z",
+                      "uid": "35240-c6900e1a-f2f4-4efd-a1e3-97ed03e079ac"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:43:21.000Z",
+                  "updatedAt": "2026-07-28T01:43:21.000Z",
+                  "uid": "35240-9d8a05f6-cfd0-4a15-ba77-d94217717741"
+                }
+              ],
+              "id": "13d0f823-fcaf-416a-bd65-5971556d318f",
+              "createdAt": "2026-07-28T01:43:21.000Z",
+              "updatedAt": "2026-07-28T01:43:21.000Z",
+              "uid": "35240-13d0f823-fcaf-416a-bd65-5971556d318f"
+            }
+          ],
+          "id": "d2111622-8983-4972-a8e7-757e61111cd8",
+          "createdAt": "2026-07-28T01:43:21.000Z",
+          "updatedAt": "2026-07-28T01:43:21.000Z",
+          "uid": "35240-d2111622-8983-4972-a8e7-757e61111cd8"
+        }
+      ],
+      "id": "f534eaca-6bc2-42aa-9a20-899062820bdd",
+      "createdAt": "2026-07-28T01:43:21.000Z",
+      "updatedAt": "2026-07-28T01:43:21.000Z",
+      "uid": "35240-f534eaca-6bc2-42aa-9a20-899062820bdd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

@@ -1,0 +1,838 @@
+{
+  "info": {
+    "_postman_id": "fb28b2b3-bbd5-4268-9b60-0b3f5e57cc6c",
+    "name": "Fortify on Demand Alert Definitions Saved Reports API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:45.000Z",
+    "updatedAt": "2026-07-28T01:43:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fb28b2b3-bbd5-4268-9b60-0b3f5e57cc6c"
+  },
+  "item": [
+    {
+      "name": "savedReports",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fortify Get saved report",
+              "id": "a95fdb87-1ad9-44dd-bcc6-6ac32c4a5fa5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/savedReports/:id?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "savedReports",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "e6f9c261-549b-426d-88be-fb307f5e7d14",
+                      "key": "id",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific saved report."
+              },
+              "response": [
+                {
+                  "id": "f83852ff-67c0-4b57-947e-123a1a738810",
+                  "name": "Successful response with saved report details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/savedReports/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "savedReports",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"status\": \"PROCESSING\",\n    \"format\": \"<string>\",\n    \"generationDate\": \"<dateTime>\",\n    \"reportDefinitionId\": \"<long>\"\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:46.000Z",
+                  "updatedAt": "2026-07-28T01:43:46.000Z",
+                  "uid": "35240-f83852ff-67c0-4b57-947e-123a1a738810"
+                },
+                {
+                  "id": "b995109c-61f2-4730-8bb1-6665fd8d0617",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/savedReports/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "savedReports",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:46.000Z",
+                  "updatedAt": "2026-07-28T01:43:46.000Z",
+                  "uid": "35240-b995109c-61f2-4730-8bb1-6665fd8d0617"
+                },
+                {
+                  "id": "a210fff4-c999-47ce-ae61-020f715b00b3",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/savedReports/:id?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "savedReports",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:46.000Z",
+                  "updatedAt": "2026-07-28T01:43:46.000Z",
+                  "uid": "35240-a210fff4-c999-47ce-ae61-020f715b00b3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:46.000Z",
+              "updatedAt": "2026-07-28T01:43:46.000Z",
+              "uid": "35240-a95fdb87-1ad9-44dd-bcc6-6ac32c4a5fa5"
+            },
+            {
+              "name": "Fortify Delete saved report",
+              "id": "35d467b5-e99a-48dd-8911-f89fa11894e4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/savedReports/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "savedReports",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "93926888-624c-43cb-b847-e9b2234ca398",
+                      "key": "id",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Deletes a saved report."
+              },
+              "response": [
+                {
+                  "id": "2ef93c3a-09b5-4705-a48f-0a9fe2998526",
+                  "name": "Report deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/savedReports/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "savedReports",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:46.000Z",
+                  "updatedAt": "2026-07-28T01:43:46.000Z",
+                  "uid": "35240-2ef93c3a-09b5-4705-a48f-0a9fe2998526"
+                },
+                {
+                  "id": "bfd40cfc-3042-4efd-95d2-7677ca90d63f",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/savedReports/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "savedReports",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:46.000Z",
+                  "updatedAt": "2026-07-28T01:43:46.000Z",
+                  "uid": "35240-bfd40cfc-3042-4efd-95d2-7677ca90d63f"
+                },
+                {
+                  "id": "c6235838-e324-4315-9bc6-1f3f32ee9b10",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/savedReports/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "savedReports",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:46.000Z",
+                  "updatedAt": "2026-07-28T01:43:46.000Z",
+                  "uid": "35240-c6235838-e324-4315-9bc6-1f3f32ee9b10"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:46.000Z",
+              "updatedAt": "2026-07-28T01:43:46.000Z",
+              "uid": "35240-35d467b5-e99a-48dd-8911-f89fa11894e4"
+            }
+          ],
+          "id": "f17c926d-4e48-445e-9f75-f916c27c045f",
+          "createdAt": "2026-07-28T01:43:46.000Z",
+          "updatedAt": "2026-07-28T01:43:46.000Z",
+          "uid": "35240-f17c926d-4e48-445e-9f75-f916c27c045f"
+        },
+        {
+          "name": "Fortify List saved reports",
+          "id": "f331ce33-499b-4f0f-9bae-a9699d6fd473",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/savedReports?start=0&limit=200&q=<string>&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "savedReports"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves a list of generated reports."
+          },
+          "response": [
+            {
+              "id": "2aa50d44-1815-4dcf-b818-e849c4c0c7a8",
+              "name": "Successful response with saved reports",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/savedReports?start=0&limit=200&q=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "savedReports"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"status\": \"SCHED_PROCESSING\",\n      \"format\": \"<string>\",\n      \"generationDate\": \"<dateTime>\",\n      \"reportDefinitionId\": \"<long>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"status\": \"ERROR_PROCESSING\",\n      \"format\": \"<string>\",\n      \"generationDate\": \"<dateTime>\",\n      \"reportDefinitionId\": \"<long>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:46.000Z",
+              "updatedAt": "2026-07-28T01:43:46.000Z",
+              "uid": "35240-2aa50d44-1815-4dcf-b818-e849c4c0c7a8"
+            },
+            {
+              "id": "1d5a7939-1fe9-4b13-94ed-e366ab364a30",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/savedReports?start=0&limit=200&q=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "savedReports"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:46.000Z",
+              "updatedAt": "2026-07-28T01:43:46.000Z",
+              "uid": "35240-1d5a7939-1fe9-4b13-94ed-e366ab364a30"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:46.000Z",
+          "updatedAt": "2026-07-28T01:43:46.000Z",
+          "uid": "35240-f331ce33-499b-4f0f-9bae-a9699d6fd473"
+        },
+        {
+          "name": "Fortify Generate report",
+          "id": "f10d2611-6d30-4a40-84bd-1bdd1d9a022e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"reportDefinitionId\": \"<long>\",\n  \"format\": \"DOC\",\n  \"inputReportParameters\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"paramValue\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"paramValue\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/savedReports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "savedReports"
+              ]
+            },
+            "description": "Schedules a report for generation based on a report definition and parameters."
+          },
+          "response": [
+            {
+              "id": "18fb4791-6ada-40ae-8e13-237f71026cc1",
+              "name": "Report generation scheduled successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"reportDefinitionId\": \"<long>\",\n  \"format\": \"DOC\",\n  \"inputReportParameters\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"paramValue\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"paramValue\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/savedReports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "savedReports"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"status\": \"PROCESSING\",\n    \"format\": \"<string>\",\n    \"generationDate\": \"<dateTime>\",\n    \"reportDefinitionId\": \"<long>\"\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:46.000Z",
+              "updatedAt": "2026-07-28T01:43:46.000Z",
+              "uid": "35240-18fb4791-6ada-40ae-8e13-237f71026cc1"
+            },
+            {
+              "id": "62daf0b6-7eb7-4189-88f9-26b7f687a608",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"reportDefinitionId\": \"<long>\",\n  \"format\": \"DOC\",\n  \"inputReportParameters\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"paramValue\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"paramValue\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/savedReports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "savedReports"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:46.000Z",
+              "updatedAt": "2026-07-28T01:43:46.000Z",
+              "uid": "35240-62daf0b6-7eb7-4189-88f9-26b7f687a608"
+            },
+            {
+              "id": "15d490f8-96f5-4069-a435-4f32779a1e16",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"reportDefinitionId\": \"<long>\",\n  \"format\": \"DOC\",\n  \"inputReportParameters\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"paramValue\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"paramValue\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/savedReports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "savedReports"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:46.000Z",
+              "updatedAt": "2026-07-28T01:43:46.000Z",
+              "uid": "35240-15d490f8-96f5-4069-a435-4f32779a1e16"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:46.000Z",
+          "updatedAt": "2026-07-28T01:43:46.000Z",
+          "uid": "35240-f10d2611-6d30-4a40-84bd-1bdd1d9a022e"
+        }
+      ],
+      "id": "bdcb3fea-1f07-4c73-8645-ad3380f3cd87",
+      "createdAt": "2026-07-28T01:43:46.000Z",
+      "updatedAt": "2026-07-28T01:43:46.000Z",
+      "uid": "35240-bdcb3fea-1f07-4c73-8645-ad3380f3cd87"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

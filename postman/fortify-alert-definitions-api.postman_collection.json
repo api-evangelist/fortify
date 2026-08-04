@@ -1,0 +1,205 @@
+{
+  "info": {
+    "_postman_id": "7e36c4ed-9d45-4c12-a25f-0c7b6f15fac6",
+    "name": "Fortify on Demand Alert Definitions API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:28.000Z",
+    "updatedAt": "2026-07-28T01:42:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7e36c4ed-9d45-4c12-a25f-0c7b6f15fac6"
+  },
+  "item": [
+    {
+      "name": "alertDefinitions",
+      "item": [
+        {
+          "name": "Fortify List alert definitions",
+          "id": "8b6be38e-e166-453e-bd44-7160eec4a3cd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/alertDefinitions?start=0&limit=200&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alertDefinitions"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves a list of configured alert definitions."
+          },
+          "response": [
+            {
+              "id": "191189f6-7dbd-4c7a-a2c4-02fde782f3b4",
+              "name": "Successful response with alert definitions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alertDefinitions?start=0&limit=200&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alertDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:42:29.000Z",
+              "updatedAt": "2026-07-28T01:42:29.000Z",
+              "uid": "35240-191189f6-7dbd-4c7a-a2c4-02fde782f3b4"
+            },
+            {
+              "id": "d1db8432-8b04-4968-82ea-04e5e527cb55",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alertDefinitions?start=0&limit=200&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alertDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:42:29.000Z",
+              "updatedAt": "2026-07-28T01:42:29.000Z",
+              "uid": "35240-d1db8432-8b04-4968-82ea-04e5e527cb55"
+            }
+          ],
+          "createdAt": "2026-07-28T01:42:29.000Z",
+          "updatedAt": "2026-07-28T01:42:29.000Z",
+          "uid": "35240-8b6be38e-e166-453e-bd44-7160eec4a3cd"
+        }
+      ],
+      "id": "2ff94dc0-4980-426d-920d-9a945da51518",
+      "createdAt": "2026-07-28T01:42:29.000Z",
+      "updatedAt": "2026-07-28T01:42:29.000Z",
+      "uid": "35240-2ff94dc0-4980-426d-920d-9a945da51518"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

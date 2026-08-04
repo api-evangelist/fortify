@@ -1,0 +1,1596 @@
+{
+  "info": {
+    "_postman_id": "a4a5b113-d12a-4540-a627-ce82ee21143a",
+    "name": "Fortify on Demand Alert Definitions Project Versions API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:33.000Z",
+    "updatedAt": "2026-07-28T01:43:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a4a5b113-d12a-4540-a627-ce82ee21143a"
+  },
+  "item": [
+    {
+      "name": "projectVersions",
+      "item": [
+        {
+          "name": "{parentId}",
+          "item": [
+            {
+              "name": "action",
+              "item": [
+                {
+                  "name": "Fortify Perform project version action",
+                  "id": "9958c3af-762c-40fb-9193-1c489dcf47bb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"SEND_FOR_TRAINING\",\n  \"values\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/action",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "action"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cc8500b1-42f5-4113-b243-d1b827b13934",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Performs an action on a project version such as committing, copying state, or sending for analysis."
+                  },
+                  "response": [
+                    {
+                      "id": "0b8d8399-ac79-447d-bc71-695472555672",
+                      "name": "Action performed successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"SEND_FOR_TRAINING\",\n  \"values\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/action",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "action"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:43:33.000Z",
+                      "updatedAt": "2026-07-28T01:43:33.000Z",
+                      "uid": "35240-0b8d8399-ac79-447d-bc71-695472555672"
+                    },
+                    {
+                      "id": "7173786f-6c95-4895-830a-62ee6f7681e5",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"SEND_FOR_TRAINING\",\n  \"values\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/action",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "action"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:43:33.000Z",
+                      "updatedAt": "2026-07-28T01:43:33.000Z",
+                      "uid": "35240-7173786f-6c95-4895-830a-62ee6f7681e5"
+                    },
+                    {
+                      "id": "2c9b2e10-f4a2-4906-9693-dbfb09b098d8",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"SEND_FOR_TRAINING\",\n  \"values\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/action",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "action"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:43:33.000Z",
+                      "updatedAt": "2026-07-28T01:43:33.000Z",
+                      "uid": "35240-2c9b2e10-f4a2-4906-9693-dbfb09b098d8"
+                    },
+                    {
+                      "id": "b2e6638c-a844-452d-aaa7-916add302cd0",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"SEND_FOR_TRAINING\",\n  \"values\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/action",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "action"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:43:33.000Z",
+                      "updatedAt": "2026-07-28T01:43:33.000Z",
+                      "uid": "35240-b2e6638c-a844-452d-aaa7-916add302cd0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-9958c3af-762c-40fb-9193-1c489dcf47bb"
+                }
+              ],
+              "id": "11d06a30-4ec4-4d10-9cc2-5290bc2f98d0",
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-11d06a30-4ec4-4d10-9cc2-5290bc2f98d0"
+            },
+            {
+              "name": "Fortify Get project version",
+              "id": "4cb60a79-95b5-43c3-9b1b-987dc870804e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions/:parentId?fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions",
+                    ":parentId"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "0f5d859d-a2d3-4a30-9e73-6899e3b446b9",
+                      "key": "parentId",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific project version by identifier."
+              },
+              "response": [
+                {
+                  "id": "3c712f17-dad1-421d-b3e8-adbcf58ad12e",
+                  "name": "Successful response with project version details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"committed\": \"<boolean>\",\n    \"project\": {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"issueTemplateId\": \"<string>\"\n    },\n    \"createdBy\": \"<string>\",\n    \"creationDate\": \"<dateTime>\",\n    \"issueTemplateId\": \"<string>\",\n    \"currentState\": {\n      \"committed\": \"<boolean>\",\n      \"analysisResultsExist\": \"<boolean>\",\n      \"hasCustomIssues\": \"<boolean>\",\n      \"auditEnabled\": \"<boolean>\"\n    }\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-3c712f17-dad1-421d-b3e8-adbcf58ad12e"
+                },
+                {
+                  "id": "98d41d35-926c-4802-8998-7932eeb0d572",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-98d41d35-926c-4802-8998-7932eeb0d572"
+                },
+                {
+                  "id": "c0687d97-33e8-4112-aed4-71beb4de81d1",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-c0687d97-33e8-4112-aed4-71beb4de81d1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-4cb60a79-95b5-43c3-9b1b-987dc870804e"
+            },
+            {
+              "name": "Fortify Update project version",
+              "id": "44430332-95d4-4b33-b663-30728c9eddeb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"committed\": \"<boolean>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions/:parentId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions",
+                    ":parentId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "07c9fd4c-5de8-4e13-8c88-080f350c01a6",
+                      "key": "parentId",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    }
+                  ]
+                },
+                "description": "Updates an existing project version's properties."
+              },
+              "response": [
+                {
+                  "id": "ded89d42-238b-4c9e-bee5-5141675d34f3",
+                  "name": "Project version updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"committed\": \"<boolean>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"committed\": \"<boolean>\",\n    \"project\": {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"issueTemplateId\": \"<string>\"\n    },\n    \"createdBy\": \"<string>\",\n    \"creationDate\": \"<dateTime>\",\n    \"issueTemplateId\": \"<string>\",\n    \"currentState\": {\n      \"committed\": \"<boolean>\",\n      \"analysisResultsExist\": \"<boolean>\",\n      \"hasCustomIssues\": \"<boolean>\",\n      \"auditEnabled\": \"<boolean>\"\n    }\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-ded89d42-238b-4c9e-bee5-5141675d34f3"
+                },
+                {
+                  "id": "7e70b599-e86c-47b2-9ad5-6d64e39b256e",
+                  "name": "Bad request - invalid parameters or request body",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"committed\": \"<boolean>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-7e70b599-e86c-47b2-9ad5-6d64e39b256e"
+                },
+                {
+                  "id": "d18214d0-c02a-4a38-bea7-d24a41cc3145",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"committed\": \"<boolean>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-d18214d0-c02a-4a38-bea7-d24a41cc3145"
+                },
+                {
+                  "id": "8aab5720-9633-4c84-af2a-b64adab8233d",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"committed\": \"<boolean>\",\n  \"issueTemplateId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-8aab5720-9633-4c84-af2a-b64adab8233d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-44430332-95d4-4b33-b663-30728c9eddeb"
+            },
+            {
+              "name": "Fortify Delete project version",
+              "id": "97383616-c9e4-46ad-8820-0f6d2231853e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions/:parentId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions",
+                    ":parentId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a44a20c3-7273-43c8-a8da-87ac0472b493",
+                      "key": "parentId",
+                      "value": "<long>",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    }
+                  ]
+                },
+                "description": "Permanently deletes a project version and all associated scan data."
+              },
+              "response": [
+                {
+                  "id": "0c071a3b-353a-4528-ac78-008f293c6318",
+                  "name": "Project version deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-0c071a3b-353a-4528-ac78-008f293c6318"
+                },
+                {
+                  "id": "47aef80d-f323-4724-b119-77d8ca48d32b",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-47aef80d-f323-4724-b119-77d8ca48d32b"
+                },
+                {
+                  "id": "e3fb790e-960e-4cdc-9c4d-89aed04a4076",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "parentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:43:33.000Z",
+                  "updatedAt": "2026-07-28T01:43:33.000Z",
+                  "uid": "35240-e3fb790e-960e-4cdc-9c4d-89aed04a4076"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-97383616-c9e4-46ad-8820-0f6d2231853e"
+            }
+          ],
+          "id": "73b95c20-1aa2-4b29-9c7f-8e37cf4921a9",
+          "createdAt": "2026-07-28T01:43:33.000Z",
+          "updatedAt": "2026-07-28T01:43:33.000Z",
+          "uid": "35240-73b95c20-1aa2-4b29-9c7f-8e37cf4921a9"
+        },
+        {
+          "name": "Fortify List project versions",
+          "id": "ec06871d-3b66-4299-a2fa-88c5b37c20cb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projectVersions?start=0&limit=200&q=<string>&orderby=<string>&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projectVersions"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort field and direction (e.g., name for ascending, -name for descending)",
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves a paginated list of all project versions (application versions) accessible to the authenticated user."
+          },
+          "response": [
+            {
+              "id": "b5f32cae-8b7d-411e-8aa6-42e9b401c888",
+              "name": "Successful response with list of project versions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions?start=0&limit=200&q=<string>&orderby=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field and direction (e.g., name for ascending, -name for descending)",
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"committed\": \"<boolean>\",\n      \"project\": {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"creationDate\": \"<dateTime>\",\n        \"issueTemplateId\": \"<string>\"\n      },\n      \"createdBy\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"issueTemplateId\": \"<string>\",\n      \"currentState\": {\n        \"committed\": \"<boolean>\",\n        \"analysisResultsExist\": \"<boolean>\",\n        \"hasCustomIssues\": \"<boolean>\",\n        \"auditEnabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"committed\": \"<boolean>\",\n      \"project\": {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"creationDate\": \"<dateTime>\",\n        \"issueTemplateId\": \"<string>\"\n      },\n      \"createdBy\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"issueTemplateId\": \"<string>\",\n      \"currentState\": {\n        \"committed\": \"<boolean>\",\n        \"analysisResultsExist\": \"<boolean>\",\n        \"hasCustomIssues\": \"<boolean>\",\n        \"auditEnabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-b5f32cae-8b7d-411e-8aa6-42e9b401c888"
+            },
+            {
+              "id": "5af7e37c-0f62-4731-ac66-3d980d60f0de",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions?start=0&limit=200&q=<string>&orderby=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field and direction (e.g., name for ascending, -name for descending)",
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-5af7e37c-0f62-4731-ac66-3d980d60f0de"
+            },
+            {
+              "id": "b83527a5-5346-4199-9e68-889bf3a7f464",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions?start=0&limit=200&q=<string>&orderby=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field and direction (e.g., name for ascending, -name for descending)",
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-b83527a5-5346-4199-9e68-889bf3a7f464"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:33.000Z",
+          "updatedAt": "2026-07-28T01:43:33.000Z",
+          "uid": "35240-ec06871d-3b66-4299-a2fa-88c5b37c20cb"
+        },
+        {
+          "name": "Fortify Create project version",
+          "id": "562e60b3-908b-4510-9392-22af5d00dc45",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"project\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"active\": true,\n  \"committed\": false,\n  \"issueTemplateId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projectVersions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projectVersions"
+              ]
+            },
+            "description": "Creates a new project version. Requires committing the version after creation to activate it."
+          },
+          "response": [
+            {
+              "id": "10f02629-3e6c-4be9-a232-08084cdcea6b",
+              "name": "Project version created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"project\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"active\": true,\n  \"committed\": false,\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"committed\": \"<boolean>\",\n    \"project\": {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"creationDate\": \"<dateTime>\",\n      \"issueTemplateId\": \"<string>\"\n    },\n    \"createdBy\": \"<string>\",\n    \"creationDate\": \"<dateTime>\",\n    \"issueTemplateId\": \"<string>\",\n    \"currentState\": {\n      \"committed\": \"<boolean>\",\n      \"analysisResultsExist\": \"<boolean>\",\n      \"hasCustomIssues\": \"<boolean>\",\n      \"auditEnabled\": \"<boolean>\"\n    }\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-10f02629-3e6c-4be9-a232-08084cdcea6b"
+            },
+            {
+              "id": "22d922b3-f9a6-416c-8db5-672e85335639",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"project\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"active\": true,\n  \"committed\": false,\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-22d922b3-f9a6-416c-8db5-672e85335639"
+            },
+            {
+              "id": "ab949f75-0374-40f9-ae11-806c09e4cbde",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"project\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"active\": true,\n  \"committed\": false,\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-ab949f75-0374-40f9-ae11-806c09e4cbde"
+            },
+            {
+              "id": "e26c3efe-3775-49c1-b421-e42129641461",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"project\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"active\": true,\n  \"committed\": false,\n  \"issueTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projectVersions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projectVersions"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:33.000Z",
+              "updatedAt": "2026-07-28T01:43:33.000Z",
+              "uid": "35240-e26c3efe-3775-49c1-b421-e42129641461"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:33.000Z",
+          "updatedAt": "2026-07-28T01:43:33.000Z",
+          "uid": "35240-562e60b3-908b-4510-9392-22af5d00dc45"
+        }
+      ],
+      "id": "2a6e3c7f-1388-4f1e-a492-2331c7d322f2",
+      "createdAt": "2026-07-28T01:43:33.000Z",
+      "updatedAt": "2026-07-28T01:43:33.000Z",
+      "uid": "35240-2a6e3c7f-1388-4f1e-a492-2331c7d322f2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

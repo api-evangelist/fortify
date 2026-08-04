@@ -1,0 +1,490 @@
+{
+  "info": {
+    "_postman_id": "6b8ee588-90d1-485e-8cf4-95a76e218df1",
+    "name": "Fortify on Demand Alert Definitions Open Source Components API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:24.000Z",
+    "updatedAt": "2026-07-28T01:43:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6b8ee588-90d1-485e-8cf4-95a76e218df1"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "applications",
+              "item": [
+                {
+                  "name": "open-source-components",
+                  "item": [
+                    {
+                      "name": "Fortify List open source components",
+                      "id": "2947beaa-4175-4b88-b476-1f7158849a7b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/applications/open-source-components?openSourceScanType=Sonatype&filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&returnTotalComponentCount=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "applications",
+                            "open-source-components"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of open source scan engine",
+                              "key": "openSourceScanType",
+                              "value": "Sonatype"
+                            },
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field name to sort results by",
+                              "key": "orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction",
+                              "key": "orderByDirection",
+                              "value": "ASC"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return (max 50)",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Whether to include total count in response",
+                              "key": "returnTotalComponentCount",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a collection of open source components across all applications."
+                      },
+                      "response": [
+                        {
+                          "id": "f4da21cf-f2bb-497e-9d29-513243b36f90",
+                          "name": "Successful response with list of open source components",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/applications/open-source-components?openSourceScanType=Sonatype&filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&returnTotalComponentCount=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "applications",
+                                "open-source-components"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of open source scan engine",
+                                  "key": "openSourceScanType",
+                                  "value": "Sonatype"
+                                },
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Whether to include total count in response",
+                                  "key": "returnTotalComponentCount",
+                                  "value": "<boolean>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"componentName\": \"<string>\",\n      \"componentVersion\": \"<string>\",\n      \"license\": \"<string>\",\n      \"applicationName\": \"<string>\",\n      \"releaseName\": \"<string>\",\n      \"vulnerabilityCount\": \"<integer>\"\n    },\n    {\n      \"componentName\": \"<string>\",\n      \"componentVersion\": \"<string>\",\n      \"license\": \"<string>\",\n      \"applicationName\": \"<string>\",\n      \"releaseName\": \"<string>\",\n      \"vulnerabilityCount\": \"<integer>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:43:25.000Z",
+                          "updatedAt": "2026-07-28T01:43:25.000Z",
+                          "uid": "35240-f4da21cf-f2bb-497e-9d29-513243b36f90"
+                        },
+                        {
+                          "id": "b48ba383-c9c2-42e0-87bd-97b507735253",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/applications/open-source-components?openSourceScanType=Sonatype&filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&returnTotalComponentCount=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "applications",
+                                "open-source-components"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of open source scan engine",
+                                  "key": "openSourceScanType",
+                                  "value": "Sonatype"
+                                },
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Whether to include total count in response",
+                                  "key": "returnTotalComponentCount",
+                                  "value": "<boolean>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:25.000Z",
+                          "updatedAt": "2026-07-28T01:43:25.000Z",
+                          "uid": "35240-b48ba383-c9c2-42e0-87bd-97b507735253"
+                        },
+                        {
+                          "id": "f207c1d4-7359-4a82-b14e-391b6032128e",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/applications/open-source-components?openSourceScanType=Sonatype&filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&returnTotalComponentCount=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "applications",
+                                "open-source-components"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of open source scan engine",
+                                  "key": "openSourceScanType",
+                                  "value": "Sonatype"
+                                },
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Whether to include total count in response",
+                                  "key": "returnTotalComponentCount",
+                                  "value": "<boolean>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:25.000Z",
+                          "updatedAt": "2026-07-28T01:43:25.000Z",
+                          "uid": "35240-f207c1d4-7359-4a82-b14e-391b6032128e"
+                        },
+                        {
+                          "id": "e3e72d11-35a0-4ab0-9210-6f6095a04141",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/applications/open-source-components?openSourceScanType=Sonatype&filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50&returnTotalComponentCount=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "applications",
+                                "open-source-components"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of open source scan engine",
+                                  "key": "openSourceScanType",
+                                  "value": "Sonatype"
+                                },
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Whether to include total count in response",
+                                  "key": "returnTotalComponentCount",
+                                  "value": "<boolean>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:25.000Z",
+                          "updatedAt": "2026-07-28T01:43:25.000Z",
+                          "uid": "35240-e3e72d11-35a0-4ab0-9210-6f6095a04141"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:43:25.000Z",
+                      "updatedAt": "2026-07-28T01:43:25.000Z",
+                      "uid": "35240-2947beaa-4175-4b88-b476-1f7158849a7b"
+                    }
+                  ],
+                  "id": "6943b75e-0813-4d85-9694-e363dac6ecaf",
+                  "createdAt": "2026-07-28T01:43:25.000Z",
+                  "updatedAt": "2026-07-28T01:43:25.000Z",
+                  "uid": "35240-6943b75e-0813-4d85-9694-e363dac6ecaf"
+                }
+              ],
+              "id": "ef08fa6b-2157-4996-b412-d329af8df6f6",
+              "createdAt": "2026-07-28T01:43:25.000Z",
+              "updatedAt": "2026-07-28T01:43:25.000Z",
+              "uid": "35240-ef08fa6b-2157-4996-b412-d329af8df6f6"
+            }
+          ],
+          "id": "56c768f4-c3a8-4a32-a2b9-d4857d3f7152",
+          "createdAt": "2026-07-28T01:43:25.000Z",
+          "updatedAt": "2026-07-28T01:43:25.000Z",
+          "uid": "35240-56c768f4-c3a8-4a32-a2b9-d4857d3f7152"
+        }
+      ],
+      "id": "411bcf2b-dc41-4dc6-8b9d-6ac66f7bdbe3",
+      "createdAt": "2026-07-28T01:43:25.000Z",
+      "updatedAt": "2026-07-28T01:43:25.000Z",
+      "uid": "35240-411bcf2b-dc41-4dc6-8b9d-6ac66f7bdbe3"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

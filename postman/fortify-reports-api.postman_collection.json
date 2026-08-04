@@ -1,0 +1,605 @@
+{
+  "info": {
+    "_postman_id": "17100caf-fc88-4c24-ad6c-dcb07fda2814",
+    "name": "Fortify on Demand Alert Definitions Reports API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:45.000Z",
+    "updatedAt": "2026-07-28T01:43:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-17100caf-fc88-4c24-ad6c-dcb07fda2814"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "releases",
+              "item": [
+                {
+                  "name": "{releaseId}",
+                  "item": [
+                    {
+                      "name": "fpr",
+                      "item": [
+                        {
+                          "name": "Fortify Download release FPR",
+                          "id": "4ec407c6-b5cd-464d-95dc-d24df6420418",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/releases/:releaseId/fpr?scanType=Dynamic",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "releases",
+                                ":releaseId",
+                                "fpr"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Type of scan to download FPR for",
+                                  "key": "scanType",
+                                  "value": "Dynamic"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "02017805-3d08-40c0-af90-24a52ebab54a",
+                                  "key": "releaseId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the release"
+                                }
+                              ]
+                            },
+                            "description": "Downloads the Fortify Project Results (FPR) file for the specified release and scan type."
+                          },
+                          "response": [
+                            {
+                              "id": "702193d5-7a09-402e-9c6d-0baef4226a82",
+                              "name": "FPR file download",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/octet-stream"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/fpr?scanType=Dynamic",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "fpr"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of scan to download FPR for",
+                                      "key": "scanType",
+                                      "value": "Dynamic"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/octet-stream"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T01:43:45.000Z",
+                              "updatedAt": "2026-07-28T01:43:45.000Z",
+                              "uid": "35240-702193d5-7a09-402e-9c6d-0baef4226a82"
+                            },
+                            {
+                              "id": "69a49d0f-51ad-48d4-9b84-903cf6877922",
+                              "name": "Unauthorized - authentication required or token expired",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/fpr?scanType=Dynamic",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "fpr"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of scan to download FPR for",
+                                      "key": "scanType",
+                                      "value": "Dynamic"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:45.000Z",
+                              "updatedAt": "2026-07-28T01:43:45.000Z",
+                              "uid": "35240-69a49d0f-51ad-48d4-9b84-903cf6877922"
+                            },
+                            {
+                              "id": "df21e3cc-efac-44c6-97cc-434454c94731",
+                              "name": "Forbidden - insufficient permissions or scopes",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/fpr?scanType=Dynamic",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "fpr"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of scan to download FPR for",
+                                      "key": "scanType",
+                                      "value": "Dynamic"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:45.000Z",
+                              "updatedAt": "2026-07-28T01:43:45.000Z",
+                              "uid": "35240-df21e3cc-efac-44c6-97cc-434454c94731"
+                            },
+                            {
+                              "id": "79a0f529-afd4-495e-8c81-ce23e6038ece",
+                              "name": "Not found - the specified resource does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/fpr?scanType=Dynamic",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "fpr"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of scan to download FPR for",
+                                      "key": "scanType",
+                                      "value": "Dynamic"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:45.000Z",
+                              "updatedAt": "2026-07-28T01:43:45.000Z",
+                              "uid": "35240-79a0f529-afd4-495e-8c81-ce23e6038ece"
+                            },
+                            {
+                              "id": "dfeb1c6c-b019-4c3d-9546-b145046fb32c",
+                              "name": "Too many requests - rate limit exceeded",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v3/releases/:releaseId/fpr?scanType=Dynamic",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v3",
+                                    "releases",
+                                    ":releaseId",
+                                    "fpr"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of scan to download FPR for",
+                                      "key": "scanType",
+                                      "value": "Dynamic"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "releaseId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:43:45.000Z",
+                              "updatedAt": "2026-07-28T01:43:45.000Z",
+                              "uid": "35240-dfeb1c6c-b019-4c3d-9546-b145046fb32c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:43:45.000Z",
+                          "updatedAt": "2026-07-28T01:43:45.000Z",
+                          "uid": "35240-4ec407c6-b5cd-464d-95dc-d24df6420418"
+                        }
+                      ],
+                      "id": "d52b27e7-114f-42ce-ab9f-c5a5a302a01e",
+                      "createdAt": "2026-07-28T01:43:45.000Z",
+                      "updatedAt": "2026-07-28T01:43:45.000Z",
+                      "uid": "35240-d52b27e7-114f-42ce-ab9f-c5a5a302a01e"
+                    }
+                  ],
+                  "id": "5d471b0c-960f-435a-9119-f9ef307c4043",
+                  "createdAt": "2026-07-28T01:43:45.000Z",
+                  "updatedAt": "2026-07-28T01:43:45.000Z",
+                  "uid": "35240-5d471b0c-960f-435a-9119-f9ef307c4043"
+                }
+              ],
+              "id": "a6ec1d23-addf-441b-b011-0c484a25a03e",
+              "createdAt": "2026-07-28T01:43:45.000Z",
+              "updatedAt": "2026-07-28T01:43:45.000Z",
+              "uid": "35240-a6ec1d23-addf-441b-b011-0c484a25a03e"
+            }
+          ],
+          "id": "5ae8a621-d834-47e8-8a91-c0d217a1fed0",
+          "createdAt": "2026-07-28T01:43:45.000Z",
+          "updatedAt": "2026-07-28T01:43:45.000Z",
+          "uid": "35240-5ae8a621-d834-47e8-8a91-c0d217a1fed0"
+        }
+      ],
+      "id": "5f061fdf-5cb8-4aae-9b12-50bed3305475",
+      "createdAt": "2026-07-28T01:43:45.000Z",
+      "updatedAt": "2026-07-28T01:43:45.000Z",
+      "uid": "35240-5f061fdf-5cb8-4aae-9b12-50bed3305475"
+    },
+    {
+      "name": "reportDefinitions",
+      "item": [
+        {
+          "name": "Fortify List report definitions",
+          "id": "6e7827c4-128f-46c6-afba-123f8f3faf34",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reportDefinitions?start=0&limit=200&q=<string>&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reportDefinitions"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves the list of available report definitions that can be used to generate reports."
+          },
+          "response": [
+            {
+              "id": "39f0cbd3-0f94-41c3-870d-0f5a542210ae",
+              "name": "Successful response with report definitions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reportDefinitions?start=0&limit=200&q=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reportDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"templateDocId\": \"<long>\",\n      \"type\": \"PROJECT\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"identifier\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"identifier\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"templateDocId\": \"<long>\",\n      \"type\": \"PORTFOLIO\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"identifier\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"identifier\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:45.000Z",
+              "updatedAt": "2026-07-28T01:43:45.000Z",
+              "uid": "35240-39f0cbd3-0f94-41c3-870d-0f5a542210ae"
+            },
+            {
+              "id": "2d8a40c8-6366-4b60-8808-0ee7bcb9a586",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reportDefinitions?start=0&limit=200&q=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reportDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:45.000Z",
+              "updatedAt": "2026-07-28T01:43:45.000Z",
+              "uid": "35240-2d8a40c8-6366-4b60-8808-0ee7bcb9a586"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:45.000Z",
+          "updatedAt": "2026-07-28T01:43:45.000Z",
+          "uid": "35240-6e7827c4-128f-46c6-afba-123f8f3faf34"
+        }
+      ],
+      "id": "9dfc8c0d-94f3-4bee-9bac-2f29fcb988fb",
+      "createdAt": "2026-07-28T01:43:45.000Z",
+      "updatedAt": "2026-07-28T01:43:45.000Z",
+      "uid": "35240-9dfc8c0d-94f3-4bee-9bac-2f29fcb988fb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

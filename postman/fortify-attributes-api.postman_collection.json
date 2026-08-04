@@ -1,0 +1,2332 @@
+{
+  "info": {
+    "_postman_id": "e72ef465-54b6-47bd-9d3a-61384529a846",
+    "name": "Fortify on Demand Alert Definitions Attributes API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:32.000Z",
+    "updatedAt": "2026-07-28T01:42:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e72ef465-54b6-47bd-9d3a-61384529a846"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "attributes",
+              "item": [
+                {
+                  "name": "{attributeId}",
+                  "item": [
+                    {
+                      "name": "Fortify Update attribute",
+                      "id": "28d07628-3899-483f-8a35-da40548b1a5f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes",
+                            ":attributeId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "49eb9eae-022c-45f6-a79e-fd764a6481fc",
+                              "key": "attributeId",
+                              "value": "<integer>",
+                              "description": "(Required) Unique identifier of the attribute"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing application attribute."
+                      },
+                      "response": [
+                        {
+                          "id": "f6ffa6c5-097f-477c-b4e1-f15e70e00bd1",
+                          "name": "Attribute updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-f6ffa6c5-097f-477c-b4e1-f15e70e00bd1"
+                        },
+                        {
+                          "id": "73728841-6a5b-445d-a623-7b665f6bdc5b",
+                          "name": "Bad request - invalid parameters or request body",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-73728841-6a5b-445d-a623-7b665f6bdc5b"
+                        },
+                        {
+                          "id": "11805337-9adb-4c29-bd4a-a54c59951937",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-11805337-9adb-4c29-bd4a-a54c59951937"
+                        },
+                        {
+                          "id": "bd56e5a1-e989-448e-9385-8e4ec2c1e6fe",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-bd56e5a1-e989-448e-9385-8e4ec2c1e6fe"
+                        },
+                        {
+                          "id": "8bc5df44-518c-4dfc-8729-099ad52b1e39",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-8bc5df44-518c-4dfc-8729-099ad52b1e39"
+                        },
+                        {
+                          "id": "384aaed3-f7a5-41bf-a5ec-97bf39a04640",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-384aaed3-f7a5-41bf-a5ec-97bf39a04640"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-28d07628-3899-483f-8a35-da40548b1a5f"
+                    },
+                    {
+                      "name": "Fortify Delete attribute",
+                      "id": "73a03abe-10c1-4c3e-a5c5-ad04d7e94f39",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes",
+                            ":attributeId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "baa70bed-0c89-4dd6-b6d2-39b91f400c3d",
+                              "key": "attributeId",
+                              "value": "<integer>",
+                              "description": "(Required) Unique identifier of the attribute"
+                            }
+                          ]
+                        },
+                        "description": "Permanently deletes the specified attribute."
+                      },
+                      "response": [
+                        {
+                          "id": "ff40dd66-945e-4b68-b322-5d20917734d4",
+                          "name": "Attribute deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"success\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-ff40dd66-945e-4b68-b322-5d20917734d4"
+                        },
+                        {
+                          "id": "62fddaba-c3a2-48dd-a45f-8107e229b0ea",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-62fddaba-c3a2-48dd-a45f-8107e229b0ea"
+                        },
+                        {
+                          "id": "a22d6739-bcd1-43fe-8047-6afd46031d84",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-a22d6739-bcd1-43fe-8047-6afd46031d84"
+                        },
+                        {
+                          "id": "4fd0d079-f361-41e6-a5c4-0de92cc975d9",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-4fd0d079-f361-41e6-a5c4-0de92cc975d9"
+                        },
+                        {
+                          "id": "9b5ce905-e82a-4432-8791-cab1f5a79a44",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/attributes/:attributeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "attributes",
+                                ":attributeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "attributeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:42:33.000Z",
+                          "updatedAt": "2026-07-28T01:42:33.000Z",
+                          "uid": "35240-9b5ce905-e82a-4432-8791-cab1f5a79a44"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-73a03abe-10c1-4c3e-a5c5-ad04d7e94f39"
+                    }
+                  ],
+                  "id": "bb59e148-8586-4ddd-9918-e7bd180cfb7f",
+                  "createdAt": "2026-07-28T01:42:33.000Z",
+                  "updatedAt": "2026-07-28T01:42:33.000Z",
+                  "uid": "35240-bb59e148-8586-4ddd-9918-e7bd180cfb7f"
+                },
+                {
+                  "name": "Fortify List attributes",
+                  "id": "4544bcbb-43af-44c0-b569-2848f2374d93",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v3/attributes?filters=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v3",
+                        "attributes"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                          "key": "filters",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of application attributes defined for the tenant."
+                  },
+                  "response": [
+                    {
+                      "id": "22965f1e-ce91-45a0-a049-bedd6a543acd",
+                      "name": "Successful response with list of attributes",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes?filters=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"attributeType\": \"<string>\",\n      \"attributeDataType\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"attributeType\": \"<string>\",\n      \"attributeDataType\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-22965f1e-ce91-45a0-a049-bedd6a543acd"
+                    },
+                    {
+                      "id": "462ba443-26b1-4f03-956b-25b4415b1358",
+                      "name": "Unauthorized - authentication required or token expired",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes?filters=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-462ba443-26b1-4f03-956b-25b4415b1358"
+                    },
+                    {
+                      "id": "72aae1a2-1a24-44c1-8c77-a5248fc1602f",
+                      "name": "Forbidden - insufficient permissions or scopes",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes?filters=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-72aae1a2-1a24-44c1-8c77-a5248fc1602f"
+                    },
+                    {
+                      "id": "84d83556-05f9-4a1d-a1fa-ab21c159e121",
+                      "name": "Too many requests - rate limit exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes?filters=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-84d83556-05f9-4a1d-a1fa-ab21c159e121"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:33.000Z",
+                  "updatedAt": "2026-07-28T01:42:33.000Z",
+                  "uid": "35240-4544bcbb-43af-44c0-b569-2848f2374d93"
+                },
+                {
+                  "name": "Fortify Create attribute",
+                  "id": "61c05810-e938-4420-abad-fd169297be46",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"attributeDataType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v3/attributes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v3",
+                        "attributes"
+                      ]
+                    },
+                    "description": "Creates a new application attribute for the tenant."
+                  },
+                  "response": [
+                    {
+                      "id": "4e016b23-3644-42c0-ba61-4cee4a1f3130",
+                      "name": "Attribute created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"attributeDataType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"attributeId\": \"<integer>\",\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-4e016b23-3644-42c0-ba61-4cee4a1f3130"
+                    },
+                    {
+                      "id": "32559d7a-438a-40be-8e84-37653e82958d",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"attributeDataType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-32559d7a-438a-40be-8e84-37653e82958d"
+                    },
+                    {
+                      "id": "c67559d1-6f0b-4cdb-ab72-29b89a070bc2",
+                      "name": "Unauthorized - authentication required or token expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"attributeDataType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-c67559d1-6f0b-4cdb-ab72-29b89a070bc2"
+                    },
+                    {
+                      "id": "69ae2c89-cdb7-4ea6-8ad8-2df1085be129",
+                      "name": "Forbidden - insufficient permissions or scopes",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"attributeDataType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-69ae2c89-cdb7-4ea6-8ad8-2df1085be129"
+                    },
+                    {
+                      "id": "f952f1cb-05d6-4030-affa-542fe583f830",
+                      "name": "Too many requests - rate limit exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"attributeType\": \"<string>\",\n  \"attributeDataType\": \"<string>\",\n  \"isRequired\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "attributes"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-f952f1cb-05d6-4030-affa-542fe583f830"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:33.000Z",
+                  "updatedAt": "2026-07-28T01:42:33.000Z",
+                  "uid": "35240-61c05810-e938-4420-abad-fd169297be46"
+                }
+              ],
+              "id": "7eb9a8df-f812-4173-a766-16a7f9b7db64",
+              "createdAt": "2026-07-28T01:42:33.000Z",
+              "updatedAt": "2026-07-28T01:42:33.000Z",
+              "uid": "35240-7eb9a8df-f812-4173-a766-16a7f9b7db64"
+            }
+          ],
+          "id": "18574f06-fa75-4514-a5c5-37986d58d961",
+          "createdAt": "2026-07-28T01:42:33.000Z",
+          "updatedAt": "2026-07-28T01:42:33.000Z",
+          "uid": "35240-18574f06-fa75-4514-a5c5-37986d58d961"
+        }
+      ],
+      "id": "00f02703-ad96-474c-8aa2-c0bd56453adb",
+      "createdAt": "2026-07-28T01:42:33.000Z",
+      "updatedAt": "2026-07-28T01:42:33.000Z",
+      "uid": "35240-00f02703-ad96-474c-8aa2-c0bd56453adb"
+    },
+    {
+      "name": "projectVersions",
+      "item": [
+        {
+          "name": "{parentId}",
+          "item": [
+            {
+              "name": "attributes",
+              "item": [
+                {
+                  "name": "Fortify List project version attributes",
+                  "id": "da7b6063-99f2-4b12-be7a-0bb6685ac970",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/attributes?fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "attributes"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "fa69d7e6-5dcf-42e1-976b-d05be20f453c",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves attribute values assigned to the specified project version."
+                  },
+                  "response": [
+                    {
+                      "id": "a89e337e-4bf0-4b6c-b4b0-12b26d9a4a4d",
+                      "name": "Successful response with attribute values",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/attributes?fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "attributes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"attributeDefinitionId\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"value\": \"<string>\",\n      \"values\": [\n        {\n          \"guid\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"guid\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"attributeDefinitionId\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"value\": \"<string>\",\n      \"values\": [\n        {\n          \"guid\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"guid\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-a89e337e-4bf0-4b6c-b4b0-12b26d9a4a4d"
+                    },
+                    {
+                      "id": "2ad3efc8-52f7-4879-bde6-3b63ba969826",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/attributes?fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "attributes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-2ad3efc8-52f7-4879-bde6-3b63ba969826"
+                    },
+                    {
+                      "id": "80689d20-ba0e-4001-b362-08652e6827c7",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/attributes?fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "attributes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-80689d20-ba0e-4001-b362-08652e6827c7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:33.000Z",
+                  "updatedAt": "2026-07-28T01:42:33.000Z",
+                  "uid": "35240-da7b6063-99f2-4b12-be7a-0bb6685ac970"
+                },
+                {
+                  "name": "Fortify Update project version attributes",
+                  "id": "82ac4c9d-d38b-4f2a-81b8-abb0652e0f39",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/attributes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "attributes"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3ebee5a3-3cde-4f96-99ec-9aae3d672d53",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Updates attribute values for the specified project version."
+                  },
+                  "response": [
+                    {
+                      "id": "994a9d84-9210-488f-9b47-f98eee3eacb0",
+                      "name": "Attributes updated successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "attributes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"attributeDefinitionId\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"value\": \"<string>\",\n      \"values\": [\n        {\n          \"guid\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"guid\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"attributeDefinitionId\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"value\": \"<string>\",\n      \"values\": [\n        {\n          \"guid\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"guid\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-994a9d84-9210-488f-9b47-f98eee3eacb0"
+                    },
+                    {
+                      "id": "ce6a2305-99e5-4a40-b018-f6a4ced2d53b",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "attributes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-ce6a2305-99e5-4a40-b018-f6a4ced2d53b"
+                    },
+                    {
+                      "id": "047f6baf-b0a0-4f46-9998-f776d55f5658",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "attributes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-047f6baf-b0a0-4f46-9998-f776d55f5658"
+                    },
+                    {
+                      "id": "c23652af-b44f-48f5-9598-19ab77e81e21",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"attributeDefinitionId\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"value\": \"<string>\",\n    \"values\": [\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"guid\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/attributes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "attributes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:42:33.000Z",
+                      "updatedAt": "2026-07-28T01:42:33.000Z",
+                      "uid": "35240-c23652af-b44f-48f5-9598-19ab77e81e21"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:33.000Z",
+                  "updatedAt": "2026-07-28T01:42:33.000Z",
+                  "uid": "35240-82ac4c9d-d38b-4f2a-81b8-abb0652e0f39"
+                }
+              ],
+              "id": "5d34724b-0c29-4125-b815-e6e03bd0db97",
+              "createdAt": "2026-07-28T01:42:33.000Z",
+              "updatedAt": "2026-07-28T01:42:33.000Z",
+              "uid": "35240-5d34724b-0c29-4125-b815-e6e03bd0db97"
+            }
+          ],
+          "id": "0ff82177-6c8f-4757-b2b6-42f76907c7b1",
+          "createdAt": "2026-07-28T01:42:33.000Z",
+          "updatedAt": "2026-07-28T01:42:33.000Z",
+          "uid": "35240-0ff82177-6c8f-4757-b2b6-42f76907c7b1"
+        }
+      ],
+      "id": "c41eb5bd-f715-4218-b314-1e8887856b8a",
+      "createdAt": "2026-07-28T01:42:33.000Z",
+      "updatedAt": "2026-07-28T01:42:33.000Z",
+      "uid": "35240-c41eb5bd-f715-4218-b314-1e8887856b8a"
+    },
+    {
+      "name": "attributeDefinitions",
+      "item": [
+        {
+          "name": "Fortify List attribute definitions",
+          "id": "5c18ee10-2f22-482c-89c9-46ca6c941b85",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attributeDefinitions?start=0&limit=200&q=<string>&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attributeDefinitions"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves the list of attribute definitions configured in the system."
+          },
+          "response": [
+            {
+              "id": "380cd276-7e76-48fc-a450-0a85f5da7cfb",
+              "name": "Successful response with attribute definitions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/attributeDefinitions?start=0&limit=200&q=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "attributeDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"name\": \"<string>\",\n      \"category\": \"TECHNICAL\",\n      \"type\": \"MULTIPLE\",\n      \"required\": \"<boolean>\",\n      \"hidden\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"name\": \"<string>\",\n      \"category\": \"BUSINESS\",\n      \"type\": \"DATE\",\n      \"required\": \"<boolean>\",\n      \"hidden\": \"<boolean>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:42:33.000Z",
+              "updatedAt": "2026-07-28T01:42:33.000Z",
+              "uid": "35240-380cd276-7e76-48fc-a450-0a85f5da7cfb"
+            },
+            {
+              "id": "cdad7105-f555-48ab-a7e4-dbe7e0574832",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/attributeDefinitions?start=0&limit=200&q=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "attributeDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:42:33.000Z",
+              "updatedAt": "2026-07-28T01:42:33.000Z",
+              "uid": "35240-cdad7105-f555-48ab-a7e4-dbe7e0574832"
+            }
+          ],
+          "createdAt": "2026-07-28T01:42:33.000Z",
+          "updatedAt": "2026-07-28T01:42:33.000Z",
+          "uid": "35240-5c18ee10-2f22-482c-89c9-46ca6c941b85"
+        },
+        {
+          "name": "Fortify Create attribute definition",
+          "id": "55e965ea-3a65-45be-bb69-aac6290330b7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"TEXT\",\n  \"category\": \"TECHNICAL\",\n  \"required\": \"<boolean>\",\n  \"hidden\": \"<boolean>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attributeDefinitions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attributeDefinitions"
+              ]
+            },
+            "description": "Creates a new attribute definition."
+          },
+          "response": [
+            {
+              "id": "438f90ea-551f-4e8e-abe5-d2b0cd8c7db8",
+              "name": "Attribute definition created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"TEXT\",\n  \"category\": \"TECHNICAL\",\n  \"required\": \"<boolean>\",\n  \"hidden\": \"<boolean>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/attributeDefinitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "attributeDefinitions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"guid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"category\": \"TECHNICAL\",\n    \"type\": \"LONG_TEXT\",\n    \"required\": \"<boolean>\",\n    \"hidden\": \"<boolean>\"\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:42:33.000Z",
+              "updatedAt": "2026-07-28T01:42:33.000Z",
+              "uid": "35240-438f90ea-551f-4e8e-abe5-d2b0cd8c7db8"
+            },
+            {
+              "id": "36c1dfb6-f1f0-45dc-933e-fb54afa03cd4",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"TEXT\",\n  \"category\": \"TECHNICAL\",\n  \"required\": \"<boolean>\",\n  \"hidden\": \"<boolean>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/attributeDefinitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "attributeDefinitions"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:42:33.000Z",
+              "updatedAt": "2026-07-28T01:42:33.000Z",
+              "uid": "35240-36c1dfb6-f1f0-45dc-933e-fb54afa03cd4"
+            },
+            {
+              "id": "bba249db-7bb7-4750-8845-9a8f32f4c901",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"TEXT\",\n  \"category\": \"TECHNICAL\",\n  \"required\": \"<boolean>\",\n  \"hidden\": \"<boolean>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/attributeDefinitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "attributeDefinitions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:42:33.000Z",
+              "updatedAt": "2026-07-28T01:42:33.000Z",
+              "uid": "35240-bba249db-7bb7-4750-8845-9a8f32f4c901"
+            }
+          ],
+          "createdAt": "2026-07-28T01:42:33.000Z",
+          "updatedAt": "2026-07-28T01:42:33.000Z",
+          "uid": "35240-55e965ea-3a65-45be-bb69-aac6290330b7"
+        }
+      ],
+      "id": "8a6db807-5190-412a-bea6-803e03f4837b",
+      "createdAt": "2026-07-28T01:42:33.000Z",
+      "updatedAt": "2026-07-28T01:42:33.000Z",
+      "uid": "35240-8a6db807-5190-412a-bea6-803e03f4837b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

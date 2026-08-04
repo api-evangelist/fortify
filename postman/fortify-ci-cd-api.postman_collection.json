@@ -1,0 +1,725 @@
+{
+  "info": {
+    "_postman_id": "a6502da3-a1e7-4f90-a467-9bf7d3b04a27",
+    "name": "Fortify on Demand Alert Definitions CI/CD API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:46.000Z",
+    "updatedAt": "2026-07-28T01:42:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a6502da3-a1e7-4f90-a467-9bf7d3b04a27"
+  },
+  "item": [
+    {
+      "name": "scans",
+      "item": [
+        {
+          "name": "start-scan-cicd",
+          "item": [
+            {
+              "name": "Fortify Start scan from CI/CD",
+              "id": "3deb2945-f81d-409f-94bd-9c7b30e6f99f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cicdToken\": \"<uuid>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scans/start-scan-cicd",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scans",
+                    "start-scan-cicd"
+                  ]
+                },
+                "description": "Starts a new DAST scan from a CI/CD pipeline using a pre-configured CI/CD token that references the scan settings. This is the primary endpoint for CI/CD integration."
+              },
+              "response": [
+                {
+                  "id": "82773d51-2b7d-4a2b-8432-7131988f7849",
+                  "name": "Scan started successfully from CI/CD",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cicdToken\": \"<uuid>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/start-scan-cicd",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        "start-scan-cicd"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"scanId\": \"<uuid>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:42:47.000Z",
+                  "updatedAt": "2026-07-28T01:42:47.000Z",
+                  "uid": "35240-82773d51-2b7d-4a2b-8432-7131988f7849"
+                },
+                {
+                  "id": "859c73a6-27f7-4182-91a4-df28f5fbcb7d",
+                  "name": "Bad request - invalid parameters or request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cicdToken\": \"<uuid>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/start-scan-cicd",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        "start-scan-cicd"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:42:47.000Z",
+                  "updatedAt": "2026-07-28T01:42:47.000Z",
+                  "uid": "35240-859c73a6-27f7-4182-91a4-df28f5fbcb7d"
+                },
+                {
+                  "id": "5f43f717-a1c3-485e-b02e-3ec09b387450",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cicdToken\": \"<uuid>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/start-scan-cicd",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        "start-scan-cicd"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:42:47.000Z",
+                  "updatedAt": "2026-07-28T01:42:47.000Z",
+                  "uid": "35240-5f43f717-a1c3-485e-b02e-3ec09b387450"
+                },
+                {
+                  "id": "ddd0f78a-ae34-4cae-af25-a2908635b672",
+                  "name": "Forbidden - insufficient permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cicdToken\": \"<uuid>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/start-scan-cicd",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        "start-scan-cicd"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:42:47.000Z",
+                  "updatedAt": "2026-07-28T01:42:47.000Z",
+                  "uid": "35240-ddd0f78a-ae34-4cae-af25-a2908635b672"
+                }
+              ],
+              "createdAt": "2026-07-28T01:42:47.000Z",
+              "updatedAt": "2026-07-28T01:42:47.000Z",
+              "uid": "35240-3deb2945-f81d-409f-94bd-9c7b30e6f99f"
+            }
+          ],
+          "id": "1b2ad255-d5ea-4b47-9cbb-94540757c8c9",
+          "createdAt": "2026-07-28T01:42:47.000Z",
+          "updatedAt": "2026-07-28T01:42:47.000Z",
+          "uid": "35240-1b2ad255-d5ea-4b47-9cbb-94540757c8c9"
+        }
+      ],
+      "id": "dd3e6546-4ff6-46d8-9087-2b7c07e51c60",
+      "createdAt": "2026-07-28T01:42:47.000Z",
+      "updatedAt": "2026-07-28T01:42:47.000Z",
+      "uid": "35240-dd3e6546-4ff6-46d8-9087-2b7c07e51c60"
+    },
+    {
+      "name": "scan-settings",
+      "item": [
+        {
+          "name": "{scanSettingsId}",
+          "item": [
+            {
+              "name": "cicd-token",
+              "item": [
+                {
+                  "name": "Fortify Get CI/CD token",
+                  "id": "057903d4-40a2-4290-9392-0cb3af4c1b1c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-settings/:scanSettingsId/cicd-token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-settings",
+                        ":scanSettingsId",
+                        "cicd-token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "061cef06-cdb5-4346-891e-2549f9f0ac23",
+                          "key": "scanSettingsId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the scan settings"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the CI/CD token for a scan settings configuration, used to trigger scans from CI/CD pipelines."
+                  },
+                  "response": [
+                    {
+                      "id": "68018086-2598-4c3c-97bb-3cb0984c6633",
+                      "name": "Successful response with CI/CD token",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/scan-settings/:scanSettingsId/cicd-token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "scan-settings",
+                            ":scanSettingsId",
+                            "cicd-token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanSettingsId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"cicdToken\": \"<uuid>\"\n}",
+                      "createdAt": "2026-07-28T01:42:47.000Z",
+                      "updatedAt": "2026-07-28T01:42:47.000Z",
+                      "uid": "35240-68018086-2598-4c3c-97bb-3cb0984c6633"
+                    },
+                    {
+                      "id": "39a0fcb7-70a5-459e-9251-08dbfd5f7a10",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/scan-settings/:scanSettingsId/cicd-token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "scan-settings",
+                            ":scanSettingsId",
+                            "cicd-token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanSettingsId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:42:47.000Z",
+                      "updatedAt": "2026-07-28T01:42:47.000Z",
+                      "uid": "35240-39a0fcb7-70a5-459e-9251-08dbfd5f7a10"
+                    },
+                    {
+                      "id": "0ba7c50c-d4f0-4ac9-89de-3d115f7b1b8e",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/scan-settings/:scanSettingsId/cicd-token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "scan-settings",
+                            ":scanSettingsId",
+                            "cicd-token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanSettingsId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:42:47.000Z",
+                      "updatedAt": "2026-07-28T01:42:47.000Z",
+                      "uid": "35240-0ba7c50c-d4f0-4ac9-89de-3d115f7b1b8e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:47.000Z",
+                  "updatedAt": "2026-07-28T01:42:47.000Z",
+                  "uid": "35240-057903d4-40a2-4290-9392-0cb3af4c1b1c"
+                },
+                {
+                  "name": "Fortify Regenerate CI/CD token",
+                  "id": "b6437462-c8c2-4b21-8e6d-e1ccc93bf9c0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-settings/:scanSettingsId/cicd-token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-settings",
+                        ":scanSettingsId",
+                        "cicd-token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6cad92db-5f97-49f9-a679-a0e19d605303",
+                          "key": "scanSettingsId",
+                          "value": "<uuid>",
+                          "description": "(Required) Unique identifier of the scan settings"
+                        }
+                      ]
+                    },
+                    "description": "Regenerates the CI/CD token for a scan settings configuration, invalidating the previous token."
+                  },
+                  "response": [
+                    {
+                      "id": "d8551811-c7ce-47ff-9d85-6b99b5295863",
+                      "name": "CI/CD token regenerated successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/scan-settings/:scanSettingsId/cicd-token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "scan-settings",
+                            ":scanSettingsId",
+                            "cicd-token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanSettingsId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"cicdToken\": \"<uuid>\"\n}",
+                      "createdAt": "2026-07-28T01:42:47.000Z",
+                      "updatedAt": "2026-07-28T01:42:47.000Z",
+                      "uid": "35240-d8551811-c7ce-47ff-9d85-6b99b5295863"
+                    },
+                    {
+                      "id": "7d319812-f0e4-49ae-b254-a217b1162253",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/scan-settings/:scanSettingsId/cicd-token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "scan-settings",
+                            ":scanSettingsId",
+                            "cicd-token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanSettingsId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:42:47.000Z",
+                      "updatedAt": "2026-07-28T01:42:47.000Z",
+                      "uid": "35240-7d319812-f0e4-49ae-b254-a217b1162253"
+                    },
+                    {
+                      "id": "21682a81-e307-4dc7-a3e2-6cd41ee1da95",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/scan-settings/:scanSettingsId/cicd-token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "scan-settings",
+                            ":scanSettingsId",
+                            "cicd-token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanSettingsId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:42:47.000Z",
+                      "updatedAt": "2026-07-28T01:42:47.000Z",
+                      "uid": "35240-21682a81-e307-4dc7-a3e2-6cd41ee1da95"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:47.000Z",
+                  "updatedAt": "2026-07-28T01:42:47.000Z",
+                  "uid": "35240-b6437462-c8c2-4b21-8e6d-e1ccc93bf9c0"
+                }
+              ],
+              "id": "94279667-3fff-43ea-a7c1-8f4f08dae345",
+              "createdAt": "2026-07-28T01:42:47.000Z",
+              "updatedAt": "2026-07-28T01:42:47.000Z",
+              "uid": "35240-94279667-3fff-43ea-a7c1-8f4f08dae345"
+            }
+          ],
+          "id": "84295ed0-ab37-4d0a-8165-0d5343df77a7",
+          "createdAt": "2026-07-28T01:42:47.000Z",
+          "updatedAt": "2026-07-28T01:42:47.000Z",
+          "uid": "35240-84295ed0-ab37-4d0a-8165-0d5343df77a7"
+        }
+      ],
+      "id": "024b2715-9699-472b-99cc-2a627a4c6904",
+      "createdAt": "2026-07-28T01:42:47.000Z",
+      "updatedAt": "2026-07-28T01:42:47.000Z",
+      "uid": "35240-024b2715-9699-472b-99cc-2a627a4c6904"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

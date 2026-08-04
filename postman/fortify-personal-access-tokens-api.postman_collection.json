@@ -1,0 +1,1703 @@
+{
+  "info": {
+    "_postman_id": "10cf572b-efda-4c87-976e-d16d15469c69",
+    "name": "Fortify on Demand Alert Definitions Personal Access Tokens API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:32.000Z",
+    "updatedAt": "2026-07-28T01:43:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-10cf572b-efda-4c87-976e-d16d15469c69"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "personal-access-tokens",
+              "item": [
+                {
+                  "name": "{personalAccessTokenId}",
+                  "item": [
+                    {
+                      "name": "Fortify Get personal access token",
+                      "id": "0880bbaf-77b2-4082-bfe3-e29f95e660ce",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens",
+                            ":personalAccessTokenId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "077ce1f4-6a61-4952-83e0-862836035ddb",
+                              "key": "personalAccessTokenId",
+                              "value": "<integer>",
+                              "description": "(Required) Unique identifier of the personal access token"
+                            }
+                          ]
+                        },
+                        "description": "Returns details for a specific personal access token."
+                      },
+                      "response": [
+                        {
+                          "id": "e8ef482d-f48b-4139-8be7-4f2e14c3c567",
+                          "name": "Successful response with personal access token details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"personalAccessTokenId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"secretExpirationDate\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-e8ef482d-f48b-4139-8be7-4f2e14c3c567"
+                        },
+                        {
+                          "id": "77a5a7dc-c5b8-4c1a-9bf1-f6b68bba3ebf",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-77a5a7dc-c5b8-4c1a-9bf1-f6b68bba3ebf"
+                        },
+                        {
+                          "id": "d95f54aa-fb1c-4f50-8787-f415591c26ad",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-d95f54aa-fb1c-4f50-8787-f415591c26ad"
+                        },
+                        {
+                          "id": "0eba13c9-339c-4c01-8239-1b9b084f17cc",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-0eba13c9-339c-4c01-8239-1b9b084f17cc"
+                        },
+                        {
+                          "id": "fa1fccc5-73cd-46c4-92b4-c119cf6bac96",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-fa1fccc5-73cd-46c4-92b4-c119cf6bac96"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-0880bbaf-77b2-4082-bfe3-e29f95e660ce"
+                    },
+                    {
+                      "name": "Fortify Update personal access token",
+                      "id": "abf45c6b-7134-4989-ad76-a003c0c108cc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens",
+                            ":personalAccessTokenId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f0908751-725f-458f-9383-500904e5c83a",
+                              "key": "personalAccessTokenId",
+                              "value": "<integer>",
+                              "description": "(Required) Unique identifier of the personal access token"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing personal access token."
+                      },
+                      "response": [
+                        {
+                          "id": "2babef6f-551b-44da-9aac-c797f6cca034",
+                          "name": "Personal access token updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-2babef6f-551b-44da-9aac-c797f6cca034"
+                        },
+                        {
+                          "id": "bf01b4c3-0200-4a4d-8a28-ec4d6687a3f1",
+                          "name": "Bad request - invalid parameters or request body",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-bf01b4c3-0200-4a4d-8a28-ec4d6687a3f1"
+                        },
+                        {
+                          "id": "6afc0cdb-7ccb-435a-a547-533bf6f829c3",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-6afc0cdb-7ccb-435a-a547-533bf6f829c3"
+                        },
+                        {
+                          "id": "2cb410a1-98a9-45f4-aba3-7bd2957fcbcf",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-2cb410a1-98a9-45f4-aba3-7bd2957fcbcf"
+                        },
+                        {
+                          "id": "fb357eaf-ba11-43c4-a4ca-55e914d2d4cc",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-fb357eaf-ba11-43c4-a4ca-55e914d2d4cc"
+                        },
+                        {
+                          "id": "31d6b1af-da6d-4a9a-bde9-f2fd44f19002",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-31d6b1af-da6d-4a9a-bde9-f2fd44f19002"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-abf45c6b-7134-4989-ad76-a003c0c108cc"
+                    },
+                    {
+                      "name": "Fortify Delete personal access token",
+                      "id": "35b8c45a-9a9c-493c-afbc-d8b117d4df06",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens",
+                            ":personalAccessTokenId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c8de4350-b39c-48b2-9a60-1d8453feb1e2",
+                              "key": "personalAccessTokenId",
+                              "value": "<integer>",
+                              "description": "(Required) Unique identifier of the personal access token"
+                            }
+                          ]
+                        },
+                        "description": "Permanently deletes the specified personal access token."
+                      },
+                      "response": [
+                        {
+                          "id": "e598e17e-4055-4fc9-8309-75fb9cfc13b3",
+                          "name": "Personal access token deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-e598e17e-4055-4fc9-8309-75fb9cfc13b3"
+                        },
+                        {
+                          "id": "45bbd6a0-ba5e-416e-822a-b101bf921ed3",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-45bbd6a0-ba5e-416e-822a-b101bf921ed3"
+                        },
+                        {
+                          "id": "34b024b5-72d2-4c95-89c2-640d91f02f88",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-34b024b5-72d2-4c95-89c2-640d91f02f88"
+                        },
+                        {
+                          "id": "ab222344-d8bb-4123-a8e2-796f1e17504c",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-ab222344-d8bb-4123-a8e2-796f1e17504c"
+                        },
+                        {
+                          "id": "5c313f43-5cd3-4955-8332-0b44d3caf855",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/personal-access-tokens/:personalAccessTokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "personal-access-tokens",
+                                ":personalAccessTokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "personalAccessTokenId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:32.000Z",
+                          "updatedAt": "2026-07-28T01:43:32.000Z",
+                          "uid": "35240-5c313f43-5cd3-4955-8332-0b44d3caf855"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-35b8c45a-9a9c-493c-afbc-d8b117d4df06"
+                    }
+                  ],
+                  "id": "0cc52f06-2756-41e3-b8db-9587bc273816",
+                  "createdAt": "2026-07-28T01:43:32.000Z",
+                  "updatedAt": "2026-07-28T01:43:32.000Z",
+                  "uid": "35240-0cc52f06-2756-41e3-b8db-9587bc273816"
+                },
+                {
+                  "name": "Fortify List personal access tokens",
+                  "id": "68589189-ccb1-4280-84c3-b0667c17c707",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v3/personal-access-tokens?filters=<string>&orderBy=<string>&orderByDirection=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v3",
+                        "personal-access-tokens"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                          "key": "filters",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Field name to sort results by",
+                          "key": "orderBy",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction",
+                          "key": "orderByDirection",
+                          "value": "DESC"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of personal access tokens for the authenticated user."
+                  },
+                  "response": [
+                    {
+                      "id": "83e342d5-04e2-44c7-aec8-055c6e7d815a",
+                      "name": "Successful response with list of personal access tokens",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens?filters=<string>&orderBy=<string>&orderByDirection=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field name to sort results by",
+                              "key": "orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction",
+                              "key": "orderByDirection",
+                              "value": "DESC"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"personalAccessTokenId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"secretExpirationDate\": \"<dateTime>\"\n    },\n    {\n      \"personalAccessTokenId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"secretExpirationDate\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-83e342d5-04e2-44c7-aec8-055c6e7d815a"
+                    },
+                    {
+                      "id": "502897b5-d67c-45da-839b-e504d2e1ed14",
+                      "name": "Unauthorized - authentication required or token expired",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens?filters=<string>&orderBy=<string>&orderByDirection=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field name to sort results by",
+                              "key": "orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction",
+                              "key": "orderByDirection",
+                              "value": "DESC"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-502897b5-d67c-45da-839b-e504d2e1ed14"
+                    },
+                    {
+                      "id": "1286d69e-98d4-4d7d-a2c5-1c83f2b714ee",
+                      "name": "Forbidden - insufficient permissions or scopes",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens?filters=<string>&orderBy=<string>&orderByDirection=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field name to sort results by",
+                              "key": "orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction",
+                              "key": "orderByDirection",
+                              "value": "DESC"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-1286d69e-98d4-4d7d-a2c5-1c83f2b714ee"
+                    },
+                    {
+                      "id": "a8701d61-95a4-4182-a6d4-d5fd1a587f65",
+                      "name": "Too many requests - rate limit exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens?filters=<string>&orderBy=<string>&orderByDirection=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field name to sort results by",
+                              "key": "orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction",
+                              "key": "orderByDirection",
+                              "value": "DESC"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-a8701d61-95a4-4182-a6d4-d5fd1a587f65"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:43:32.000Z",
+                  "updatedAt": "2026-07-28T01:43:32.000Z",
+                  "uid": "35240-68589189-ccb1-4280-84c3-b0667c17c707"
+                },
+                {
+                  "name": "Fortify Create personal access token",
+                  "id": "606c9dd7-5edf-4e7e-b680-45432541da67",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"secretLifetimeDays\": \"<integer>\",\n  \"secretExpirationDate\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v3/personal-access-tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v3",
+                        "personal-access-tokens"
+                      ]
+                    },
+                    "description": "Creates a new personal access token for the authenticated user."
+                  },
+                  "response": [
+                    {
+                      "id": "a62d20e3-dec7-40e4-b6f9-fc27e1832ebd",
+                      "name": "Personal access token created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"secretLifetimeDays\": \"<integer>\",\n  \"secretExpirationDate\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"personalAccessTokenId\": \"<integer>\",\n  \"secret\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-a62d20e3-dec7-40e4-b6f9-fc27e1832ebd"
+                    },
+                    {
+                      "id": "7938838b-7471-4385-844f-345cd2513750",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"secretLifetimeDays\": \"<integer>\",\n  \"secretExpirationDate\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-7938838b-7471-4385-844f-345cd2513750"
+                    },
+                    {
+                      "id": "5334d248-f85f-48f0-9507-1e7b39e168f9",
+                      "name": "Unauthorized - authentication required or token expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"secretLifetimeDays\": \"<integer>\",\n  \"secretExpirationDate\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-5334d248-f85f-48f0-9507-1e7b39e168f9"
+                    },
+                    {
+                      "id": "93a3e9c3-0f10-44a0-9da0-7eecada13dd9",
+                      "name": "Forbidden - insufficient permissions or scopes",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"secretLifetimeDays\": \"<integer>\",\n  \"secretExpirationDate\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-93a3e9c3-0f10-44a0-9da0-7eecada13dd9"
+                    },
+                    {
+                      "id": "ad4e29ce-4eea-415c-af77-2ae2efdbf79d",
+                      "name": "Too many requests - rate limit exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"secretLifetimeDays\": \"<integer>\",\n  \"secretExpirationDate\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/personal-access-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "personal-access-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:43:32.000Z",
+                      "updatedAt": "2026-07-28T01:43:32.000Z",
+                      "uid": "35240-ad4e29ce-4eea-415c-af77-2ae2efdbf79d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:43:32.000Z",
+                  "updatedAt": "2026-07-28T01:43:32.000Z",
+                  "uid": "35240-606c9dd7-5edf-4e7e-b680-45432541da67"
+                }
+              ],
+              "id": "fe587b62-b089-4cba-890d-b4c5a2ab0932",
+              "createdAt": "2026-07-28T01:43:32.000Z",
+              "updatedAt": "2026-07-28T01:43:32.000Z",
+              "uid": "35240-fe587b62-b089-4cba-890d-b4c5a2ab0932"
+            }
+          ],
+          "id": "a8040555-8915-48e1-9456-e977c70ba8f5",
+          "createdAt": "2026-07-28T01:43:32.000Z",
+          "updatedAt": "2026-07-28T01:43:32.000Z",
+          "uid": "35240-a8040555-8915-48e1-9456-e977c70ba8f5"
+        }
+      ],
+      "id": "08df3f78-6f14-4da8-a082-6218e0d09583",
+      "createdAt": "2026-07-28T01:43:32.000Z",
+      "updatedAt": "2026-07-28T01:43:32.000Z",
+      "uid": "35240-08df3f78-6f14-4da8-a082-6218e0d09583"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

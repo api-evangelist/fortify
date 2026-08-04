@@ -1,0 +1,1092 @@
+{
+  "info": {
+    "_postman_id": "1db7e9b7-af4e-4588-877d-2ecd5e5d0925",
+    "name": "Fortify on Demand Alert Definitions Artifacts API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:31.000Z",
+    "updatedAt": "2026-07-28T01:42:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1db7e9b7-af4e-4588-877d-2ecd5e5d0925"
+  },
+  "item": [
+    {
+      "name": "projectVersions",
+      "item": [
+        {
+          "name": "{parentId}",
+          "item": [
+            {
+              "name": "artifacts",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Fortify Get artifact",
+                      "id": "f3adbde8-d0b8-4e44-bc7c-e90bd22e9d15",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts/:id?fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "d68e82ae-2daa-4fe5-9429-00ebe7980b04",
+                              "key": "parentId",
+                              "value": "<long>",
+                              "description": "(Required) Unique identifier of the parent resource"
+                            },
+                            {
+                              "id": "4a3c2d2c-0fb4-4c82-a9dd-5fd0b994c542",
+                              "key": "id",
+                              "value": "<long>",
+                              "description": "(Required) Unique identifier of the resource"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves details for a specific artifact."
+                      },
+                      "response": [
+                        {
+                          "id": "18ae30fc-556d-41bf-a44b-d84e3aa4da05",
+                          "name": "Successful response with artifact details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts/:id?fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projectVersions",
+                                ":parentId",
+                                "artifacts",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "parentId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"fileName\": \"<string>\",\n    \"fileSize\": \"<long>\",\n    \"status\": \"REQUIRE_AUTH\",\n    \"uploadDate\": \"<dateTime>\",\n    \"messages\": \"<string>\",\n    \"allowDelete\": \"<boolean>\",\n    \"allowApprove\": \"<boolean>\",\n    \"allowPurge\": \"<boolean>\",\n    \"scanTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:42:32.000Z",
+                          "updatedAt": "2026-07-28T01:42:32.000Z",
+                          "uid": "35240-18ae30fc-556d-41bf-a44b-d84e3aa4da05"
+                        },
+                        {
+                          "id": "615d730d-ee85-415f-924c-3f555a4c39c0",
+                          "name": "Unauthorized - authentication required or token invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts/:id?fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projectVersions",
+                                ":parentId",
+                                "artifacts",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "parentId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T01:42:32.000Z",
+                          "updatedAt": "2026-07-28T01:42:32.000Z",
+                          "uid": "35240-615d730d-ee85-415f-924c-3f555a4c39c0"
+                        },
+                        {
+                          "id": "f94801e5-3036-4391-8785-4c9de1570255",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts/:id?fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projectVersions",
+                                ":parentId",
+                                "artifacts",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "parentId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T01:42:32.000Z",
+                          "updatedAt": "2026-07-28T01:42:32.000Z",
+                          "uid": "35240-f94801e5-3036-4391-8785-4c9de1570255"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-f3adbde8-d0b8-4e44-bc7c-e90bd22e9d15"
+                    },
+                    {
+                      "name": "Fortify Delete artifact",
+                      "id": "1d0b4836-b2f5-42b1-b349-5bc3c326cfba",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6be4873c-844d-4d18-a034-26611e8ffa27",
+                              "key": "parentId",
+                              "value": "<long>",
+                              "description": "(Required) Unique identifier of the parent resource"
+                            },
+                            {
+                              "id": "c70248cf-bcbd-4825-8826-9f22bd1b4429",
+                              "key": "id",
+                              "value": "<long>",
+                              "description": "(Required) Unique identifier of the resource"
+                            }
+                          ]
+                        },
+                        "description": "Deletes a specific artifact from the project version."
+                      },
+                      "response": [
+                        {
+                          "id": "425a9392-61cc-4f8c-b7d0-0560093588bb",
+                          "name": "Artifact deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projectVersions",
+                                ":parentId",
+                                "artifacts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "parentId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:42:32.000Z",
+                          "updatedAt": "2026-07-28T01:42:32.000Z",
+                          "uid": "35240-425a9392-61cc-4f8c-b7d0-0560093588bb"
+                        },
+                        {
+                          "id": "54712b96-0988-4d2a-89a7-4b2e689e72c8",
+                          "name": "Unauthorized - authentication required or token invalid",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projectVersions",
+                                ":parentId",
+                                "artifacts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "parentId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T01:42:32.000Z",
+                          "updatedAt": "2026-07-28T01:42:32.000Z",
+                          "uid": "35240-54712b96-0988-4d2a-89a7-4b2e689e72c8"
+                        },
+                        {
+                          "id": "e502813c-4212-425c-9297-3cc65d3b4656",
+                          "name": "Not found - the specified resource does not exist",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projectVersions",
+                                ":parentId",
+                                "artifacts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "parentId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T01:42:32.000Z",
+                          "updatedAt": "2026-07-28T01:42:32.000Z",
+                          "uid": "35240-e502813c-4212-425c-9297-3cc65d3b4656"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-1d0b4836-b2f5-42b1-b349-5bc3c326cfba"
+                    }
+                  ],
+                  "id": "44ec35a0-1ca4-4728-8530-c27d4d1ee620",
+                  "createdAt": "2026-07-28T01:42:32.000Z",
+                  "updatedAt": "2026-07-28T01:42:32.000Z",
+                  "uid": "35240-44ec35a0-1ca4-4728-8530-c27d4d1ee620"
+                },
+                {
+                  "name": "Fortify List project version artifacts",
+                  "id": "ea523924-8316-40bd-93c7-6cda184667c3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts?start=0&limit=200&q=<string>&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "artifacts"
+                      ],
+                      "query": [
+                        {
+                          "description": "Starting index for pagination (0-based)",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "200"
+                        },
+                        {
+                          "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "5db9d6aa-50cd-4a6c-9414-bbfb21161481",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of artifacts (uploaded scan results) for the specified project version."
+                  },
+                  "response": [
+                    {
+                      "id": "1fde9ecb-1648-4fc8-a2a2-991f51f314cd",
+                      "name": "Successful response with list of artifacts",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts?start=0&limit=200&q=<string>&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<long>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<long>\",\n      \"status\": \"ERROR_PROCESSING\",\n      \"uploadDate\": \"<dateTime>\",\n      \"messages\": \"<string>\",\n      \"allowDelete\": \"<boolean>\",\n      \"allowApprove\": \"<boolean>\",\n      \"allowPurge\": \"<boolean>\",\n      \"scanTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<long>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<long>\",\n      \"status\": \"PROCESS_COMPLETE\",\n      \"uploadDate\": \"<dateTime>\",\n      \"messages\": \"<string>\",\n      \"allowDelete\": \"<boolean>\",\n      \"allowApprove\": \"<boolean>\",\n      \"allowPurge\": \"<boolean>\",\n      \"scanTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-1fde9ecb-1648-4fc8-a2a2-991f51f314cd"
+                    },
+                    {
+                      "id": "0290c4ec-f9d3-4bf7-b50a-6fd403bc5d5f",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts?start=0&limit=200&q=<string>&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-0290c4ec-f9d3-4bf7-b50a-6fd403bc5d5f"
+                    },
+                    {
+                      "id": "f8876ae3-db01-4acf-a08c-a648e7ec7939",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts?start=0&limit=200&q=<string>&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Starting index for pagination (0-based)",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return",
+                              "key": "limit",
+                              "value": "200"
+                            },
+                            {
+                              "description": "Search query using Fortify search syntax (e.g., name:MyApp)",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-f8876ae3-db01-4acf-a08c-a648e7ec7939"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:32.000Z",
+                  "updatedAt": "2026-07-28T01:42:32.000Z",
+                  "uid": "35240-ea523924-8316-40bd-93c7-6cda184667c3"
+                },
+                {
+                  "name": "Fortify Upload artifact",
+                  "id": "c10e1890-8287-4e3c-b872-112c9a7f7e89",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The FPR or scan results file to upload",
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projectVersions",
+                        ":parentId",
+                        "artifacts"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8a73f58d-f4b6-49f9-9734-c7d627e1f63d",
+                          "key": "parentId",
+                          "value": "<long>",
+                          "description": "(Required) Unique identifier of the parent resource"
+                        }
+                      ]
+                    },
+                    "description": "Uploads a scan artifact (FPR file) to the specified project version for processing."
+                  },
+                  "response": [
+                    {
+                      "id": "37a9f384-5f28-4eca-83a5-7a6f97edeb4f",
+                      "name": "Artifact uploaded successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "The FPR or scan results file to upload",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<long>\",\n    \"fileName\": \"<string>\",\n    \"fileSize\": \"<long>\",\n    \"status\": \"REQUIRE_AUTH\",\n    \"uploadDate\": \"<dateTime>\",\n    \"messages\": \"<string>\",\n    \"allowDelete\": \"<boolean>\",\n    \"allowApprove\": \"<boolean>\",\n    \"allowPurge\": \"<boolean>\",\n    \"scanTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"count\": \"<integer>\",\n  \"responseCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-37a9f384-5f28-4eca-83a5-7a6f97edeb4f"
+                    },
+                    {
+                      "id": "877c5aec-a6fc-4e00-b4f9-edc34263f912",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "The FPR or scan results file to upload",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-877c5aec-a6fc-4e00-b4f9-edc34263f912"
+                    },
+                    {
+                      "id": "05185ef2-68ab-471c-aac5-384190b7f16d",
+                      "name": "Unauthorized - authentication required or token invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "The FPR or scan results file to upload",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-05185ef2-68ab-471c-aac5-384190b7f16d"
+                    },
+                    {
+                      "id": "4c644f76-b2bf-4d45-9bd3-ef05c01eda33",
+                      "name": "Not found - the specified resource does not exist",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "The FPR or scan results file to upload",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projectVersions/:parentId/artifacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projectVersions",
+                            ":parentId",
+                            "artifacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "parentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:42:32.000Z",
+                      "updatedAt": "2026-07-28T01:42:32.000Z",
+                      "uid": "35240-4c644f76-b2bf-4d45-9bd3-ef05c01eda33"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:32.000Z",
+                  "updatedAt": "2026-07-28T01:42:32.000Z",
+                  "uid": "35240-c10e1890-8287-4e3c-b872-112c9a7f7e89"
+                }
+              ],
+              "id": "dd15a1b5-e31c-4877-a2c5-9f25df081875",
+              "createdAt": "2026-07-28T01:42:32.000Z",
+              "updatedAt": "2026-07-28T01:42:32.000Z",
+              "uid": "35240-dd15a1b5-e31c-4877-a2c5-9f25df081875"
+            }
+          ],
+          "id": "ca9e789c-329d-4a36-9f4e-463f9cd1c506",
+          "createdAt": "2026-07-28T01:42:32.000Z",
+          "updatedAt": "2026-07-28T01:42:32.000Z",
+          "uid": "35240-ca9e789c-329d-4a36-9f4e-463f9cd1c506"
+        }
+      ],
+      "id": "77a1e8b1-db2b-483c-8b18-a94f42bd33af",
+      "createdAt": "2026-07-28T01:42:32.000Z",
+      "updatedAt": "2026-07-28T01:42:32.000Z",
+      "uid": "35240-77a1e8b1-db2b-483c-8b18-a94f42bd33af"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

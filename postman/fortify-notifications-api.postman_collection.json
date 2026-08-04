@@ -1,0 +1,1166 @@
+{
+  "info": {
+    "_postman_id": "42846c26-df62-4f9d-ab42-b146492cb6a7",
+    "name": "Fortify on Demand Alert Definitions Notifications API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:24.000Z",
+    "updatedAt": "2026-07-28T01:43:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-42846c26-df62-4f9d-ab42-b146492cb6a7"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v3",
+          "item": [
+            {
+              "name": "notifications",
+              "item": [
+                {
+                  "name": "unread",
+                  "item": [
+                    {
+                      "name": "Fortify List unread notifications",
+                      "id": "ca3ab211-eb86-4e09-950e-d3708df6cf28",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/notifications/unread?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "notifications",
+                            "unread"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field name to sort results by",
+                              "key": "orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction",
+                              "key": "orderByDirection",
+                              "value": "ASC"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return (max 50)",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a paginated list of unread notifications for the authenticated user."
+                      },
+                      "response": [
+                        {
+                          "id": "94093f25-6b0f-4e53-81e7-0cbbac0379e1",
+                          "name": "Successful response with list of unread notifications",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/unread?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "unread"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"notificationId\": \"<integer>\",\n      \"notificationType\": \"<string>\",\n      \"message\": \"<string>\",\n      \"isRead\": \"<boolean>\",\n      \"createdDate\": \"<dateTime>\"\n    },\n    {\n      \"notificationId\": \"<integer>\",\n      \"notificationType\": \"<string>\",\n      \"message\": \"<string>\",\n      \"isRead\": \"<boolean>\",\n      \"createdDate\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-94093f25-6b0f-4e53-81e7-0cbbac0379e1"
+                        },
+                        {
+                          "id": "1ab9654c-e5bf-4ca0-a260-84ef81cf222a",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/unread?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "unread"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-1ab9654c-e5bf-4ca0-a260-84ef81cf222a"
+                        },
+                        {
+                          "id": "7ba6e496-0e74-47a2-8c52-f932ca139775",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/unread?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "unread"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-7ba6e496-0e74-47a2-8c52-f932ca139775"
+                        },
+                        {
+                          "id": "ad551fda-1e46-4c02-b2c3-59f3836763bc",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/unread?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "unread"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-ad551fda-1e46-4c02-b2c3-59f3836763bc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:43:24.000Z",
+                      "updatedAt": "2026-07-28T01:43:24.000Z",
+                      "uid": "35240-ca3ab211-eb86-4e09-950e-d3708df6cf28"
+                    }
+                  ],
+                  "id": "672ab919-5126-40d3-b52a-bb597ddfe2a2",
+                  "createdAt": "2026-07-28T01:43:24.000Z",
+                  "updatedAt": "2026-07-28T01:43:24.000Z",
+                  "uid": "35240-672ab919-5126-40d3-b52a-bb597ddfe2a2"
+                },
+                {
+                  "name": "read",
+                  "item": [
+                    {
+                      "name": "Fortify List read notifications",
+                      "id": "dfae69de-f9e2-4031-91a8-5d7978e05396",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/notifications/read?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "notifications",
+                            "read"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                              "key": "filters",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field name to sort results by",
+                              "key": "orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction",
+                              "key": "orderByDirection",
+                              "value": "ASC"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of records to return (max 50)",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a paginated list of read notifications for the authenticated user."
+                      },
+                      "response": [
+                        {
+                          "id": "8952acc9-2750-4862-8b2f-bacb3c809a0e",
+                          "name": "Successful response with list of read notifications",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/read?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "read"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"notificationId\": \"<integer>\",\n      \"notificationType\": \"<string>\",\n      \"message\": \"<string>\",\n      \"isRead\": \"<boolean>\",\n      \"createdDate\": \"<dateTime>\"\n    },\n    {\n      \"notificationId\": \"<integer>\",\n      \"notificationType\": \"<string>\",\n      \"message\": \"<string>\",\n      \"isRead\": \"<boolean>\",\n      \"createdDate\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-8952acc9-2750-4862-8b2f-bacb3c809a0e"
+                        },
+                        {
+                          "id": "c1011c3e-b807-4fd0-ab00-653ec9763823",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/read?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "read"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-c1011c3e-b807-4fd0-ab00-653ec9763823"
+                        },
+                        {
+                          "id": "8abdb6ef-e2fe-4abf-8805-0b6eae50ab49",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/read?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "read"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-8abdb6ef-e2fe-4abf-8805-0b6eae50ab49"
+                        },
+                        {
+                          "id": "d5369026-9681-4991-b8bd-36a03c53728d",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/read?filters=<string>&orderBy=<string>&orderByDirection=ASC&fields=<string>&offset=0&limit=50",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "read"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.",
+                                  "key": "filters",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field name to sort results by",
+                                  "key": "orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort direction",
+                                  "key": "orderByDirection",
+                                  "value": "ASC"
+                                },
+                                {
+                                  "description": "Comma-separated list of fields to include in the response",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of records to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of records to return (max 50)",
+                                  "key": "limit",
+                                  "value": "50"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-d5369026-9681-4991-b8bd-36a03c53728d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:43:24.000Z",
+                      "updatedAt": "2026-07-28T01:43:24.000Z",
+                      "uid": "35240-dfae69de-f9e2-4031-91a8-5d7978e05396"
+                    }
+                  ],
+                  "id": "31f5eeab-5897-4019-9765-e1302691d4da",
+                  "createdAt": "2026-07-28T01:43:24.000Z",
+                  "updatedAt": "2026-07-28T01:43:24.000Z",
+                  "uid": "35240-31f5eeab-5897-4019-9765-e1302691d4da"
+                },
+                {
+                  "name": "markasread",
+                  "item": [
+                    {
+                      "name": "Fortify Mark notifications as read",
+                      "id": "4d65ae8b-0019-4e33-baa6-854a6f302b77",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"notificationIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v3/notifications/markasread",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v3",
+                            "notifications",
+                            "markasread"
+                          ]
+                        },
+                        "description": "Marks one or more notifications as read."
+                      },
+                      "response": [
+                        {
+                          "id": "d9aa04a4-fed6-4a2d-9969-14d83dbeeb03",
+                          "name": "Notifications marked as read successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"notificationIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/markasread",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "markasread"
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-d9aa04a4-fed6-4a2d-9969-14d83dbeeb03"
+                        },
+                        {
+                          "id": "be3adfa2-d520-49e9-b567-4a14ef6842b3",
+                          "name": "Bad request - invalid parameters or request body",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"notificationIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/markasread",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "markasread"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-be3adfa2-d520-49e9-b567-4a14ef6842b3"
+                        },
+                        {
+                          "id": "6b271f0c-1139-4821-a212-a4414282e0be",
+                          "name": "Unauthorized - authentication required or token expired",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"notificationIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/markasread",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "markasread"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-6b271f0c-1139-4821-a212-a4414282e0be"
+                        },
+                        {
+                          "id": "55293195-bcf6-46a2-a649-3c3d11b247ce",
+                          "name": "Forbidden - insufficient permissions or scopes",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"notificationIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/markasread",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "markasread"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-55293195-bcf6-46a2-a649-3c3d11b247ce"
+                        },
+                        {
+                          "id": "29193fdf-7bd7-4904-95dc-00e063c06c10",
+                          "name": "Too many requests - rate limit exceeded",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"notificationIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v3/notifications/markasread",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v3",
+                                "notifications",
+                                "markasread"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"errorCode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:43:24.000Z",
+                          "updatedAt": "2026-07-28T01:43:24.000Z",
+                          "uid": "35240-29193fdf-7bd7-4904-95dc-00e063c06c10"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:43:24.000Z",
+                      "updatedAt": "2026-07-28T01:43:24.000Z",
+                      "uid": "35240-4d65ae8b-0019-4e33-baa6-854a6f302b77"
+                    }
+                  ],
+                  "id": "6d24deb7-5a73-44f7-b939-db5f8681810d",
+                  "createdAt": "2026-07-28T01:43:24.000Z",
+                  "updatedAt": "2026-07-28T01:43:24.000Z",
+                  "uid": "35240-6d24deb7-5a73-44f7-b939-db5f8681810d"
+                }
+              ],
+              "id": "301ba504-e749-436a-8aba-6d0441e35be6",
+              "createdAt": "2026-07-28T01:43:24.000Z",
+              "updatedAt": "2026-07-28T01:43:24.000Z",
+              "uid": "35240-301ba504-e749-436a-8aba-6d0441e35be6"
+            }
+          ],
+          "id": "809a5abf-b1f9-4678-8fbe-01e0f1242e68",
+          "createdAt": "2026-07-28T01:43:24.000Z",
+          "updatedAt": "2026-07-28T01:43:24.000Z",
+          "uid": "35240-809a5abf-b1f9-4678-8fbe-01e0f1242e68"
+        }
+      ],
+      "id": "42636c11-f1ee-4a7c-b3f5-1d89b5422a0b",
+      "createdAt": "2026-07-28T01:43:24.000Z",
+      "updatedAt": "2026-07-28T01:43:24.000Z",
+      "uid": "35240-42636c11-f1ee-4a7c-b3f5-1d89b5422a0b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

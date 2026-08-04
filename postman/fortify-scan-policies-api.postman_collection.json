@@ -1,0 +1,383 @@
+{
+  "info": {
+    "_postman_id": "0f3c7b85-da27-4763-bcff-409e339f8897",
+    "name": "Fortify on Demand Alert Definitions Scan Policies API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:48.000Z",
+    "updatedAt": "2026-07-28T01:43:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f3c7b85-da27-4763-bcff-409e339f8897"
+  },
+  "item": [
+    {
+      "name": "scan-policies",
+      "item": [
+        {
+          "name": "{scanPolicyId}",
+          "item": [
+            {
+              "name": "Fortify Get scan policy",
+              "id": "2ff1b546-3e8c-4f8a-964e-58f823c12ca1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scan-policies/:scanPolicyId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-policies",
+                    ":scanPolicyId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fcc8d63b-5cec-438b-b1d6-8133564e05a5",
+                      "key": "scanPolicyId",
+                      "value": "<uuid>",
+                      "description": "(Required) Unique identifier of the scan policy"
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific scan policy."
+              },
+              "response": [
+                {
+                  "id": "96fbb36e-c0bc-4e64-9ca0-b8c16ec8a659",
+                  "name": "Successful response with scan policy details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-policies/:scanPolicyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-policies",
+                        ":scanPolicyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanPolicyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isDefault\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:43:48.000Z",
+                  "updatedAt": "2026-07-28T01:43:48.000Z",
+                  "uid": "35240-96fbb36e-c0bc-4e64-9ca0-b8c16ec8a659"
+                },
+                {
+                  "id": "793bbd6a-b7c8-4246-bf69-1dd1651beed6",
+                  "name": "Unauthorized - authentication required or token invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-policies/:scanPolicyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-policies",
+                        ":scanPolicyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanPolicyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:48.000Z",
+                  "updatedAt": "2026-07-28T01:43:48.000Z",
+                  "uid": "35240-793bbd6a-b7c8-4246-bf69-1dd1651beed6"
+                },
+                {
+                  "id": "cba85e30-fcfa-42a3-bdbe-2f6af91c7ed3",
+                  "name": "Not found - the specified resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scan-policies/:scanPolicyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scan-policies",
+                        ":scanPolicyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanPolicyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:43:48.000Z",
+                  "updatedAt": "2026-07-28T01:43:48.000Z",
+                  "uid": "35240-cba85e30-fcfa-42a3-bdbe-2f6af91c7ed3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:43:48.000Z",
+              "updatedAt": "2026-07-28T01:43:48.000Z",
+              "uid": "35240-2ff1b546-3e8c-4f8a-964e-58f823c12ca1"
+            }
+          ],
+          "id": "36501a1c-8ca3-4de8-9d4c-d5b49e0f2cf9",
+          "createdAt": "2026-07-28T01:43:48.000Z",
+          "updatedAt": "2026-07-28T01:43:48.000Z",
+          "uid": "35240-36501a1c-8ca3-4de8-9d4c-d5b49e0f2cf9"
+        },
+        {
+          "name": "Fortify List scan policies",
+          "id": "7c7fc2d0-ec29-4fd9-9de3-efb269bd4529",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/scan-policies?offset=0&limit=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scan-policies"
+              ],
+              "query": [
+                {
+                  "description": "Number of records to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Retrieves a list of available scan policies that control which vulnerability checks are performed during scans."
+          },
+          "response": [
+            {
+              "id": "d25c02c0-6398-4878-a9e4-277b09cd637d",
+              "name": "Successful response with list of scan policies",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scan-policies?offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-policies"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isDefault\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isDefault\": \"<boolean>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:48.000Z",
+              "updatedAt": "2026-07-28T01:43:48.000Z",
+              "uid": "35240-d25c02c0-6398-4878-a9e4-277b09cd637d"
+            },
+            {
+              "id": "9b66144d-44af-4766-8520-0353b5cf6400",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scan-policies?offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scan-policies"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:43:48.000Z",
+              "updatedAt": "2026-07-28T01:43:48.000Z",
+              "uid": "35240-9b66144d-44af-4766-8520-0353b5cf6400"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:48.000Z",
+          "updatedAt": "2026-07-28T01:43:48.000Z",
+          "uid": "35240-7c7fc2d0-ec29-4fd9-9de3-efb269bd4529"
+        }
+      ],
+      "id": "92a88ff0-df47-417c-b42c-65ce663a5dbb",
+      "createdAt": "2026-07-28T01:43:48.000Z",
+      "updatedAt": "2026-07-28T01:43:48.000Z",
+      "uid": "35240-92a88ff0-df47-417c-b42c-65ce663a5dbb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}

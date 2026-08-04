@@ -1,0 +1,205 @@
+{
+  "info": {
+    "_postman_id": "3e5602d6-a30b-4f9d-86e0-f1ea08bc215a",
+    "name": "Fortify on Demand Alert Definitions Performance Indicators API",
+    "description": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:43:29.000Z",
+    "updatedAt": "2026-07-28T01:43:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3e5602d6-a30b-4f9d-86e0-f1ea08bc215a"
+  },
+  "item": [
+    {
+      "name": "performanceIndicators",
+      "item": [
+        {
+          "name": "Fortify List performance indicators",
+          "id": "29ee52fe-e0fe-495a-a75b-c5ac21c002c7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/performanceIndicators?start=0&limit=200&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "performanceIndicators"
+              ],
+              "query": [
+                {
+                  "description": "Starting index for pagination (0-based)",
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves performance indicator data for monitoring SSC system health."
+          },
+          "response": [
+            {
+              "id": "0951976f-68a8-4c0b-a88b-b7dd8df2c155",
+              "name": "Successful response with performance indicators",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/performanceIndicators?start=0&limit=200&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "performanceIndicators"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<double>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<double>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:43:30.000Z",
+              "updatedAt": "2026-07-28T01:43:30.000Z",
+              "uid": "35240-0951976f-68a8-4c0b-a88b-b7dd8df2c155"
+            },
+            {
+              "id": "2952e2b5-427c-44df-91a5-2c3d2d0a1b1a",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/performanceIndicators?start=0&limit=200&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "performanceIndicators"
+                  ],
+                  "query": [
+                    {
+                      "description": "Starting index for pagination (0-based)",
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:43:30.000Z",
+              "updatedAt": "2026-07-28T01:43:30.000Z",
+              "uid": "35240-2952e2b5-427c-44df-91a5-2c3d2d0a1b1a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:43:30.000Z",
+          "updatedAt": "2026-07-28T01:43:30.000Z",
+          "uid": "35240-29ee52fe-e0fe-495a-a75b-c5ac21c002c7"
+        }
+      ],
+      "id": "24d63a5d-76ca-48a9-89c2-53442abbc1fd",
+      "createdAt": "2026-07-28T01:43:30.000Z",
+      "updatedAt": "2026-07-28T01:43:30.000Z",
+      "uid": "35240-24d63a5d-76ca-48a9-89c2-53442abbc1fd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ams.fortify.com"
+    }
+  ]
+}
