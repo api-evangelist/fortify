@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Auth Entities API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List project version auth entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/projectVersions/:parentId/authEntities",
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the parent resource"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Starting index for pagination (0-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves authentication entities (users and LDAP groups) assigned to the specified project version."
+        },
+        {
+          "info": {
+            "name": "Fortify Update project version auth entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/projectVersions/:parentId/authEntities",
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the parent resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns or updates authentication entities for the specified project version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

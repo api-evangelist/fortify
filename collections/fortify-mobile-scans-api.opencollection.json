@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Mobile Scans API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mobile Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Get mobile scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves the current mobile scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Save mobile scan setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/mobile-scans/scan-setup",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves the mobile scan setup configuration for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Start mobile scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/mobile-scans/start-scan",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Scheduled start date for the scan"
+              },
+              {
+                "name": "assessmentTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Assessment type identifier"
+              },
+              {
+                "name": "frameworkType",
+                "value": "",
+                "type": "query",
+                "description": "Mobile framework type"
+              },
+              {
+                "name": "timeZone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone for scheduled scans"
+              },
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "query",
+                "description": "Entitlement identifier"
+              },
+              {
+                "name": "entitlementFrequencyType",
+                "value": "",
+                "type": "query",
+                "description": "Entitlement frequency type"
+              },
+              {
+                "name": "isRemediationScan",
+                "value": "",
+                "type": "query",
+                "description": "Whether this is a remediation scan"
+              }
+            ]
+          },
+          "docs": "Initiates a mobile scan for the specified release by uploading a mobile application binary."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

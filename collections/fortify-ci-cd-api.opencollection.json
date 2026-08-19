@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions CI/CD API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CI/CD",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Start scan from CI/CD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/scans/start-scan-cicd",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new DAST scan from a CI/CD pipeline using a pre-configured CI/CD token that references the scan settings. This is the primary endpoint for CI/CD integration."
+        },
+        {
+          "info": {
+            "name": "Fortify Get CI/CD token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scan-settings/:scanSettingsId/cicd-token",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Retrieves the CI/CD token for a scan settings configuration, used to trigger scans from CI/CD pipelines."
+        },
+        {
+          "info": {
+            "name": "Fortify Regenerate CI/CD token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/scan-settings/:scanSettingsId/cicd-token",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Regenerates the CI/CD token for a scan settings configuration, invalidating the previous token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

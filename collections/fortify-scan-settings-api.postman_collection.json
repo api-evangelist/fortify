@@ -1,0 +1,1652 @@
+{
+  "item": [
+    {
+      "id": "c295138d-b90d-4fc8-8a52-dd82a6b17a84",
+      "name": "Scan Settings",
+      "description": {
+        "content": "Manage scan configuration settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c157d4e1-70bf-44f0-aeb4-82656cc545d7",
+          "name": "Fortify List scan settings",
+          "request": {
+            "name": "Fortify List scan settings",
+            "description": {
+              "content": "Retrieves a paginated list of scan settings configurations, which define how scans are executed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scan-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of records to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Search text to filter settings by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "Field to sort results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderByDirection",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "683bb7e8-e646-4be5-90e8-8b7533db5867",
+              "name": "Successful response with list of scan settings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"3066c767-96fe-dbca-005f-08210491dea9\",\n      \"name\": \"string\",\n      \"startUrl\": \"https://Uvey.jtnWq-y8XV0AJ5vYsK,YPQ8vfz6ipgHki+YKoWQKM\",\n      \"scanPolicyId\": \"1e3ced67-4120-4c5d-a951-a71bb48cc387\",\n      \"sensorPoolId\": \"14c43701-5bb1-99d2-eb2f-893309c1a209\",\n      \"loginMacroEnabled\": false,\n      \"crawlAuditMode\": \"CrawlOnly\",\n      \"sscApplicationVersionId\": 6630,\n      \"cicdToken\": \"9224c04a-e945-4513-f40a-81845df4b1e4\",\n      \"createdDate\": \"2016-03-26T15:45:48.239Z\",\n      \"modifiedDate\": \"1987-11-26T14:55:22.131Z\"\n    },\n    {\n      \"id\": \"ae9fd76e-dfa4-ef41-3d30-8ae519364696\",\n      \"name\": \"string\",\n      \"startUrl\": \"http://wwIDfRVNjKHkfaMkENwjPPAiYjyJXXE.qvcJfniZjRnVDll9RfHXQyEXisDsnFS-ABd+o.imk8oQ9o\",\n      \"scanPolicyId\": \"8bc0b625-5083-4e0e-afdf-afccbb622eee\",\n      \"sensorPoolId\": \"b8296322-03ae-4c48-4b52-840d188b68bb\",\n      \"loginMacroEnabled\": false,\n      \"crawlAuditMode\": \"CrawlAndAudit\",\n      \"sscApplicationVersionId\": 1638,\n      \"cicdToken\": \"598c94b6-d114-2be5-41d1-69e7b8ea2a6d\",\n      \"createdDate\": \"1982-02-23T09:36:53.457Z\",\n      \"modifiedDate\": \"1994-10-02T16:30:10.463Z\"\n    }\n  ],\n  \"totalCount\": 8221\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d00a4b8-bbf1-4bf1-949c-16a08aff5a52",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef4120a2-052f-438d-b0a7-138191f350ec",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9485d0f2-b606-4064-ac10-f474124fc224",
+          "name": "Fortify Create scan settings",
+          "request": {
+            "name": "Fortify Create scan settings",
+            "description": {
+              "content": "Creates a new scan settings configuration defining target URL, authentication, scan policy, and other parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scan-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f180ca6-7e71-4abc-9047-3073f786d138",
+              "name": "Scan settings created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e963787a-bbdc-803d-ca55-c4fb007030e3\",\n  \"name\": \"string\",\n  \"startUrl\": \"https://LiMRuU.bqZ33gQd\",\n  \"scanPolicyId\": \"9ceccb5f-55a7-d7fd-e75f-0e27b40877bd\",\n  \"sensorPoolId\": \"57fc86d7-35de-1e31-7629-c64e45a447c0\",\n  \"loginMacroEnabled\": false,\n  \"crawlAuditMode\": \"AuditOnly\",\n  \"sscApplicationVersionId\": 9726,\n  \"cicdToken\": \"6c4afe4c-e1ad-92cd-85e0-97b26bdf50e9\",\n  \"createdDate\": \"1971-12-15T12:08:44.478Z\",\n  \"modifiedDate\": \"2019-01-15T08:51:41.659Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "541ce106-7ddc-4ac9-975d-096c18f8ce45",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "043966d3-6c1f-434d-a8fd-992651711de6",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a234c445-b7f1-4c9a-a411-7cb447b89ab8",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c1408e8-f511-45e7-ac53-2814d1d51cdc",
+          "name": "Fortify Get scan settings",
+          "request": {
+            "name": "Fortify Get scan settings",
+            "description": {
+              "content": "Retrieves details for a specific scan settings configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scan-settings",
+                ":scanSettingsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "scanSettingsId",
+                  "description": "(Required) Unique identifier of the scan settings"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9136312-5564-44c7-a2ce-8b88513b4ecc",
+              "name": "Successful response with scan settings details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e963787a-bbdc-803d-ca55-c4fb007030e3\",\n  \"name\": \"string\",\n  \"startUrl\": \"https://LiMRuU.bqZ33gQd\",\n  \"scanPolicyId\": \"9ceccb5f-55a7-d7fd-e75f-0e27b40877bd\",\n  \"sensorPoolId\": \"57fc86d7-35de-1e31-7629-c64e45a447c0\",\n  \"loginMacroEnabled\": false,\n  \"crawlAuditMode\": \"AuditOnly\",\n  \"sscApplicationVersionId\": 9726,\n  \"cicdToken\": \"6c4afe4c-e1ad-92cd-85e0-97b26bdf50e9\",\n  \"createdDate\": \"1971-12-15T12:08:44.478Z\",\n  \"modifiedDate\": \"2019-01-15T08:51:41.659Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c52bec59-3819-40fd-bb38-ac00f9833273",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f86bc1a9-24dc-4aae-96a6-0c412ffccebf",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3775bedc-0726-43ec-9b89-ca1514d045e2",
+          "name": "Fortify Update scan settings",
+          "request": {
+            "name": "Fortify Update scan settings",
+            "description": {
+              "content": "Updates an existing scan settings configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scan-settings",
+                ":scanSettingsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "scanSettingsId",
+                  "description": "(Required) Unique identifier of the scan settings"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4b406cd-4369-40f5-9dfb-3efcc63f8741",
+              "name": "Scan settings updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e963787a-bbdc-803d-ca55-c4fb007030e3\",\n  \"name\": \"string\",\n  \"startUrl\": \"https://LiMRuU.bqZ33gQd\",\n  \"scanPolicyId\": \"9ceccb5f-55a7-d7fd-e75f-0e27b40877bd\",\n  \"sensorPoolId\": \"57fc86d7-35de-1e31-7629-c64e45a447c0\",\n  \"loginMacroEnabled\": false,\n  \"crawlAuditMode\": \"AuditOnly\",\n  \"sscApplicationVersionId\": 9726,\n  \"cicdToken\": \"6c4afe4c-e1ad-92cd-85e0-97b26bdf50e9\",\n  \"createdDate\": \"1971-12-15T12:08:44.478Z\",\n  \"modifiedDate\": \"2019-01-15T08:51:41.659Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fbd1ec2-4f7f-4431-a2ba-c3dd73e83da2",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f01dd64-7aab-4654-8cb0-7435d9b2ff67",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53bb376e-2e08-4c58-8cb5-d240caf09fd9",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startUrl\": \"<uri>\",\n  \"scanPolicyId\": \"<uuid>\",\n  \"sensorPoolId\": \"<uuid>\",\n  \"crawlAuditMode\": \"<string>\",\n  \"sscApplicationVersionId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b00898be-a658-41b4-9161-af4d24d40123",
+          "name": "Fortify Delete scan settings",
+          "request": {
+            "name": "Fortify Delete scan settings",
+            "description": {
+              "content": "Deletes a scan settings configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scan-settings",
+                ":scanSettingsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "scanSettingsId",
+                  "description": "(Required) Unique identifier of the scan settings"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0a9f993-23b8-4f5b-a5c3-053c2c7d50e2",
+              "name": "Scan settings deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6859357-94cf-47e5-ab92-ce6fa9f1c705",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59a102c2-3635-4fff-b3b7-0b82eed7005a",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a73bb1e8-ec4b-4477-b9d6-d7c7cd0f23f5",
+          "name": "Fortify Get CI/CD token",
+          "request": {
+            "name": "Fortify Get CI/CD token",
+            "description": {
+              "content": "Retrieves the CI/CD token for a scan settings configuration, used to trigger scans from CI/CD pipelines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scan-settings",
+                ":scanSettingsId",
+                "cicd-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "scanSettingsId",
+                  "description": "(Required) Unique identifier of the scan settings"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e748d50-b4b9-4480-a311-f4399d8e2183",
+              "name": "Successful response with CI/CD token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId",
+                    "cicd-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cicdToken\": \"f679e0a7-c6db-34e2-806b-f1ebf8e2698b\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d686f8d8-f789-4e7f-a133-0216a3468736",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId",
+                    "cicd-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efc7dce2-1492-4cb8-82a2-b9219a3d9bd4",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId",
+                    "cicd-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "059bef1a-106a-4354-93db-c13c42c30e8d",
+          "name": "Fortify Regenerate CI/CD token",
+          "request": {
+            "name": "Fortify Regenerate CI/CD token",
+            "description": {
+              "content": "Regenerates the CI/CD token for a scan settings configuration, invalidating the previous token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scan-settings",
+                ":scanSettingsId",
+                "cicd-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "scanSettingsId",
+                  "description": "(Required) Unique identifier of the scan settings"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdcbe3fe-42cb-45db-99ba-e01db93d5396",
+              "name": "CI/CD token regenerated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId",
+                    "cicd-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cicdToken\": \"aee9b346-08a5-0807-c894-162c8c66f292\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fec8742f-2054-40fb-b6f8-ec65b9a73f9f",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId",
+                    "cicd-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48a929d4-49a4-42c6-af01-2c158911d653",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scan-settings",
+                    ":scanSettingsId",
+                    "cicd-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scanSettingsId",
+                      "description": "(Required) Unique identifier of the scan settings"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8564,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ams.fortify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ae210c5a-1b52-464d-9c56-b522f6e90b8d",
+    "name": "Fortify on Demand Alert Definitions Scan Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+      "type": "text/plain"
+    }
+  }
+}

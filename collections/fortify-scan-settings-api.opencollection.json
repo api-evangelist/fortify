@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Scan Settings API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scan Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scan-settings",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text to filter settings by name"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of scan settings configurations, which define how scans are executed."
+        },
+        {
+          "info": {
+            "name": "Fortify Create scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/scan-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new scan settings configuration defining target URL, authentication, scan policy, and other parameters."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scan-settings/:scanSettingsId",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan settings configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Update scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/scan-settings/:scanSettingsId",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing scan settings configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete scan settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/scan-settings/:scanSettingsId",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Deletes a scan settings configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Get CI/CD token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scan-settings/:scanSettingsId/cicd-token",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Retrieves the CI/CD token for a scan settings configuration, used to trigger scans from CI/CD pipelines."
+        },
+        {
+          "info": {
+            "name": "Fortify Regenerate CI/CD token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/scan-settings/:scanSettingsId/cicd-token",
+            "params": [
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan settings"
+              }
+            ]
+          },
+          "docs": "Regenerates the CI/CD token for a scan settings configuration, invalidating the previous token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions File Tokens API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "File Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Create file token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/fileTokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a single-use file transfer token for uploading or downloading artifacts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

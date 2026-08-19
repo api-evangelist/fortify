@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Custom Tags API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List project version custom tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/projectVersions/:parentId/customTags",
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the parent resource"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Starting index for pagination (0-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves custom tags configured for the specified project version."
+        },
+        {
+          "info": {
+            "name": "Fortify Get custom tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/customTags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the resource"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific custom tag."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

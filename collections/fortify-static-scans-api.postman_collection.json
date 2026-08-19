@@ -1,0 +1,473 @@
+{
+  "item": [
+    {
+      "id": "77940693-aabd-493f-ba00-4eb51cf89bea",
+      "name": "Static Scans",
+      "description": {
+        "content": "Configure and start static application security testing scans",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31b6e6f7-1148-4662-b1a2-eeb61752b59c",
+          "name": "Fortify Get static scan options",
+          "request": {
+            "name": "Fortify Get static scan options",
+            "description": {
+              "content": "Retrieves available options for starting a static scan on the specified release, including technology stacks and language levels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "releases",
+                ":releaseId",
+                "static-scan-options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "technologyStack",
+                  "value": "<string>",
+                  "description": "Technology stack identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "languageLevel",
+                  "value": "<string>",
+                  "description": "Language level identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "assessmentTypeId",
+                  "value": "<integer>",
+                  "description": "Assessment type identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "entitlementFrequencyType",
+                  "value": "<string>",
+                  "description": "Entitlement frequency type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "releaseId",
+                  "description": "(Required) Unique identifier of the release"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e63ef8e-7b37-4642-86a2-0a895998d046",
+              "name": "Successful response with static scan options",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "static-scan-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "technologyStack",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "languageLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assessmentTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entitlementFrequencyType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"technologyStacks\": [\n    {\n      \"value\": \"string\",\n      \"text\": \"string\"\n    },\n    {\n      \"value\": \"string\",\n      \"text\": \"string\"\n    }\n  ],\n  \"languageLevels\": [\n    {\n      \"value\": \"string\",\n      \"text\": \"string\"\n    },\n    {\n      \"value\": \"string\",\n      \"text\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d267201b-f000-4d1d-810b-2ade2b29fe55",
+              "name": "Unauthorized - authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "static-scan-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "technologyStack",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "languageLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assessmentTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entitlementFrequencyType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 6012,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 6909,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4ab7c92-8dc7-472f-84c3-0a9590082fe4",
+              "name": "Forbidden - insufficient permissions or scopes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "static-scan-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "technologyStack",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "languageLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assessmentTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entitlementFrequencyType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 6012,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 6909,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18b27462-934a-49a5-8294-0736a0508940",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "static-scan-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "technologyStack",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "languageLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assessmentTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entitlementFrequencyType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 6012,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 6909,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9835c6b9-a62f-42ff-8893-17d5b8f655b1",
+              "name": "Too many requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "static-scan-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "technologyStack",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "languageLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assessmentTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entitlementFrequencyType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 6012,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 6909,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ams.fortify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "828765d0-9ce4-4aba-af16-b74111e9d644",
+    "name": "Fortify on Demand Alert Definitions Static Scans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+      "type": "text/plain"
+    }
+  }
+}

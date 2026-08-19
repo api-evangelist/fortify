@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Microservices API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Microservices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List application microservices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/microservices",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              },
+              {
+                "name": "includeReleases",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include release information for each microservice"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of microservices associated with the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify Create application microservice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/microservices",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new microservice to the specified application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

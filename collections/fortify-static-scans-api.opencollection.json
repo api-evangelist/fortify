@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Static Scans API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Static Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Get static scan options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/static-scan-options",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "technologyStack",
+                "value": "",
+                "type": "query",
+                "description": "Technology stack identifier"
+              },
+              {
+                "name": "languageLevel",
+                "value": "",
+                "type": "query",
+                "description": "Language level identifier"
+              },
+              {
+                "name": "assessmentTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Assessment type identifier"
+              },
+              {
+                "name": "entitlementFrequencyType",
+                "value": "",
+                "type": "query",
+                "description": "Entitlement frequency type"
+              }
+            ]
+          },
+          "docs": "Retrieves available options for starting a static scan on the specified release, including technology stacks and language levels."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

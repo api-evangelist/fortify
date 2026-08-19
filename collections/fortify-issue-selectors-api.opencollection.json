@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Issue Selectors API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issue Selectors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Get issue selector set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/projectVersions/:parentId/issueSelectorSet",
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the parent resource"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves the issue selector set (filter metadata) for the specified project version, providing available groupings, filters, and filter sets for issue queries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

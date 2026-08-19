@@ -1,0 +1,781 @@
+{
+  "item": [
+    {
+      "id": "53cea5c7-dbb7-4984-9b44-bcd0fbcdd27f",
+      "name": "Issues",
+      "description": {
+        "content": "Access and manage vulnerability issues",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "52a676e2-f6b8-4db8-b3ea-d8298f7370a7",
+          "name": "Fortify List project version issues",
+          "request": {
+            "name": "Fortify List project version issues",
+            "description": {
+              "content": "Retrieves a paginated list of vulnerability issues for the specified project version. Supports filtering using Fortify search syntax.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projectVersions",
+                ":parentId",
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "Starting index for pagination (0-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "200",
+                  "description": "Maximum number of records to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query using Fortify search syntax (e.g., name:MyApp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "qm",
+                  "value": "<string>",
+                  "description": "Query mode for filtering (e.g., issues, hidden, removed, suppressed)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Named filter to apply"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterset",
+                  "value": "<string>",
+                  "description": "Filter set GUID to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupid",
+                  "value": "<string>",
+                  "description": "Group identifier for issue grouping"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupingtype",
+                  "value": "<string>",
+                  "description": "Type of grouping to apply"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort field and direction (e.g., name for ascending, -name for descending)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "parentId",
+                  "description": "(Required) Unique identifier of the parent resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e447f9e7-ec4b-48f3-8413-e5cd76ba2049",
+              "name": "Successful response with list of issues",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectVersions",
+                    ":parentId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupingtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "parentId",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 5622,\n      \"issueInstanceId\": \"string\",\n      \"issueName\": \"string\",\n      \"primaryLocation\": \"string\",\n      \"lineNumber\": 3910,\n      \"fullFileName\": \"string\",\n      \"frilessSeverity\": 4864.873750192461,\n      \"severity\": 8451.41903515506,\n      \"confidence\": 7672.499488600656,\n      \"kingdom\": \"string\",\n      \"issueStatus\": \"string\",\n      \"removedDate\": \"1960-06-15T17:26:29.022Z\",\n      \"foundDate\": \"1986-01-03T20:03:29.647Z\",\n      \"hasAttachments\": false,\n      \"hasCorrelatedIssues\": true,\n      \"scanStatus\": \"string\",\n      \"engineCategory\": \"string\",\n      \"audienceSet\": true,\n      \"reviewed\": false,\n      \"issueState\": \"string\",\n      \"analyzer\": \"string\",\n      \"primaryTag\": \"string\",\n      \"folderGuid\": \"string\",\n      \"projectVersionId\": 9962\n    },\n    {\n      \"id\": 1955,\n      \"issueInstanceId\": \"string\",\n      \"issueName\": \"string\",\n      \"primaryLocation\": \"string\",\n      \"lineNumber\": 3947,\n      \"fullFileName\": \"string\",\n      \"frilessSeverity\": 2775.51733129908,\n      \"severity\": 3549.094785382312,\n      \"confidence\": 5331.164760423166,\n      \"kingdom\": \"string\",\n      \"issueStatus\": \"string\",\n      \"removedDate\": \"1956-04-25T02:37:02.507Z\",\n      \"foundDate\": \"1951-10-11T13:25:21.901Z\",\n      \"hasAttachments\": false,\n      \"hasCorrelatedIssues\": true,\n      \"scanStatus\": \"string\",\n      \"engineCategory\": \"string\",\n      \"audienceSet\": false,\n      \"reviewed\": false,\n      \"issueState\": \"string\",\n      \"analyzer\": \"string\",\n      \"primaryTag\": \"string\",\n      \"folderGuid\": \"string\",\n      \"projectVersionId\": 6954\n    }\n  ],\n  \"count\": 6529\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "674a32b4-4e9f-4088-9818-7621f6e56b51",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectVersions",
+                    ":parentId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupingtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "parentId",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8487,\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5550cd49-db5c-4244-94e2-768d02aefc55",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectVersions",
+                    ":parentId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupingtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "parentId",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8487,\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2648857-36cf-4826-a614-63769951ecca",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectVersions",
+                    ":parentId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupingtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "parentId",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8487,\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "767101d7-089a-4cfc-8b11-ec10a981402a",
+          "name": "Fortify Get project version issue",
+          "request": {
+            "name": "Fortify Get project version issue",
+            "description": {
+              "content": "Retrieves details for a specific issue within a project version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projectVersions",
+                ":parentId",
+                "issues",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "parentId",
+                  "description": "(Required) Unique identifier of the parent resource"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ca9e5bd-6a62-47e7-b50b-e8da474cb1a2",
+              "name": "Successful response with issue details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectVersions",
+                    ":parentId",
+                    "issues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "parentId",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 42,\n    \"issueInstanceId\": \"string\",\n    \"issueName\": \"string\",\n    \"primaryLocation\": \"string\",\n    \"lineNumber\": 8608,\n    \"fullFileName\": \"string\",\n    \"frilessSeverity\": 9237.507058914218,\n    \"severity\": 1871.1189557731357,\n    \"confidence\": 1279.8516148975414,\n    \"kingdom\": \"string\",\n    \"issueStatus\": \"string\",\n    \"removedDate\": \"1995-10-01T03:33:40.384Z\",\n    \"foundDate\": \"1970-12-14T15:51:21.519Z\",\n    \"hasAttachments\": true,\n    \"hasCorrelatedIssues\": false,\n    \"scanStatus\": \"string\",\n    \"engineCategory\": \"string\",\n    \"audienceSet\": true,\n    \"reviewed\": false,\n    \"issueState\": \"string\",\n    \"analyzer\": \"string\",\n    \"primaryTag\": \"string\",\n    \"folderGuid\": \"string\",\n    \"projectVersionId\": 9093\n  },\n  \"count\": 1318,\n  \"responseCode\": 8360\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9aebb33-a231-4576-a0ce-a5828936a799",
+              "name": "Unauthorized - authentication required or token invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectVersions",
+                    ":parentId",
+                    "issues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "parentId",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8487,\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "674c7361-2df7-477c-b803-904a9203b38b",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectVersions",
+                    ":parentId",
+                    "issues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "parentId",
+                      "description": "(Required) Unique identifier of the parent resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 8487,\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ams.fortify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f6bdaf20-6d93-41c3-8589-f205025669d6",
+    "name": "Fortify on Demand Alert Definitions Issues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+      "type": "text/plain"
+    }
+  }
+}

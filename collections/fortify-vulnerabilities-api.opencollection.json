@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Vulnerabilities API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vulnerabilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Get issue count by severity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/issue-count-by-severity",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              }
+            ]
+          },
+          "docs": "Retrieves the number of issues grouped by severity level for the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify Get application vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/vulnerabilities/:vulnerabilityId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              },
+              {
+                "name": "vulnerabilityId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the vulnerability"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              },
+              {
+                "name": "includeFixed",
+                "value": "",
+                "type": "query",
+                "description": "Include fixed vulnerabilities in results"
+              },
+              {
+                "name": "includeSuppressed",
+                "value": "",
+                "type": "query",
+                "description": "Include suppressed vulnerabilities in results"
+              },
+              {
+                "name": "keywordSearch",
+                "value": "",
+                "type": "query",
+                "description": "Keyword search filter for vulnerabilities"
+              }
+            ]
+          },
+          "docs": "Returns a list of vulnerabilities matching the specified instance identifier within an application."
+        },
+        {
+          "info": {
+            "name": "Fortify List vulnerability category rollups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/category-rollups",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "showFixed",
+                "value": "",
+                "type": "query",
+                "description": "Include fixed vulnerabilities"
+              },
+              {
+                "name": "vulnerabilitiesSeverityType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity type"
+              }
+            ]
+          },
+          "docs": "Returns a list and count of vulnerability categories grouped by severity for the specified release."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

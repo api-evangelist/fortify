@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Audit Templates API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Set audit action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/audit-action",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the audit action (such as approve or reject) for vulnerabilities in the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get audit options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/audit-options",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves the available audit options for the specified release, including statuses and custom fields."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

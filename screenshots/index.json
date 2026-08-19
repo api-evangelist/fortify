@@ -6,5 +6,14 @@
     "source_type": "Portal",
     "file": "fortify-2026-06-20T181440.png",
     "bytes": 262698
+  },
+  {
+    "repo": "fortify",
+    "captured_at": "2026-08-17T123433",
+    "source_url": "https://opentext.com",
+    "source_type": "root-domain",
+    "file": "fortify-2026-08-17T123433.png",
+    "bytes": 266627,
+    "capture": "playwright-local"
   }
 ]

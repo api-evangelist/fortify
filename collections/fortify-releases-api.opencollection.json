@@ -1,0 +1,548 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Releases API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Releases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List application releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/releases",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              },
+              {
+                "name": "modifiedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter releases modified after this date"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of releases belonging to the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify List releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              },
+              {
+                "name": "modifiedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter releases modified after this date"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all releases accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fortify Create release",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new release within an existing application."
+        },
+        {
+          "info": {
+            "name": "Fortify Get release",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific release by identifier."
+        },
+        {
+          "info": {
+            "name": "Fortify Update release",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing release's properties and configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete release",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Permanently deletes the specified release and associated data."
+        },
+        {
+          "info": {
+            "name": "Fortify List release scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of scans for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get release scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans/:scanId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Returns summary information for the specified scan."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan polling summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans/:scanId/polling-summary",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Returns the current scan status for a specific scan, useful for polling scan progress."
+        },
+        {
+          "info": {
+            "name": "Fortify Download release FPR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/fpr",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanType",
+                "value": "",
+                "type": "query",
+                "description": "Type of scan to download FPR for"
+              }
+            ]
+          },
+          "docs": "Downloads the Fortify Project Results (FPR) file for the specified release and scan type."
+        },
+        {
+          "info": {
+            "name": "Fortify List vulnerability category rollups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/category-rollups",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "showFixed",
+                "value": "",
+                "type": "query",
+                "description": "Include fixed vulnerabilities"
+              },
+              {
+                "name": "vulnerabilitiesSeverityType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity type"
+              }
+            ]
+          },
+          "docs": "Returns a list and count of vulnerability categories grouped by severity for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify List assessment types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/assessment-types",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanType",
+                "value": "",
+                "type": "query",
+                "description": "Type of scan to retrieve assessment types for"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a list of available assessment types and entitlements for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get static scan options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/static-scan-options",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "technologyStack",
+                "value": "",
+                "type": "query",
+                "description": "Technology stack identifier"
+              },
+              {
+                "name": "languageLevel",
+                "value": "",
+                "type": "query",
+                "description": "Language level identifier"
+              },
+              {
+                "name": "assessmentTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Assessment type identifier"
+              },
+              {
+                "name": "entitlementFrequencyType",
+                "value": "",
+                "type": "query",
+                "description": "Entitlement frequency type"
+              }
+            ]
+          },
+          "docs": "Retrieves available options for starting a static scan on the specified release, including technology stacks and language levels."
+        },
+        {
+          "info": {
+            "name": "Fortify Set audit action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/audit-action",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the audit action (such as approve or reject) for vulnerabilities in the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get audit options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/audit-options",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Retrieves the available audit options for the specified release, including statuses and custom fields."
+        },
+        {
+          "info": {
+            "name": "Fortify Get import scan session ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/import-scan-session-id",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Initiates an import scan session and returns a session identifier for uploading third-party scan results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

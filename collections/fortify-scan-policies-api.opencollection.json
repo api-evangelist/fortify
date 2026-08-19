@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Scan Policies API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scan Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List scan policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scan-policies",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of available scan policies that control which vulnerability checks are performed during scans."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scan-policies/:scanPolicyId",
+            "params": [
+              {
+                "name": "scanPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan policy"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

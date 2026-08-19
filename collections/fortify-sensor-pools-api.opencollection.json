@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Sensor Pools API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sensor Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List sensor pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/sensor-pools",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of sensor pools used to group sensors for scan distribution."
+        },
+        {
+          "info": {
+            "name": "Fortify Create sensor pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/sensor-pools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new sensor pool for organizing sensors."
+        },
+        {
+          "info": {
+            "name": "Fortify Get sensor pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/sensor-pools/:sensorPoolId",
+            "params": [
+              {
+                "name": "sensorPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor pool"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific sensor pool."
+        },
+        {
+          "info": {
+            "name": "Fortify Update sensor pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/sensor-pools/:sensorPoolId",
+            "params": [
+              {
+                "name": "sensorPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor pool"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a sensor pool's properties."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete sensor pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/sensor-pools/:sensorPoolId",
+            "params": [
+              {
+                "name": "sensorPoolId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor pool"
+              }
+            ]
+          },
+          "docs": "Deletes a sensor pool."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Attributes API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/attributes",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of application attributes defined for the tenant."
+        },
+        {
+          "info": {
+            "name": "Fortify Create attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/attributes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new application attribute for the tenant."
+        },
+        {
+          "info": {
+            "name": "Fortify Update attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/attributes/:attributeId",
+            "params": [
+              {
+                "name": "attributeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the attribute"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing application attribute."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/api/v3/attributes/:attributeId",
+            "params": [
+              {
+                "name": "attributeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the attribute"
+              }
+            ]
+          },
+          "docs": "Permanently deletes the specified attribute."
+        },
+        {
+          "info": {
+            "name": "Fortify List project version attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/projectVersions/:parentId/attributes",
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the parent resource"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves attribute values assigned to the specified project version."
+        },
+        {
+          "info": {
+            "name": "Fortify Update project version attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/projectVersions/:parentId/attributes",
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the parent resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates attribute values for the specified project version."
+        },
+        {
+          "info": {
+            "name": "Fortify List attribute definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/attributeDefinitions",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Starting index for pagination (0-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query using Fortify search syntax (e.g., name:MyApp)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of attribute definitions configured in the system."
+        },
+        {
+          "info": {
+            "name": "Fortify Create attribute definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/attributeDefinitions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new attribute definition."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

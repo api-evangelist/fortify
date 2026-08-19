@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Personal Access Tokens API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Personal Access Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List personal access tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              }
+            ]
+          },
+          "docs": "Returns a list of personal access tokens for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fortify Create personal access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new personal access token for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fortify Get personal access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens/:personalAccessTokenId",
+            "params": [
+              {
+                "name": "personalAccessTokenId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the personal access token"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific personal access token."
+        },
+        {
+          "info": {
+            "name": "Fortify Update personal access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens/:personalAccessTokenId",
+            "params": [
+              {
+                "name": "personalAccessTokenId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the personal access token"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing personal access token."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete personal access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/api/v3/personal-access-tokens/:personalAccessTokenId",
+            "params": [
+              {
+                "name": "personalAccessTokenId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the personal access token"
+              }
+            ]
+          },
+          "docs": "Permanently deletes the specified personal access token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

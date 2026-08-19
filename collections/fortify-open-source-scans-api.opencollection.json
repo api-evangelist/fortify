@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Open Source Scans API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Open Source Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify Start open source scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/open-source-scans/start-scan",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "fragNo",
+                "value": "",
+                "type": "query",
+                "description": "Fragment number for chunked upload"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Byte offset for chunked upload"
+              }
+            ]
+          },
+          "docs": "Initiates an open source / software composition analysis scan for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Download open source SBOM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/open-source-scans/:scanId/sbom",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the open source scan"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "SBOM output format"
+              }
+            ]
+          },
+          "docs": "Downloads the Software Bill of Materials (SBOM) file for the specified open source scan."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

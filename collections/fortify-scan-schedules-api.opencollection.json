@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Scan Schedules API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scan Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List scan schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scan-schedules",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of scheduled scans."
+        },
+        {
+          "info": {
+            "name": "Fortify Create scan schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/scan-schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new scheduled scan configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scan-schedules/:scanScheduleId",
+            "params": [
+              {
+                "name": "scanScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan schedule"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan schedule."
+        },
+        {
+          "info": {
+            "name": "Fortify Update scan schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/scan-schedules/:scanScheduleId",
+            "params": [
+              {
+                "name": "scanScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan schedule"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing scan schedule."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete scan schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/scan-schedules/:scanScheduleId",
+            "params": [
+              {
+                "name": "scanScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan schedule"
+              }
+            ]
+          },
+          "docs": "Deletes a scan schedule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1296 @@
+{
+  "item": [
+    {
+      "id": "91d6b8e5-7b41-4537-b84d-1f52ab1fd030",
+      "name": "Dynamic Scans",
+      "description": {
+        "content": "Configure and start dynamic application security testing scans",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "05b99990-8b60-4a01-8f0a-f56579910a26",
+          "name": "Fortify Get dynamic scan setup",
+          "request": {
+            "name": "Fortify Get dynamic scan setup",
+            "description": {
+              "content": "Retrieves the current dynamic scan setup configuration for the specified release.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "releases",
+                ":releaseId",
+                "dynamic-scans",
+                "scan-setup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "releaseId",
+                  "description": "(Required) Unique identifier of the release"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20064d28-cddf-407b-aed1-0e60d4985ed7",
+              "name": "Successful response with dynamic scan setup details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dynamicScanEnvironmentFacingType\": \"string\",\n  \"dynamicSiteUrl\": \"string\",\n  \"requiresNetworkAuthentication\": true,\n  \"timeZone\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e59674f-75c6-4683-af5b-50d91231c279",
+              "name": "Unauthorized - authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 5688,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5943,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf405a5b-5640-405a-8116-485b3007c949",
+              "name": "Forbidden - insufficient permissions or scopes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 5688,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5943,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdbd4ed2-e733-4be4-8435-e87048e6e95d",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 5688,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5943,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec4d5cd3-3f45-4763-b59e-a3d73a2081e4",
+              "name": "Too many requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 5688,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5943,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae668090-da4b-4ee1-9328-ab1116e8cc9f",
+          "name": "Fortify Save dynamic scan setup",
+          "request": {
+            "name": "Fortify Save dynamic scan setup",
+            "description": {
+              "content": "Saves the dynamic scan setup configuration for the specified release.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "releases",
+                ":releaseId",
+                "dynamic-scans",
+                "scan-setup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "releaseId",
+                  "description": "(Required) Unique identifier of the release"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"<string>\",\n  \"dynamicSiteUrl\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fb205e9b-178e-4b06-a977-78ef421f73f7",
+              "name": "Dynamic scan setup saved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"<string>\",\n  \"dynamicSiteUrl\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c478bc9d-7ea2-48cb-ae26-8d1b750c9c77",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"<string>\",\n  \"dynamicSiteUrl\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 5688,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5943,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10ce041e-6a1c-43ee-8bf8-3f7e42d0a8ce",
+              "name": "Unauthorized - authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"<string>\",\n  \"dynamicSiteUrl\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fce234ea-aaee-436c-87ff-f97e60d3f96c",
+              "name": "Forbidden - insufficient permissions or scopes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"<string>\",\n  \"dynamicSiteUrl\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d423de0f-55f9-49fe-80f0-413db77cc09a",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"<string>\",\n  \"dynamicSiteUrl\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8c4bfc7-5f37-41f5-ad9a-65fcff15b69f",
+              "name": "Too many requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "scan-setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicScanEnvironmentFacingType\": \"<string>\",\n  \"dynamicSiteUrl\": \"<string>\",\n  \"requiresNetworkAuthentication\": \"<boolean>\",\n  \"networkAuthenticationUserName\": \"<string>\",\n  \"networkAuthenticationPassword\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27d85776-7201-48ea-a2ec-e014cc512f51",
+          "name": "Fortify Start dynamic scan",
+          "request": {
+            "name": "Fortify Start dynamic scan",
+            "description": {
+              "content": "Initiates a dynamic scan for the specified release using the current scan setup configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "releases",
+                ":releaseId",
+                "dynamic-scans",
+                "start-scan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "networkName",
+                  "value": "<string>",
+                  "description": "Name of the Fortify on Demand Connect network to use for scanning"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "releaseId",
+                  "description": "(Required) Unique identifier of the release"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<dateTime>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"isRemediationScan\": \"<boolean>\",\n  \"isBundledAssessment\": \"<boolean>\",\n  \"parentAssessmentTypeId\": \"<integer>\",\n  \"timeZone\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b7a771ac-4d42-4cad-ba0b-666de0eed259",
+              "name": "Dynamic scan started successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "start-scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<dateTime>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"isRemediationScan\": \"<boolean>\",\n  \"isBundledAssessment\": \"<boolean>\",\n  \"parentAssessmentTypeId\": \"<integer>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scanId\": 6939,\n  \"analysisStatusType\": \"string\",\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b04f2150-8037-4b2b-9fa8-60fd4e4ba213",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "start-scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<dateTime>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"isRemediationScan\": \"<boolean>\",\n  \"isBundledAssessment\": \"<boolean>\",\n  \"parentAssessmentTypeId\": \"<integer>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f0f2bdf-598a-44c9-be31-da1170440caf",
+              "name": "Unauthorized - authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "start-scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<dateTime>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"isRemediationScan\": \"<boolean>\",\n  \"isBundledAssessment\": \"<boolean>\",\n  \"parentAssessmentTypeId\": \"<integer>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1096ec5f-8078-4739-9f91-140c7b18687f",
+              "name": "Forbidden - insufficient permissions or scopes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "start-scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<dateTime>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"isRemediationScan\": \"<boolean>\",\n  \"isBundledAssessment\": \"<boolean>\",\n  \"parentAssessmentTypeId\": \"<integer>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1b437cd-6b35-4bb4-a6f9-9fa55a1563a5",
+              "name": "Not found - the specified resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "start-scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<dateTime>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"isRemediationScan\": \"<boolean>\",\n  \"isBundledAssessment\": \"<boolean>\",\n  \"parentAssessmentTypeId\": \"<integer>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc25c46b-dba2-4aa3-858e-50bcef4529ad",
+              "name": "Too many requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "releases",
+                    ":releaseId",
+                    "dynamic-scans",
+                    "start-scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "releaseId",
+                      "description": "(Required) Unique identifier of the release"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"<dateTime>\",\n  \"assessmentTypeId\": \"<integer>\",\n  \"entitlementId\": \"<integer>\",\n  \"entitlementFrequencyType\": \"<string>\",\n  \"isRemediationScan\": \"<boolean>\",\n  \"isBundledAssessment\": \"<boolean>\",\n  \"parentAssessmentTypeId\": \"<integer>\",\n  \"timeZone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"errorCode\": 8776,\n      \"message\": \"string\"\n    },\n    {\n      \"errorCode\": 5359,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ams.fortify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3ab2be5a-d1fc-434c-a52f-d14387103b47",
+    "name": "Fortify on Demand Alert Definitions Dynamic Scans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.\n\nContact Support:\n Name: OpenText Fortify Support\n Email: fortify-support@microfocus.com",
+      "type": "text/plain"
+    }
+  }
+}

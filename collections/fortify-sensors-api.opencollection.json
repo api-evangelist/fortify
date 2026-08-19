@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Sensors API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sensors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List sensors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/sensors",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sensor status"
+              },
+              {
+                "name": "sensorPoolId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sensor pool"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of WebInspect sensors registered with ScanCentral DAST, including their status and capabilities."
+        },
+        {
+          "info": {
+            "name": "Fortify Get sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/sensors/:sensorId",
+            "params": [
+              {
+                "name": "sensorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific sensor."
+        },
+        {
+          "info": {
+            "name": "Fortify Update sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ams.fortify.com/sensors/:sensorId",
+            "params": [
+              {
+                "name": "sensorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a sensor's configuration such as pool assignment."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/sensors/:sensorId",
+            "params": [
+              {
+                "name": "sensorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the sensor"
+              }
+            ]
+          },
+          "docs": "Removes a sensor from ScanCentral DAST."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

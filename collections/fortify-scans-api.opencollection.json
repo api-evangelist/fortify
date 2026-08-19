@@ -1,0 +1,430 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortify on Demand Alert Definitions Scans API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortify List application scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/applications/:applicationId/scans",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the application"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of scans for the specified application."
+        },
+        {
+          "info": {
+            "name": "Fortify List release scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of scans for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get release scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans/:scanId",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Returns summary information for the specified scan."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan polling summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/scans/:scanId/polling-summary",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Returns the current scan status for a specific scan, useful for polling scan progress."
+        },
+        {
+          "info": {
+            "name": "Fortify List assessment types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/assessment-types",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              },
+              {
+                "name": "scanType",
+                "value": "",
+                "type": "query",
+                "description": "Type of scan to retrieve assessment types for"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 50)"
+              }
+            ]
+          },
+          "docs": "Returns a list of available assessment types and entitlements for the specified release."
+        },
+        {
+          "info": {
+            "name": "Fortify Get import scan session ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/api/v3/releases/:releaseId/import-scan-session-id",
+            "params": [
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the release"
+              }
+            ]
+          },
+          "docs": "Initiates an import scan session and returns a session identifier for uploading third-party scan results."
+        },
+        {
+          "info": {
+            "name": "Fortify List scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scans",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scan status"
+              },
+              {
+                "name": "scanSettingsId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scan settings identifier"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of DAST scans. Supports filtering by status, settings, and other criteria."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan by identifier."
+        },
+        {
+          "info": {
+            "name": "Fortify Delete scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ams.fortify.com/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Deletes a specific scan and its results."
+        },
+        {
+          "info": {
+            "name": "Fortify Perform scan action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/scans/:scanId/action",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs an action on a scan such as pausing, resuming, cancelling, or retrying."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scans/:scanId/scan-log",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Retrieves the scan log for a specific scan."
+        },
+        {
+          "info": {
+            "name": "Fortify Get scan summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ams.fortify.com/scans/:scanId/scan-summary",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the scan"
+              }
+            ]
+          },
+          "docs": "Retrieves a summary of the scan results including vulnerability counts and scan metrics."
+        },
+        {
+          "info": {
+            "name": "Fortify Start scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/scans/start-scan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new DAST scan using the specified scan settings configuration."
+        },
+        {
+          "info": {
+            "name": "Fortify Start scan from CI/CD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ams.fortify.com/scans/start-scan-cicd",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new DAST scan from a CI/CD pipeline using a pre-configured CI/CD token that references the scan settings. This is the primary endpoint for CI/CD integration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
