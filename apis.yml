@@ -20,7 +20,7 @@ image: https://www.microfocus.com/brand/fortify-logo.png
 url: https://www.opentext.com/products/fortify-on-demand
 created: '2024-01-15'
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 apis:
 - aid: fortify:fortify-alert-definitions-api
   name: Fortify Alert Definitions API
