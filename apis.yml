@@ -3,6 +3,18 @@ description: >-
   Fortify is a comprehensive application security platform from OpenText that provides static application security
   testing (SAST), dynamic application security testing (DAST), and software composition analysis (SCA) capabilities. It
   helps organizations identify and remediate vulnerabilities across the software development lifecycle.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -1477,6 +1489,9 @@ tags:
   - Security Testing
   - Vulnerability Scanning
 common:
+  - type: CapabilityMap
+    url: capabilities/fortify-capability-edges.yml
+    name: Fortify Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/fortify/overview
   - type: AgenticAccess

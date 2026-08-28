@@ -1,0 +1,143 @@
+slug: fortify
+provider: Fortify
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 13
+edges:
+- tag: Scans
+  spec_file: fortify-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.9
+  evidence: '''Fortify List scans'', ''Fortify Get scan summary'', schemas ''StartScanRequest'', ''DastScanSummary'''
+  reason: Directly initiates and inspects static/dynamic application security scans, the core of vulnerability
+    scanning and remediation tracking.
+- tag: Vulnerabilities
+  spec_file: fortify-vulnerabilities-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.9
+  evidence: GET /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}  Fortify Get application
+    vulnerability
+  reason: Operations retrieve application vulnerabilities and issue counts by severity — plainly vulnerability
+    identification and remediation tracking.
+- tag: Dynamic Scans
+  spec_file: fortify-dynamic-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.8
+  evidence: 'POST /api/v3/releases/{releaseId}/dynamic-scans/start-scan — ''Start dynamic scan''; vendor:
+    ''dynamic application security testing (DAST)... identify and remediate vulnerabilities'''
+  reason: Operations configure and launch dynamic application security scans to find vulnerabilities,
+    which is vulnerability scanning/remediation under Cybersecurity Management, not a software product
+    engineering activity in this frame.
+- tag: Issues
+  spec_file: fortify-issues-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.78
+  evidence: GET /projectVersions/{parentId}/issues listProjectVersionIssues — 'retrieve vulnerability
+    results'
+  reason: In Fortify, issues are the security findings produced by SAST/DAST/SCA scans; listing and retrieving
+    them is vulnerability identification and remediation tracking, i.e. Vulnerability Management.
+- tag: DAST Automated Scans
+  spec_file: fortify-dast-automated-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: POST /api/v3/releases/{releaseId}/dast-automated-scans/start-scan  startDastAutomatedScan
+  reason: Configuring and launching dynamic security scans to find vulnerabilities maps to Vulnerability
+    Management (scanning), per the vendor's DAST description.
+- tag: Mobile Scans
+  spec_file: fortify-mobile-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: POST /api/v3/releases/{releaseId}/mobile-scans/start-scan startMobileScan; 'initiate static,
+    dynamic, and mobile scans, retrieve vulnerability results'
+  reason: Configures and launches mobile application security scans — vulnerability scanning of released
+    software, which sits under Vulnerability Management.
+- tag: Scan Schedules
+  spec_file: fortify-scan-schedules-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: '''Fortify Create scan schedule'', schema ''CreateScanScheduleRequest'''
+  reason: Scheduling of application security scans, which is operational stewardship of vulnerability
+    scanning.
+- tag: Scan Settings
+  spec_file: fortify-scan-settings-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: '''Fortify Create scan settings'', ''Fortify Regenerate CI/CD token'', schema ''ScanSettings'''
+  reason: Configuration of security scan execution (including CI/CD integration tokens) for the SAST/DAST
+    service — vulnerability scanning configuration.
+- tag: Users
+  spec_file: fortify-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /localUsers  createLocalUser  Fortify Create local user
+  reason: CRUD over local user accounts in the security platform tenant is identity and access administration.
+    Slight ambiguity vs generic tenant admin, so moderate confidence.
+- tag: Applications
+  spec_file: fortify-applications-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: GET /api/v3/applications/{applicationId}/vulnerabilities/{vulnerabilityId}  Get application
+    vulnerability; getApplicationIssueCountBySeverity
+  reason: The application inventory here is the unit of security scanning; operations expose scans and
+    vulnerabilities, aligning with vulnerability management. Some ambiguity vs IT Application Management.
+- tag: Releases
+  spec_file: fortify-releases-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: '''Fortify List release scans'', ''Fortify Download release FPR'', ''Fortify List vulnerability
+    category rollups'''
+  reason: Despite the word 'release', the operations retrieve security scan results and vulnerability
+    category rollups for an application release — this is application-security scanning/vulnerability
+    tracking, not software release engineering.
+- tag: Scan Policies
+  spec_file: fortify-scan-policies-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: '''Fortify List scan policies'', ''Fortify Get scan policy'', schema ''ScanPolicy'''
+  reason: Policies that govern which security checks a SAST/DAST scan performs — configuration of the
+    vulnerability scanning capability rather than corporate policy management.
+- tag: Static Scans
+  spec_file: fortify-static-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: GET /api/v3/releases/{releaseId}/static-scan-options  Fortify Get static scan options
+  reason: Fortify is SAST/application security scanning; retrieving static scan options configures vulnerability
+    scanning of code. Maps to Vulnerability Management, though it is only a config read (hence moderate
+    confidence). Could arguably be Software Quality Engineering, but security scanning is the vendor's
+    stated purpose.
