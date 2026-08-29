@@ -1,8 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fortify on Demand Alert Definitions Reports API
-  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
-  version: v3
+  title: Fortify Reports API
   contact:
     name: OpenText Fortify Support
     url: https://www.opentext.com/support
@@ -12,6 +10,8 @@ info:
     url: https://www.opentext.com/about/legal/website-terms-of-use
   x-logo:
     url: https://www.microfocus.com/brand/fortify-logo.png
+  version: '1.0'
+  description: 'Operations tagged Reports across 2 of this provider''s published API definitions: fortify-on-demand-openapi.yml, fortify-software-security-center-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.ams.fortify.com
   description: Fortify on Demand - Americas
@@ -19,8 +19,17 @@ servers:
   description: Fortify on Demand - EMEA
 - url: https://api.apac.fortify.com
   description: Fortify on Demand - APAC
-security:
-- bearerAuth: []
+- url: '{protocol}://{host}/ssc/api/v1'
+  description: Fortify SSC Server
+  variables:
+    protocol:
+      default: https
+      enum:
+      - https
+      - http
+    host:
+      default: localhost
+      description: Your SSC server hostname and optional port
 tags:
 - name: Reports
   description: Generate and download reports
@@ -62,6 +71,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://api.ams.fortify.com
+      description: Fortify on Demand - Americas
+    - url: https://api.emea.fortify.com
+      description: Fortify on Demand - EMEA
+    - url: https://api.apac.fortify.com
+      description: Fortify on Demand - APAC
   /reportDefinitions:
     get:
       operationId: listReportDefinitions
@@ -83,22 +101,36 @@ paths:
                 $ref: '#/components/schemas/ReportDefinitionListResponse'
         '401':
           $ref: '#/components/responses/Unauthorized_2'
+      security:
+      - fortifyToken: []
+    servers:
+    - url: '{protocol}://{host}/ssc/api/v1'
+      description: Fortify SSC Server
+      variables:
+        protocol:
+          default: https
+          enum:
+          - https
+          - http
+        host:
+          default: localhost
+          description: Your SSC server hostname and optional port
 components:
   responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized_2:
-      description: Unauthorized - authentication required or token invalid
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse_2'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
       content:
         application/json:
           schema:
@@ -109,60 +141,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    Unauthorized_2:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
-    Q:
-      name: q
-      in: query
-      description: Search query using Fortify search syntax (e.g., name:MyApp)
-      schema:
-        type: string
-    ReleaseId:
-      name: releaseId
-      in: path
-      required: true
-      description: Unique identifier of the release
-      schema:
-        type: integer
-        format: int32
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
+            $ref: '#/components/schemas/ErrorResponse_2'
   schemas:
-    ReportDefinitionListResponse:
+    ErrorResponse:
       type: object
+      description: Error response
       properties:
-        data:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/ReportDefinition'
-        count:
-          type: integer
-          format: int32
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
     ErrorResponse_2:
       type: object
       description: Error response
@@ -207,26 +206,68 @@ components:
                 type: string
               identifier:
                 type: string
-    ErrorResponse:
+    ReportDefinitionListResponse:
       type: object
-      description: Error response
       properties:
-        errors:
+        data:
           type: array
           items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
+            $ref: '#/components/schemas/ReportDefinition'
+        count:
+          type: integer
+          format: int32
+  parameters:
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
       description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
-externalDocs:
-  description: Fortify on Demand API Reference
-  url: https://api.ams.fortify.com/swagger/ui/index
+    fortifyToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Fortify token-based authentication. Pass as: FortifyToken <token_value>. Obtain a token via POST /api/v1/tokens with HTTP Basic credentials.'
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Only supported on the /tokens endpoint for obtaining API tokens.
+x-refined-from:
+- fortify-on-demand-openapi.yml
+- fortify-software-security-center-openapi.yml

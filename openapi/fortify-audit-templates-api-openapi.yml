@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fortify on Demand Alert Definitions Audit Templates API
+  title: Fortify on Demand Audit Templates API
   description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
   version: v3
   contact:
@@ -79,6 +79,18 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   responses:
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions or scopes
       content:
@@ -91,25 +103,40 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    GetAuditOptionsResponse:
+      type: object
+      description: Available audit options
+      properties:
+        analysisStatusTypes:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              value:
+                type: string
     PostAuditActionRequest:
       type: object
       description: Request body for setting audit action on vulnerabilities
@@ -125,33 +152,6 @@ components:
               analysisStatusType:
                 type: string
               comment:
-                type: string
-    GetAuditOptionsResponse:
-      type: object
-      description: Available audit options
-      properties:
-        analysisStatusTypes:
-          type: array
-          items:
-            type: object
-            properties:
-              text:
-                type: string
-              value:
-                type: string
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
                 type: string
   parameters:
     ReleaseId:

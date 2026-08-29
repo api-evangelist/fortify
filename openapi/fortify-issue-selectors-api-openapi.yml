@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fortify on Demand Alert Definitions Issue Selectors API
-  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
-  version: v3
+  title: Fortify Software Security Center Issue Selectors API
+  description: REST API for the on-premise Fortify Software Security Center (SSC), which provides centralized management and reporting of security assessment data across an organization's application portfolio. Enables managing projects, application versions, issues, artifacts, reports, users, and authentication tokens. The SSC REST API uses token-based authentication via the FortifyToken authorization header.
+  version: v1
   contact:
     name: OpenText Fortify Support
     url: https://www.opentext.com/support
@@ -13,14 +13,19 @@ info:
   x-logo:
     url: https://www.microfocus.com/brand/fortify-logo.png
 servers:
-- url: https://api.ams.fortify.com
-  description: Fortify on Demand - Americas
-- url: https://api.emea.fortify.com
-  description: Fortify on Demand - EMEA
-- url: https://api.apac.fortify.com
-  description: Fortify on Demand - APAC
+- url: '{protocol}://{host}/ssc/api/v1'
+  description: Fortify SSC Server
+  variables:
+    protocol:
+      default: https
+      enum:
+      - https
+      - http
+    host:
+      default: localhost
+      description: Your SSC server hostname and optional port
 security:
-- bearerAuth: []
+- fortifyToken: []
 tags:
 - name: Issue Selectors
   description: Retrieve issue filter metadata
@@ -47,35 +52,31 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ParentId:
-      name: parentId
-      in: path
-      required: true
-      description: Unique identifier of the parent resource
-      schema:
-        type: integer
-        format: int64
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
     IssueSelectorSetResponse:
       type: object
       properties:
@@ -104,23 +105,31 @@ components:
                     type: string
                   entityType:
                     type: string
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        data:
-          type: object
+  parameters:
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
-    bearerAuth:
+    fortifyToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Fortify token-based authentication. Pass as: FortifyToken <token_value>. Obtain a token via POST /api/v1/tokens with HTTP Basic credentials.'
+    basicAuth:
       type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+      scheme: basic
+      description: HTTP Basic authentication. Only supported on the /tokens endpoint for obtaining API tokens.
 externalDocs:
-  description: Fortify on Demand API Reference
-  url: https://api.ams.fortify.com/swagger/ui/index
+  description: Fortify Software Security Center Documentation
+  url: https://www.microfocus.com/documentation/fortify-software-security-center/

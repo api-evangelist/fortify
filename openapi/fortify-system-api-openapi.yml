@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fortify on Demand Alert Definitions System API
-  description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
-  version: v3
+  title: Fortify ScanCentral DAST System API
+  description: REST API for Fortify ScanCentral DAST, which provides centralized dynamic application security testing management. Enables orchestration of DAST scans across distributed WebInspect sensors, management of scan settings and policies, sensor pool configuration, and CI/CD pipeline integration. Authentication uses FortifyToken obtained from Fortify Software Security Center.
+  version: v2
   contact:
     name: OpenText Fortify Support
     url: https://www.opentext.com/support
@@ -13,14 +13,19 @@ info:
   x-logo:
     url: https://www.microfocus.com/brand/fortify-logo.png
 servers:
-- url: https://api.ams.fortify.com
-  description: Fortify on Demand - Americas
-- url: https://api.emea.fortify.com
-  description: Fortify on Demand - EMEA
-- url: https://api.apac.fortify.com
-  description: Fortify on Demand - APAC
+- url: '{protocol}://{host}/api'
+  description: ScanCentral DAST API Server
+  variables:
+    protocol:
+      default: https
+      enum:
+      - https
+      - http
+    host:
+      default: localhost:8500
+      description: Your ScanCentral DAST server hostname and port
 security:
-- bearerAuth: []
+- fortifyToken: []
 tags:
 - name: System
   description: System health and configuration
@@ -74,11 +79,11 @@ components:
                 type: string
                 description: Check description
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: OAuth2 Bearer token obtained from POST /oauth/token using either client_credentials or password grant type.
+    fortifyToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Fortify token-based authentication. Pass as: FORTIFYTOKEN <token_value>. Obtain a CI token from SSC Administration or use an SSC auth token.'
 externalDocs:
-  description: Fortify on Demand API Reference
-  url: https://api.ams.fortify.com/swagger/ui/index
+  description: Fortify ScanCentral DAST Documentation
+  url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/

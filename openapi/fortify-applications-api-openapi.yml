@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fortify on Demand Alert Definitions Applications API
+  title: Fortify on Demand Applications API
   description: REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, releases, initiate static, dynamic, and mobile scans, retrieve vulnerability results, and manage tenant-level settings. Supports OAuth2 client credentials and resource owner password grant flows for authentication.
   version: v3
   contact:
@@ -429,52 +429,7 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    OrderBy:
-      name: orderBy
-      in: query
-      description: Field name to sort results by
-      schema:
-        type: string
     Limit:
       name: limit
       in: query
@@ -484,25 +439,10 @@ components:
         format: int32
         default: 50
         maximum: 50
-    OrderByDirection:
-      name: orderByDirection
-      in: query
-      description: Sort direction
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
     Filters:
       name: filters
       in: query
       description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
       schema:
         type: string
     ApplicationId:
@@ -513,7 +453,156 @@ components:
       schema:
         type: integer
         format: int32
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
   schemas:
+    MicroserviceListResponse:
+      type: object
+      description: List of microservices
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Microservice'
+        totalCount:
+          type: integer
+          format: int32
+    ApplicationListResponse:
+      type: object
+      description: Paginated list of applications
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of applications matching the query
+    DeleteResponse:
+      type: object
+      description: Generic delete response
+      properties:
+        success:
+          type: boolean
+          description: Whether the delete operation succeeded
+    ApplicationUserListResponse:
+      type: object
+      description: List of users associated with an application
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalCount:
+          type: integer
+          format: int32
+    ScanListResponse:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of scans matching the query
+    ReleaseListResponse:
+      type: object
+      description: Paginated list of releases
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Release'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of releases matching the query
+    VulnerabilityListResponse:
+      type: object
+      description: Paginated list of vulnerabilities
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of vulnerabilities matching the query
+    PostMicroserviceResponse:
+      type: object
+      description: Response after creating a microservice
+      properties:
+        microserviceId:
+          type: integer
+          format: int32
+        success:
+          type: boolean
+    ApplicationAttribute:
+      type: object
+      description: An attribute value assigned to an application
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Attribute identifier
+        name:
+          type: string
+          description: Attribute name
+        value:
+          type: string
+          description: Attribute value
+    PutApplicationRequest:
+      type: object
+      description: Request body for updating an application
+      properties:
+        applicationName:
+          type: string
+          description: Name of the application
+        applicationDescription:
+          type: string
+          description: Description of the application
+        businessCriticalityType:
+          type: string
+          description: Business criticality classification
+        emailList:
+          type: string
+          description: Comma-separated list of notification email addresses
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
     Release:
       type: object
       description: Represents a release within an application
@@ -580,236 +669,6 @@ components:
           type: integer
           format: int32
           description: Identifier of the current mobile scan
-    PostMicroserviceRequest:
-      type: object
-      description: Request body for creating a microservice
-      required:
-      - microserviceName
-      properties:
-        microserviceName:
-          type: string
-          description: Name of the microservice
-    Scan:
-      type: object
-      description: Represents a security scan
-      properties:
-        scanId:
-          type: integer
-          format: int32
-          description: Unique identifier of the scan
-        scanType:
-          type: string
-          description: Type of scan performed
-          enum:
-          - Static
-          - Dynamic
-          - Mobile
-          - OpenSource
-        analysisStatusType:
-          type: string
-          description: Current analysis status
-        startedDateTime:
-          type: string
-          format: date-time
-          description: Date and time when the scan started
-        completedDateTime:
-          type: string
-          format: date-time
-          description: Date and time when the scan completed
-        totalIssues:
-          type: integer
-          format: int32
-          description: Total number of issues found
-        issueCountCritical:
-          type: integer
-          format: int32
-          description: Number of critical issues found
-        issueCountHigh:
-          type: integer
-          format: int32
-          description: Number of high issues found
-        issueCountMedium:
-          type: integer
-          format: int32
-          description: Number of medium issues found
-        issueCountLow:
-          type: integer
-          format: int32
-          description: Number of low issues found
-        releaseId:
-          type: integer
-          format: int32
-          description: Identifier of the associated release
-        applicationId:
-          type: integer
-          format: int32
-          description: Identifier of the associated application
-    ApplicationUserListResponse:
-      type: object
-      description: List of users associated with an application
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        totalCount:
-          type: integer
-          format: int32
-    ScanListResponse:
-      type: object
-      description: Paginated list of scans
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Scan'
-        totalCount:
-          type: integer
-          format: int32
-          description: Total number of scans matching the query
-    User:
-      type: object
-      description: Represents a user in the system
-      properties:
-        userId:
-          type: integer
-          format: int32
-          description: Unique identifier of the user
-        userName:
-          type: string
-          description: Username
-        firstName:
-          type: string
-          description: First name
-        lastName:
-          type: string
-          description: Last name
-        email:
-          type: string
-          description: Email address
-    ReleaseListResponse:
-      type: object
-      description: Paginated list of releases
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Release'
-        totalCount:
-          type: integer
-          format: int32
-          description: Total number of releases matching the query
-    Application:
-      type: object
-      description: Represents an application in Fortify on Demand
-      properties:
-        applicationId:
-          type: integer
-          format: int32
-          description: Unique identifier of the application
-        applicationName:
-          type: string
-          description: Name of the application
-        applicationDescription:
-          type: string
-          description: Description of the application
-        applicationCreatedDate:
-          type: string
-          format: date-time
-          description: Date when the application was created
-        businessCriticalityType:
-          type: string
-          description: Business criticality classification
-        emailList:
-          type: string
-          description: Comma-separated list of notification email addresses
-        hasMicroservices:
-          type: boolean
-          description: Whether the application has microservices configured
-        attributes:
-          type: array
-          description: Application attributes
-          items:
-            $ref: '#/components/schemas/ApplicationAttribute'
-    PostApplicationRequest:
-      type: object
-      description: Request body for creating an application
-      required:
-      - applicationName
-      - applicationDescription
-      - businessCriticalityType
-      - releaseName
-      - sdlcStatusType
-      properties:
-        applicationName:
-          type: string
-          description: Name of the application
-        applicationDescription:
-          type: string
-          description: Description of the application
-        businessCriticalityType:
-          type: string
-          description: Business criticality classification
-          enum:
-          - High
-          - Medium
-          - Low
-        releaseName:
-          type: string
-          description: Name of the initial release
-        releaseDescription:
-          type: string
-          description: Description of the initial release
-        sdlcStatusType:
-          type: string
-          description: Software development lifecycle status
-          enum:
-          - Development
-          - QA
-          - Production
-          - Retired
-        emailList:
-          type: string
-          description: Comma-separated list of notification email addresses
-        hasMicroservices:
-          type: boolean
-          description: Whether the application uses microservices
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationAttribute'
-    PostApplicationResponse:
-      type: object
-      description: Response after creating an application
-      properties:
-        applicationId:
-          type: integer
-          format: int32
-          description: Identifier of the newly created application
-        releaseId:
-          type: integer
-          format: int32
-          description: Identifier of the initial release
-        success:
-          type: boolean
-          description: Whether the operation succeeded
-    ApplicationIssueCountListResponse:
-      type: object
-      description: Issue counts grouped by severity for an application
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              severityValue:
-                type: integer
-                format: int32
-              count:
-                type: integer
-                format: int32
-              scanType:
-                type: string
     Microservice:
       type: object
       description: Represents a microservice within an application
@@ -825,15 +684,6 @@ components:
           type: integer
           format: int32
           description: Identifier of the parent application
-    PostMicroserviceResponse:
-      type: object
-      description: Response after creating a microservice
-      properties:
-        microserviceId:
-          type: integer
-          format: int32
-        success:
-          type: boolean
     Vulnerability:
       type: object
       description: Represents a vulnerability finding
@@ -889,16 +739,54 @@ components:
           type: string
           format: date-time
           description: Date when the vulnerability was resolved
-    DeleteResponse:
+    Application:
       type: object
-      description: Generic delete response
+      description: Represents an application in Fortify on Demand
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Unique identifier of the application
+        applicationName:
+          type: string
+          description: Name of the application
+        applicationDescription:
+          type: string
+          description: Description of the application
+        applicationCreatedDate:
+          type: string
+          format: date-time
+          description: Date when the application was created
+        businessCriticalityType:
+          type: string
+          description: Business criticality classification
+        emailList:
+          type: string
+          description: Comma-separated list of notification email addresses
+        hasMicroservices:
+          type: boolean
+          description: Whether the application has microservices configured
+        attributes:
+          type: array
+          description: Application attributes
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    PutApplicationResponse:
+      type: object
+      description: Response after updating an application
       properties:
         success:
           type: boolean
-          description: Whether the delete operation succeeded
-    PutApplicationRequest:
+          description: Whether the operation succeeded
+    PostApplicationRequest:
       type: object
-      description: Request body for updating an application
+      description: Request body for creating an application
+      required:
+      - applicationName
+      - applicationDescription
+      - businessCriticalityType
+      - releaseName
+      - sdlcStatusType
       properties:
         applicationName:
           type: string
@@ -909,13 +797,124 @@ components:
         businessCriticalityType:
           type: string
           description: Business criticality classification
+          enum:
+          - High
+          - Medium
+          - Low
+        releaseName:
+          type: string
+          description: Name of the initial release
+        releaseDescription:
+          type: string
+          description: Description of the initial release
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+          enum:
+          - Development
+          - QA
+          - Production
+          - Retired
         emailList:
           type: string
           description: Comma-separated list of notification email addresses
+        hasMicroservices:
+          type: boolean
+          description: Whether the application uses microservices
         attributes:
           type: array
           items:
             $ref: '#/components/schemas/ApplicationAttribute'
+    Scan:
+      type: object
+      description: Represents a security scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        scanType:
+          type: string
+          description: Type of scan performed
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - OpenSource
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        startedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan started
+        completedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan completed
+        totalIssues:
+          type: integer
+          format: int32
+          description: Total number of issues found
+        issueCountCritical:
+          type: integer
+          format: int32
+          description: Number of critical issues found
+        issueCountHigh:
+          type: integer
+          format: int32
+          description: Number of high issues found
+        issueCountMedium:
+          type: integer
+          format: int32
+          description: Number of medium issues found
+        issueCountLow:
+          type: integer
+          format: int32
+          description: Number of low issues found
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the associated application
+    PostApplicationResponse:
+      type: object
+      description: Response after creating an application
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created application
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the initial release
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    User:
+      type: object
+      description: Represents a user in the system
+      properties:
+        userId:
+          type: integer
+          format: int32
+          description: Unique identifier of the user
+        userName:
+          type: string
+          description: Username
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        email:
+          type: string
+          description: Email address
     ErrorResponse:
       type: object
       description: Error response
@@ -930,62 +929,6 @@ components:
                 format: int32
               message:
                 type: string
-    VulnerabilityListResponse:
-      type: object
-      description: Paginated list of vulnerabilities
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Vulnerability'
-        totalCount:
-          type: integer
-          format: int32
-          description: Total number of vulnerabilities matching the query
-    ApplicationListResponse:
-      type: object
-      description: Paginated list of applications
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-        totalCount:
-          type: integer
-          format: int32
-          description: Total number of applications matching the query
-    PutApplicationResponse:
-      type: object
-      description: Response after updating an application
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation succeeded
-    MicroserviceListResponse:
-      type: object
-      description: List of microservices
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Microservice'
-        totalCount:
-          type: integer
-          format: int32
-    ApplicationAttribute:
-      type: object
-      description: An attribute value assigned to an application
-      properties:
-        id:
-          type: integer
-          format: int32
-          description: Attribute identifier
-        name:
-          type: string
-          description: Attribute name
-        value:
-          type: string
-          description: Attribute value
     FortifyConnectNetworkListResponse:
       type: object
       description: List of Fortify Connect networks
@@ -1005,6 +948,63 @@ components:
         totalCount:
           type: integer
           format: int32
+    PostMicroserviceRequest:
+      type: object
+      description: Request body for creating a microservice
+      required:
+      - microserviceName
+      properties:
+        microserviceName:
+          type: string
+          description: Name of the microservice
+    ApplicationIssueCountListResponse:
+      type: object
+      description: Issue counts grouped by severity for an application
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              severityValue:
+                type: integer
+                format: int32
+              count:
+                type: integer
+                format: int32
+              scanType:
+                type: string
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http
