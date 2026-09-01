@@ -384,7 +384,7 @@ apis:
   humanURL: https://www.opentext.com/products/fortify-on-demand
   baseURL: https://api.ams.fortify.com
   tags:
-  - CUSTOM_TAGS
+  - Custom Tags
   tags_raw:
   - Custom Tags
   properties:
