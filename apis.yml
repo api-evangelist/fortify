@@ -1490,6 +1490,36 @@ tags:
   - Security Testing
   - Vulnerability Scanning
 common:
+  - type: Overlay
+    url: overlays/fortify-fod-overlay.yaml
+  - type: DeveloperPortal
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: X-MCPServerCandidate
+    url: mcp/fortify-mcp.yml
+  - type: Packages
+    url: packages/fortify-packages.yml
+  - type: CLI
+    url: cli/fortify-cli.yml
+  - type: WellKnown
+    url: well-known/fortify-well-known.yml
+  - type: SecurityTxt
+    url: well-known/fortify-well-known.yml
+  - type: LLMsTxt
+    url: llms/fortify-llms.txt
+  - type: Conformance
+    url: conformance/fortify-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/fortify-lifecycle.yml
+  - type: VulnerabilityDisclosure
+    url: security/fortify-vulnerability-disclosure.yml
+  - type: Security
+    url: https://www.opentext.com/about/security-acknowledgements
+  - type: Conventions
+    url: conventions/fortify-conventions.yml
+  - type: AgentSkill
+    url: skills/_index.yml
   - type: CapabilityMap
     url: capabilities/fortify-capability-edges.yml
     name: Fortify Business Capability Map
