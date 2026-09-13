@@ -1578,3 +1578,5 @@ common:
   - name: Agent Skills
     url: https://github.com/fortify/skills
     type: AgentSkills
+x-parent: opentext-cybersecurity
+x-relationship: product
