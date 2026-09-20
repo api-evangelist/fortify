@@ -1,143 +1,17 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Fortify
-providerId: fortify
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
-tags:
-  - Application Security
-  - DAST
-  - DevSecOps
-  - SAST
-  - SCA
-  - Security Testing
-  - Vulnerability Scanning
-description: Fortify is OpenText's application-security portfolio (Fortify on Demand SaaS, Fortify Static Code Analyzer, Fortify WebInspect DAST, Software Composition Analysis). Pricing is enterprise contract-only — typically structured per application scanned, per developer seat, or per LOC scanned — and is not publicly listed.
-notes: opentext.com pages return 444 to public fetches. No public price list. Scaffold trimmed to evaluation + per-application + enterprise; all numeric pricing is contact-sales.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://cybersecurity.opentext.com/products/saas-backup/pricing/
 sources:
-  - https://www.opentext.com/products/fortify
-  - https://www.opentext.com/products/fortify-on-demand
-plans:
-  - id: fortify-trial
-    name: Trial / Evaluation
-    type: freemium
-    description: Time-limited evaluation of Fortify on Demand or Fortify SCA via OpenText sales engagement. Not for production use.
-    entries:
-      - label: Trial Access
-        description: Time-limited evaluation
-        name: trial
-        type: flat
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.emea.fortify.com
-          - https://api.ams.fortify.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Fortify on Demand Trial
-      - name: Documentation Access
-  - id: fortify-on-demand
-    name: Fortify on Demand (SaaS)
-    type: subscription
-    description: Cloud-hosted application-security testing — SAST, DAST, mobile, and SCA delivered via the Fortify on Demand portal. Pricing is per-application or per-LOC tier on annual contract.
-    entries:
-      - label: Per-Application Subscription
-        description: Annual subscription per application scanned
-        name: app_subscription
-        type: subscription
-        metric: application
-        limit: -1
-        timeFrame: year
-        geo: global
-        domains:
-          - https://api.emea.fortify.com
-          - https://api.ams.fortify.com
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-      - label: Scan Volume
-        description: Static / dynamic / mobile scans included per application tier
-        name: scans
-        type: quota
-        metric: scan
-        limit: -1
-        timeFrame: year
-        geo: global
-        domains: []
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: SAST (Static Code Analysis)
-      - name: DAST (Dynamic Application Security Testing)
-      - name: Mobile Security Testing
-      - name: Software Composition Analysis (SCA)
-      - name: Fortify on Demand Portal
-      - name: Fortify on Demand REST API
-  - id: fortify-on-premises
-    name: Fortify (On-Premises / SSC)
-    type: enterprise
-    description: Self-managed Fortify Static Code Analyzer + Software Security Center (SSC) + WebInspect, licensed per developer seat or per scan engine.
-    entries:
-      - label: Developer Seats
-        description: Per-developer / per-seat licensing
-        name: seats
-        type: subscription
-        metric: seat
-        limit: -1
-        timeFrame: year
-        geo: configurable
-        domains: []
-        unit: 1
-        price: contact sales
-        userMultiplied: true
-      - label: Scan Engines
-        description: Per-engine licensing for SCA / WebInspect / ScanCentral
-        name: engines
-        type: subscription
-        metric: engine
-        limit: -1
-        timeFrame: year
-        geo: configurable
-        domains: []
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Fortify Static Code Analyzer (SCA)
-      - name: Fortify WebInspect
-      - name: Fortify Software Security Center (SSC)
-      - name: ScanCentral SAST / DAST
-      - name: Audit Assistant (ML)
-  - id: fortify-enterprise
-    name: Enterprise Bundle
-    type: enterprise
-    description: OpenText enterprise-bundle agreement (Fortify + DevOps + observability) under a master OpenText contract. Custom pricing.
-    entries:
-      - label: Enterprise Bundle
-        description: Custom enterprise bundle
-        name: enterprise
-        type: subscription
-        metric: year
-        limit: -1
-        timeFrame: year
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: All Fortify Products
-      - name: 24/7 Premium Support
-      - name: Contractual SLA
-      - name: Named Account Team
-maintainers: []
+- https://cybersecurity.opentext.com/products/saas-backup/pricing/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T125857
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+published: false
+note: No numeric price is published on the pricing page; Page describes SaaS backup pricing structures
+  (per user, per 10GB) but shows no numeric prices; all plans direct to 'Get pricing'/contact for a quote.
+plan_count: 0
+plans: []

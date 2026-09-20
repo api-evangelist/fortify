@@ -1490,6 +1490,10 @@ tags:
   - Security Testing
   - Vulnerability Scanning
 common:
+  - type: Pricing
+    url: https://cybersecurity.opentext.com/products/saas-backup/pricing/
+  - type: Plans
+    url: plans/fortify-plans-pricing.yml
   - type: Overlay
     url: overlays/fortify-fod-overlay.yaml
   - type: DeveloperPortal
