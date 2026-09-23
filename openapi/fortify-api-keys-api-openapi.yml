@@ -172,37 +172,27 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return (max 50)
-      schema:
-        type: integer
-        format: int32
-        default: 50
-        maximum: 50
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
   schemas:
-    ApiKeyRequest:
+    ErrorResponse:
       type: object
-      description: Request body for creating or updating an API key
-      required:
-      - apiKeyName
+      description: Error response
       properties:
-        apiKeyName:
-          type: string
-          description: Name of the API key
-        callerIpRange:
-          type: string
-          description: Allowed IP range
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    ApiKeyResponse:
+      type: object
+      description: Response for API key operations
+      properties:
+        success:
+          type: boolean
     ApiKey:
       type: object
       description: Represents an API key
@@ -224,37 +214,6 @@ components:
           type: string
           format: date-time
           description: Date when the API key was created
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
-    ApiKeyResponse:
-      type: object
-      description: Response for API key operations
-      properties:
-        success:
-          type: boolean
-    ApiKeyListResponse:
-      type: object
-      description: Paginated list of API keys
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiKey'
-        totalCount:
-          type: integer
-          format: int32
     PostApiKeyResponse:
       type: object
       description: Response after creating an API key
@@ -266,6 +225,18 @@ components:
           type: string
         success:
           type: boolean
+    ApiKeyRequest:
+      type: object
+      description: Request body for creating or updating an API key
+      required:
+      - apiKeyName
+      properties:
+        apiKeyName:
+          type: string
+          description: Name of the API key
+        callerIpRange:
+          type: string
+          description: Allowed IP range
     DeleteResponse:
       type: object
       description: Generic delete response
@@ -273,19 +244,18 @@ components:
         success:
           type: boolean
           description: Whether the delete operation succeeded
+    ApiKeyListResponse:
+      type: object
+      description: Paginated list of API keys
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+        totalCount:
+          type: integer
+          format: int32
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions or scopes
       content:
@@ -304,6 +274,36 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http

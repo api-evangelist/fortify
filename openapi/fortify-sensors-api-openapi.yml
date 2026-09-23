@@ -147,35 +147,18 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 50
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
   schemas:
-    SensorListResponse:
+    ErrorResponse:
       type: object
-      description: List of sensors
+      description: Error response
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Sensor'
-        totalCount:
+        errorCode:
           type: integer
           format: int32
+        message:
+          type: string
+        details:
+          type: string
     UpdateSensorRequest:
       type: object
       description: Request to update a sensor
@@ -190,17 +173,6 @@ components:
           enum:
           - Active
           - Disabled
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: string
     Sensor:
       type: object
       description: A WebInspect sensor
@@ -245,19 +217,18 @@ components:
         isRunning:
           type: boolean
           description: Whether the sensor is currently running a scan
+    SensorListResponse:
+      type: object
+      description: List of sensors
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sensor'
+        totalCount:
+          type: integer
+          format: int32
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions
       content:
@@ -270,6 +241,35 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     fortifyToken:
       type: apiKey

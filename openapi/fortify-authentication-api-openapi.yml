@@ -78,20 +78,53 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ApiResultVoid:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+    ApiResultAuthToken:
       type: object
       properties:
+        data:
+          $ref: '#/components/schemas/AuthToken'
         count:
           type: integer
           format: int32
         responseCode:
           type: integer
           format: int32
-    ApiResultAuthToken:
+    CreateTokenRequest:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: Token type
+          enum:
+          - UnifiedLoginToken
+          - AnalysisUploadToken
+          - AuditToken
+          - DownloadFileTransferToken
+          - UploadFileTransferToken
+          - ReportFileTransferToken
+        description:
+          type: string
+          description: Token description
+        terminalDate:
+          type: string
+          format: date-time
+          description: Token expiration date
+    ApiResultVoid:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/AuthToken'
         count:
           type: integer
           format: int32
@@ -131,42 +164,18 @@ components:
           - DownloadFileTransferToken
           - UploadFileTransferToken
           - ReportFileTransferToken
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        data:
-          type: object
-    CreateTokenRequest:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          description: Token type
-          enum:
-          - UnifiedLoginToken
-          - AnalysisUploadToken
-          - AuditToken
-          - DownloadFileTransferToken
-          - UploadFileTransferToken
-          - ReportFileTransferToken
-        description:
-          type: string
-          description: Token description
-        terminalDate:
-          type: string
-          format: date-time
-          description: Token expiration date
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
@@ -177,21 +186,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the resource
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     fortifyToken:
       type: apiKey

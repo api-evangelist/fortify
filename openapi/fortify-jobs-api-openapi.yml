@@ -73,19 +73,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -98,6 +85,17 @@ components:
           type: string
         data:
           type: object
+    ApiResultJob:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Job'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
     Job:
       type: object
       description: Represents a processing job
@@ -140,32 +138,7 @@ components:
         count:
           type: integer
           format: int32
-    ApiResultJob:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Job'
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
   parameters:
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
     ResourceId:
       name: id
       in: path
@@ -174,12 +147,14 @@ components:
       schema:
         type: integer
         format: int64
-    Q:
-      name: q
+    PageLimit:
+      name: limit
       in: query
-      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      description: Maximum number of records to return
       schema:
-        type: string
+        type: integer
+        format: int32
+        default: 200
     Start:
       name: start
       in: query
@@ -188,6 +163,31 @@ components:
         type: integer
         format: int32
         default: 0
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     fortifyToken:
       type: apiKey

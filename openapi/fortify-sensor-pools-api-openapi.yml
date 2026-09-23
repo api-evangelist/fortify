@@ -153,24 +153,29 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 50
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
   schemas:
+    SensorPoolListResponse:
+      type: object
+      description: List of sensor pools
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SensorPool'
+        totalCount:
+          type: integer
+          format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
     SensorPool:
       type: object
       description: A sensor pool for grouping sensors
@@ -192,17 +197,6 @@ components:
         isDefault:
           type: boolean
           description: Whether this is the default pool
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: string
     UpdateSensorPoolRequest:
       type: object
       description: Request to update a sensor pool
@@ -223,20 +217,26 @@ components:
         description:
           type: string
           description: Pool description
-    SensorPoolListResponse:
-      type: object
-      description: List of sensor pools
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SensorPool'
-        totalCount:
-          type: integer
-          format: int32
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
@@ -247,8 +247,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:

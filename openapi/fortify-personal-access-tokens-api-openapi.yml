@@ -165,29 +165,32 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  parameters:
-    Filters:
-      name: filters
-      in: query
-      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
-      schema:
-        type: string
-    OrderByDirection:
-      name: orderByDirection
-      in: query
-      description: Sort direction
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
-    OrderBy:
-      name: orderBy
-      in: query
-      description: Field name to sort results by
-      schema:
-        type: string
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    PersonalAccessTokenListResponse:
+      type: object
+      description: List of personal access tokens
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonalAccessToken'
+        totalCount:
+          type: integer
+          format: int32
     PersonalAccessToken:
       type: object
       description: Represents a personal access token
@@ -206,37 +209,6 @@ components:
           type: string
           format: date-time
           description: Expiration date of the token secret
-    PutPersonalAccessTokenRequest:
-      type: object
-      description: Request body for updating a personal access token
-      properties:
-        name:
-          type: string
-          description: Name of the token
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
-    CreatePersonalAccessTokenResult:
-      type: object
-      description: Response after creating a personal access token
-      properties:
-        personalAccessTokenId:
-          type: integer
-          format: int32
-        secret:
-          type: string
-          description: The token secret (only returned on creation)
     PostPersonalAccessTokenRequest:
       type: object
       description: Request body for creating a personal access token
@@ -254,30 +226,24 @@ components:
           type: string
           format: date-time
           description: Specific expiration date for the secret
-    PersonalAccessTokenListResponse:
+    PutPersonalAccessTokenRequest:
       type: object
-      description: List of personal access tokens
+      description: Request body for updating a personal access token
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonalAccessToken'
-        totalCount:
+        name:
+          type: string
+          description: Name of the token
+    CreatePersonalAccessTokenResult:
+      type: object
+      description: Response after creating a personal access token
+      properties:
+        personalAccessTokenId:
           type: integer
           format: int32
+        secret:
+          type: string
+          description: The token secret (only returned on creation)
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions or scopes
       content:
@@ -296,6 +262,40 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

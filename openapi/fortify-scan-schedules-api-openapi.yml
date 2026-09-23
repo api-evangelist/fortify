@@ -153,24 +153,41 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 50
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    UpdateScanScheduleRequest:
+      type: object
+      description: Request to update a scan schedule
+      properties:
+        name:
+          type: string
+        scanSettingsId:
+          type: string
+          format: uuid
+        scheduleType:
+          type: string
+          enum:
+          - Once
+          - Daily
+          - Weekly
+          - Monthly
+        startDateTime:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+        timeZone:
+          type: string
     ScanSchedule:
       type: object
       description: A scheduled scan configuration
@@ -215,17 +232,6 @@ components:
         totalCount:
           type: integer
           format: int32
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: string
     CreateScanScheduleRequest:
       type: object
       description: Request to create a scan schedule
@@ -257,32 +263,26 @@ components:
           default: true
         timeZone:
           type: string
-    UpdateScanScheduleRequest:
-      type: object
-      description: Request to update a scan schedule
-      properties:
-        name:
-          type: string
-        scanSettingsId:
-          type: string
-          format: uuid
-        scheduleType:
-          type: string
-          enum:
-          - Once
-          - Daily
-          - Weekly
-          - Monthly
-        startDateTime:
-          type: string
-          format: date-time
-        enabled:
-          type: boolean
-        timeZone:
-          type: string
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
@@ -293,8 +293,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:

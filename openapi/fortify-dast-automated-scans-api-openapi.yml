@@ -138,21 +138,42 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    GetDastAutomatedScanSetupResponse:
+    ErrorResponse:
       type: object
-      description: DAST automated scan setup configuration
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    PutDastAutomatedOpenApiScanSetupRequest:
+      type: object
+      description: Request body for saving DAST OpenAPI scan setup
       properties:
         dynamicScanEnvironmentFacingType:
           type: string
-        scanType:
+          enum:
+          - Internal
+          - External
+        openApiUrl:
           type: string
-        scanPolicy:
+          description: URL of the OpenAPI specification
+        apiKey:
           type: string
-        websiteUrl:
-          type: string
-        requiresNetworkAuthentication:
-          type: boolean
-        networkAuthenticationUserName:
+          description: API key for authentication
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
           type: string
         timeZone:
           type: string
@@ -187,20 +208,24 @@ components:
           format: int32
         entitlementFrequencyType:
           type: string
-    ErrorResponse:
+    GetDastAutomatedScanSetupResponse:
       type: object
-      description: Error response
+      description: DAST automated scan setup configuration
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
+        dynamicScanEnvironmentFacingType:
+          type: string
+        scanType:
+          type: string
+        scanPolicy:
+          type: string
+        websiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        networkAuthenticationUserName:
+          type: string
+        timeZone:
+          type: string
     StartScanResponse:
       type: object
       description: Response after starting a scan
@@ -214,40 +239,21 @@ components:
           description: Initial analysis status
         success:
           type: boolean
-    PutDastAutomatedOpenApiScanSetupRequest:
-      type: object
-      description: Request body for saving DAST OpenAPI scan setup
-      properties:
-        dynamicScanEnvironmentFacingType:
-          type: string
-          enum:
-          - Internal
-          - External
-        openApiUrl:
-          type: string
-          description: URL of the OpenAPI specification
-        apiKey:
-          type: string
-          description: API key for authentication
-        assessmentTypeId:
-          type: integer
-          format: int32
-        entitlementId:
-          type: integer
-          format: int32
-        entitlementFrequencyType:
-          type: string
-        timeZone:
-          type: string
   responses:
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions or scopes
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
@@ -258,14 +264,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
       content:
         application/json:
           schema:

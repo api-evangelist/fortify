@@ -59,7 +59,8 @@
     "fortify-software-security-center-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tag 'Attributes' spans 2 source specs (fortify-on-demand-openapi.yml, fortify-software-security-center-openapi.yml): per-path servers applied",
     "tag 'Reports' spans 2 source specs (fortify-on-demand-openapi.yml, fortify-software-security-center-openapi.yml): per-path servers applied",
-    "tag 'Scans' spans 2 source specs (fortify-on-demand-openapi.yml, fortify-scancentral-dast-openapi.yml): per-path servers applied"
+    "tag 'Scans' spans 2 source specs (fortify-on-demand-openapi.yml, fortify-scancentral-dast-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "fortify-alert-definitions-api-openapi.yml: previously refined output, superseded by openapi/_original/",

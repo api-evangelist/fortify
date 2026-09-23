@@ -77,17 +77,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    LookupItemListResponse:
-      type: object
-      description: List of lookup items
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LookupItem'
-        totalCount:
-          type: integer
-          format: int32
     ErrorResponse:
       type: object
       description: Error response
@@ -115,13 +104,18 @@ components:
         group:
           type: string
           description: Group classification
+    LookupItemListResponse:
+      type: object
+      description: List of lookup items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LookupItem'
+        totalCount:
+          type: integer
+          format: int32
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions or scopes
       content:
@@ -130,6 +124,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
       description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
       content:
         application/json:
           schema:

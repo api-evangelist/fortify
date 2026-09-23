@@ -236,6 +236,17 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
     UpdateScanSettingsRequest:
       type: object
       description: Request to update scan settings
@@ -260,60 +271,6 @@ components:
         sscApplicationVersionId:
           type: integer
           format: int64
-    CreateScanSettingsRequest:
-      type: object
-      description: Request to create scan settings
-      required:
-      - name
-      - startUrl
-      properties:
-        name:
-          type: string
-          description: Settings name
-        startUrl:
-          type: string
-          format: uri
-          description: Starting URL for the scan
-        scanPolicyId:
-          type: string
-          format: uuid
-          description: Scan policy to use
-        sensorPoolId:
-          type: string
-          format: uuid
-          description: Sensor pool for execution
-        crawlAuditMode:
-          type: string
-          enum:
-          - CrawlAndAudit
-          - CrawlOnly
-          - AuditOnly
-        sscApplicationVersionId:
-          type: integer
-          format: int64
-          description: SSC application version for results
-    ScanSettingsListResponse:
-      type: object
-      description: Paginated list of scan settings
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScanSettings'
-        totalCount:
-          type: integer
-          format: int32
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: string
     ScanSettings:
       type: object
       description: Scan settings configuration
@@ -363,26 +320,52 @@ components:
           type: string
           format: date-time
           description: Date when the settings were last modified
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 50
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
+    ScanSettingsListResponse:
+      type: object
+      description: Paginated list of scan settings
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanSettings'
+        totalCount:
+          type: integer
+          format: int32
+    CreateScanSettingsRequest:
+      type: object
+      description: Request to create scan settings
+      required:
+      - name
+      - startUrl
+      properties:
+        name:
+          type: string
+          description: Settings name
+        startUrl:
+          type: string
+          format: uri
+          description: Starting URL for the scan
+        scanPolicyId:
+          type: string
+          format: uuid
+          description: Scan policy to use
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Sensor pool for execution
+        crawlAuditMode:
+          type: string
+          enum:
+          - CrawlAndAudit
+          - CrawlOnly
+          - AuditOnly
+        sscApplicationVersionId:
+          type: integer
+          format: int64
+          description: SSC application version for results
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
+    Forbidden:
+      description: Forbidden - insufficient permissions
       content:
         application/json:
           schema:
@@ -393,18 +376,35 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
   securitySchemes:
     fortifyToken:
       type: apiKey

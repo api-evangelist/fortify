@@ -581,44 +581,6 @@ paths:
           description: Your ScanCentral DAST server hostname and port
 components:
   parameters:
-    Filters:
-      name: filters
-      in: query
-      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return (max 50)
-      schema:
-        type: integer
-        format: int32
-        default: 50
-        maximum: 50
-    ApplicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: Unique identifier of the application
-      schema:
-        type: integer
-        format: int32
-    OrderBy:
-      name: orderBy
-      in: query
-      description: Field name to sort results by
-      schema:
-        type: string
-    OrderByDirection:
-      name: orderByDirection
-      in: query
-      description: Sort direction
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
     ReleaseId:
       name: releaseId
       in: path
@@ -641,14 +603,44 @@ components:
         type: integer
         format: int32
         default: 0
-    Limit_2:
+    Limit:
       name: limit
       in: query
-      description: Maximum number of records to return
+      description: Maximum number of records to return (max 50)
       schema:
         type: integer
         format: int32
         default: 50
+        maximum: 50
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
     ScanId:
       name: scanId
       in: path
@@ -657,7 +649,56 @@ components:
       schema:
         type: string
         format: uuid
+    Limit_2:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
   schemas:
+    PollingScanSummary:
+      type: object
+      description: Scan status for polling
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        analysisStatusTypeValue:
+          type: integer
+          format: int32
+          description: Numeric value of the analysis status
+        pauseDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              reason:
+                type: string
+              notes:
+                type: string
+        passFailStatus:
+          type: boolean
+          description: Whether the scan passes the security policy
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
     AssessmentType:
       type: object
       description: Represents an assessment type
@@ -691,33 +732,6 @@ components:
           type: integer
           format: int32
           description: Total number of scans matching the query
-    PollingScanSummary:
-      type: object
-      description: Scan status for polling
-      properties:
-        scanId:
-          type: integer
-          format: int32
-          description: Unique identifier of the scan
-        analysisStatusType:
-          type: string
-          description: Current analysis status
-        analysisStatusTypeValue:
-          type: integer
-          format: int32
-          description: Numeric value of the analysis status
-        pauseDetails:
-          type: array
-          items:
-            type: object
-            properties:
-              reason:
-                type: string
-              notes:
-                type: string
-        passFailStatus:
-          type: boolean
-          description: Whether the scan passes the security policy
     Scan:
       type: object
       description: Represents a security scan
@@ -780,20 +794,6 @@ components:
         importScanSessionId:
           type: string
           description: Session identifier for importing scan results
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
     ReleaseAssessmentTypeListResponse:
       type: object
       description: List of available assessment types for a release
@@ -805,6 +805,57 @@ components:
         totalCount:
           type: integer
           format: int32
+    ErrorResponse_2:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
+    StartScanRequest:
+      type: object
+      description: Request to start a scan
+      required:
+      - scanSettingsId
+      properties:
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        name:
+          type: string
+          description: Optional name for the scan
+        overrides:
+          type: object
+          description: Optional scan parameter overrides
+          properties:
+            startUrl:
+              type: string
+              format: uri
+            scanPolicyId:
+              type: string
+              format: uuid
+            sensorPoolId:
+              type: string
+              format: uuid
+    ScanActionRequest:
+      type: object
+      description: Request to perform an action on a scan
+      required:
+      - actionType
+      properties:
+        actionType:
+          type: string
+          description: Type of action to perform
+          enum:
+          - Pause
+          - Resume
+          - Cancel
+          - Retry
     ScanListResponse_2:
       type: object
       description: Paginated list of scans
@@ -857,32 +908,6 @@ components:
         scanDuration:
           type: string
           description: Duration of the scan
-    StartScanRequest:
-      type: object
-      description: Request to start a scan
-      required:
-      - scanSettingsId
-      properties:
-        scanSettingsId:
-          type: string
-          format: uuid
-          description: Scan settings to use
-        name:
-          type: string
-          description: Optional name for the scan
-        overrides:
-          type: object
-          description: Optional scan parameter overrides
-          properties:
-            startUrl:
-              type: string
-              format: uri
-            scanPolicyId:
-              type: string
-              format: uuid
-            sensorPoolId:
-              type: string
-              format: uuid
     StartScanCicdRequest:
       type: object
       description: Request to start a scan from CI/CD pipeline
@@ -896,31 +921,6 @@ components:
         name:
           type: string
           description: Optional name for the scan
-    ErrorResponse_2:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: string
-    ScanActionRequest:
-      type: object
-      description: Request to perform an action on a scan
-      required:
-      - actionType
-      properties:
-        actionType:
-          type: string
-          description: Type of action to perform
-          enum:
-          - Pause
-          - Resume
-          - Cancel
-          - Retry
     StartScanResponse:
       type: object
       description: Response after starting a scan
@@ -1034,12 +1034,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized_2:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse_2'
     Forbidden_2:
       description: Forbidden - insufficient permissions
       content:
@@ -1048,6 +1042,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse_2'
     BadRequest:
       description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
+    Unauthorized_2:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:

@@ -118,38 +118,19 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    GetDynamicScanSetupResponse:
+      type: object
+      description: Dynamic scan setup configuration
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        dynamicSiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        timeZone:
+          type: string
     ErrorResponse:
       type: object
       description: Error response
@@ -164,6 +145,12 @@ components:
                 format: int32
               message:
                 type: string
+    PutDynamicScanSetupResponse:
+      type: object
+      description: Response after saving dynamic scan setup
+      properties:
+        success:
+          type: boolean
     PutDynamicScanSetupRequest:
       type: object
       description: Request body for saving dynamic scan setup
@@ -188,25 +175,6 @@ components:
           format: int32
         entitlementFrequencyType:
           type: string
-    StartScanResponse:
-      type: object
-      description: Response after starting a scan
-      properties:
-        scanId:
-          type: integer
-          format: int32
-          description: Identifier of the newly created scan
-        analysisStatusType:
-          type: string
-          description: Initial analysis status
-        success:
-          type: boolean
-    PutDynamicScanSetupResponse:
-      type: object
-      description: Response after saving dynamic scan setup
-      properties:
-        success:
-          type: boolean
     StartDynamicScanRequest:
       type: object
       description: Request body for starting a dynamic scan
@@ -232,18 +200,50 @@ components:
           format: int32
         timeZone:
           type: string
-    GetDynamicScanSetupResponse:
+    StartScanResponse:
       type: object
-      description: Dynamic scan setup configuration
+      description: Response after starting a scan
       properties:
-        dynamicScanEnvironmentFacingType:
+        scanId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created scan
+        analysisStatusType:
           type: string
-        dynamicSiteUrl:
-          type: string
-        requiresNetworkAuthentication:
+          description: Initial analysis status
+        success:
           type: boolean
-        timeZone:
-          type: string
+  responses:
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     ReleaseId:
       name: releaseId

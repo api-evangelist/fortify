@@ -149,12 +149,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    PutMobileScanSetupResponse:
-      type: object
-      description: Response after saving mobile scan setup
-      properties:
-        success:
-          type: boolean
     ErrorResponse:
       type: object
       description: Error response
@@ -169,25 +163,6 @@ components:
                 format: int32
               message:
                 type: string
-    MobileScanSetup:
-      type: object
-      description: Mobile scan setup configuration
-      properties:
-        assessmentTypeId:
-          type: integer
-          format: int32
-        entitlementId:
-          type: integer
-          format: int32
-        entitlementFrequencyType:
-          type: string
-        frameworkType:
-          type: string
-          enum:
-          - iOS
-          - Android
-        timeZone:
-          type: string
     PutMobileScanSetupRequest:
       type: object
       description: Request body for saving mobile scan setup
@@ -207,6 +182,31 @@ components:
           - Android
         timeZone:
           type: string
+    MobileScanSetup:
+      type: object
+      description: Mobile scan setup configuration
+      properties:
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
+        frameworkType:
+          type: string
+          enum:
+          - iOS
+          - Android
+        timeZone:
+          type: string
+    PutMobileScanSetupResponse:
+      type: object
+      description: Response after saving mobile scan setup
+      properties:
+        success:
+          type: boolean
     StartScanResponse:
       type: object
       description: Response after starting a scan
@@ -221,18 +221,6 @@ components:
         success:
           type: boolean
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions or scopes
       content:
@@ -247,6 +235,18 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
       content:
         application/json:
           schema:

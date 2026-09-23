@@ -157,46 +157,6 @@ components:
         responseCode:
           type: integer
           format: int32
-    UpdateProjectRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        issueTemplateId:
-          type: string
-    ProjectListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        count:
-          type: integer
-          format: int32
-    Project:
-      type: object
-      description: Represents a top-level project in SSC
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique identifier
-        name:
-          type: string
-          description: Project name
-        description:
-          type: string
-          description: Project description
-        creationDate:
-          type: string
-          format: date-time
-          description: Date when the project was created
-        issueTemplateId:
-          type: string
-          description: Issue template identifier
     ErrorResponse:
       type: object
       description: Error response
@@ -219,6 +179,46 @@ components:
         responseCode:
           type: integer
           format: int32
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        issueTemplateId:
+          type: string
+    Project:
+      type: object
+      description: Represents a top-level project in SSC
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        creationDate:
+          type: string
+          format: date-time
+          description: Date when the project was created
+        issueTemplateId:
+          type: string
+          description: Issue template identifier
+    ProjectListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        count:
+          type: integer
+          format: int32
     CreateProjectRequest:
       type: object
       required:
@@ -231,18 +231,6 @@ components:
         issueTemplateId:
           type: string
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions
       content:
@@ -255,19 +243,23 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    PageLimit:
-      name: limit
+    OrderBy:
+      name: orderby
       in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
+      description: Sort field and direction (e.g., name for ascending, -name for descending)
       schema:
         type: string
     ResourceId:
@@ -278,18 +270,14 @@ components:
       schema:
         type: integer
         format: int64
-    Q:
-      name: q
+    PageLimit:
+      name: limit
       in: query
-      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      description: Maximum number of records to return
       schema:
-        type: string
-    OrderBy:
-      name: orderby
-      in: query
-      description: Sort field and direction (e.g., name for ascending, -name for descending)
-      schema:
-        type: string
+        type: integer
+        format: int32
+        default: 200
     Start:
       name: start
       in: query
@@ -298,6 +286,18 @@ components:
         type: integer
         format: int32
         default: 0
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
   securitySchemes:
     fortifyToken:
       type: apiKey
