@@ -149,20 +149,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
     PutMobileScanSetupRequest:
       type: object
       description: Request body for saving mobile scan setup
@@ -182,6 +168,20 @@ components:
           - Android
         timeZone:
           type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
     MobileScanSetup:
       type: object
       description: Mobile scan setup configuration
@@ -201,12 +201,6 @@ components:
           - Android
         timeZone:
           type: string
-    PutMobileScanSetupResponse:
-      type: object
-      description: Response after saving mobile scan setup
-      properties:
-        success:
-          type: boolean
     StartScanResponse:
       type: object
       description: Response after starting a scan
@@ -220,21 +214,21 @@ components:
           description: Initial analysis status
         success:
           type: boolean
+    PutMobileScanSetupResponse:
+      type: object
+      description: Response after saving mobile scan setup
+      properties:
+        success:
+          type: boolean
   responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
       description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
       content:
         application/json:
           schema:
@@ -245,8 +239,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
       content:
         application/json:
           schema:

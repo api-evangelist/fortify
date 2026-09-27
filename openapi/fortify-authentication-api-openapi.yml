@@ -100,37 +100,6 @@ components:
         responseCode:
           type: integer
           format: int32
-    CreateTokenRequest:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          description: Token type
-          enum:
-          - UnifiedLoginToken
-          - AnalysisUploadToken
-          - AuditToken
-          - DownloadFileTransferToken
-          - UploadFileTransferToken
-          - ReportFileTransferToken
-        description:
-          type: string
-          description: Token description
-        terminalDate:
-          type: string
-          format: date-time
-          description: Token expiration date
-    ApiResultVoid:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
     AuthToken:
       type: object
       description: Represents an authentication token
@@ -164,18 +133,40 @@ components:
           - DownloadFileTransferToken
           - UploadFileTransferToken
           - ReportFileTransferToken
-  parameters:
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the resource
-      schema:
-        type: integer
-        format: int64
+    CreateTokenRequest:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: Token type
+          enum:
+          - UnifiedLoginToken
+          - AnalysisUploadToken
+          - AuditToken
+          - DownloadFileTransferToken
+          - UploadFileTransferToken
+          - ReportFileTransferToken
+        description:
+          type: string
+          description: Token description
+        terminalDate:
+          type: string
+          format: date-time
+          description: Token expiration date
+    ApiResultVoid:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
   responses:
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:
@@ -186,12 +177,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     fortifyToken:
       type: apiKey

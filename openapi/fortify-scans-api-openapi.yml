@@ -580,84 +580,94 @@ paths:
           default: localhost:8500
           description: Your ScanCentral DAST server hostname and port
 components:
-  parameters:
-    ReleaseId:
-      name: releaseId
-      in: path
-      required: true
-      description: Unique identifier of the release
-      schema:
-        type: integer
-        format: int32
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return (max 50)
-      schema:
-        type: integer
-        format: int32
-        default: 50
-        maximum: 50
-    OrderBy:
-      name: orderBy
-      in: query
-      description: Field name to sort results by
-      schema:
-        type: string
-    OrderByDirection:
-      name: orderByDirection
-      in: query
-      description: Sort direction
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
-    ApplicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: Unique identifier of the application
-      schema:
-        type: integer
-        format: int32
-    Filters:
-      name: filters
-      in: query
-      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
-      schema:
-        type: string
-    ScanId:
-      name: scanId
-      in: path
-      required: true
-      description: Unique identifier of the scan
-      schema:
-        type: string
-        format: uuid
-    Limit_2:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 50
+  responses:
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized_2:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
+    Forbidden_2:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse_2'
   schemas:
+    ScanListResponse:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of scans matching the query
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    GetImportScanSessionIdResponse:
+      type: object
+      description: Response with import scan session ID
+      properties:
+        importScanSessionId:
+          type: string
+          description: Session identifier for importing scan results
+    ReleaseAssessmentTypeListResponse:
+      type: object
+      description: List of available assessment types for a release
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentType'
+        totalCount:
+          type: integer
+          format: int32
     PollingScanSummary:
       type: object
       description: Scan status for polling
@@ -685,20 +695,6 @@ components:
         passFailStatus:
           type: boolean
           description: Whether the scan passes the security policy
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
     AssessmentType:
       type: object
       description: Represents an assessment type
@@ -720,18 +716,6 @@ components:
         frequencyType:
           type: string
           description: Frequency type
-    ScanListResponse:
-      type: object
-      description: Paginated list of scans
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Scan'
-        totalCount:
-          type: integer
-          format: int32
-          description: Total number of scans matching the query
     Scan:
       type: object
       description: Represents a security scan
@@ -787,24 +771,6 @@ components:
           type: integer
           format: int32
           description: Identifier of the associated application
-    GetImportScanSessionIdResponse:
-      type: object
-      description: Response with import scan session ID
-      properties:
-        importScanSessionId:
-          type: string
-          description: Session identifier for importing scan results
-    ReleaseAssessmentTypeListResponse:
-      type: object
-      description: List of available assessment types for a release
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentType'
-        totalCount:
-          type: integer
-          format: int32
     ErrorResponse_2:
       type: object
       description: Error response
@@ -816,57 +782,30 @@ components:
           type: string
         details:
           type: string
-    StartScanRequest:
+    StartScanResponse:
       type: object
-      description: Request to start a scan
-      required:
-      - scanSettingsId
+      description: Response after starting a scan
       properties:
-        scanSettingsId:
+        scanId:
           type: string
           format: uuid
-          description: Scan settings to use
+          description: Identifier of the newly created scan
+        status:
+          type: string
+          description: Initial scan status
+    StartScanCicdRequest:
+      type: object
+      description: Request to start a scan from CI/CD pipeline
+      required:
+      - cicdToken
+      properties:
+        cicdToken:
+          type: string
+          format: uuid
+          description: CI/CD token that references scan settings
         name:
           type: string
           description: Optional name for the scan
-        overrides:
-          type: object
-          description: Optional scan parameter overrides
-          properties:
-            startUrl:
-              type: string
-              format: uri
-            scanPolicyId:
-              type: string
-              format: uuid
-            sensorPoolId:
-              type: string
-              format: uuid
-    ScanActionRequest:
-      type: object
-      description: Request to perform an action on a scan
-      required:
-      - actionType
-      properties:
-        actionType:
-          type: string
-          description: Type of action to perform
-          enum:
-          - Pause
-          - Resume
-          - Cancel
-          - Retry
-    ScanListResponse_2:
-      type: object
-      description: Paginated list of scans
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DastScan'
-        totalCount:
-          type: integer
-          format: int32
     DastScanSummary:
       type: object
       description: Summary of a DAST scan
@@ -908,30 +847,20 @@ components:
         scanDuration:
           type: string
           description: Duration of the scan
-    StartScanCicdRequest:
+    ScanActionRequest:
       type: object
-      description: Request to start a scan from CI/CD pipeline
+      description: Request to perform an action on a scan
       required:
-      - cicdToken
+      - actionType
       properties:
-        cicdToken:
+        actionType:
           type: string
-          format: uuid
-          description: CI/CD token that references scan settings
-        name:
-          type: string
-          description: Optional name for the scan
-    StartScanResponse:
-      type: object
-      description: Response after starting a scan
-      properties:
-        scanId:
-          type: string
-          format: uuid
-          description: Identifier of the newly created scan
-        status:
-          type: string
-          description: Initial scan status
+          description: Type of action to perform
+          enum:
+          - Pause
+          - Resume
+          - Cancel
+          - Retry
     DastScan:
       type: object
       description: Represents a DAST scan
@@ -1009,49 +938,120 @@ components:
           type: string
           format: date-time
           description: Date when the scan was created
-  responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden_2:
-      description: Forbidden - insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse_2'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse_2'
-    Unauthorized_2:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse_2'
+    ScanListResponse_2:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DastScan'
+        totalCount:
+          type: integer
+          format: int32
+    StartScanRequest:
+      type: object
+      description: Request to start a scan
+      required:
+      - scanSettingsId
+      properties:
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        name:
+          type: string
+          description: Optional name for the scan
+        overrides:
+          type: object
+          description: Optional scan parameter overrides
+          properties:
+            startUrl:
+              type: string
+              format: uri
+            scanPolicyId:
+              type: string
+              format: uuid
+            sensorPoolId:
+              type: string
+              format: uuid
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    ScanId:
+      name: scanId
+      in: path
+      required: true
+      description: Unique identifier of the scan
+      schema:
+        type: string
+        format: uuid
+    Limit_2:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
   securitySchemes:
     bearerAuth:
       type: http

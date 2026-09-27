@@ -165,6 +165,37 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
+  responses:
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -180,17 +211,6 @@ components:
                 format: int32
               message:
                 type: string
-    PersonalAccessTokenListResponse:
-      type: object
-      description: List of personal access tokens
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonalAccessToken'
-        totalCount:
-          type: integer
-          format: int32
     PersonalAccessToken:
       type: object
       description: Represents a personal access token
@@ -209,6 +229,34 @@ components:
           type: string
           format: date-time
           description: Expiration date of the token secret
+    PutPersonalAccessTokenRequest:
+      type: object
+      description: Request body for updating a personal access token
+      properties:
+        name:
+          type: string
+          description: Name of the token
+    PersonalAccessTokenListResponse:
+      type: object
+      description: List of personal access tokens
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonalAccessToken'
+        totalCount:
+          type: integer
+          format: int32
+    CreatePersonalAccessTokenResult:
+      type: object
+      description: Response after creating a personal access token
+      properties:
+        personalAccessTokenId:
+          type: integer
+          format: int32
+        secret:
+          type: string
+          description: The token secret (only returned on creation)
     PostPersonalAccessTokenRequest:
       type: object
       description: Request body for creating a personal access token
@@ -226,54 +274,6 @@ components:
           type: string
           format: date-time
           description: Specific expiration date for the secret
-    PutPersonalAccessTokenRequest:
-      type: object
-      description: Request body for updating a personal access token
-      properties:
-        name:
-          type: string
-          description: Name of the token
-    CreatePersonalAccessTokenResult:
-      type: object
-      description: Response after creating a personal access token
-      properties:
-        personalAccessTokenId:
-          type: integer
-          format: int32
-        secret:
-          type: string
-          description: The token secret (only returned on creation)
-  responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     OrderBy:
       name: orderBy

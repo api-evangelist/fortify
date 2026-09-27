@@ -88,6 +88,17 @@ components:
           type: string
         details:
           type: string
+    ScanPolicyListResponse:
+      type: object
+      description: List of scan policies
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanPolicy'
+        totalCount:
+          type: integer
+          format: int32
     ScanPolicy:
       type: object
       description: A scan policy controlling vulnerability checks
@@ -105,26 +116,20 @@ components:
         isDefault:
           type: boolean
           description: Whether this is the default policy
-    ScanPolicyListResponse:
-      type: object
-      description: List of scan policies
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScanPolicy'
-        totalCount:
-          type: integer
-          format: int32
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 50
     Offset:
       name: offset
       in: query
@@ -133,19 +138,14 @@ components:
         type: integer
         format: int32
         default: 0
-  responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
   securitySchemes:
     fortifyToken:
       type: apiKey

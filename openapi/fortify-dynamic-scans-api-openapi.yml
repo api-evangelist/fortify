@@ -119,18 +119,12 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
-    GetDynamicScanSetupResponse:
+    PutDynamicScanSetupResponse:
       type: object
-      description: Dynamic scan setup configuration
+      description: Response after saving dynamic scan setup
       properties:
-        dynamicScanEnvironmentFacingType:
-          type: string
-        dynamicSiteUrl:
-          type: string
-        requiresNetworkAuthentication:
+        success:
           type: boolean
-        timeZone:
-          type: string
     ErrorResponse:
       type: object
       description: Error response
@@ -145,36 +139,6 @@ components:
                 format: int32
               message:
                 type: string
-    PutDynamicScanSetupResponse:
-      type: object
-      description: Response after saving dynamic scan setup
-      properties:
-        success:
-          type: boolean
-    PutDynamicScanSetupRequest:
-      type: object
-      description: Request body for saving dynamic scan setup
-      properties:
-        dynamicScanEnvironmentFacingType:
-          type: string
-        dynamicSiteUrl:
-          type: string
-        requiresNetworkAuthentication:
-          type: boolean
-        networkAuthenticationUserName:
-          type: string
-        networkAuthenticationPassword:
-          type: string
-        timeZone:
-          type: string
-        assessmentTypeId:
-          type: integer
-          format: int32
-        entitlementId:
-          type: integer
-          format: int32
-        entitlementFrequencyType:
-          type: string
     StartDynamicScanRequest:
       type: object
       description: Request body for starting a dynamic scan
@@ -213,21 +177,51 @@ components:
           description: Initial analysis status
         success:
           type: boolean
+    GetDynamicScanSetupResponse:
+      type: object
+      description: Dynamic scan setup configuration
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        dynamicSiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        timeZone:
+          type: string
+    PutDynamicScanSetupRequest:
+      type: object
+      description: Request body for saving dynamic scan setup
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        dynamicSiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        networkAuthenticationUserName:
+          type: string
+        networkAuthenticationPassword:
+          type: string
+        timeZone:
+          type: string
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
+          type: string
   responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
       description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
       content:
         application/json:
           schema:
@@ -238,8 +232,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
       content:
         application/json:
           schema:

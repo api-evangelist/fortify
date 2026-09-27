@@ -300,6 +300,16 @@ paths:
           description: Your SSC server hostname and optional port
 components:
   schemas:
+    PutAttributeRequest:
+      type: object
+      description: Request body for updating an attribute
+      properties:
+        name:
+          type: string
+        attributeType:
+          type: string
+        isRequired:
+          type: boolean
     ErrorResponse:
       type: object
       description: Error response
@@ -314,21 +324,13 @@ components:
                 format: int32
               message:
                 type: string
-    PostAttributeRequest:
+    DeleteResponse:
       type: object
-      description: Request body for creating an attribute
-      required:
-      - name
-      - attributeType
+      description: Generic delete response
       properties:
-        name:
-          type: string
-        attributeType:
-          type: string
-        attributeDataType:
-          type: string
-        isRequired:
+        success:
           type: boolean
+          description: Whether the delete operation succeeded
     PostAttributeResponse:
       type: object
       description: Response after creating an attribute
@@ -338,24 +340,6 @@ components:
           format: int32
         success:
           type: boolean
-    DeleteResponse:
-      type: object
-      description: Generic delete response
-      properties:
-        success:
-          type: boolean
-          description: Whether the delete operation succeeded
-    AttributeListResponse:
-      type: object
-      description: List of attributes
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        totalCount:
-          type: integer
-          format: int32
     Attribute:
       type: object
       description: Represents an application attribute definition
@@ -376,21 +360,37 @@ components:
         isRequired:
           type: boolean
           description: Whether the attribute is required
-    PutAttributeRequest:
+    AttributeListResponse:
       type: object
-      description: Request body for updating an attribute
+      description: List of attributes
       properties:
-        name:
-          type: string
-        attributeType:
-          type: string
-        isRequired:
-          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        totalCount:
+          type: integer
+          format: int32
     PutAttributeResponse:
       type: object
       description: Response after updating an attribute
       properties:
         success:
+          type: boolean
+    PostAttributeRequest:
+      type: object
+      description: Request body for creating an attribute
+      required:
+      - name
+      - attributeType
+      properties:
+        name:
+          type: string
+        attributeType:
+          type: string
+        attributeDataType:
+          type: string
+        isRequired:
           type: boolean
     ErrorResponse_2:
       type: object
@@ -403,6 +403,17 @@ components:
           type: string
         data:
           type: object
+    ApiResultAttributeDefinition:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AttributeDefinition'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
     AttributeValue:
       type: object
       description: An attribute value assignment
@@ -426,15 +437,14 @@ components:
                 type: string
               name:
                 type: string
-    ApiResultAttributeDefinition:
+    AttributeDefinitionListResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/AttributeDefinition'
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeDefinition'
         count:
-          type: integer
-          format: int32
-        responseCode:
           type: integer
           format: int32
     AttributeDefinition:
@@ -478,26 +488,6 @@ components:
         hidden:
           type: boolean
           description: Whether the attribute is hidden
-    AttributeDefinitionListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeDefinition'
-        count:
-          type: integer
-          format: int32
-    AttributeValueListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeValue'
-        count:
-          type: integer
-          format: int32
     CreateAttributeDefinitionRequest:
       type: object
       required:
@@ -529,21 +519,25 @@ components:
           type: boolean
         description:
           type: string
+    AttributeValueListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeValue'
+        count:
+          type: integer
+          format: int32
   responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
       description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
       content:
         application/json:
           schema:
@@ -554,8 +548,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
       content:
         application/json:
           schema:
@@ -573,6 +573,12 @@ components:
       description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
       schema:
         type: string
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
     ParentId:
       name: parentId
       in: path
@@ -581,14 +587,6 @@ components:
       schema:
         type: integer
         format: int64
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
     Start:
       name: start
       in: query
@@ -603,12 +601,14 @@ components:
       description: Comma-separated list of fields to include in the response
       schema:
         type: string
-    Q:
-      name: q
+    PageLimit:
+      name: limit
       in: query
-      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      description: Maximum number of records to return
       schema:
-        type: string
+        type: integer
+        format: int32
+        default: 200
   securitySchemes:
     bearerAuth:
       type: http

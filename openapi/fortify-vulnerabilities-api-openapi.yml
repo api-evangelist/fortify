@@ -139,6 +139,18 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    VulnerabilityListResponse:
+      type: object
+      description: Paginated list of vulnerabilities
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of vulnerabilities matching the query
     ErrorResponse:
       type: object
       description: Error response
@@ -249,33 +261,9 @@ components:
                 format: int32
               scanType:
                 type: string
-    VulnerabilityListResponse:
-      type: object
-      description: Paginated list of vulnerabilities
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Vulnerability'
-        totalCount:
-          type: integer
-          format: int32
-          description: Total number of vulnerabilities matching the query
   responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
       description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -286,7 +274,25 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
     ReleaseId:
       name: releaseId
       in: path
@@ -295,10 +301,35 @@ components:
       schema:
         type: integer
         format: int32
-    OrderBy:
-      name: orderBy
+    OrderByDirection:
+      name: orderByDirection
       in: query
-      description: Field name to sort results by
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
       schema:
         type: string
     Limit:
@@ -310,37 +341,6 @@ components:
         format: int32
         default: 50
         maximum: 50
-    ApplicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: Unique identifier of the application
-      schema:
-        type: integer
-        format: int32
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    OrderByDirection:
-      name: orderByDirection
-      in: query
-      description: Sort direction
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
-    Filters:
-      name: filters
-      in: query
-      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
-      schema:
-        type: string
     Fields:
       name: fields
       in: query

@@ -63,14 +63,14 @@ components:
               message:
                 type: string
   responses:
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
       content:
         application/json:
           schema:
