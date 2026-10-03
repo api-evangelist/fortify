@@ -117,8 +117,8 @@ paths:
           description: Your SSC server hostname and optional port
 components:
   responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -129,8 +129,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
@@ -162,17 +162,16 @@ components:
                 format: int32
               message:
                 type: string
-    ErrorResponse_2:
+    ReportDefinitionListResponse:
       type: object
-      description: Error response
       properties:
-        errorCode:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportDefinition'
+        count:
           type: integer
           format: int32
-        message:
-          type: string
-        data:
-          type: object
     ReportDefinition:
       type: object
       description: A report definition template
@@ -206,16 +205,17 @@ components:
                 type: string
               identifier:
                 type: string
-    ReportDefinitionListResponse:
+    ErrorResponse_2:
       type: object
+      description: Error response
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportDefinition'
-        count:
+        errorCode:
           type: integer
           format: int32
+        message:
+          type: string
+        data:
+          type: object
   parameters:
     ReleaseId:
       name: releaseId
@@ -231,14 +231,6 @@ components:
       description: Search query using Fortify search syntax (e.g., name:MyApp)
       schema:
         type: string
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
     Fields:
       name: fields
       in: query
@@ -253,6 +245,14 @@ components:
         type: integer
         format: int32
         default: 200
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http

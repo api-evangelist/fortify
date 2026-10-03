@@ -74,17 +74,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        data:
-          type: object
     Job:
       type: object
       description: Represents a processing job
@@ -128,6 +117,17 @@ components:
         responseCode:
           type: integer
           format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
     JobListResponse:
       type: object
       properties:
@@ -139,14 +139,14 @@ components:
           type: integer
           format: int32
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:
@@ -158,22 +158,6 @@ components:
       description: Search query using Fortify search syntax (e.g., name:MyApp)
       schema:
         type: string
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the resource
-      schema:
-        type: integer
-        format: int64
     Fields:
       name: fields
       in: query
@@ -188,6 +172,22 @@ components:
         type: integer
         format: int32
         default: 200
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     fortifyToken:
       type: apiKey

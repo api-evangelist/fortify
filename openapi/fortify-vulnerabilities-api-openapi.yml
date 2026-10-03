@@ -138,19 +138,93 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
+  responses:
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return (max 50)
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 50
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique identifier of the release
+      schema:
+        type: integer
+        format: int32
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
   schemas:
-    VulnerabilityListResponse:
-      type: object
-      description: Paginated list of vulnerabilities
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Vulnerability'
-        totalCount:
-          type: integer
-          format: int32
-          description: Total number of vulnerabilities matching the query
     ErrorResponse:
       type: object
       description: Error response
@@ -165,6 +239,30 @@ components:
                 format: int32
               message:
                 type: string
+    CategoryRollupsResponse:
+      type: object
+      description: Vulnerability category rollup data
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Category name
+              critical:
+                type: integer
+                format: int32
+              high:
+                type: integer
+                format: int32
+              medium:
+                type: integer
+                format: int32
+              low:
+                type: integer
+                format: int32
     Vulnerability:
       type: object
       description: Represents a vulnerability finding
@@ -220,30 +318,18 @@ components:
           type: string
           format: date-time
           description: Date when the vulnerability was resolved
-    CategoryRollupsResponse:
+    VulnerabilityListResponse:
       type: object
-      description: Vulnerability category rollup data
+      description: Paginated list of vulnerabilities
       properties:
         items:
           type: array
           items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Category name
-              critical:
-                type: integer
-                format: int32
-              high:
-                type: integer
-                format: int32
-              medium:
-                type: integer
-                format: int32
-              low:
-                type: integer
-                format: int32
+            $ref: '#/components/schemas/Vulnerability'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of vulnerabilities matching the query
     ApplicationIssueCountListResponse:
       type: object
       description: Issue counts grouped by severity for an application
@@ -261,92 +347,6 @@ components:
                 format: int32
               scanType:
                 type: string
-  responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    OrderBy:
-      name: orderBy
-      in: query
-      description: Field name to sort results by
-      schema:
-        type: string
-    ReleaseId:
-      name: releaseId
-      in: path
-      required: true
-      description: Unique identifier of the release
-      schema:
-        type: integer
-        format: int32
-    OrderByDirection:
-      name: orderByDirection
-      in: query
-      description: Sort direction
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    ApplicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: Unique identifier of the application
-      schema:
-        type: integer
-        format: int32
-    Filters:
-      name: filters
-      in: query
-      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return (max 50)
-      schema:
-        type: integer
-        format: int32
-        default: 50
-        maximum: 50
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

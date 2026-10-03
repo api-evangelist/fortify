@@ -300,15 +300,20 @@ paths:
           description: Your SSC server hostname and optional port
 components:
   schemas:
-    PutAttributeRequest:
+    PutAttributeResponse:
       type: object
-      description: Request body for updating an attribute
+      description: Response after updating an attribute
       properties:
-        name:
-          type: string
-        attributeType:
-          type: string
-        isRequired:
+        success:
+          type: boolean
+    PostAttributeResponse:
+      type: object
+      description: Response after creating an attribute
+      properties:
+        attributeId:
+          type: integer
+          format: int32
+        success:
           type: boolean
     ErrorResponse:
       type: object
@@ -324,6 +329,32 @@ components:
                 format: int32
               message:
                 type: string
+    PostAttributeRequest:
+      type: object
+      description: Request body for creating an attribute
+      required:
+      - name
+      - attributeType
+      properties:
+        name:
+          type: string
+        attributeType:
+          type: string
+        attributeDataType:
+          type: string
+        isRequired:
+          type: boolean
+    AttributeListResponse:
+      type: object
+      description: List of attributes
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        totalCount:
+          type: integer
+          format: int32
     DeleteResponse:
       type: object
       description: Generic delete response
@@ -331,15 +362,6 @@ components:
         success:
           type: boolean
           description: Whether the delete operation succeeded
-    PostAttributeResponse:
-      type: object
-      description: Response after creating an attribute
-      properties:
-        attributeId:
-          type: integer
-          format: int32
-        success:
-          type: boolean
     Attribute:
       type: object
       description: Represents an application attribute definition
@@ -360,38 +382,47 @@ components:
         isRequired:
           type: boolean
           description: Whether the attribute is required
-    AttributeListResponse:
+    PutAttributeRequest:
       type: object
-      description: List of attributes
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        totalCount:
-          type: integer
-          format: int32
-    PutAttributeResponse:
-      type: object
-      description: Response after updating an attribute
-      properties:
-        success:
-          type: boolean
-    PostAttributeRequest:
-      type: object
-      description: Request body for creating an attribute
-      required:
-      - name
-      - attributeType
+      description: Request body for updating an attribute
       properties:
         name:
           type: string
         attributeType:
           type: string
-        attributeDataType:
-          type: string
         isRequired:
           type: boolean
+    CreateAttributeDefinitionRequest:
+      type: object
+      required:
+      - name
+      - type
+      - category
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - TEXT
+          - LONG_TEXT
+          - SINGLE
+          - MULTIPLE
+          - INTEGER
+          - BOOLEAN
+          - DATE
+        category:
+          type: string
+          enum:
+          - TECHNICAL
+          - BUSINESS
+          - ORGANIZATION
+        required:
+          type: boolean
+        hidden:
+          type: boolean
+        description:
+          type: string
     ErrorResponse_2:
       type: object
       description: Error response
@@ -403,50 +434,6 @@ components:
           type: string
         data:
           type: object
-    ApiResultAttributeDefinition:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AttributeDefinition'
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
-    AttributeValue:
-      type: object
-      description: An attribute value assignment
-      properties:
-        attributeDefinitionId:
-          type: integer
-          format: int64
-          description: Attribute definition identifier
-        guid:
-          type: string
-          description: Attribute GUID
-        value:
-          type: string
-          description: Attribute value
-        values:
-          type: array
-          items:
-            type: object
-            properties:
-              guid:
-                type: string
-              name:
-                type: string
-    AttributeDefinitionListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeDefinition'
-        count:
-          type: integer
-          format: int32
     AttributeDefinition:
       type: object
       description: Represents an attribute definition
@@ -488,37 +475,6 @@ components:
         hidden:
           type: boolean
           description: Whether the attribute is hidden
-    CreateAttributeDefinitionRequest:
-      type: object
-      required:
-      - name
-      - type
-      - category
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - TEXT
-          - LONG_TEXT
-          - SINGLE
-          - MULTIPLE
-          - INTEGER
-          - BOOLEAN
-          - DATE
-        category:
-          type: string
-          enum:
-          - TECHNICAL
-          - BUSINESS
-          - ORGANIZATION
-        required:
-          type: boolean
-        hidden:
-          type: boolean
-        description:
-          type: string
     AttributeValueListResponse:
       type: object
       properties:
@@ -529,9 +485,53 @@ components:
         count:
           type: integer
           format: int32
+    AttributeValue:
+      type: object
+      description: An attribute value assignment
+      properties:
+        attributeDefinitionId:
+          type: integer
+          format: int64
+          description: Attribute definition identifier
+        guid:
+          type: string
+          description: Attribute GUID
+        value:
+          type: string
+          description: Attribute value
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              guid:
+                type: string
+              name:
+                type: string
+    ApiResultAttributeDefinition:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AttributeDefinition'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    AttributeDefinitionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeDefinition'
+        count:
+          type: integer
+          format: int32
   responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -542,14 +542,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
@@ -579,14 +579,12 @@ components:
       description: Search query using Fortify search syntax (e.g., name:MyApp)
       schema:
         type: string
-    ParentId:
-      name: parentId
-      in: path
-      required: true
-      description: Unique identifier of the parent resource
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
       schema:
-        type: integer
-        format: int64
+        type: string
     Start:
       name: start
       in: query
@@ -595,12 +593,6 @@ components:
         type: integer
         format: int32
         default: 0
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
     PageLimit:
       name: limit
       in: query
@@ -609,6 +601,14 @@ components:
         type: integer
         format: int32
         default: 200
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     bearerAuth:
       type: http

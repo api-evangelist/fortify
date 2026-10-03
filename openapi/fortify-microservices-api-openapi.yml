@@ -87,8 +87,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -99,14 +99,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
@@ -117,6 +117,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
   schemas:
     ErrorResponse:
       type: object
@@ -132,6 +141,32 @@ components:
                 format: int32
               message:
                 type: string
+    Microservice:
+      type: object
+      description: Represents a microservice within an application
+      properties:
+        microserviceId:
+          type: integer
+          format: int32
+          description: Unique identifier of the microservice
+        microserviceName:
+          type: string
+          description: Name of the microservice
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+    MicroserviceListResponse:
+      type: object
+      description: List of microservices
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Microservice'
+        totalCount:
+          type: integer
+          format: int32
     PostMicroserviceResponse:
       type: object
       description: Response after creating a microservice
@@ -150,41 +185,6 @@ components:
         microserviceName:
           type: string
           description: Name of the microservice
-    MicroserviceListResponse:
-      type: object
-      description: List of microservices
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Microservice'
-        totalCount:
-          type: integer
-          format: int32
-    Microservice:
-      type: object
-      description: Represents a microservice within an application
-      properties:
-        microserviceId:
-          type: integer
-          format: int32
-          description: Unique identifier of the microservice
-        microserviceName:
-          type: string
-          description: Name of the microservice
-        applicationId:
-          type: integer
-          format: int32
-          description: Identifier of the parent application
-  parameters:
-    ApplicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: Unique identifier of the application
-      schema:
-        type: integer
-        format: int32
   securitySchemes:
     bearerAuth:
       type: http

@@ -101,8 +101,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -113,14 +113,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:

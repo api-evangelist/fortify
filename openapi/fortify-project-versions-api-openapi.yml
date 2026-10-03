@@ -175,32 +175,17 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ProjectVersionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectVersion'
+        count:
+          type: integer
+          format: int32
     ErrorResponse:
       type: object
       description: Error response
@@ -212,6 +197,23 @@ components:
           type: string
         data:
           type: object
+    ProjectVersionActionRequest:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: Action to perform
+          enum:
+          - commit
+          - COPY_CURRENT_STATE
+          - COPY_FROM_PARTIAL
+          - SEND_FOR_TRAINING
+          - SEND_FOR_PREDICTION
+        values:
+          type: object
+          description: Action-specific parameters
     ApiResultProjectVersion:
       type: object
       properties:
@@ -223,6 +225,47 @@ components:
         responseCode:
           type: integer
           format: int32
+    CreateProjectVersionRequest:
+      type: object
+      required:
+      - name
+      - project
+      properties:
+        name:
+          type: string
+          description: Version name
+        description:
+          type: string
+          description: Version description
+        active:
+          type: boolean
+          default: true
+        committed:
+          type: boolean
+          default: false
+        project:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            name:
+              type: string
+        issueTemplateId:
+          type: string
+    UpdateProjectVersionRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        committed:
+          type: boolean
+        issueTemplateId:
+          type: string
     ProjectVersion:
       type: object
       description: Represents an application version within a project
@@ -266,45 +309,6 @@ components:
               type: boolean
             auditEnabled:
               type: boolean
-    UpdateProjectVersionRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        active:
-          type: boolean
-        committed:
-          type: boolean
-        issueTemplateId:
-          type: string
-    ApiResultVoid:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
-    ProjectVersionActionRequest:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          description: Action to perform
-          enum:
-          - commit
-          - COPY_CURRENT_STATE
-          - COPY_FROM_PARTIAL
-          - SEND_FOR_TRAINING
-          - SEND_FOR_PREDICTION
-        values:
-          type: object
-          description: Action-specific parameters
     Project:
       type: object
       description: Represents a top-level project in SSC
@@ -326,44 +330,40 @@ components:
         issueTemplateId:
           type: string
           description: Issue template identifier
-    CreateProjectVersionRequest:
-      type: object
-      required:
-      - name
-      - project
-      properties:
-        name:
-          type: string
-          description: Version name
-        description:
-          type: string
-          description: Version description
-        active:
-          type: boolean
-          default: true
-        committed:
-          type: boolean
-          default: false
-        project:
-          type: object
-          properties:
-            id:
-              type: integer
-              format: int64
-            name:
-              type: string
-        issueTemplateId:
-          type: string
-    ProjectVersionListResponse:
+    ApiResultVoid:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectVersion'
         count:
           type: integer
           format: int32
+        responseCode:
+          type: integer
+          format: int32
+  responses:
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     OrderBy:
       name: orderby
@@ -371,32 +371,10 @@ components:
       description: Sort field and direction (e.g., name for ascending, -name for descending)
       schema:
         type: string
-    ParentId:
-      name: parentId
-      in: path
-      required: true
-      description: Unique identifier of the parent resource
-      schema:
-        type: integer
-        format: int64
     Q:
       name: q
       in: query
       description: Search query using Fortify search syntax (e.g., name:MyApp)
-      schema:
-        type: string
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
       schema:
         type: string
     PageLimit:
@@ -407,6 +385,28 @@ components:
         type: integer
         format: int32
         default: 200
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     fortifyToken:
       type: apiKey

@@ -72,8 +72,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -84,8 +84,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
@@ -97,20 +97,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
     GetStaticScanOptionsResponse:
       type: object
       description: Available options for starting a static scan
@@ -132,6 +118,20 @@ components:
               value:
                 type: string
               text:
+                type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
                 type: string
   parameters:
     ReleaseId:

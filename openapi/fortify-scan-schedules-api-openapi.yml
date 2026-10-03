@@ -154,33 +154,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ErrorResponse:
+    UpdateScanScheduleRequest:
       type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: string
-    CreateScanScheduleRequest:
-      type: object
-      description: Request to create a scan schedule
-      required:
-      - name
-      - scanSettingsId
-      - scheduleType
-      - startDateTime
+      description: Request to update a scan schedule
       properties:
         name:
           type: string
-          description: Schedule name
         scanSettingsId:
           type: string
           format: uuid
-          description: Scan settings to use
         scheduleType:
           type: string
           enum:
@@ -193,8 +175,18 @@ components:
           format: date-time
         enabled:
           type: boolean
-          default: true
         timeZone:
+          type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
           type: string
     ScanScheduleListResponse:
       type: object
@@ -240,15 +232,22 @@ components:
         timeZone:
           type: string
           description: Time zone for the schedule
-    UpdateScanScheduleRequest:
+    CreateScanScheduleRequest:
       type: object
-      description: Request to update a scan schedule
+      description: Request to create a scan schedule
+      required:
+      - name
+      - scanSettingsId
+      - scheduleType
+      - startDateTime
       properties:
         name:
           type: string
+          description: Schedule name
         scanSettingsId:
           type: string
           format: uuid
+          description: Scan settings to use
         scheduleType:
           type: string
           enum:
@@ -261,17 +260,18 @@ components:
           format: date-time
         enabled:
           type: boolean
+          default: true
         timeZone:
           type: string
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:
@@ -283,14 +283,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
     Limit:
       name: limit
       in: query
@@ -299,6 +291,14 @@ components:
         type: integer
         format: int32
         default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     fortifyToken:
       type: apiKey

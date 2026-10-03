@@ -125,20 +125,6 @@ components:
       properties:
         success:
           type: boolean
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
     StartDynamicScanRequest:
       type: object
       description: Request body for starting a dynamic scan
@@ -164,31 +150,20 @@ components:
           format: int32
         timeZone:
           type: string
-    StartScanResponse:
+    ErrorResponse:
       type: object
-      description: Response after starting a scan
+      description: Error response
       properties:
-        scanId:
-          type: integer
-          format: int32
-          description: Identifier of the newly created scan
-        analysisStatusType:
-          type: string
-          description: Initial analysis status
-        success:
-          type: boolean
-    GetDynamicScanSetupResponse:
-      type: object
-      description: Dynamic scan setup configuration
-      properties:
-        dynamicScanEnvironmentFacingType:
-          type: string
-        dynamicSiteUrl:
-          type: string
-        requiresNetworkAuthentication:
-          type: boolean
-        timeZone:
-          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
     PutDynamicScanSetupRequest:
       type: object
       description: Request body for saving dynamic scan setup
@@ -213,9 +188,34 @@ components:
           format: int32
         entitlementFrequencyType:
           type: string
+    GetDynamicScanSetupResponse:
+      type: object
+      description: Dynamic scan setup configuration
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+        dynamicSiteUrl:
+          type: string
+        requiresNetworkAuthentication:
+          type: boolean
+        timeZone:
+          type: string
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created scan
+        analysisStatusType:
+          type: string
+          description: Initial analysis status
+        success:
+          type: boolean
   responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -226,14 +226,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:

@@ -147,6 +147,74 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    OrderBy:
+      name: orderby
+      in: query
+      description: Sort field and direction (e.g., name for ascending, -name for descending)
+      schema:
+        type: string
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -159,56 +227,6 @@ components:
           type: string
         data:
           type: object
-    CreateProjectRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        issueTemplateId:
-          type: string
-    ApiResultProject:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Project'
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
-    ApiResultVoid:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
-    ProjectListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        count:
-          type: integer
-          format: int32
-    UpdateProjectRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        issueTemplateId:
-          type: string
     Project:
       type: object
       description: Represents a top-level project in SSC
@@ -230,74 +248,56 @@ components:
         issueTemplateId:
           type: string
           description: Issue template identifier
-  parameters:
-    OrderBy:
-      name: orderby
-      in: query
-      description: Sort field and direction (e.g., name for ascending, -name for descending)
-      schema:
-        type: string
-    Q:
-      name: q
-      in: query
-      description: Search query using Fortify search syntax (e.g., name:MyApp)
-      schema:
-        type: string
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the resource
-      schema:
-        type: integer
-        format: int64
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
-  responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    ApiResultVoid:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultProject:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Project'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        issueTemplateId:
+          type: string
+    ProjectListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        count:
+          type: integer
+          format: int32
+    CreateProjectRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        issueTemplateId:
+          type: string
   securitySchemes:
     fortifyToken:
       type: apiKey

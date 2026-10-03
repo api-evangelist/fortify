@@ -138,8 +138,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -150,14 +150,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
@@ -169,20 +169,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
     GetDastAutomatedScanSetupResponse:
       type: object
       description: DAST automated scan setup configuration
@@ -200,6 +186,51 @@ components:
         networkAuthenticationUserName:
           type: string
         timeZone:
+          type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    PutDastAutomatedWebsiteScanSetupRequest:
+      type: object
+      description: Request body for saving DAST website scan setup
+      properties:
+        dynamicScanEnvironmentFacingType:
+          type: string
+          enum:
+          - Internal
+          - External
+        websiteUrl:
+          type: string
+          description: URL of the website to scan
+        scanPolicy:
+          type: string
+          description: Scan policy to use
+        requiresNetworkAuthentication:
+          type: boolean
+        networkAuthenticationUserName:
+          type: string
+        networkAuthenticationPassword:
+          type: string
+        timeZone:
+          type: string
+        assessmentTypeId:
+          type: integer
+          format: int32
+        entitlementId:
+          type: integer
+          format: int32
+        entitlementFrequencyType:
           type: string
     PutDastAutomatedOpenApiScanSetupRequest:
       type: object
@@ -239,37 +270,6 @@ components:
           description: Initial analysis status
         success:
           type: boolean
-    PutDastAutomatedWebsiteScanSetupRequest:
-      type: object
-      description: Request body for saving DAST website scan setup
-      properties:
-        dynamicScanEnvironmentFacingType:
-          type: string
-          enum:
-          - Internal
-          - External
-        websiteUrl:
-          type: string
-          description: URL of the website to scan
-        scanPolicy:
-          type: string
-          description: Scan policy to use
-        requiresNetworkAuthentication:
-          type: boolean
-        networkAuthenticationUserName:
-          type: string
-        networkAuthenticationPassword:
-          type: string
-        timeZone:
-          type: string
-        assessmentTypeId:
-          type: integer
-          format: int32
-        entitlementId:
-          type: integer
-          format: int32
-        entitlementFrequencyType:
-          type: string
   parameters:
     ReleaseId:
       name: releaseId

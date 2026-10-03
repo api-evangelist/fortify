@@ -56,28 +56,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        data:
-          type: object
-    ApiResultFileToken:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/FileToken'
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
     FileToken:
       type: object
       description: A single-use file transfer token
@@ -92,6 +70,17 @@ components:
           - UPLOAD
           - DOWNLOAD
           - REPORT_FILE
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
     CreateFileTokenRequest:
       type: object
       required:
@@ -103,6 +92,17 @@ components:
           - UPLOAD
           - DOWNLOAD
           - REPORT_FILE
+    ApiResultFileToken:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/FileToken'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
   responses:
     Unauthorized:
       description: Unauthorized - authentication required or token invalid

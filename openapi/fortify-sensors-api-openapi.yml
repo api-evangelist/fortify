@@ -147,6 +147,48 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
+    Offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 0
   schemas:
     ErrorResponse:
       type: object
@@ -159,20 +201,6 @@ components:
           type: string
         details:
           type: string
-    UpdateSensorRequest:
-      type: object
-      description: Request to update a sensor
-      properties:
-        sensorPoolId:
-          type: string
-          format: uuid
-          description: Sensor pool to assign the sensor to
-        status:
-          type: string
-          description: Sensor status
-          enum:
-          - Active
-          - Disabled
     Sensor:
       type: object
       description: A WebInspect sensor
@@ -217,6 +245,20 @@ components:
         isRunning:
           type: boolean
           description: Whether the sensor is currently running a scan
+    UpdateSensorRequest:
+      type: object
+      description: Request to update a sensor
+      properties:
+        sensorPoolId:
+          type: string
+          format: uuid
+          description: Sensor pool to assign the sensor to
+        status:
+          type: string
+          description: Sensor status
+          enum:
+          - Active
+          - Disabled
     SensorListResponse:
       type: object
       description: List of sensors
@@ -228,48 +270,6 @@ components:
         totalCount:
           type: integer
           format: int32
-  responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 50
   securitySchemes:
     fortifyToken:
       type: apiKey

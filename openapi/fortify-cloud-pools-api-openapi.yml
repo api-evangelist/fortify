@@ -52,17 +52,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        data:
-          type: object
     CloudPoolListResponse:
       type: object
       properties:
@@ -80,6 +69,17 @@ components:
         count:
           type: integer
           format: int32
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
   responses:
     Unauthorized:
       description: Unauthorized - authentication required or token invalid
@@ -88,14 +88,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
     Fields:
       name: fields
       in: query
@@ -110,6 +102,14 @@ components:
         type: integer
         format: int32
         default: 200
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     fortifyToken:
       type: apiKey

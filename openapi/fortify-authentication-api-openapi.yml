@@ -77,29 +77,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        data:
-          type: object
-    ApiResultAuthToken:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AuthToken'
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
     AuthToken:
       type: object
       description: Represents an authentication token
@@ -133,6 +130,37 @@ components:
           - DownloadFileTransferToken
           - UploadFileTransferToken
           - ReportFileTransferToken
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+    ApiResultVoid:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultAuthToken:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthToken'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
     CreateTokenRequest:
       type: object
       required:
@@ -155,34 +183,6 @@ components:
           type: string
           format: date-time
           description: Token expiration date
-    ApiResultVoid:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
-  responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     ResourceId:
       name: id

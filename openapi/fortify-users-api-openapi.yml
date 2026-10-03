@@ -146,27 +146,69 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+  responses:
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    UpdateLocalUserRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-        suspended:
-          type: boolean
-        roles:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
     ErrorResponse:
       type: object
       description: Error response
@@ -178,16 +220,6 @@ components:
           type: string
         data:
           type: object
-    LocalUserListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocalUser'
-        count:
-          type: integer
-          format: int32
     ApiResultVoid:
       type: object
       properties:
@@ -197,17 +229,9 @@ components:
         responseCode:
           type: integer
           format: int32
-    CreateLocalUserRequest:
+    UpdateLocalUserRequest:
       type: object
-      required:
-      - userName
-      - firstName
-      - lastName
-      - email
-      - password
       properties:
-        userName:
-          type: string
         firstName:
           type: string
         lastName:
@@ -216,8 +240,6 @@ components:
           type: string
         password:
           type: string
-        passwordNeverExpires:
-          type: boolean
         suspended:
           type: boolean
         roles:
@@ -271,68 +293,46 @@ components:
                 type: string
               name:
                 type: string
-  responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Q:
-      name: q
-      in: query
-      description: Search query using Fortify search syntax (e.g., name:MyApp)
-      schema:
-        type: string
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the resource
-      schema:
-        type: integer
-        format: int64
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
+    CreateLocalUserRequest:
+      type: object
+      required:
+      - userName
+      - firstName
+      - lastName
+      - email
+      - password
+      properties:
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        passwordNeverExpires:
+          type: boolean
+        suspended:
+          type: boolean
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+    LocalUserListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalUser'
+        count:
+          type: integer
+          format: int32
   securitySchemes:
     fortifyToken:
       type: apiKey

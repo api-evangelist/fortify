@@ -118,6 +118,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    StartScanCicdRequest:
+      type: object
+      description: Request to start a scan from CI/CD pipeline
+      required:
+      - cicdToken
+      properties:
+        cicdToken:
+          type: string
+          format: uuid
+          description: CI/CD token that references scan settings
+        name:
+          type: string
+          description: Optional name for the scan
     ErrorResponse:
       type: object
       description: Error response
@@ -140,28 +153,15 @@ components:
         status:
           type: string
           description: Initial scan status
-    StartScanCicdRequest:
-      type: object
-      description: Request to start a scan from CI/CD pipeline
-      required:
-      - cicdToken
-      properties:
-        cicdToken:
-          type: string
-          format: uuid
-          description: CI/CD token that references scan settings
-        name:
-          type: string
-          description: Optional name for the scan
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:

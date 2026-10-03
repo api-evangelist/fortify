@@ -166,8 +166,8 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   responses:
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
+    NotFound:
+      description: Not found - the specified resource does not exist
       content:
         application/json:
           schema:
@@ -178,14 +178,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - the specified resource does not exist
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
       content:
         application/json:
           schema:
@@ -196,6 +196,28 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+    OrderBy:
+      name: orderBy
+      in: query
+      description: Field name to sort results by
+      schema:
+        type: string
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
   schemas:
     ErrorResponse:
       type: object
@@ -211,24 +233,6 @@ components:
                 format: int32
               message:
                 type: string
-    PersonalAccessToken:
-      type: object
-      description: Represents a personal access token
-      properties:
-        personalAccessTokenId:
-          type: integer
-          format: int32
-          description: Unique identifier
-        name:
-          type: string
-          description: Name of the token
-        userName:
-          type: string
-          description: User who owns the token
-        secretExpirationDate:
-          type: string
-          format: date-time
-          description: Expiration date of the token secret
     PutPersonalAccessTokenRequest:
       type: object
       description: Request body for updating a personal access token
@@ -257,6 +261,24 @@ components:
         secret:
           type: string
           description: The token secret (only returned on creation)
+    PersonalAccessToken:
+      type: object
+      description: Represents a personal access token
+      properties:
+        personalAccessTokenId:
+          type: integer
+          format: int32
+          description: Unique identifier
+        name:
+          type: string
+          description: Name of the token
+        userName:
+          type: string
+          description: User who owns the token
+        secretExpirationDate:
+          type: string
+          format: date-time
+          description: Expiration date of the token secret
     PostPersonalAccessTokenRequest:
       type: object
       description: Request body for creating a personal access token
@@ -274,28 +296,6 @@ components:
           type: string
           format: date-time
           description: Specific expiration date for the secret
-  parameters:
-    OrderBy:
-      name: orderBy
-      in: query
-      description: Field name to sort results by
-      schema:
-        type: string
-    OrderByDirection:
-      name: orderByDirection
-      in: query
-      description: Sort direction
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
-    Filters:
-      name: filters
-      in: query
-      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
