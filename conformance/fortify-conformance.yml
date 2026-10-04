@@ -4,17 +4,13 @@ source: openapi/fortify-software-fod-openapi.json
 standards:
 - id: oauth2
   conforms: true
-  evidence: >-
-    OAuth 2.0 client-credentials token endpoint (/oauth/token) with tenant scopes
-    documented per operation; bearer access tokens.
+  evidence: OAuth 2.0 client-credentials token endpoint (/oauth/token) with tenant scopes documented per operation; bearer access tokens.
 - id: openapi-swagger2
   conforms: true
   evidence: Provider publishes a Swagger 2.0 document at /swagger/docs/v3.
 - id: rfc9457-problem-details
   conforms: false
-  evidence: >-
-    Errors use a custom ErrorResponse envelope ({errors:[{errorCode,message}]}),
-    not application/problem+json.
+  evidence: Errors use a custom ErrorResponse envelope ({errors:[{errorCode,message}]}), not application/problem+json.
 - id: rest-json
   conforms: true
   evidence: Resource-oriented JSON REST API over HTTPS under /api/v3.
@@ -23,11 +19,19 @@ standards:
   evidence: List endpoints use offset/limit with items/totalCount wrappers.
 - id: sarif
   conforms: true
-  evidence: >-
-    FoD imports/exports SARIF (e.g. StaticScansV3_PutImportSarifScan); first-party
-    tooling converts FPR to SARIF.
+  evidence: FoD imports/exports SARIF (e.g. StaticScansV3_PutImportSarifScan); first-party tooling converts FPR to SARIF.
 - id: cyclonedx-sbom
   conforms: true
-  evidence: >-
-    Open-source / software-composition scanning and SSC parser plugins consume
-    CycloneDX SBOM inputs.
+  evidence: Open-source / software-composition scanning and SSC parser plugins consume CycloneDX SBOM inputs.
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: pagination
+  conforms: true
+  evidence: list operations take limit, offset

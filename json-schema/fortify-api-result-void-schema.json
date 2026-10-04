@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-api-result-void-schema.json",
+  "title": "ApiResultVoid",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-artifacts-api-openapi.yml#/components/schemas/ApiResultVoid",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "responseCode": {
+      "type": "integer",
+      "format": "int32"
+    }
+  }
+}

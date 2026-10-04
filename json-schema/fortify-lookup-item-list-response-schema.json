@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-lookup-item-list-response-schema.json",
+  "title": "LookupItemListResponse",
+  "description": "List of lookup items",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-lookup-items-api-openapi.yml#/components/schemas/LookupItemListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/LookupItem"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "LookupItem": {
+      "type": "object",
+      "description": "Represents a reference/lookup data item",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Display text"
+        },
+        "value": {
+          "type": "string",
+          "description": "Value"
+        },
+        "group": {
+          "type": "string",
+          "description": "Group classification"
+        }
+      }
+    }
+  }
+}

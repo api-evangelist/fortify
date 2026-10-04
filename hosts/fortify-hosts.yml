@@ -1,0 +1,217 @@
+generated: '2026-10-03'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 16
+  own: 5
+  other_domain: 9
+  platform: 2
+  roles:
+  - api
+  - community
+  - docs
+  - identity
+  - marketing
+  - other
+  - portal
+  - sandbox
+  - source
+  - status
+  - website
+hosts:
+- host: ams.fortify.com
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  types:
+  - Portal
+  - Login
+  serves: []
+  registrable_domain: fortify.com
+  role: identity
+  relation: other-domain
+- host: api.ams.fortify.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - spec-found
+  - contract-discovery
+  - well-known
+  types:
+  - DeveloperPortal
+  - APIReference
+  - Authentication
+  serves:
+  - api
+  - docs
+  - spec
+  registrable_domain: fortify.com
+  role: portal
+  relation: other-domain
+- host: api.apac.fortify.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: fortify.com
+  role: api
+  relation: other-domain
+- host: api.emea.fortify.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: fortify.com
+  role: api
+  relation: other-domain
+- host: api.fortify.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: fortify.com
+  role: api
+  relation: other-domain
+- host: api.opentext.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: opentext.com
+  role: api
+  relation: own
+- host: community.opentext.com
+  found_by:
+  - pointer
+  - probed
+  - docs-index
+  - well-known
+  types:
+  - Blog
+  - Community
+  - ChangeLog
+  serves:
+  - docs
+  registrable_domain: opentext.com
+  role: community
+  relation: own
+- host: cybersecurity.opentext.com
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  types:
+  - Pricing
+  serves: []
+  registrable_domain: opentext.com
+  role: marketing
+  relation: own
+- host: developer.opentext.com
+  found_by:
+  - probed
+  - site-links
+  - namespace-probe
+  - docs-index
+  types: []
+  serves:
+  - docs
+  title: Developer | OpenText
+  status: 200
+  registrable_domain: opentext.com
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  - SDKs
+  - AgentSkills
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: petstore.swagger.io:443
+  found_by:
+  - spec-found
+  types: []
+  serves:
+  - spec
+  registrable_domain: swagger.io:443
+  role: other
+  relation: other-domain
+- host: sandbox.fortify.com
+  found_by:
+  - probed
+  - site-links
+  - namespace-probe
+  - well-known
+  types: []
+  serves: []
+  title: Login | Fortify on Demand
+  status: 200
+  registrable_domain: fortify.com
+  role: sandbox
+  relation: other-domain
+- host: status.fortify.com
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  - vendor-detect
+  types:
+  - StatusPage
+  serves:
+  - status-page
+  vendor: hund
+  registrable_domain: fortify.com
+  role: status
+  relation: other-domain
+- host: www.microfocus.com
+  found_by:
+  - pointer
+  - probed
+  - docs-index
+  - well-known
+  - vendor-detect
+  types:
+  - Documentation
+  - GettingStarted
+  serves:
+  - docs
+  - cdn
+  vendor: akamai
+  registrable_domain: microfocus.com
+  role: docs
+  relation: other-domain
+- host: www.opentext.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - well-known
+  types:
+  - Security
+  - Support
+  - TermsOfService
+  - PrivacyPolicy
+  - Website
+  - Signup
+  serves:
+  - docs
+  registrable_domain: opentext.com
+  role: website
+  relation: own
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform

@@ -115,27 +115,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    Q:
-      name: q
-      in: query
-      description: Search query using Fortify search syntax (e.g., name:MyApp)
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
     ResourceId:
       name: id
       in: path
@@ -152,37 +151,27 @@ components:
         type: integer
         format: int32
         default: 0
-  responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    Q:
+      name: q
+      in: query
+      description: Search query using Fortify search syntax (e.g., name:MyApp)
+      schema:
+        type: string
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
   schemas:
-    ApiResultSavedReport:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/SavedReport'
-        count:
-          type: integer
-          format: int32
-        responseCode:
-          type: integer
-          format: int32
     SavedReportListResponse:
       type: object
       properties:
@@ -191,26 +180,6 @@ components:
           items:
             $ref: '#/components/schemas/SavedReport'
         count:
-          type: integer
-          format: int32
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        data:
-          type: object
-    ApiResultVoid:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        responseCode:
           type: integer
           format: int32
     GenerateReportRequest:
@@ -244,6 +213,17 @@ components:
                 type: string
               paramValue:
                 type: string
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
     SavedReport:
       type: object
       description: A generated report
@@ -274,6 +254,26 @@ components:
           type: integer
           format: int64
           description: Source report definition
+    ApiResultVoid:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+    ApiResultSavedReport:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SavedReport'
+        count:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
   securitySchemes:
     fortifyToken:
       type: apiKey

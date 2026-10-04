@@ -101,12 +101,6 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized - authentication required or token expired
       content:
@@ -119,19 +113,38 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - insufficient permissions or scopes
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Identifier of the newly created scan
+        analysisStatusType:
+          type: string
+          description: Initial analysis status
+        success:
+          type: boolean
     ErrorResponse:
       type: object
       description: Error response
@@ -146,19 +159,6 @@ components:
                 format: int32
               message:
                 type: string
-    StartScanResponse:
-      type: object
-      description: Response after starting a scan
-      properties:
-        scanId:
-          type: integer
-          format: int32
-          description: Identifier of the newly created scan
-        analysisStatusType:
-          type: string
-          description: Initial analysis status
-        success:
-          type: boolean
   parameters:
     ReleaseId:
       name: releaseId

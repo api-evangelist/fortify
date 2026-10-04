@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-mark-notifications-as-read-request-schema.json",
+  "title": "MarkNotificationsAsReadRequest",
+  "description": "Request body for marking notifications as read",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-notifications-api-openapi.yml#/components/schemas/MarkNotificationsAsReadRequest",
+  "type": "object",
+  "properties": {
+    "notificationIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "description": "List of notification identifiers to mark as read"
+    }
+  }
+}

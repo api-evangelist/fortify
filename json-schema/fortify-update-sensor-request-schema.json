@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-update-sensor-request-schema.json",
+  "title": "UpdateSensorRequest",
+  "description": "Request to update a sensor",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-sensors-api-openapi.yml#/components/schemas/UpdateSensorRequest",
+  "type": "object",
+  "properties": {
+    "sensorPoolId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Sensor pool to assign the sensor to"
+    },
+    "status": {
+      "type": "string",
+      "description": "Sensor status",
+      "enum": [
+        "Active",
+        "Disabled"
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-scan-schedule-schema.json",
+  "title": "ScanSchedule",
+  "description": "A scheduled scan configuration",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-scan-schedules-api-openapi.yml#/components/schemas/ScanSchedule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Schedule name"
+    },
+    "scanSettingsId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Scan settings to use"
+    },
+    "scheduleType": {
+      "type": "string",
+      "description": "Type of schedule",
+      "enum": [
+        "Once",
+        "Daily",
+        "Weekly",
+        "Monthly"
+      ]
+    },
+    "startDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled start date and time"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the schedule is enabled"
+    },
+    "timeZone": {
+      "type": "string",
+      "description": "Time zone for the schedule"
+    }
+  }
+}

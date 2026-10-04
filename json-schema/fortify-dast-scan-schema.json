@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-dast-scan-schema.json",
+  "title": "DastScan",
+  "description": "Represents a DAST scan",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-scans-api-openapi.yml#/components/schemas/DastScan",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier of the scan"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the scan"
+    },
+    "scanSettingsId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier of the scan settings used"
+    },
+    "scanSettingsName": {
+      "type": "string",
+      "description": "Name of the scan settings"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current scan status",
+      "enum": [
+        "Queued",
+        "Pending",
+        "Running",
+        "Complete",
+        "Failed",
+        "Paused",
+        "ImportingScanResults",
+        "Unknown"
+      ]
+    },
+    "sensorId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier of the assigned sensor"
+    },
+    "sensorName": {
+      "type": "string",
+      "description": "Name of the assigned sensor"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scan start time"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scan end time"
+    },
+    "totalVulnerabilities": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Total number of vulnerabilities found"
+    },
+    "criticalCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of critical vulnerabilities"
+    },
+    "highCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of high vulnerabilities"
+    },
+    "mediumCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of medium vulnerabilities"
+    },
+    "lowCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of low vulnerabilities"
+    },
+    "infoCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of informational findings"
+    },
+    "sscApplicationVersionId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "SSC application version identifier"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date when the scan was created"
+    }
+  }
+}

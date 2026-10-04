@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-put-dast-automated-website-scan-setup-request-schema.json",
+  "title": "PutDastAutomatedWebsiteScanSetupRequest",
+  "description": "Request body for saving DAST website scan setup",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedWebsiteScanSetupRequest",
+  "type": "object",
+  "properties": {
+    "dynamicScanEnvironmentFacingType": {
+      "type": "string",
+      "enum": [
+        "Internal",
+        "External"
+      ]
+    },
+    "websiteUrl": {
+      "type": "string",
+      "description": "URL of the website to scan"
+    },
+    "scanPolicy": {
+      "type": "string",
+      "description": "Scan policy to use"
+    },
+    "requiresNetworkAuthentication": {
+      "type": "boolean"
+    },
+    "networkAuthenticationUserName": {
+      "type": "string"
+    },
+    "networkAuthenticationPassword": {
+      "type": "string"
+    },
+    "timeZone": {
+      "type": "string"
+    },
+    "assessmentTypeId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "entitlementId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "entitlementFrequencyType": {
+      "type": "string"
+    }
+  }
+}

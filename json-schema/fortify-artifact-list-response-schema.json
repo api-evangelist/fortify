@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-artifact-list-response-schema.json",
+  "title": "ArtifactListResponse",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-artifacts-api-openapi.yml#/components/schemas/ArtifactListResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Artifact"
+      }
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "Artifact": {
+      "type": "object",
+      "description": "Represents an uploaded scan artifact",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unique identifier"
+        },
+        "fileName": {
+          "type": "string",
+          "description": "Name of the uploaded file"
+        },
+        "fileSize": {
+          "type": "integer",
+          "format": "int64",
+          "description": "File size in bytes"
+        },
+        "status": {
+          "type": "string",
+          "description": "Processing status",
+          "enum": [
+            "SCHED_PROCESSING",
+            "PROCESSING",
+            "PROCESS_COMPLETE",
+            "ERROR_PROCESSING",
+            "REQUIRE_AUTH",
+            "DELETED"
+          ]
+        },
+        "uploadDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date when the artifact was uploaded"
+        },
+        "messages": {
+          "type": "string",
+          "description": "Processing messages"
+        },
+        "allowDelete": {
+          "type": "boolean",
+          "description": "Whether the artifact can be deleted"
+        },
+        "allowApprove": {
+          "type": "boolean",
+          "description": "Whether the artifact requires approval"
+        },
+        "allowPurge": {
+          "type": "boolean",
+          "description": "Whether the artifact can be purged"
+        },
+        "scanTypes": {
+          "type": "array",
+          "description": "Types of scans in this artifact",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

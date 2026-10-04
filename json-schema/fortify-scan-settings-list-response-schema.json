@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-scan-settings-list-response-schema.json",
+  "title": "ScanSettingsListResponse",
+  "description": "Paginated list of scan settings",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-scan-settings-api-openapi.yml#/components/schemas/ScanSettingsListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ScanSettings"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "ScanSettings": {
+      "type": "object",
+      "description": "Scan settings configuration",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Settings name"
+        },
+        "startUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Starting URL for the scan"
+        },
+        "scanPolicyId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Scan policy to use"
+        },
+        "sensorPoolId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Sensor pool for scan execution"
+        },
+        "loginMacroEnabled": {
+          "type": "boolean",
+          "description": "Whether login macro is configured"
+        },
+        "crawlAuditMode": {
+          "type": "string",
+          "description": "Crawl and audit mode",
+          "enum": [
+            "CrawlAndAudit",
+            "CrawlOnly",
+            "AuditOnly"
+          ]
+        },
+        "sscApplicationVersionId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "SSC application version for results upload"
+        },
+        "cicdToken": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Token for CI/CD integration"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date when the settings were created"
+        },
+        "modifiedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date when the settings were last modified"
+        }
+      }
+    }
+  }
+}

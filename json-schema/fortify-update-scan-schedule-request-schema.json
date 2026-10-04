@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-update-scan-schedule-request-schema.json",
+  "title": "UpdateScanScheduleRequest",
+  "description": "Request to update a scan schedule",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-scan-schedules-api-openapi.yml#/components/schemas/UpdateScanScheduleRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "scanSettingsId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "scheduleType": {
+      "type": "string",
+      "enum": [
+        "Once",
+        "Daily",
+        "Weekly",
+        "Monthly"
+      ]
+    },
+    "startDateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "timeZone": {
+      "type": "string"
+    }
+  }
+}

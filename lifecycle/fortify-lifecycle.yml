@@ -17,4 +17,5 @@ status_page: https://status.fortify.com
 sla:
   notes: SLA terms are governed by the OpenText Core Application Security service description.
   service_description: https://www.opentext.com/products/fortify-on-demand
+deprecation: {}
 deprecated_operations: []

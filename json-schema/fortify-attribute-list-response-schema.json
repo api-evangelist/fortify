@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-attribute-list-response-schema.json",
+  "title": "AttributeListResponse",
+  "description": "List of attributes",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-attributes-api-openapi.yml#/components/schemas/AttributeListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Attribute"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "Attribute": {
+      "type": "object",
+      "description": "Represents an application attribute definition",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Attribute name"
+        },
+        "attributeType": {
+          "type": "string",
+          "description": "Type of attribute"
+        },
+        "attributeDataType": {
+          "type": "string",
+          "description": "Data type of the attribute"
+        },
+        "isRequired": {
+          "type": "boolean",
+          "description": "Whether the attribute is required"
+        }
+      }
+    }
+  }
+}

@@ -177,17 +177,6 @@ components:
           type: boolean
         timeZone:
           type: string
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: string
     ScanScheduleListResponse:
       type: object
       description: List of scan schedules
@@ -199,6 +188,37 @@ components:
         totalCount:
           type: integer
           format: int32
+    CreateScanScheduleRequest:
+      type: object
+      description: Request to create a scan schedule
+      required:
+      - name
+      - scanSettingsId
+      - scheduleType
+      - startDateTime
+      properties:
+        name:
+          type: string
+          description: Schedule name
+        scanSettingsId:
+          type: string
+          format: uuid
+          description: Scan settings to use
+        scheduleType:
+          type: string
+          enum:
+          - Once
+          - Daily
+          - Weekly
+          - Monthly
+        startDateTime:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+          default: true
+        timeZone:
+          type: string
     ScanSchedule:
       type: object
       description: A scheduled scan configuration
@@ -232,44 +252,18 @@ components:
         timeZone:
           type: string
           description: Time zone for the schedule
-    CreateScanScheduleRequest:
+    ErrorResponse:
       type: object
-      description: Request to create a scan schedule
-      required:
-      - name
-      - scanSettingsId
-      - scheduleType
-      - startDateTime
+      description: Error response
       properties:
-        name:
+        errorCode:
+          type: integer
+          format: int32
+        message:
           type: string
-          description: Schedule name
-        scanSettingsId:
-          type: string
-          format: uuid
-          description: Scan settings to use
-        scheduleType:
-          type: string
-          enum:
-          - Once
-          - Daily
-          - Weekly
-          - Monthly
-        startDateTime:
-          type: string
-          format: date-time
-        enabled:
-          type: boolean
-          default: true
-        timeZone:
+        details:
           type: string
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized - authentication required or token invalid
       content:
@@ -282,15 +276,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 50
     Offset:
       name: offset
       in: query
@@ -299,6 +291,14 @@ components:
         type: integer
         format: int32
         default: 0
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 50
   securitySchemes:
     fortifyToken:
       type: apiKey

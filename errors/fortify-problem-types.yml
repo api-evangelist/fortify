@@ -1,0 +1,66 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/fortify-alert-definitions-api-openapi.yml
+- openapi/fortify-api-keys-api-openapi.yml
+- openapi/fortify-applications-api-openapi.yml
+- openapi/fortify-artifacts-api-openapi.yml
+- openapi/fortify-attributes-api-openapi.yml
+- openapi/fortify-audit-templates-api-openapi.yml
+- openapi/fortify-auth-entities-api-openapi.yml
+- openapi/fortify-authentication-api-openapi.yml
+- openapi/fortify-ci-cd-api-openapi.yml
+- openapi/fortify-cloud-pools-api-openapi.yml
+- openapi/fortify-custom-tags-api-openapi.yml
+- openapi/fortify-dast-automated-scans-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorResponse
+coverage:
+  operations: 157
+  statuses_declared: 6
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request - invalid parameters or request body
+  operations: 48
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 401
+  title: Unauthorized
+  description: Unauthorized - authentication required or token invalid
+  operations: 156
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 403
+  title: Forbidden
+  description: Forbidden - insufficient permissions or scopes
+  operations: 91
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 404
+  title: Not Found
+  description: Not found - the specified resource does not exist
+  operations: 108
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 429
+  title: Too Many Requests
+  description: Too many requests - rate limit exceeded
+  operations: 77
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 503
+  title: Service Unavailable
+  description: System is unhealthy
+  operations: 1
+  media_types:
+  - application/json
+  schema: HealthResponse

@@ -527,6 +527,185 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
 components:
   schemas:
+    PostReleaseRequest:
+      type: object
+      description: Request body for creating a release
+      required:
+      - applicationId
+      - releaseName
+      - sdlcStatusType
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the parent application
+        releaseName:
+          type: string
+          description: Name of the release
+        releaseDescription:
+          type: string
+          description: Description of the release
+        sdlcStatusType:
+          type: string
+          description: Software development lifecycle status
+          enum:
+          - Development
+          - QA
+          - Production
+          - Retired
+        microserviceId:
+          type: integer
+          format: int32
+          description: Optional microservice identifier
+    PostAuditActionRequest:
+      type: object
+      description: Request body for setting audit action on vulnerabilities
+      properties:
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              vulnId:
+                type: integer
+                format: int32
+              analysisStatusType:
+                type: string
+              comment:
+                type: string
+    ReleaseAssessmentTypeListResponse:
+      type: object
+      description: List of available assessment types for a release
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentType'
+        totalCount:
+          type: integer
+          format: int32
+    ScanListResponse:
+      type: object
+      description: Paginated list of scans
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          type: integer
+          format: int32
+          description: Total number of scans matching the query
+    DeleteResponse:
+      type: object
+      description: Generic delete response
+      properties:
+        success:
+          type: boolean
+          description: Whether the delete operation succeeded
+    PutReleaseResponse:
+      type: object
+      description: Response after updating a release
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+    Scan:
+      type: object
+      description: Represents a security scan
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        scanType:
+          type: string
+          description: Type of scan performed
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - OpenSource
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        startedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan started
+        completedDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the scan completed
+        totalIssues:
+          type: integer
+          format: int32
+          description: Total number of issues found
+        issueCountCritical:
+          type: integer
+          format: int32
+          description: Number of critical issues found
+        issueCountHigh:
+          type: integer
+          format: int32
+          description: Number of high issues found
+        issueCountMedium:
+          type: integer
+          format: int32
+          description: Number of medium issues found
+        issueCountLow:
+          type: integer
+          format: int32
+          description: Number of low issues found
+        releaseId:
+          type: integer
+          format: int32
+          description: Identifier of the associated release
+        applicationId:
+          type: integer
+          format: int32
+          description: Identifier of the associated application
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: integer
+                format: int32
+              message:
+                type: string
+    PollingScanSummary:
+      type: object
+      description: Scan status for polling
+      properties:
+        scanId:
+          type: integer
+          format: int32
+          description: Unique identifier of the scan
+        analysisStatusType:
+          type: string
+          description: Current analysis status
+        analysisStatusTypeValue:
+          type: integer
+          format: int32
+          description: Numeric value of the analysis status
+        pauseDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              reason:
+                type: string
+              notes:
+                type: string
+        passFailStatus:
+          type: boolean
+          description: Whether the scan passes the security policy
     Release:
       type: object
       description: Represents a release within an application
@@ -593,131 +772,57 @@ components:
           type: integer
           format: int32
           description: Identifier of the current mobile scan
-    ErrorResponse:
+    GetImportScanSessionIdResponse:
       type: object
-      description: Error response
+      description: Response with import scan session ID
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              errorCode:
-                type: integer
-                format: int32
-              message:
-                type: string
-    Scan:
+        importScanSessionId:
+          type: string
+          description: Session identifier for importing scan results
+    PostReleaseResponse:
       type: object
-      description: Represents a security scan
+      description: Response after creating a release
       properties:
-        scanId:
-          type: integer
-          format: int32
-          description: Unique identifier of the scan
-        scanType:
-          type: string
-          description: Type of scan performed
-          enum:
-          - Static
-          - Dynamic
-          - Mobile
-          - OpenSource
-        analysisStatusType:
-          type: string
-          description: Current analysis status
-        startedDateTime:
-          type: string
-          format: date-time
-          description: Date and time when the scan started
-        completedDateTime:
-          type: string
-          format: date-time
-          description: Date and time when the scan completed
-        totalIssues:
-          type: integer
-          format: int32
-          description: Total number of issues found
-        issueCountCritical:
-          type: integer
-          format: int32
-          description: Number of critical issues found
-        issueCountHigh:
-          type: integer
-          format: int32
-          description: Number of high issues found
-        issueCountMedium:
-          type: integer
-          format: int32
-          description: Number of medium issues found
-        issueCountLow:
-          type: integer
-          format: int32
-          description: Number of low issues found
         releaseId:
           type: integer
           format: int32
-          description: Identifier of the associated release
-        applicationId:
-          type: integer
-          format: int32
-          description: Identifier of the associated application
-    PutReleaseRequest:
-      type: object
-      description: Request body for updating a release
-      properties:
-        releaseName:
-          type: string
-          description: Name of the release
-        releaseDescription:
-          type: string
-          description: Description of the release
-        sdlcStatusType:
-          type: string
-          description: Software development lifecycle status
-    PutReleaseResponse:
-      type: object
-      description: Response after updating a release
-      properties:
+          description: Identifier of the newly created release
         success:
           type: boolean
           description: Whether the operation succeeded
-    AssessmentType:
+    ReleaseListResponse:
       type: object
-      description: Represents an assessment type
+      description: Paginated list of releases
       properties:
-        assessmentTypeId:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Release'
+        totalCount:
           type: integer
           format: int32
-          description: Unique identifier
-        name:
-          type: string
-          description: Assessment type name
-        scanType:
-          type: string
-          description: Scan type
-        entitlementId:
-          type: integer
-          format: int32
-          description: Associated entitlement
-        frequencyType:
-          type: string
-          description: Frequency type
-    PostAuditActionRequest:
+          description: Total number of releases matching the query
+    GetStaticScanOptionsResponse:
       type: object
-      description: Request body for setting audit action on vulnerabilities
+      description: Available options for starting a static scan
       properties:
-        values:
+        technologyStacks:
           type: array
           items:
             type: object
             properties:
-              vulnId:
-                type: integer
-                format: int32
-              analysisStatusType:
+              value:
                 type: string
-              comment:
+              text:
+                type: string
+        languageLevels:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              text:
                 type: string
     CategoryRollupsResponse:
       type: object
@@ -743,68 +848,31 @@ components:
               low:
                 type: integer
                 format: int32
-    ScanListResponse:
+    AssessmentType:
       type: object
-      description: Paginated list of scans
+      description: Represents an assessment type
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Scan'
-        totalCount:
+        assessmentTypeId:
           type: integer
           format: int32
-          description: Total number of scans matching the query
-    PostReleaseResponse:
-      type: object
-      description: Response after creating a release
-      properties:
-        releaseId:
-          type: integer
-          format: int32
-          description: Identifier of the newly created release
-        success:
-          type: boolean
-          description: Whether the operation succeeded
-    PollingScanSummary:
-      type: object
-      description: Scan status for polling
-      properties:
-        scanId:
-          type: integer
-          format: int32
-          description: Unique identifier of the scan
-        analysisStatusType:
+          description: Unique identifier
+        name:
           type: string
-          description: Current analysis status
-        analysisStatusTypeValue:
+          description: Assessment type name
+        scanType:
+          type: string
+          description: Scan type
+        entitlementId:
           type: integer
           format: int32
-          description: Numeric value of the analysis status
-        pauseDetails:
-          type: array
-          items:
-            type: object
-            properties:
-              reason:
-                type: string
-              notes:
-                type: string
-        passFailStatus:
-          type: boolean
-          description: Whether the scan passes the security policy
-    PostReleaseRequest:
+          description: Associated entitlement
+        frequencyType:
+          type: string
+          description: Frequency type
+    PutReleaseRequest:
       type: object
-      description: Request body for creating a release
-      required:
-      - applicationId
-      - releaseName
-      - sdlcStatusType
+      description: Request body for updating a release
       properties:
-        applicationId:
-          type: integer
-          format: int32
-          description: Identifier of the parent application
         releaseName:
           type: string
           description: Name of the release
@@ -814,60 +882,6 @@ components:
         sdlcStatusType:
           type: string
           description: Software development lifecycle status
-          enum:
-          - Development
-          - QA
-          - Production
-          - Retired
-        microserviceId:
-          type: integer
-          format: int32
-          description: Optional microservice identifier
-    ReleaseAssessmentTypeListResponse:
-      type: object
-      description: List of available assessment types for a release
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentType'
-        totalCount:
-          type: integer
-          format: int32
-    GetStaticScanOptionsResponse:
-      type: object
-      description: Available options for starting a static scan
-      properties:
-        technologyStacks:
-          type: array
-          items:
-            type: object
-            properties:
-              value:
-                type: string
-              text:
-                type: string
-        languageLevels:
-          type: array
-          items:
-            type: object
-            properties:
-              value:
-                type: string
-              text:
-                type: string
-    ReleaseListResponse:
-      type: object
-      description: Paginated list of releases
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Release'
-        totalCount:
-          type: integer
-          format: int32
-          description: Total number of releases matching the query
     GetAuditOptionsResponse:
       type: object
       description: Available audit options
@@ -881,73 +895,7 @@ components:
                 type: string
               value:
                 type: string
-    DeleteResponse:
-      type: object
-      description: Generic delete response
-      properties:
-        success:
-          type: boolean
-          description: Whether the delete operation succeeded
-    GetImportScanSessionIdResponse:
-      type: object
-      description: Response with import scan session ID
-      properties:
-        importScanSessionId:
-          type: string
-          description: Session identifier for importing scan results
-  responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - insufficient permissions or scopes
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    Filters:
-      name: filters
-      in: query
-      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
-      schema:
-        type: string
-    OrderBy:
-      name: orderBy
-      in: query
-      description: Field name to sort results by
-      schema:
-        type: string
-    OrderByDirection:
-      name: orderByDirection
-      in: query
-      description: Sort direction
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
     Limit:
       name: limit
       in: query
@@ -957,14 +905,12 @@ components:
         format: int32
         default: 50
         maximum: 50
-    ApplicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: Unique identifier of the application
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
       schema:
-        type: integer
-        format: int32
+        type: string
     ReleaseId:
       name: releaseId
       in: path
@@ -981,12 +927,66 @@ components:
         type: integer
         format: int32
         default: 0
-    Fields:
-      name: fields
+    OrderBy:
+      name: orderBy
       in: query
-      description: Comma-separated list of fields to include in the response
+      description: Field name to sort results by
       schema:
         type: string
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Unique identifier of the application
+      schema:
+        type: integer
+        format: int32
+    OrderByDirection:
+      name: orderByDirection
+      in: query
+      description: Sort direction
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Filters:
+      name: filters
+      in: query
+      description: Filter expression using Fortify on Demand filter syntax. Multiple filters can be combined.
+      schema:
+        type: string
+  responses:
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - insufficient permissions or scopes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

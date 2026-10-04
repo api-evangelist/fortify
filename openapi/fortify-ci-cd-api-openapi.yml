@@ -117,49 +117,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    StartScanCicdRequest:
-      type: object
-      description: Request to start a scan from CI/CD pipeline
-      required:
-      - cicdToken
-      properties:
-        cicdToken:
-          type: string
-          format: uuid
-          description: CI/CD token that references scan settings
-        name:
-          type: string
-          description: Optional name for the scan
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        errorCode:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: string
-    StartScanResponse:
-      type: object
-      description: Response after starting a scan
-      properties:
-        scanId:
-          type: string
-          format: uuid
-          description: Identifier of the newly created scan
-        status:
-          type: string
-          description: Initial scan status
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized - authentication required or token invalid
       content:
@@ -178,6 +136,48 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    StartScanCicdRequest:
+      type: object
+      description: Request to start a scan from CI/CD pipeline
+      required:
+      - cicdToken
+      properties:
+        cicdToken:
+          type: string
+          format: uuid
+          description: CI/CD token that references scan settings
+        name:
+          type: string
+          description: Optional name for the scan
+    StartScanResponse:
+      type: object
+      description: Response after starting a scan
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Identifier of the newly created scan
+        status:
+          type: string
+          description: Initial scan status
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: string
   securitySchemes:
     fortifyToken:
       type: apiKey

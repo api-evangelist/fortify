@@ -1,0 +1,415 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/fortify-alert-definitions-api-openapi.yml
+- openapi/fortify-api-keys-api-openapi.yml
+- openapi/fortify-applications-api-openapi.yml
+- openapi/fortify-artifacts-api-openapi.yml
+- openapi/fortify-attributes-api-openapi.yml
+vocabulary:
+  name: Fortify Domain Vocabulary
+  description: 'Terms declared by Fortify''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-03'
+  terms:
+  - term: Alert Definitions
+    definition: Manage alert definitions
+    tags:
+    - Resource Group
+    source: openapi/fortify-alert-definitions-api-openapi.yml
+  - term: API Keys
+    definition: Manage API keys for programmatic access
+    tags:
+    - Resource Group
+    source: openapi/fortify-api-keys-api-openapi.yml
+  - term: Applications
+    definition: Manage applications and their configurations
+    tags:
+    - Resource Group
+    source: openapi/fortify-applications-api-openapi.yml
+  - term: Artifacts
+    definition: Manage scan artifacts and uploads
+    tags:
+    - Resource Group
+    source: openapi/fortify-artifacts-api-openapi.yml
+  - term: Attributes
+    definition: Manage application attributes
+    tags:
+    - Resource Group
+    source: openapi/fortify-attributes-api-openapi.yml
+  - term: Audit Templates
+    definition: Manage audit templates for vulnerability triage
+    tags:
+    - Resource Group
+    source: openapi/fortify-audit-templates-api-openapi.yml
+  - term: Auth Entities
+    definition: Manage authentication entities (users and LDAP groups)
+    tags:
+    - Resource Group
+    source: openapi/fortify-auth-entities-api-openapi.yml
+  - term: Authentication
+    definition: Manage authentication tokens
+    tags:
+    - Resource Group
+    source: openapi/fortify-authentication-api-openapi.yml
+  - term: CI/CD
+    definition: CI/CD pipeline integration endpoints
+    tags:
+    - Resource Group
+    source: openapi/fortify-ci-cd-api-openapi.yml
+  - term: Cloud Pools
+    definition: Manage cloud scan worker pools
+    tags:
+    - Resource Group
+    source: openapi/fortify-cloud-pools-api-openapi.yml
+  - term: Custom Tags
+    definition: Manage custom tags for issue triage
+    tags:
+    - Resource Group
+    source: openapi/fortify-custom-tags-api-openapi.yml
+  - term: DAST Automated Scans
+    definition: Configure and start DAST automated scans
+    tags:
+    - Resource Group
+    source: openapi/fortify-dast-automated-scans-api-openapi.yml
+  - term: Dynamic Scans
+    definition: Configure and start dynamic application security testing scans
+    tags:
+    - Resource Group
+    source: openapi/fortify-dynamic-scans-api-openapi.yml
+  - term: Event Logs
+    definition: Access tenant event logs
+    tags:
+    - Resource Group
+    source: openapi/fortify-event-logs-api-openapi.yml
+  - term: Features
+    definition: System feature and connectivity information
+    tags:
+    - Resource Group
+    source: openapi/fortify-features-api-openapi.yml
+  - term: File Tokens
+    definition: Manage file transfer tokens
+    tags:
+    - Resource Group
+    source: openapi/fortify-file-tokens-api-openapi.yml
+  - term: Issue Selectors
+    definition: Retrieve issue filter metadata
+    tags:
+    - Resource Group
+    source: openapi/fortify-issue-selectors-api-openapi.yml
+  - term: Issues
+    definition: Access and manage vulnerability issues
+    tags:
+    - Resource Group
+    source: openapi/fortify-issues-api-openapi.yml
+  - term: Jobs
+    definition: Monitor processing jobs
+    tags:
+    - Resource Group
+    source: openapi/fortify-jobs-api-openapi.yml
+  - term: Lookup Items
+    definition: Retrieve lookup and reference data
+    tags:
+    - Resource Group
+    source: openapi/fortify-lookup-items-api-openapi.yml
+  - term: Microservices
+    definition: Manage microservices within applications
+    tags:
+    - Resource Group
+    source: openapi/fortify-microservices-api-openapi.yml
+  - term: Mobile Scans
+    definition: Configure and start mobile application security testing scans
+    tags:
+    - Resource Group
+    source: openapi/fortify-mobile-scans-api-openapi.yml
+  - term: Notifications
+    definition: Manage user notifications
+    tags:
+    - Resource Group
+    source: openapi/fortify-notifications-api-openapi.yml
+  - term: Open Source Components
+    definition: View open source component data
+    tags:
+    - Resource Group
+    source: openapi/fortify-open-source-components-api-openapi.yml
+  - term: Open Source Scans
+    definition: Manage open source / software composition analysis scans
+    tags:
+    - Resource Group
+    source: openapi/fortify-open-source-scans-api-openapi.yml
+  - term: Performance Indicators
+    definition: Access performance indicator data
+    tags:
+    - Resource Group
+    source: openapi/fortify-performance-indicators-api-openapi.yml
+  - term: Personal Access Tokens
+    definition: Manage personal access tokens
+    tags:
+    - Resource Group
+    source: openapi/fortify-personal-access-tokens-api-openapi.yml
+  - term: Project Versions
+    definition: Manage application versions within projects
+    tags:
+    - Resource Group
+    source: openapi/fortify-project-versions-api-openapi.yml
+  - term: Projects
+    definition: Manage top-level projects
+    tags:
+    - Resource Group
+    source: openapi/fortify-projects-api-openapi.yml
+  - term: Releases
+    definition: Manage releases within applications
+    tags:
+    - Resource Group
+    source: openapi/fortify-releases-api-openapi.yml
+  - term: Reports
+    definition: Generate and download reports
+    tags:
+    - Resource Group
+    source: openapi/fortify-reports-api-openapi.yml
+  - term: Saved Reports
+    definition: Manage saved report configurations
+    tags:
+    - Resource Group
+    source: openapi/fortify-saved-reports-api-openapi.yml
+  - term: Scan Policies
+    definition: Manage scan policies
+    tags:
+    - Resource Group
+    source: openapi/fortify-scan-policies-api-openapi.yml
+  - term: Scan Schedules
+    definition: Manage scheduled scans
+    tags:
+    - Resource Group
+    source: openapi/fortify-scan-schedules-api-openapi.yml
+  - term: Scan Settings
+    definition: Manage scan configuration settings
+    tags:
+    - Resource Group
+    source: openapi/fortify-scan-settings-api-openapi.yml
+  - term: Scans
+    definition: View and manage security scans
+    tags:
+    - Resource Group
+    source: openapi/fortify-scans-api-openapi.yml
+  - term: Sensor Pools
+    definition: Manage sensor pools for scan distribution
+    tags:
+    - Resource Group
+    source: openapi/fortify-sensor-pools-api-openapi.yml
+  - term: Sensors
+    definition: Manage WebInspect sensors
+    tags:
+    - Resource Group
+    source: openapi/fortify-sensors-api-openapi.yml
+  - term: Static Scans
+    definition: Configure and start static application security testing scans
+    tags:
+    - Resource Group
+    source: openapi/fortify-static-scans-api-openapi.yml
+  - term: System
+    definition: System health and configuration
+    tags:
+    - Resource Group
+    source: openapi/fortify-system-api-openapi.yml
+  - term: Users
+    definition: Manage local user accounts
+    tags:
+    - Resource Group
+    source: openapi/fortify-users-api-openapi.yml
+  - term: Vulnerabilities
+    definition: Access and manage vulnerability findings
+    tags:
+    - Resource Group
+    source: openapi/fortify-vulnerabilities-api-openapi.yml
+  - term: ErrorResponse
+    definition: Error response
+    tags:
+    - Object
+    source: openapi/fortify-alert-definitions-api-openapi.yml#/components/schemas/ErrorResponse
+  - term: AlertDefinitionListResponse
+    definition: 'Object declared by the contract with fields: data, count.'
+    tags:
+    - Object
+    source: openapi/fortify-alert-definitions-api-openapi.yml#/components/schemas/AlertDefinitionListResponse
+  - term: ApiKeyRequest
+    definition: Request body for creating or updating an API key
+    tags:
+    - Object
+    source: openapi/fortify-api-keys-api-openapi.yml#/components/schemas/ApiKeyRequest
+  - term: ApiKeyResponse
+    definition: Response for API key operations
+    tags:
+    - Object
+    source: openapi/fortify-api-keys-api-openapi.yml#/components/schemas/ApiKeyResponse
+  - term: ApiKey
+    definition: Represents an API key
+    tags:
+    - Object
+    source: openapi/fortify-api-keys-api-openapi.yml#/components/schemas/ApiKey
+  - term: DeleteResponse
+    definition: Generic delete response
+    tags:
+    - Object
+    source: openapi/fortify-api-keys-api-openapi.yml#/components/schemas/DeleteResponse
+  - term: PostApiKeyResponse
+    definition: Response after creating an API key
+    tags:
+    - Object
+    source: openapi/fortify-api-keys-api-openapi.yml#/components/schemas/PostApiKeyResponse
+  - term: ApiKeyListResponse
+    definition: Paginated list of API keys
+    tags:
+    - Object
+    source: openapi/fortify-api-keys-api-openapi.yml#/components/schemas/ApiKeyListResponse
+  - term: Release
+    definition: Represents a release within an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/Release
+  - term: FortifyConnectNetworkListResponse
+    definition: List of Fortify Connect networks
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/FortifyConnectNetworkListResponse
+  - term: Microservice
+    definition: Represents a microservice within an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/Microservice
+  - term: Application
+    definition: Represents an application in Fortify on Demand
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/Application
+  - term: User
+    definition: Represents a user in the system
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/User
+  - term: Scan
+    definition: Represents a security scan
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/Scan
+  - term: PutApplicationRequest
+    definition: Request body for updating an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/PutApplicationRequest
+  - term: PostApplicationRequest
+    definition: Request body for creating an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/PostApplicationRequest
+  - term: MicroserviceListResponse
+    definition: List of microservices
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/MicroserviceListResponse
+  - term: Vulnerability
+    definition: Represents a vulnerability finding
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/Vulnerability
+  - term: ApplicationUserListResponse
+    definition: List of users associated with an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/ApplicationUserListResponse
+  - term: PostMicroserviceResponse
+    definition: Response after creating a microservice
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/PostMicroserviceResponse
+  - term: ScanListResponse
+    definition: Paginated list of scans
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/ScanListResponse
+  - term: PostApplicationResponse
+    definition: Response after creating an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/PostApplicationResponse
+  - term: ApplicationAttribute
+    definition: An attribute value assigned to an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/ApplicationAttribute
+  - term: VulnerabilityListResponse
+    definition: Paginated list of vulnerabilities
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/VulnerabilityListResponse
+  - term: PutApplicationResponse
+    definition: Response after updating an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/PutApplicationResponse
+  - term: ApplicationIssueCountListResponse
+    definition: Issue counts grouped by severity for an application
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/ApplicationIssueCountListResponse
+  - term: ReleaseListResponse
+    definition: Paginated list of releases
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/ReleaseListResponse
+  - term: ApplicationListResponse
+    definition: Paginated list of applications
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/ApplicationListResponse
+  - term: PostMicroserviceRequest
+    definition: Request body for creating a microservice
+    tags:
+    - Object
+    source: openapi/fortify-applications-api-openapi.yml#/components/schemas/PostMicroserviceRequest
+  - term: ApiResultVoid
+    definition: 'Object declared by the contract with fields: count, responseCode.'
+    tags:
+    - Object
+    source: openapi/fortify-artifacts-api-openapi.yml#/components/schemas/ApiResultVoid
+  - term: ApiResultArtifact
+    definition: 'Object declared by the contract with fields: data, count, responseCode.'
+    tags:
+    - Object
+    source: openapi/fortify-artifacts-api-openapi.yml#/components/schemas/ApiResultArtifact
+  - term: ArtifactListResponse
+    definition: 'Object declared by the contract with fields: data, count.'
+    tags:
+    - Object
+    source: openapi/fortify-artifacts-api-openapi.yml#/components/schemas/ArtifactListResponse
+  - term: Artifact
+    definition: Represents an uploaded scan artifact
+    tags:
+    - Object
+    source: openapi/fortify-artifacts-api-openapi.yml#/components/schemas/Artifact
+  - term: PutAttributeResponse
+    definition: Response after updating an attribute
+    tags:
+    - Object
+    source: openapi/fortify-attributes-api-openapi.yml#/components/schemas/PutAttributeResponse
+  - term: PostAttributeResponse
+    definition: Response after creating an attribute
+    tags:
+    - Object
+    source: openapi/fortify-attributes-api-openapi.yml#/components/schemas/PostAttributeResponse
+  - term: PostAttributeRequest
+    definition: Request body for creating an attribute
+    tags:
+    - Object
+    source: openapi/fortify-attributes-api-openapi.yml#/components/schemas/PostAttributeRequest
+  - term: AttributeListResponse
+    definition: List of attributes
+    tags:
+    - Object
+    source: openapi/fortify-attributes-api-openapi.yml#/components/schemas/AttributeListResponse
+  - term: Attribute
+    definition: Represents an application attribute definition
+    tags:
+    - Object
+    source: openapi/fortify-attributes-api-openapi.yml#/components/schemas/Attribute

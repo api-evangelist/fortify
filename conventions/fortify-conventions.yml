@@ -13,6 +13,7 @@ authentication:
   ref: authentication/fortify-software-authentication.yml
 idempotency:
   supported: false
+  coverage: none
   notes: >-
     FoD does not document an idempotency-key header. Write operations are not
     declared idempotent beyond the natural idempotency of PUT/DELETE.

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-start-dynamic-scan-request-schema.json",
+  "title": "StartDynamicScanRequest",
+  "description": "Request body for starting a dynamic scan",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-dynamic-scans-api-openapi.yml#/components/schemas/StartDynamicScanRequest",
+  "type": "object",
+  "properties": {
+    "startDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled start date"
+    },
+    "assessmentTypeId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "entitlementId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "entitlementFrequencyType": {
+      "type": "string"
+    },
+    "isRemediationScan": {
+      "type": "boolean"
+    },
+    "isBundledAssessment": {
+      "type": "boolean"
+    },
+    "parentAssessmentTypeId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "timeZone": {
+      "type": "string"
+    }
+  }
+}

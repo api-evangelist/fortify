@@ -29,6 +29,7 @@ command_groups:
   description: Install and manage other Fortify tools (ScanCentral client, etc.).
 - name: config
   description: Manage fcli configuration, connections and session state.
+commands: []
 key_flows:
 - Authenticate a session against FoD or SSC (fcli fod session login / ssc session login).
 - Start a static/dynamic scan and poll for completion.

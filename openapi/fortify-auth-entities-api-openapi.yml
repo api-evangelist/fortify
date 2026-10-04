@@ -84,12 +84,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized - authentication required or token invalid
       content:
@@ -102,7 +96,58 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
   schemas:
+    AuthEntity:
+      type: object
+      description: An authentication entity (user or LDAP group)
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier
+        entityName:
+          type: string
+          description: Entity name
+        isLdap:
+          type: boolean
+          description: Whether this is an LDAP entity
     ErrorResponse:
       type: object
       description: Error response
@@ -124,51 +169,6 @@ components:
         count:
           type: integer
           format: int32
-    AuthEntity:
-      type: object
-      description: An authentication entity (user or LDAP group)
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique identifier
-        entityName:
-          type: string
-          description: Entity name
-        isLdap:
-          type: boolean
-          description: Whether this is an LDAP entity
-  parameters:
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
-    ParentId:
-      name: parentId
-      in: path
-      required: true
-      description: Unique identifier of the parent resource
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     fortifyToken:
       type: apiKey

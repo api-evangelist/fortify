@@ -1,8 +1,7 @@
 name: Fortify
-description: >-
-  Fortify is a comprehensive application security platform from OpenText that provides static application security
-  testing (SAST), dynamic application security testing (DAST), and software composition analysis (SCA) capabilities. It
-  helps organizations identify and remediate vulnerabilities across the software development lifecycle.
+description: Fortify is a comprehensive application security platform from OpenText that provides static application security testing (SAST),
+  dynamic application security testing (DAST), and software composition analysis (SCA) capabilities. It helps organizations identify and remediate
+  vulnerabilities across the software development lifecycle.
 deliveryModel:
   model: saas
   open_source: false
@@ -34,6 +33,131 @@ url: https://www.opentext.com/products/fortify-on-demand
 created: '2024-01-15'
 modified: '2026-05-19'
 specificationVersion: '0.23'
+maintainers:
+- name: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
+tags:
+- Application Security
+- DAST
+- DevSecOps
+- SAST
+- SCA
+- Security Testing
+- Vulnerability Scanning
+common:
+- type: FinOps
+  url: finops/fortify-finops.yml
+- type: RateLimits
+  url: rate-limits/fortify-rate-limits.yml
+- type: Spectral
+  url: rules/fortify-rules.yml
+- type: Spectral
+  url: rules/fortify-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/fortify-context.jsonld
+- type: Vocabulary
+  url: vocabulary/fortify-vocabulary.yml
+- type: DataModel
+  url: data-model/fortify-data-model.yml
+- type: ErrorCatalog
+  url: errors/fortify-problem-types.yml
+- type: Hosts
+  url: hosts/fortify-hosts.yml
+- type: Vendors
+  url: vendors/fortify-vendors.yml
+- type: Pricing
+  url: https://cybersecurity.opentext.com/products/saas-backup/pricing/
+- type: Plans
+  url: plans/fortify-plans-pricing.yml
+- type: Overlay
+  url: overlays/fortify-fod-overlay.yaml
+- type: DeveloperPortal
+  url: https://api.ams.fortify.com/swagger/ui/index
+- type: APIReference
+  url: https://api.ams.fortify.com/swagger/ui/index
+- type: X-MCPServerCandidate
+  url: mcp/fortify-mcp.yml
+- type: Packages
+  url: packages/fortify-packages.yml
+- type: CLI
+  url: cli/fortify-cli.yml
+- type: WellKnown
+  url: well-known/fortify-well-known.yml
+- type: SecurityTxt
+  url: well-known/fortify-well-known.yml
+- type: LLMsTxt
+  url: llms/fortify-llms.txt
+- type: Conformance
+  url: conformance/fortify-conformance.yml
+- type: Lifecycle
+  url: lifecycle/fortify-lifecycle.yml
+- type: VulnerabilityDisclosure
+  url: security/fortify-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.opentext.com/about/security-acknowledgements
+- type: Conventions
+  url: conventions/fortify-conventions.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: CapabilityMap
+  url: capabilities/fortify-capability-edges.yml
+  name: Fortify Business Capability Map
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/fortify/overview
+- type: AgenticAccess
+  url: agentic-access/fortify-agentic-access.yml
+- type: DomainSecurity
+  url: security/fortify-domain-security.yml
+- type: Authentication
+  url: authentication/fortify-authentication.yml
+- type: Portal
+  url: https://ams.fortify.com/
+- type: Documentation
+  url: https://www.microfocus.com/documentation/fortify-on-demand/
+- type: GettingStarted
+  url: https://www.microfocus.com/documentation/fortify-on-demand/
+- type: Authentication
+  url: https://api.ams.fortify.com/swagger/ui/index
+- type: Blog
+  url: https://community.opentext.com/cyberres/b/cybersecurity-blog
+- type: StatusPage
+  url: https://status.fortify.com/
+- type: Support
+  url: https://www.opentext.com/support
+- type: TermsOfService
+  url: https://www.opentext.com/about/legal/website-terms-of-use
+- type: PrivacyPolicy
+  url: https://www.opentext.com/about/privacy
+- type: GitHubOrganization
+  url: https://github.com/fortify
+- type: Community
+  url: https://community.opentext.com/cybersec/fortify
+- type: Website
+  url: https://www.opentext.com/products/fortify-on-demand
+- type: Login
+  url: https://ams.fortify.com/
+- type: Signup
+  url: https://www.opentext.com/products/fortify-on-demand/trial
+- type: ChangeLog
+  url: https://community.opentext.com/cybersec/fortify/w/tips
+- type: SDKs
+  url: https://github.com/fortify/fortify-client-api
+- type: JSONLDContext
+  url: json-ld/fortify-context.jsonld
+- type: JSONSchema
+  url: json-schema/fortify-application-schema.json
+- type: JSONSchema
+  url: json-schema/fortify-vulnerability-schema.json
+- type: JSONSchema
+  url: json-schema/fortify-scan-schema.json
+- type: JSONSchema
+  url: json-schema/fortify-release-schema.json
+- type: JSONSchema
+  url: json-schema/fortify-project-version-schema.json
+- name: Agent Skills
+  url: https://github.com/fortify/skills
+  type: AgentSkills
 apis:
 - aid: fortify:fortify-alert-definitions-api
   name: Fortify Alert Definitions API
@@ -52,8 +176,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -67,8 +190,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-alert-definition-list-response-schema.json
 - aid: fortify:fortify-api-keys-api
   name: Fortify API Keys API
   description: Manage API keys for programmatic access
@@ -88,8 +212,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -103,8 +226,19 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-key-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-key-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-post-api-key-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-delete-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-key-response-schema.json
 - aid: fortify:fortify-applications-api
   name: Fortify Applications API
   description: Manage applications and their configurations
@@ -124,8 +258,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -139,8 +272,19 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-post-application-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-application-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-put-application-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-post-application-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-fortify-connect-network-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-application-issue-count-list-response-schema.json
 - aid: fortify:fortify-artifacts-api
   name: Fortify Artifacts API
   description: Manage scan artifacts and uploads
@@ -158,8 +302,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -173,8 +316,13 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-artifact-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-artifact-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-void-schema.json
 - aid: fortify:fortify-attributes-api
   name: Fortify Attributes API
   description: Manage application attributes
@@ -192,8 +340,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -207,8 +354,19 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-attribute-value-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-create-attribute-definition-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-post-attribute-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-attribute-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-attribute-definition-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-put-attribute-request-schema.json
 - aid: fortify:fortify-audit-templates-api
   name: Fortify Audit Templates API
   description: Manage audit templates for vulnerability triage
@@ -226,8 +384,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -241,8 +398,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-post-audit-action-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-get-audit-options-response-schema.json
 - aid: fortify:fortify-auth-entities-api
   name: Fortify Auth Entities API
   description: Manage authentication entities (users and LDAP groups)
@@ -260,8 +420,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -275,8 +434,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-auth-entity-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-auth-entity-list-response-schema.json
 - aid: fortify:fortify-authentication-api
   name: Fortify Authentication API
   description: Manage authentication tokens
@@ -294,8 +456,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -309,8 +470,13 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-create-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-auth-token-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-void-schema.json
 - aid: fortify:fortify-ci-cd-api
   name: Fortify CI/CD API
   description: CI/CD pipeline integration endpoints
@@ -328,8 +494,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -343,8 +508,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-start-scan-cicd-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-start-scan-response-schema.json
 - aid: fortify:fortify-cloud-pools-api
   name: Fortify Cloud Pools API
   description: Manage cloud scan worker pools
@@ -362,8 +530,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -377,8 +544,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-cloud-pool-list-response-schema.json
 - aid: fortify:fortify-custom-tags-api
   name: Fortify Custom Tags API
   description: Manage custom tags for issue triage
@@ -398,8 +566,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -413,8 +580,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-custom-tag-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-custom-tag-list-response-schema.json
 - aid: fortify:fortify-dast-automated-scans-api
   name: Fortify DAST Automated Scans API
   description: Configure and start DAST automated scans
@@ -432,8 +602,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -447,8 +616,15 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-start-scan-response-schema.json
 - aid: fortify:fortify-dynamic-scans-api
   name: Fortify Dynamic Scans API
   description: Configure and start dynamic application security testing scans
@@ -466,8 +642,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -481,8 +656,17 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-put-dynamic-scan-setup-response-schema.json
 - aid: fortify:fortify-event-logs-api
   name: Fortify Event Logs API
   description: Access tenant event logs
@@ -500,8 +684,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -515,8 +698,7 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
 - aid: fortify:fortify-features-api
   name: Fortify Features API
   description: System feature and connectivity information
@@ -534,8 +716,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -549,8 +730,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-feature-list-response-schema.json
 - aid: fortify:fortify-file-tokens-api
   name: Fortify File Tokens API
   description: Manage file transfer tokens
@@ -568,8 +750,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -583,8 +764,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-file-token-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-create-file-token-request-schema.json
 - aid: fortify:fortify-issue-selectors-api
   name: Fortify Issue Selectors API
   description: Retrieve issue filter metadata
@@ -602,8 +786,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -617,8 +800,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-issue-selector-set-response-schema.json
 - aid: fortify:fortify-issues-api
   name: Fortify Issues API
   description: Access and manage vulnerability issues
@@ -636,8 +820,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -651,8 +834,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-issue-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-issue-list-response-schema.json
 - aid: fortify:fortify-jobs-api
   name: Fortify Jobs API
   description: Monitor processing jobs
@@ -672,8 +858,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -687,8 +872,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-job-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-job-list-response-schema.json
 - aid: fortify:fortify-lookup-items-api
   name: Fortify Lookup Items API
   description: Retrieve lookup and reference data
@@ -706,8 +894,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -721,8 +908,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-lookup-item-list-response-schema.json
 - aid: fortify:fortify-microservices-api
   name: Fortify Microservices API
   description: Manage microservices within applications
@@ -740,8 +928,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -755,8 +942,13 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-microservice-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-post-microservice-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-post-microservice-response-schema.json
 - aid: fortify:fortify-mobile-scans-api
   name: Fortify Mobile Scans API
   description: Configure and start mobile application security testing scans
@@ -774,8 +966,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -789,8 +980,15 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-put-mobile-scan-setup-response-schema.json
 - aid: fortify:fortify-notifications-api
   name: Fortify Notifications API
   description: Manage user notifications
@@ -810,8 +1008,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -825,8 +1022,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-mark-notifications-as-read-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-notification-list-response-schema.json
 - aid: fortify:fortify-open-source-components-api
   name: Fortify Open Source Components API
   description: View open source component data
@@ -844,8 +1044,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -859,8 +1058,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-open-source-component-list-response-schema.json
 - aid: fortify:fortify-open-source-scans-api
   name: Fortify Open Source Scans API
   description: Manage open source / software composition analysis scans
@@ -878,8 +1078,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -893,8 +1092,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-start-scan-response-schema.json
 - aid: fortify:fortify-performance-indicators-api
   name: Fortify Performance Indicators API
   description: Access performance indicator data
@@ -912,8 +1112,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -927,8 +1126,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-performance-indicator-list-response-schema.json
 - aid: fortify:fortify-personal-access-tokens-api
   name: Fortify Personal Access Tokens API
   description: Manage personal access tokens
@@ -946,8 +1146,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -961,8 +1160,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-personal-access-token-schema.json
 - aid: fortify:fortify-project-versions-api
   name: Fortify Project Versions API
   description: Manage application versions within projects
@@ -980,8 +1180,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -995,8 +1194,19 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-create-project-version-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-project-version-action-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-update-project-version-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-project-version-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-project-version-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-void-schema.json
 - aid: fortify:fortify-projects-api
   name: Fortify Projects API
   description: Manage top-level projects
@@ -1016,8 +1226,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1031,8 +1240,17 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-project-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-project-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-create-project-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-void-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-update-project-request-schema.json
 - aid: fortify:fortify-releases-api
   name: Fortify Releases API
   description: Manage releases within applications
@@ -1050,8 +1268,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1065,8 +1282,19 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-release-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-scan-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-post-release-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-polling-scan-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-category-rollups-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-get-static-scan-options-response-schema.json
 - aid: fortify:fortify-reports-api
   name: Fortify Reports API
   description: Generate and download reports
@@ -1084,8 +1312,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1099,8 +1326,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-report-definition-list-response-schema.json
 - aid: fortify:fortify-saved-reports-api
   name: Fortify Saved Reports API
   description: Manage saved report configurations
@@ -1118,8 +1346,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1133,8 +1360,15 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-generate-report-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-saved-report-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-saved-report-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-void-schema.json
 - aid: fortify:fortify-scan-policies-api
   name: Fortify Scan Policies API
   description: Manage scan policies
@@ -1152,8 +1386,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1167,8 +1400,11 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-scan-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-scan-policy-list-response-schema.json
 - aid: fortify:fortify-scan-schedules-api
   name: Fortify Scan Schedules API
   description: Manage scheduled scans
@@ -1186,8 +1422,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1201,8 +1436,15 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-scan-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-create-scan-schedule-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-update-scan-schedule-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-scan-schedule-list-response-schema.json
 - aid: fortify:fortify-scan-settings-api
   name: Fortify Scan Settings API
   description: Manage scan configuration settings
@@ -1220,8 +1462,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1235,8 +1476,15 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-scan-settings-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-create-scan-settings-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-update-scan-settings-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-scan-settings-list-response-schema.json
 - aid: fortify:fortify-scans-api
   name: Fortify Scans API
   description: View and manage security scans
@@ -1254,8 +1502,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1269,8 +1516,19 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-dast-scan-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-scan-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-dast-scan-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-polling-scan-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-start-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-start-scan-cicd-request-schema.json
 - aid: fortify:fortify-sensor-pools-api
   name: Fortify Sensor Pools API
   description: Manage sensor pools for scan distribution
@@ -1288,8 +1546,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1303,8 +1560,15 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-sensor-pool-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-create-sensor-pool-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-sensor-pool-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-update-sensor-pool-request-schema.json
 - aid: fortify:fortify-sensors-api
   name: Fortify Sensors API
   description: Manage WebInspect sensors
@@ -1322,8 +1586,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1337,8 +1600,13 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-sensor-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-update-sensor-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-sensor-list-response-schema.json
 - aid: fortify:fortify-static-scans-api
   name: Fortify Static Scans API
   description: Configure and start static application security testing scans
@@ -1356,8 +1624,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1371,8 +1638,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-get-static-scan-options-response-schema.json
 - aid: fortify:fortify-system-api
   name: Fortify System API
   description: System health and configuration
@@ -1390,8 +1658,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1405,8 +1672,9 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-health-response-schema.json
 - aid: fortify:fortify-users-api
   name: Fortify Users API
   description: Manage local user accounts
@@ -1426,8 +1694,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1441,8 +1708,17 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
+  - type: JSONSchema
+    url: json-schema/fortify-create-local-user-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-update-local-user-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-local-user-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-local-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/fortify-api-result-void-schema.json
 - aid: fortify:fortify-vulnerabilities-api
   name: Fortify Vulnerabilities API
   description: Access and manage vulnerability findings
@@ -1460,8 +1736,7 @@ apis:
   - type: Authentication
     url: https://api.ams.fortify.com/oauth/token
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
+    url: https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-software-security-center/2520/
   - type: APIReference
@@ -1475,112 +1750,18 @@ apis:
   - type: Documentation
     url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/
   - type: GettingStarted
-    url: >-
-      https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
-maintainers:
-  - name: Kin Lane
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
-tags:
-  - Application Security
-  - DAST
-  - DevSecOps
-  - SAST
-  - SCA
-  - Security Testing
-  - Vulnerability Scanning
-common:
-  - type: Pricing
-    url: https://cybersecurity.opentext.com/products/saas-backup/pricing/
-  - type: Plans
-    url: plans/fortify-plans-pricing.yml
-  - type: Overlay
-    url: overlays/fortify-fod-overlay.yaml
-  - type: DeveloperPortal
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: X-MCPServerCandidate
-    url: mcp/fortify-mcp.yml
-  - type: Packages
-    url: packages/fortify-packages.yml
-  - type: CLI
-    url: cli/fortify-cli.yml
-  - type: WellKnown
-    url: well-known/fortify-well-known.yml
-  - type: SecurityTxt
-    url: well-known/fortify-well-known.yml
-  - type: LLMsTxt
-    url: llms/fortify-llms.txt
-  - type: Conformance
-    url: conformance/fortify-conformance.yml
-  - type: Lifecycle
-    url: lifecycle/fortify-lifecycle.yml
-  - type: VulnerabilityDisclosure
-    url: security/fortify-vulnerability-disclosure.yml
-  - type: Security
-    url: https://www.opentext.com/about/security-acknowledgements
-  - type: Conventions
-    url: conventions/fortify-conventions.yml
-  - type: AgentSkill
-    url: skills/_index.yml
-  - type: CapabilityMap
-    url: capabilities/fortify-capability-edges.yml
-    name: Fortify Business Capability Map
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/fortify/overview
-  - type: AgenticAccess
-    url: agentic-access/fortify-agentic-access.yml
-  - type: DomainSecurity
-    url: security/fortify-domain-security.yml
-  - type: Authentication
-    url: authentication/fortify-authentication.yml
-  - type: Portal
-    url: https://ams.fortify.com/
-  - type: Documentation
-    url: https://www.microfocus.com/documentation/fortify-on-demand/
-  - type: GettingStarted
-    url: https://www.microfocus.com/documentation/fortify-on-demand/
-  - type: Authentication
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Blog
-    url: https://community.opentext.com/cyberres/b/cybersecurity-blog
-  - type: StatusPage
-    url: https://status.fortify.com/
-  - type: Support
-    url: https://www.opentext.com/support
-  - type: TermsOfService
-    url: https://www.opentext.com/about/legal/website-terms-of-use
-  - type: PrivacyPolicy
-    url: https://www.opentext.com/about/privacy
-  - type: GitHubOrganization
-    url: https://github.com/fortify
-  - type: Community
-    url: https://community.opentext.com/cybersec/fortify
-  - type: Website
-    url: https://www.opentext.com/products/fortify-on-demand
-  - type: Login
-    url: https://ams.fortify.com/
-  - type: Signup
-    url: https://www.opentext.com/products/fortify-on-demand/trial
-  - type: ChangeLog
-    url: https://community.opentext.com/cybersec/fortify/w/tips
-  - type: SDKs
-    url: https://github.com/fortify/fortify-client-api
-  - type: JSONLDContext
-    url: json-ld/fortify-context.jsonld
+    url: https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf
   - type: JSONSchema
-    url: json-schema/fortify-application-schema.json
+    url: json-schema/fortify-category-rollups-response-schema.json
   - type: JSONSchema
-    url: json-schema/fortify-vulnerability-schema.json
+    url: json-schema/fortify-application-issue-count-list-response-schema.json
   - type: JSONSchema
-    url: json-schema/fortify-scan-schema.json
-  - type: JSONSchema
-    url: json-schema/fortify-release-schema.json
-  - type: JSONSchema
-    url: json-schema/fortify-project-version-schema.json
-  - name: Agent Skills
-    url: https://github.com/fortify/skills
-    type: AgentSkills
+    url: json-schema/fortify-vulnerability-list-response-schema.json
 x-parent: opentext-cybersecurity
 x-relationship: product
+x-enrichment:
+  date: '2026-10-03'
+  status: enriched
+  artifacts_added: 109
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

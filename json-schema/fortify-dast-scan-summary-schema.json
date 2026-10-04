@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-dast-scan-summary-schema.json",
+  "title": "DastScanSummary",
+  "description": "Summary of a DAST scan",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-scans-api-openapi.yml#/components/schemas/DastScanSummary",
+  "type": "object",
+  "properties": {
+    "scanId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Scan identifier"
+    },
+    "status": {
+      "type": "string",
+      "description": "Scan status"
+    },
+    "totalVulnerabilities": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Total vulnerabilities found"
+    },
+    "criticalCount": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "highCount": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "mediumCount": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "lowCount": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "infoCount": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "pagesScanned": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of pages scanned"
+    },
+    "requestsMade": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of HTTP requests made"
+    },
+    "scanDuration": {
+      "type": "string",
+      "description": "Duration of the scan"
+    }
+  }
+}

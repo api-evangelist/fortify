@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-api-result-auth-token-schema.json",
+  "title": "ApiResultAuthToken",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-authentication-api-openapi.yml#/components/schemas/ApiResultAuthToken",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/AuthToken"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "responseCode": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "AuthToken": {
+      "type": "object",
+      "description": "Represents an authentication token",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unique identifier"
+        },
+        "token": {
+          "type": "string",
+          "description": "The token value"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the token was created"
+        },
+        "terminalDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the token expires"
+        },
+        "remainingUsages": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Remaining number of uses"
+        },
+        "type": {
+          "type": "string",
+          "description": "Token type",
+          "enum": [
+            "UnifiedLoginToken",
+            "AnalysisUploadToken",
+            "AuditToken",
+            "DownloadFileTransferToken",
+            "UploadFileTransferToken",
+            "ReportFileTransferToken"
+          ]
+        }
+      }
+    }
+  }
+}

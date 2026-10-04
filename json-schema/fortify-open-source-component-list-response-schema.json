@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-open-source-component-list-response-schema.json",
+  "title": "OpenSourceComponentListResponse",
+  "description": "Paginated list of open source components",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-open-source-components-api-openapi.yml#/components/schemas/OpenSourceComponentListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/OpenSourceComponent"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "OpenSourceComponent": {
+      "type": "object",
+      "description": "Represents an open source component",
+      "properties": {
+        "componentName": {
+          "type": "string",
+          "description": "Name of the component"
+        },
+        "componentVersion": {
+          "type": "string",
+          "description": "Version of the component"
+        },
+        "license": {
+          "type": "string",
+          "description": "License of the component"
+        },
+        "applicationName": {
+          "type": "string",
+          "description": "Parent application name"
+        },
+        "releaseName": {
+          "type": "string",
+          "description": "Parent release name"
+        },
+        "vulnerabilityCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of known vulnerabilities"
+        }
+      }
+    }
+  }
+}

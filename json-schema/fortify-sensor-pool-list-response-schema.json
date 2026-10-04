@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-sensor-pool-list-response-schema.json",
+  "title": "SensorPoolListResponse",
+  "description": "List of sensor pools",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-sensor-pools-api-openapi.yml#/components/schemas/SensorPoolListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SensorPool"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "SensorPool": {
+      "type": "object",
+      "description": "A sensor pool for grouping sensors",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Pool name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Pool description"
+        },
+        "sensorCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of sensors in the pool"
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "Whether this is the default pool"
+        }
+      }
+    }
+  }
+}

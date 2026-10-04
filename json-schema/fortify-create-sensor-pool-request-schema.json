@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-create-sensor-pool-request-schema.json",
+  "title": "CreateSensorPoolRequest",
+  "description": "Request to create a sensor pool",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-sensor-pools-api-openapi.yml#/components/schemas/CreateSensorPoolRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Pool name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Pool description"
+    }
+  }
+}

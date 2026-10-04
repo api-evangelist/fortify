@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-saved-report-list-response-schema.json",
+  "title": "SavedReportListResponse",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-saved-reports-api-openapi.yml#/components/schemas/SavedReportListResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SavedReport"
+      }
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "SavedReport": {
+      "type": "object",
+      "description": "A generated report",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Report name"
+        },
+        "status": {
+          "type": "string",
+          "description": "Report generation status",
+          "enum": [
+            "SCHED_PROCESSING",
+            "PROCESSING",
+            "PROCESS_COMPLETE",
+            "ERROR_PROCESSING"
+          ]
+        },
+        "format": {
+          "type": "string",
+          "description": "Report output format"
+        },
+        "generationDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date when the report was generated"
+        },
+        "reportDefinitionId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Source report definition"
+        }
+      }
+    }
+  }
+}

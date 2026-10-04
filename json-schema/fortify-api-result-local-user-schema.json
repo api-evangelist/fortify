@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-api-result-local-user-schema.json",
+  "title": "ApiResultLocalUser",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-users-api-openapi.yml#/components/schemas/ApiResultLocalUser",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/LocalUser"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "responseCode": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "LocalUser": {
+      "type": "object",
+      "description": "Represents a local user account",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unique identifier"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Username"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address"
+        },
+        "suspended": {
+          "type": "boolean",
+          "description": "Whether the account is suspended"
+        },
+        "roles": {
+          "type": "array",
+          "description": "Assigned roles",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

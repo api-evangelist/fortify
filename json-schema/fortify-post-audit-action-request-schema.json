@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-post-audit-action-request-schema.json",
+  "title": "PostAuditActionRequest",
+  "description": "Request body for setting audit action on vulnerabilities",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-audit-templates-api-openapi.yml#/components/schemas/PostAuditActionRequest",
+  "type": "object",
+  "properties": {
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vulnId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "analysisStatusType": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

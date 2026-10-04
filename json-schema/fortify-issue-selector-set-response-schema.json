@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-issue-selector-set-response-schema.json",
+  "title": "IssueSelectorSetResponse",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-issue-selectors-api-openapi.yml#/components/schemas/IssueSelectorSetResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "filterSets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "guid": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "defaultFilterSet": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "groupBySet": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "guid": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "entityType": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

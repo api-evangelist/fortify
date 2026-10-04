@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-create-token-request-schema.json",
+  "title": "CreateTokenRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-authentication-api-openapi.yml#/components/schemas/CreateTokenRequest",
+  "type": "object",
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Token type",
+      "enum": [
+        "UnifiedLoginToken",
+        "AnalysisUploadToken",
+        "AuditToken",
+        "DownloadFileTransferToken",
+        "UploadFileTransferToken",
+        "ReportFileTransferToken"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Token description"
+    },
+    "terminalDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Token expiration date"
+    }
+  }
+}

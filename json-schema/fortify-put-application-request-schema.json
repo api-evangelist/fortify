@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-put-application-request-schema.json",
+  "title": "PutApplicationRequest",
+  "description": "Request body for updating an application",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-applications-api-openapi.yml#/components/schemas/PutApplicationRequest",
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "type": "string",
+      "description": "Name of the application"
+    },
+    "applicationDescription": {
+      "type": "string",
+      "description": "Description of the application"
+    },
+    "businessCriticalityType": {
+      "type": "string",
+      "description": "Business criticality classification"
+    },
+    "emailList": {
+      "type": "string",
+      "description": "Comma-separated list of notification email addresses"
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApplicationAttribute"
+      }
+    }
+  },
+  "$defs": {
+    "ApplicationAttribute": {
+      "type": "object",
+      "description": "An attribute value assigned to an application",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Attribute identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Attribute name"
+        },
+        "value": {
+          "type": "string",
+          "description": "Attribute value"
+        }
+      }
+    }
+  }
+}

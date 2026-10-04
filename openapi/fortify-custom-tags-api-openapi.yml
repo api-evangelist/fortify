@@ -76,30 +76,68 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Not found - the specified resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized - authentication required or token invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - the specified resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+    ParentId:
+      name: parentId
+      in: path
+      required: true
+      description: Unique identifier of the parent resource
+      schema:
+        type: integer
+        format: int64
+    Start:
+      name: start
+      in: query
+      description: Starting index for pagination (0-based)
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of records to return
+      schema:
+        type: integer
+        format: int32
+        default: 200
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
   schemas:
-    ErrorResponse:
+    CustomTagListResponse:
       type: object
-      description: Error response
       properties:
-        errorCode:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTag'
+        count:
           type: integer
           format: int32
-        message:
-          type: string
-        data:
-          type: object
     ApiResultCustomTag:
       type: object
       properties:
@@ -141,55 +179,17 @@ components:
               lookupIndex:
                 type: integer
                 format: int32
-    CustomTagListResponse:
+    ErrorResponse:
       type: object
+      description: Error response
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomTag'
-        count:
+        errorCode:
           type: integer
           format: int32
-  parameters:
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of records to return
-      schema:
-        type: integer
-        format: int32
-        default: 200
-    ParentId:
-      name: parentId
-      in: path
-      required: true
-      description: Unique identifier of the parent resource
-      schema:
-        type: integer
-        format: int64
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the resource
-      schema:
-        type: integer
-        format: int64
-    Start:
-      name: start
-      in: query
-      description: Starting index for pagination (0-based)
-      schema:
-        type: integer
-        format: int32
-        default: 0
+        message:
+          type: string
+        data:
+          type: object
   securitySchemes:
     fortifyToken:
       type: apiKey

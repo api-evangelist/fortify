@@ -1,0 +1,787 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-data-model.py
+source:
+- openapi/fortify-alert-definitions-api-openapi.yml
+- openapi/fortify-api-keys-api-openapi.yml
+- openapi/fortify-applications-api-openapi.yml
+- openapi/fortify-artifacts-api-openapi.yml
+- openapi/fortify-attributes-api-openapi.yml
+- openapi/fortify-audit-templates-api-openapi.yml
+- openapi/fortify-auth-entities-api-openapi.yml
+- openapi/fortify-authentication-api-openapi.yml
+- openapi/fortify-ci-cd-api-openapi.yml
+- openapi/fortify-cloud-pools-api-openapi.yml
+- openapi/fortify-custom-tags-api-openapi.yml
+- openapi/fortify-dast-automated-scans-api-openapi.yml
+notation: has_one = property $ref; has_many = array of $ref; belongs_to = <entity>_id field
+summary:
+  entities: 148
+  entities_in_spec: 148
+  relationships: 90
+entities:
+- name: AlertDefinitionListResponse
+  fields: 2
+- name: ApiKey
+  fields: 5
+  description: Represents an API key
+- name: ApiKeyListResponse
+  fields: 2
+  description: Paginated list of API keys
+- name: ApiKeyRequest
+  fields: 2
+  description: Request body for creating or updating an API key
+- name: ApiKeyResponse
+  fields: 1
+  description: Response for API key operations
+- name: ApiResultArtifact
+  fields: 3
+- name: ApiResultAttributeDefinition
+  fields: 3
+- name: ApiResultAuthToken
+  fields: 3
+- name: ApiResultCustomTag
+  fields: 3
+- name: ApiResultFileToken
+  fields: 3
+- name: ApiResultIssue
+  fields: 3
+- name: ApiResultJob
+  fields: 3
+- name: ApiResultLocalUser
+  fields: 3
+- name: ApiResultProject
+  fields: 3
+- name: ApiResultProjectVersion
+  fields: 3
+- name: ApiResultSavedReport
+  fields: 3
+- name: ApiResultVoid
+  fields: 2
+- name: Application
+  fields: 8
+  description: Represents an application in Fortify on Demand
+- name: ApplicationAttribute
+  fields: 3
+  description: An attribute value assigned to an application
+- name: ApplicationIssueCountListResponse
+  fields: 1
+  description: Issue counts grouped by severity for an application
+- name: ApplicationListResponse
+  fields: 2
+  description: Paginated list of applications
+- name: ApplicationUserListResponse
+  fields: 2
+  description: List of users associated with an application
+- name: Artifact
+  fields: 10
+  description: Represents an uploaded scan artifact
+- name: ArtifactListResponse
+  fields: 2
+- name: AssessmentType
+  fields: 5
+  description: Represents an assessment type
+- name: Attribute
+  fields: 5
+  description: Represents an application attribute definition
+- name: AttributeDefinition
+  fields: 7
+  description: Represents an attribute definition
+- name: AttributeDefinitionListResponse
+  fields: 2
+- name: AttributeListResponse
+  fields: 2
+  description: List of attributes
+- name: AttributeValue
+  fields: 4
+  description: An attribute value assignment
+- name: AttributeValueListResponse
+  fields: 2
+- name: AuthEntity
+  fields: 3
+  description: An authentication entity (user or LDAP group)
+- name: AuthEntityListResponse
+  fields: 2
+- name: AuthToken
+  fields: 6
+  description: Represents an authentication token
+- name: CategoryRollupsResponse
+  fields: 1
+  description: Vulnerability category rollup data
+- name: CloudPoolListResponse
+  fields: 2
+- name: CreateAttributeDefinitionRequest
+  fields: 6
+- name: CreateFileTokenRequest
+  fields: 1
+- name: CreateLocalUserRequest
+  fields: 8
+- name: CreatePersonalAccessTokenResult
+  fields: 2
+  description: Response after creating a personal access token
+- name: CreateProjectRequest
+  fields: 3
+- name: CreateProjectVersionRequest
+  fields: 6
+- name: CreateScanScheduleRequest
+  fields: 6
+  description: Request to create a scan schedule
+- name: CreateScanSettingsRequest
+  fields: 6
+  description: Request to create scan settings
+- name: CreateSensorPoolRequest
+  fields: 2
+  description: Request to create a sensor pool
+- name: CreateTokenRequest
+  fields: 3
+- name: CustomTag
+  fields: 5
+  description: A custom tag for issue classification
+- name: CustomTagListResponse
+  fields: 2
+- name: DastScan
+  fields: 17
+  description: Represents a DAST scan
+- name: DastScanSummary
+  fields: 11
+  description: Summary of a DAST scan
+- name: DeleteResponse
+  fields: 1
+  description: Generic delete response
+- name: ErrorResponse
+  fields: 3
+  description: Error response
+- name: ErrorResponse_2
+  fields: 3
+  description: Error response
+- name: FeatureListResponse
+  fields: 2
+- name: FileToken
+  fields: 2
+  description: A single-use file transfer token
+- name: FortifyConnectNetworkListResponse
+  fields: 2
+  description: List of Fortify Connect networks
+- name: GenerateReportRequest
+  fields: 4
+- name: GetAuditOptionsResponse
+  fields: 1
+  description: Available audit options
+- name: GetDastAutomatedScanSetupResponse
+  fields: 7
+  description: DAST automated scan setup configuration
+- name: GetDynamicScanSetupResponse
+  fields: 4
+  description: Dynamic scan setup configuration
+- name: GetImportScanSessionIdResponse
+  fields: 1
+  description: Response with import scan session ID
+- name: GetStaticScanOptionsResponse
+  fields: 2
+  description: Available options for starting a static scan
+- name: HealthResponse
+  fields: 2
+  description: System health status
+- name: Issue
+  fields: 24
+  description: Represents a vulnerability issue
+- name: IssueListResponse
+  fields: 2
+- name: IssueSelectorSetResponse
+  fields: 1
+- name: Job
+  fields: 7
+  description: Represents a processing job
+- name: JobListResponse
+  fields: 2
+- name: LocalUser
+  fields: 7
+  description: Represents a local user account
+- name: LocalUserListResponse
+  fields: 2
+- name: LookupItem
+  fields: 3
+  description: Represents a reference/lookup data item
+- name: LookupItemListResponse
+  fields: 2
+  description: List of lookup items
+- name: MarkNotificationsAsReadRequest
+  fields: 1
+  description: Request body for marking notifications as read
+- name: Microservice
+  fields: 3
+  description: Represents a microservice within an application
+- name: MicroserviceListResponse
+  fields: 2
+  description: List of microservices
+- name: MobileScanSetup
+  fields: 5
+  description: Mobile scan setup configuration
+- name: Notification
+  fields: 5
+  description: Represents a notification
+- name: NotificationListResponse
+  fields: 2
+  description: Paginated list of notifications
+- name: OpenSourceComponent
+  fields: 6
+  description: Represents an open source component
+- name: OpenSourceComponentListResponse
+  fields: 2
+  description: Paginated list of open source components
+- name: PerformanceIndicatorListResponse
+  fields: 2
+- name: PersonalAccessToken
+  fields: 4
+  description: Represents a personal access token
+- name: PersonalAccessTokenListResponse
+  fields: 2
+  description: List of personal access tokens
+- name: PollingScanSummary
+  fields: 5
+  description: Scan status for polling
+- name: PostApiKeyResponse
+  fields: 3
+  description: Response after creating an API key
+- name: PostApplicationRequest
+  fields: 9
+  description: Request body for creating an application
+- name: PostApplicationResponse
+  fields: 3
+  description: Response after creating an application
+- name: PostAttributeRequest
+  fields: 4
+  description: Request body for creating an attribute
+- name: PostAttributeResponse
+  fields: 2
+  description: Response after creating an attribute
+- name: PostAuditActionRequest
+  fields: 1
+  description: Request body for setting audit action on vulnerabilities
+- name: PostMicroserviceRequest
+  fields: 1
+  description: Request body for creating a microservice
+- name: PostMicroserviceResponse
+  fields: 2
+  description: Response after creating a microservice
+- name: PostPersonalAccessTokenRequest
+  fields: 3
+  description: Request body for creating a personal access token
+- name: PostReleaseRequest
+  fields: 5
+  description: Request body for creating a release
+- name: PostReleaseResponse
+  fields: 2
+  description: Response after creating a release
+- name: Project
+  fields: 5
+  description: Represents a top-level project in SSC
+- name: ProjectListResponse
+  fields: 2
+- name: ProjectVersion
+  fields: 10
+  description: Represents an application version within a project
+- name: ProjectVersionActionRequest
+  fields: 2
+- name: ProjectVersionListResponse
+  fields: 2
+- name: PutApplicationRequest
+  fields: 5
+  description: Request body for updating an application
+- name: PutApplicationResponse
+  fields: 1
+  description: Response after updating an application
+- name: PutAttributeRequest
+  fields: 3
+  description: Request body for updating an attribute
+- name: PutAttributeResponse
+  fields: 1
+  description: Response after updating an attribute
+- name: PutDastAutomatedOpenApiScanSetupRequest
+  fields: 7
+  description: Request body for saving DAST OpenAPI scan setup
+- name: PutDastAutomatedWebsiteScanSetupRequest
+  fields: 10
+  description: Request body for saving DAST website scan setup
+- name: PutDynamicScanSetupRequest
+  fields: 9
+  description: Request body for saving dynamic scan setup
+- name: PutDynamicScanSetupResponse
+  fields: 1
+  description: Response after saving dynamic scan setup
+- name: PutMobileScanSetupRequest
+  fields: 5
+  description: Request body for saving mobile scan setup
+- name: PutMobileScanSetupResponse
+  fields: 1
+  description: Response after saving mobile scan setup
+- name: PutPersonalAccessTokenRequest
+  fields: 1
+  description: Request body for updating a personal access token
+- name: PutReleaseRequest
+  fields: 3
+  description: Request body for updating a release
+- name: PutReleaseResponse
+  fields: 1
+  description: Response after updating a release
+- name: Release
+  fields: 17
+  description: Represents a release within an application
+- name: ReleaseAssessmentTypeListResponse
+  fields: 2
+  description: List of available assessment types for a release
+- name: ReleaseListResponse
+  fields: 2
+  description: Paginated list of releases
+- name: ReportDefinition
+  fields: 5
+  description: A report definition template
+- name: ReportDefinitionListResponse
+  fields: 2
+- name: SavedReport
+  fields: 6
+  description: A generated report
+- name: SavedReportListResponse
+  fields: 2
+- name: Scan
+  fields: 12
+  description: Represents a security scan
+- name: ScanActionRequest
+  fields: 1
+  description: Request to perform an action on a scan
+- name: ScanListResponse
+  fields: 2
+  description: Paginated list of scans
+- name: ScanListResponse_2
+  fields: 2
+  description: Paginated list of scans
+- name: ScanPolicy
+  fields: 4
+  description: A scan policy controlling vulnerability checks
+- name: ScanPolicyListResponse
+  fields: 2
+  description: List of scan policies
+- name: ScanSchedule
+  fields: 7
+  description: A scheduled scan configuration
+- name: ScanScheduleListResponse
+  fields: 2
+  description: List of scan schedules
+- name: ScanSettings
+  fields: 11
+  description: Scan settings configuration
+- name: ScanSettingsListResponse
+  fields: 2
+  description: Paginated list of scan settings
+- name: Sensor
+  fields: 11
+  description: A WebInspect sensor
+- name: SensorListResponse
+  fields: 2
+  description: List of sensors
+- name: SensorPool
+  fields: 5
+  description: A sensor pool for grouping sensors
+- name: SensorPoolListResponse
+  fields: 2
+  description: List of sensor pools
+- name: StartDynamicScanRequest
+  fields: 8
+  description: Request body for starting a dynamic scan
+- name: StartScanCicdRequest
+  fields: 2
+  description: Request to start a scan from CI/CD pipeline
+- name: StartScanRequest
+  fields: 3
+  description: Request to start a scan
+- name: StartScanResponse
+  fields: 2
+  description: Response after starting a scan
+- name: UpdateLocalUserRequest
+  fields: 6
+- name: UpdateProjectRequest
+  fields: 3
+- name: UpdateProjectVersionRequest
+  fields: 5
+- name: UpdateScanScheduleRequest
+  fields: 6
+  description: Request to update a scan schedule
+- name: UpdateScanSettingsRequest
+  fields: 6
+  description: Request to update scan settings
+- name: UpdateSensorPoolRequest
+  fields: 2
+  description: Request to update a sensor pool
+- name: UpdateSensorRequest
+  fields: 2
+  description: Request to update a sensor
+- name: User
+  fields: 5
+  description: Represents a user in the system
+- name: Vulnerability
+  fields: 15
+  description: Represents a vulnerability finding
+- name: VulnerabilityListResponse
+  fields: 2
+  description: Paginated list of vulnerabilities
+relationships:
+- from: PostApiKeyResponse
+  to: ApiKey
+  type: belongs_to
+  via: apiKeyId
+- from: ApiKeyListResponse
+  to: ApiKey
+  type: has_many
+  via: items
+- from: Release
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: Microservice
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: Application
+  to: ApplicationAttribute
+  type: has_many
+  via: attributes
+- from: Scan
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: Scan
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: PutApplicationRequest
+  to: ApplicationAttribute
+  type: has_many
+  via: attributes
+- from: PostApplicationRequest
+  to: ApplicationAttribute
+  type: has_many
+  via: attributes
+- from: MicroserviceListResponse
+  to: Microservice
+  type: has_many
+  via: items
+- from: Vulnerability
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: ApplicationUserListResponse
+  to: User
+  type: has_many
+  via: items
+- from: PostMicroserviceResponse
+  to: Microservice
+  type: belongs_to
+  via: microserviceId
+- from: ScanListResponse
+  to: Scan
+  type: has_many
+  via: items
+- from: PostApplicationResponse
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: PostApplicationResponse
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: VulnerabilityListResponse
+  to: Vulnerability
+  type: has_many
+  via: items
+- from: ReleaseListResponse
+  to: Release
+  type: has_many
+  via: items
+- from: ApplicationListResponse
+  to: Application
+  type: has_many
+  via: items
+- from: ApiResultArtifact
+  to: Artifact
+  type: has_one
+  via: data
+- from: ArtifactListResponse
+  to: Artifact
+  type: has_many
+  via: data
+- from: PostAttributeResponse
+  to: Attribute
+  type: belongs_to
+  via: attributeId
+- from: AttributeListResponse
+  to: Attribute
+  type: has_many
+  via: items
+- from: AttributeValueListResponse
+  to: AttributeValue
+  type: has_many
+  via: data
+- from: AttributeValue
+  to: AttributeDefinition
+  type: belongs_to
+  via: attributeDefinitionId
+- from: ApiResultAttributeDefinition
+  to: AttributeDefinition
+  type: has_one
+  via: data
+- from: AttributeDefinitionListResponse
+  to: AttributeDefinition
+  type: has_many
+  via: data
+- from: AuthEntityListResponse
+  to: AuthEntity
+  type: has_many
+  via: data
+- from: ApiResultAuthToken
+  to: AuthToken
+  type: has_one
+  via: data
+- from: StartScanResponse
+  to: Scan
+  type: belongs_to
+  via: scanId
+- from: ApiResultCustomTag
+  to: CustomTag
+  type: has_one
+  via: data
+- from: CustomTagListResponse
+  to: CustomTag
+  type: has_many
+  via: data
+- from: PutDastAutomatedWebsiteScanSetupRequest
+  to: AssessmentType
+  type: belongs_to
+  via: assessmentTypeId
+- from: PutDastAutomatedOpenApiScanSetupRequest
+  to: AssessmentType
+  type: belongs_to
+  via: assessmentTypeId
+- from: StartDynamicScanRequest
+  to: AssessmentType
+  type: belongs_to
+  via: assessmentTypeId
+- from: PutDynamicScanSetupRequest
+  to: AssessmentType
+  type: belongs_to
+  via: assessmentTypeId
+- from: ApiResultFileToken
+  to: FileToken
+  type: has_one
+  via: data
+- from: ApiResultIssue
+  to: Issue
+  type: has_one
+  via: data
+- from: IssueListResponse
+  to: Issue
+  type: has_many
+  via: data
+- from: Issue
+  to: ProjectVersion
+  type: belongs_to
+  via: projectVersionId
+- from: Job
+  to: ProjectVersion
+  type: belongs_to
+  via: projectVersionId
+- from: Job
+  to: Artifact
+  type: belongs_to
+  via: artifactId
+- from: ApiResultJob
+  to: Job
+  type: has_one
+  via: data
+- from: JobListResponse
+  to: Job
+  type: has_many
+  via: data
+- from: LookupItemListResponse
+  to: LookupItem
+  type: has_many
+  via: items
+- from: PutMobileScanSetupRequest
+  to: AssessmentType
+  type: belongs_to
+  via: assessmentTypeId
+- from: MobileScanSetup
+  to: AssessmentType
+  type: belongs_to
+  via: assessmentTypeId
+- from: NotificationListResponse
+  to: Notification
+  type: has_many
+  via: items
+- from: MarkNotificationsAsReadRequest
+  to: Notification
+  type: belongs_to
+  via: notificationIds
+- from: OpenSourceComponentListResponse
+  to: OpenSourceComponent
+  type: has_many
+  via: items
+- from: PersonalAccessTokenListResponse
+  to: PersonalAccessToken
+  type: has_many
+  via: items
+- from: CreatePersonalAccessTokenResult
+  to: PersonalAccessToken
+  type: belongs_to
+  via: personalAccessTokenId
+- from: ProjectVersionListResponse
+  to: ProjectVersion
+  type: has_many
+  via: data
+- from: ApiResultProjectVersion
+  to: ProjectVersion
+  type: has_one
+  via: data
+- from: ProjectVersion
+  to: Project
+  type: has_one
+  via: project
+- from: ApiResultProject
+  to: Project
+  type: has_one
+  via: data
+- from: ProjectListResponse
+  to: Project
+  type: has_many
+  via: data
+- from: PostReleaseResponse
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: PollingScanSummary
+  to: Scan
+  type: belongs_to
+  via: scanId
+- from: PostReleaseRequest
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: PostReleaseRequest
+  to: Microservice
+  type: belongs_to
+  via: microserviceId
+- from: ReleaseAssessmentTypeListResponse
+  to: AssessmentType
+  type: has_many
+  via: items
+- from: ReportDefinitionListResponse
+  to: ReportDefinition
+  type: has_many
+  via: data
+- from: ApiResultSavedReport
+  to: SavedReport
+  type: has_one
+  via: data
+- from: SavedReportListResponse
+  to: SavedReport
+  type: has_many
+  via: data
+- from: GenerateReportRequest
+  to: ReportDefinition
+  type: belongs_to
+  via: reportDefinitionId
+- from: SavedReport
+  to: ReportDefinition
+  type: belongs_to
+  via: reportDefinitionId
+- from: ScanPolicyListResponse
+  to: ScanPolicy
+  type: has_many
+  via: items
+- from: UpdateScanScheduleRequest
+  to: ScanSettings
+  type: belongs_to
+  via: scanSettingsId
+- from: ScanScheduleListResponse
+  to: ScanSchedule
+  type: has_many
+  via: items
+- from: ScanSchedule
+  to: ScanSettings
+  type: belongs_to
+  via: scanSettingsId
+- from: CreateScanScheduleRequest
+  to: ScanSettings
+  type: belongs_to
+  via: scanSettingsId
+- from: UpdateScanSettingsRequest
+  to: ScanPolicy
+  type: belongs_to
+  via: scanPolicyId
+- from: UpdateScanSettingsRequest
+  to: SensorPool
+  type: belongs_to
+  via: sensorPoolId
+- from: ScanSettings
+  to: ScanPolicy
+  type: belongs_to
+  via: scanPolicyId
+- from: ScanSettings
+  to: SensorPool
+  type: belongs_to
+  via: sensorPoolId
+- from: ScanSettingsListResponse
+  to: ScanSettings
+  type: has_many
+  via: items
+- from: CreateScanSettingsRequest
+  to: ScanPolicy
+  type: belongs_to
+  via: scanPolicyId
+- from: CreateScanSettingsRequest
+  to: SensorPool
+  type: belongs_to
+  via: sensorPoolId
+- from: DastScan
+  to: ScanSettings
+  type: belongs_to
+  via: scanSettingsId
+- from: DastScan
+  to: Sensor
+  type: belongs_to
+  via: sensorId
+- from: StartScanRequest
+  to: ScanSettings
+  type: belongs_to
+  via: scanSettingsId
+- from: ScanListResponse_2
+  to: DastScan
+  type: has_many
+  via: items
+- from: DastScanSummary
+  to: Scan
+  type: belongs_to
+  via: scanId
+- from: SensorPoolListResponse
+  to: SensorPool
+  type: has_many
+  via: items
+- from: Sensor
+  to: SensorPool
+  type: belongs_to
+  via: sensorPoolId
+- from: UpdateSensorRequest
+  to: SensorPool
+  type: belongs_to
+  via: sensorPoolId
+- from: SensorListResponse
+  to: Sensor
+  type: has_many
+  via: items
+- from: ApiResultLocalUser
+  to: LocalUser
+  type: has_one
+  via: data
+- from: LocalUserListResponse
+  to: LocalUser
+  type: has_many
+  via: data

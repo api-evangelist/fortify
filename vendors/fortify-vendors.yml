@@ -1,0 +1,57 @@
+generated: '2026-10-03'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: akamai
+  name: Akamai
+  area: cdn
+  host: www.microfocus.com
+  evidence: cname:akamaiedge.net
+  signal: cname
+  confidence: high
+  kin_score: []
+- vendor: hund
+  name: Hund
+  area: status-page
+  host: status.fortify.com
+  evidence: cname:hund.io
+  signal: cname
+  confidence: high
+  kin_score:
+  - status_page
+reliance:
+  areas_vendor_served:
+  - cdn
+  - status-page
+  vendor_count: 2
+  areas_observed: 12
+  share_of_observable_areas: 0.167
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: unreachable'
+- api.ams.fortify.com (DeveloperPortal)
+- api.ams.fortify.com (APIReference)
+- ams.fortify.com (Portal)
+- www.microfocus.com (Documentation)
+- www.microfocus.com (GettingStarted)
+- status.fortify.com (StatusPage)
+- www.opentext.com (Support)
+- community.opentext.com (Community)
+- www.opentext.com (Website)
+- ams.fortify.com (Login)
+- api.ams.fortify.com (baseURL)

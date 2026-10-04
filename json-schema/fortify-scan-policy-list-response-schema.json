@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-scan-policy-list-response-schema.json",
+  "title": "ScanPolicyListResponse",
+  "description": "List of scan policies",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-scan-policies-api-openapi.yml#/components/schemas/ScanPolicyListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ScanPolicy"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "ScanPolicy": {
+      "type": "object",
+      "description": "A scan policy controlling vulnerability checks",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Policy name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Policy description"
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "Whether this is the default policy"
+        }
+      }
+    }
+  }
+}

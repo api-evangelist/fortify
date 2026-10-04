@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-create-attribute-definition-request-schema.json",
+  "title": "CreateAttributeDefinitionRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-attributes-api-openapi.yml#/components/schemas/CreateAttributeDefinitionRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "type",
+    "category"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "TEXT",
+        "LONG_TEXT",
+        "SINGLE",
+        "MULTIPLE",
+        "INTEGER",
+        "BOOLEAN",
+        "DATE"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "TECHNICAL",
+        "BUSINESS",
+        "ORGANIZATION"
+      ]
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "hidden": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

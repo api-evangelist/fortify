@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-put-dast-automated-open-api-scan-setup-request-schema.json",
+  "title": "PutDastAutomatedOpenApiScanSetupRequest",
+  "description": "Request body for saving DAST OpenAPI scan setup",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedOpenApiScanSetupRequest",
+  "type": "object",
+  "properties": {
+    "dynamicScanEnvironmentFacingType": {
+      "type": "string",
+      "enum": [
+        "Internal",
+        "External"
+      ]
+    },
+    "openApiUrl": {
+      "type": "string",
+      "description": "URL of the OpenAPI specification"
+    },
+    "apiKey": {
+      "type": "string",
+      "description": "API key for authentication"
+    },
+    "assessmentTypeId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "entitlementId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "entitlementFrequencyType": {
+      "type": "string"
+    },
+    "timeZone": {
+      "type": "string"
+    }
+  }
+}

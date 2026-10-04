@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-api-result-job-schema.json",
+  "title": "ApiResultJob",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-jobs-api-openapi.yml#/components/schemas/ApiResultJob",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/Job"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "responseCode": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "Job": {
+      "type": "object",
+      "description": "Represents a processing job",
+      "properties": {
+        "jobName": {
+          "type": "string",
+          "description": "Name of the job"
+        },
+        "jobGroup": {
+          "type": "string",
+          "description": "Job group"
+        },
+        "jobClassName": {
+          "type": "string",
+          "description": "Java class name"
+        },
+        "state": {
+          "type": "string",
+          "description": "Job state",
+          "enum": [
+            "PREPARED",
+            "RUNNING",
+            "FINISHED",
+            "FAILED",
+            "CANCELLED",
+            "WAITING_FOR_WORKER"
+          ]
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "projectVersionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "artifactId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

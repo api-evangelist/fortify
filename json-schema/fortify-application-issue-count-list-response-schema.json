@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-application-issue-count-list-response-schema.json",
+  "title": "ApplicationIssueCountListResponse",
+  "description": "Issue counts grouped by severity for an application",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-applications-api-openapi.yml#/components/schemas/ApplicationIssueCountListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "severityValue": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scanType": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

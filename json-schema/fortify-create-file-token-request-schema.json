@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortify/main/json-schema/fortify-create-file-token-request-schema.json",
+  "title": "CreateFileTokenRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fortify-file-tokens-api-openapi.yml#/components/schemas/CreateFileTokenRequest",
+  "type": "object",
+  "required": [
+    "fileTokenType"
+  ],
+  "properties": {
+    "fileTokenType": {
+      "type": "string",
+      "enum": [
+        "UPLOAD",
+        "DOWNLOAD",
+        "REPORT_FILE"
+      ]
+    }
+  }
+}
