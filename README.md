@@ -1,4 +1,4 @@
-# Fortify (fortify)
+# Fortify
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,127 +66,261 @@
 
 Fortify is a comprehensive application security platform from OpenText that provides static application security testing (SAST), dynamic application security testing (DAST), and software composition analysis (SCA) capabilities. It helps organizations identify and remediate vulnerabilities across the software development lifecycle.
 
-**APIs.json:** [https://www.opentext.com/products/fortify-on-demand](https://www.opentext.com/products/fortify-on-demand)
+**Areas:** Application Security · DAST · DevSecOps · SAST · Software Composition Analysis · Security Testing · Vulnerability Scanning
 
-## Tags
+## Fortify on APIs.io
 
-- Application Security
-- DAST
-- DevSecOps
-- SAST
-- SCA
-- Security Testing
-- Vulnerability Scanning
+Everything profiled for Fortify is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fortify/](https://apis.io/providers/fortify/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (42)
 
-- **Created:** 2024-01-15
-- **Modified:** 2026-05-19
+- [Fortify Alert Definitions API](https://apis.io/apis/fortify/fortify-alert-definitions-api/) — Manage alert definitions
+- [Fortify API Keys API](https://apis.io/apis/fortify/fortify-api-keys-api/) — Manage API keys for programmatic access
+- [Fortify Applications API](https://apis.io/apis/fortify/fortify-applications-api/) — Manage applications and their configurations
+- [Fortify Artifacts API](https://apis.io/apis/fortify/fortify-artifacts-api/) — Manage scan artifacts and uploads
+- [Fortify Attributes API](https://apis.io/apis/fortify/fortify-attributes-api/) — Manage application attributes
+- [Fortify Audit Templates API](https://apis.io/apis/fortify/fortify-audit-templates-api/) — Manage audit templates for vulnerability triage
+- [Fortify Auth Entities API](https://apis.io/apis/fortify/fortify-auth-entities-api/) — Manage authentication entities (users and LDAP groups)
+- [Fortify Authentication API](https://apis.io/apis/fortify/fortify-authentication-api/) — Manage authentication tokens
+- [Fortify CI/CD API](https://apis.io/apis/fortify/fortify-ci-cd-api/) — CI/CD pipeline integration endpoints
+- [Fortify Cloud Pools API](https://apis.io/apis/fortify/fortify-cloud-pools-api/) — Manage cloud scan worker pools
+- [Fortify Custom Tags API](https://apis.io/apis/fortify/fortify-custom-tags-api/) — Manage custom tags for issue triage
+- [Fortify DAST Automated Scans API](https://apis.io/apis/fortify/fortify-dast-automated-scans-api/) — Configure and start DAST automated scans
+- [Fortify Dynamic Scans API](https://apis.io/apis/fortify/fortify-dynamic-scans-api/) — Configure and start dynamic application security testing scans
+- [Fortify Event Logs API](https://apis.io/apis/fortify/fortify-event-logs-api/) — Access tenant event logs
+- [Fortify Features API](https://apis.io/apis/fortify/fortify-features-api/) — System feature and connectivity information
+- [Fortify File Tokens API](https://apis.io/apis/fortify/fortify-file-tokens-api/) — Manage file transfer tokens
+- [Fortify Issue Selectors API](https://apis.io/apis/fortify/fortify-issue-selectors-api/) — Retrieve issue filter metadata
+- [Fortify Issues API](https://apis.io/apis/fortify/fortify-issues-api/) — Access and manage vulnerability issues
+- [Fortify Jobs API](https://apis.io/apis/fortify/fortify-jobs-api/) — Monitor processing jobs
+- [Fortify Lookup Items API](https://apis.io/apis/fortify/fortify-lookup-items-api/) — Retrieve lookup and reference data
+- [Fortify Microservices API](https://apis.io/apis/fortify/fortify-microservices-api/) — Manage microservices within applications
+- [Fortify Mobile Scans API](https://apis.io/apis/fortify/fortify-mobile-scans-api/) — Configure and start mobile application security testing scans
+- [Fortify Notifications API](https://apis.io/apis/fortify/fortify-notifications-api/) — Manage user notifications
+- [Fortify Open Source Components API](https://apis.io/apis/fortify/fortify-open-source-components-api/) — View open source component data
+- [Fortify Open Source Scans API](https://apis.io/apis/fortify/fortify-open-source-scans-api/) — Manage open source / software composition analysis scans
+- [Fortify Performance Indicators API](https://apis.io/apis/fortify/fortify-performance-indicators-api/) — Access performance indicator data
+- [Fortify Personal Access Tokens API](https://apis.io/apis/fortify/fortify-personal-access-tokens-api/) — Manage personal access tokens
+- [Fortify Project Versions API](https://apis.io/apis/fortify/fortify-project-versions-api/) — Manage application versions within projects
+- [Fortify Projects API](https://apis.io/apis/fortify/fortify-projects-api/) — Manage top-level projects
+- [Fortify Releases API](https://apis.io/apis/fortify/fortify-releases-api/) — Manage releases within applications
+- [Fortify Reports API](https://apis.io/apis/fortify/fortify-reports-api/) — Generate and download reports
+- [Fortify Saved Reports API](https://apis.io/apis/fortify/fortify-saved-reports-api/) — Manage saved report configurations
+- [Fortify Scan Policies API](https://apis.io/apis/fortify/fortify-scan-policies-api/) — Manage scan policies
+- [Fortify Scan Schedules API](https://apis.io/apis/fortify/fortify-scan-schedules-api/) — Manage scheduled scans
+- [Fortify Scan Settings API](https://apis.io/apis/fortify/fortify-scan-settings-api/) — Manage scan configuration settings
+- [Fortify Scans API](https://apis.io/apis/fortify/fortify-scans-api/) — View and manage security scans
+- [Fortify Sensor Pools API](https://apis.io/apis/fortify/fortify-sensor-pools-api/) — Manage sensor pools for scan distribution
+- [Fortify Sensors API](https://apis.io/apis/fortify/fortify-sensors-api/) — Manage WebInspect sensors
+- [Fortify Static Scans API](https://apis.io/apis/fortify/fortify-static-scans-api/) — Configure and start static application security testing scans
+- [Fortify System API](https://apis.io/apis/fortify/fortify-system-api/) — System health and configuration
+- [Fortify Users API](https://apis.io/apis/fortify/fortify-users-api/) — Manage local user accounts
+- [Fortify Vulnerabilities API](https://apis.io/apis/fortify/fortify-vulnerabilities-api/) — Access and manage vulnerability findings
 
-## APIs
+### Published properties
 
-### Fortify on Demand API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for Fortify on Demand (FoD), the cloud-based application security testing service from OpenText. Provides programmatic access to manage applications, initiate scans, and retrieve vulnerability results.
+#### MCP servers (1)
 
-- **Human URL:** [https://www.opentext.com/products/fortify-on-demand](https://www.opentext.com/products/fortify-on-demand)
-- **Base URL:** `https://api.ams.fortify.com`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [fortify-on-demand](https://apis.io/servers/fortify/fortify-on-demand/)
 
-- Application Security
-- DAST
-- SAST
-- Security Testing
-- Vulnerability Management
+#### Agent skills (7)
 
-#### Properties
+Agent skills built on the API.
 
-- [Documentation](https://www.microfocus.com/documentation/fortify-on-demand/)
-- [OpenAPI](https://api.ams.fortify.com/swagger/docs/v3) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/fortify-on-demand-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fortify-on-demand.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fortify-on-demand.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [API Reference](https://api.ams.fortify.com/swagger/ui/index)
-- [Authentication](https://api.ams.fortify.com/oauth/token)
-- [Getting Started](https://www.microfocus.com/documentation/fortify-on-demand/251/Fortify_on_Demand_Guide_25.1_EN.pdf)
+- [fcli-common](https://apis.io/agent-skills/fortify/fcli-common/)
+- [fortify-cicd-integration](https://apis.io/agent-skills/fortify/fortify-cicd-integration/)
+- [fortify-create-app](https://apis.io/agent-skills/fortify/fortify-create-app/)
+- [fortify-exploitability-analysis](https://apis.io/agent-skills/fortify/fortify-exploitability-analysis/)
+- [fortify-fod](https://apis.io/agent-skills/fortify/fortify-fod/)
+- [fortify-remediate](https://apis.io/agent-skills/fortify/fortify-remediate/)
+- [fortify-ssc](https://apis.io/agent-skills/fortify/fortify-ssc/)
 
-### Fortify Software Security Center API
+#### Agentic access (1)
 
-REST API for the on-premise Fortify Software Security Center (SSC), which provides centralized management and reporting of security assessment data across an organization's application portfolio.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://www.microfocus.com/documentation/fortify-software-security-center/](https://www.microfocus.com/documentation/fortify-software-security-center/)
-- **Base URL:** `https://your-ssc-server/ssc/api/v1`
+- [Fortify Agentic Access](https://apis.io/agentic-access/fortify/fortify-agentic-access/)
 
-#### Tags
+#### JSON Schema (107)
 
-- Application Security
-- Compliance
-- On-Premise
-- Security Analytics
-- Vulnerability Management
+The data models the API reads and writes.
 
-#### Properties
+- [AlertDefinitionListResponse](https://apis.io/schemas/fortify/fortify-alert-definition-list-response/)
+- [ApiKey](https://apis.io/schemas/fortify/fortify-api-key/)
+- [ApiKeyListResponse](https://apis.io/schemas/fortify/fortify-api-key-list-response/)
+- [ApiKeyRequest](https://apis.io/schemas/fortify/fortify-api-key-request/)
+- [ApiKeyResponse](https://apis.io/schemas/fortify/fortify-api-key-response/)
+- [ApiResultArtifact](https://apis.io/schemas/fortify/fortify-api-result-artifact/)
+- [ApiResultAttributeDefinition](https://apis.io/schemas/fortify/fortify-api-result-attribute-definition/)
+- [ApiResultAuthToken](https://apis.io/schemas/fortify/fortify-api-result-auth-token/)
+- [ApiResultCustomTag](https://apis.io/schemas/fortify/fortify-api-result-custom-tag/)
+- [ApiResultFileToken](https://apis.io/schemas/fortify/fortify-api-result-file-token/)
+- [ApiResultIssue](https://apis.io/schemas/fortify/fortify-api-result-issue/)
+- [ApiResultJob](https://apis.io/schemas/fortify/fortify-api-result-job/)
+- [ApiResultLocalUser](https://apis.io/schemas/fortify/fortify-api-result-local-user/)
+- [ApiResultProject](https://apis.io/schemas/fortify/fortify-api-result-project/)
+- [ApiResultProjectVersion](https://apis.io/schemas/fortify/fortify-api-result-project-version/)
+- [ApiResultSavedReport](https://apis.io/schemas/fortify/fortify-api-result-saved-report/)
+- [ApiResultVoid](https://apis.io/schemas/fortify/fortify-api-result-void/)
+- [Fortify Application](https://apis.io/schemas/fortify/fortify-application/)
+- [ApplicationIssueCountListResponse](https://apis.io/schemas/fortify/fortify-application-issue-count-list-response/)
+- [ArtifactListResponse](https://apis.io/schemas/fortify/fortify-artifact-list-response/)
+- [AttributeListResponse](https://apis.io/schemas/fortify/fortify-attribute-list-response/)
+- [AttributeValue](https://apis.io/schemas/fortify/fortify-attribute-value/)
+- [AuthEntity](https://apis.io/schemas/fortify/fortify-auth-entity/)
+- [AuthEntityListResponse](https://apis.io/schemas/fortify/fortify-auth-entity-list-response/)
+- [CategoryRollupsResponse](https://apis.io/schemas/fortify/fortify-category-rollups-response/)
+- …and 82 more published on APIs.io
 
-- [Documentation](https://www.microfocus.com/documentation/fortify-software-security-center/2520/)
-- [OpenAPI](openapi/fortify-software-security-center-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fortify-software-security-center.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fortify-software-security-center.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [API Reference](https://your-ssc-server/ssc/html/docs/api-reference/)
-- [Authentication](https://your-ssc-server/ssc/api/v1/auth)
-- [Getting Started](https://www.microfocus.com/documentation/fortify-software-security-center/)
-- [S D Ks](https://github.com/fortify/ssc-restapi-client)
+#### JSON-LD (1)
 
-### Fortify ScanCentral DAST API
+Linked-data contexts for the provider's vocabulary.
 
-REST API for Fortify ScanCentral DAST, which provides centralized dynamic application security testing management. Enables orchestration of DAST scans across distributed sensors and integration with CI/CD pipelines.
+- [Fortify Context](https://apis.io/jsonld/fortify/fortify-context/)
 
-- **Human URL:** [https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/](https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/)
-- **Base URL:** `https://your-scancentral-dast-server/api/`
+#### Collections (87)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- CI/CD
-- DAST
-- Dynamic Analysis
-- Security Testing
-- Web Application Security
+- [Fortify on Demand Alert Definitions API](https://apis.io/collections/fortify/open-fortify-alert-definitions-api/)
+- [Fortify on Demand Alert Definitions API Keys API](https://apis.io/collections/fortify/open-fortify-api-keys-api/)
+- [Fortify on Demand Alert Definitions Applications API](https://apis.io/collections/fortify/open-fortify-applications-api/)
+- [Fortify on Demand Alert Definitions Artifacts API](https://apis.io/collections/fortify/open-fortify-artifacts-api/)
+- [Fortify on Demand Alert Definitions Attributes API](https://apis.io/collections/fortify/open-fortify-attributes-api/)
+- [Fortify on Demand Alert Definitions Audit Templates API](https://apis.io/collections/fortify/open-fortify-audit-templates-api/)
+- [Fortify on Demand Alert Definitions Auth Entities API](https://apis.io/collections/fortify/open-fortify-auth-entities-api/)
+- [Fortify on Demand Alert Definitions Authentication API](https://apis.io/collections/fortify/open-fortify-authentication-api/)
+- [Fortify on Demand Alert Definitions CI/CD API](https://apis.io/collections/fortify/open-fortify-ci-cd-api/)
+- [Fortify on Demand Alert Definitions Cloud Pools API](https://apis.io/collections/fortify/open-fortify-cloud-pools-api/)
+- [Fortify on Demand Alert Definitions Custom Tags API](https://apis.io/collections/fortify/open-fortify-custom-tags-api/)
+- [Fortify on Demand Alert Definitions DAST Automated Scans API](https://apis.io/collections/fortify/open-fortify-dast-automated-scans-api/)
+- [Fortify on Demand Alert Definitions Dynamic Scans API](https://apis.io/collections/fortify/open-fortify-dynamic-scans-api/)
+- [Fortify on Demand Alert Definitions Event Logs API](https://apis.io/collections/fortify/open-fortify-event-logs-api/)
+- [Fortify on Demand Alert Definitions Features API](https://apis.io/collections/fortify/open-fortify-features-api/)
+- [Fortify on Demand Alert Definitions File Tokens API](https://apis.io/collections/fortify/open-fortify-file-tokens-api/)
+- [Fortify on Demand Alert Definitions Issue Selectors API](https://apis.io/collections/fortify/open-fortify-issue-selectors-api/)
+- [Fortify on Demand Alert Definitions Issues API](https://apis.io/collections/fortify/open-fortify-issues-api/)
+- [Fortify on Demand Alert Definitions Jobs API](https://apis.io/collections/fortify/open-fortify-jobs-api/)
+- [Fortify on Demand Alert Definitions Lookup Items API](https://apis.io/collections/fortify/open-fortify-lookup-items-api/)
+- [Fortify on Demand Alert Definitions Microservices API](https://apis.io/collections/fortify/open-fortify-microservices-api/)
+- [Fortify on Demand Alert Definitions Mobile Scans API](https://apis.io/collections/fortify/open-fortify-mobile-scans-api/)
+- [Fortify on Demand Alert Definitions Notifications API](https://apis.io/collections/fortify/open-fortify-notifications-api/)
+- [Fortify on Demand API](https://apis.io/collections/fortify/open-fortify-on-demand/)
+- [Fortify on Demand Alert Definitions Open Source Components API](https://apis.io/collections/fortify/open-fortify-open-source-components-api/)
+- …and 62 more published on APIs.io
 
-#### Properties
+#### Overlays (1)
 
-- [Documentation](https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/)
-- [OpenAPI](openapi/fortify-scancentral-dast-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fortify-scancentral-dast.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fortify-scancentral-dast.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Getting Started](https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2520/sc-dast-ugd-25.2.0.pdf)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-## Common Properties
+- [Fortify Fod Overlay](https://apis.io/overlays/fortify/fortify-fod-overlay/)
 
-- [Portal](https://ams.fortify.com/)
-- [Documentation](https://www.microfocus.com/documentation/fortify-on-demand/)
-- [Getting Started](https://www.microfocus.com/documentation/fortify-on-demand/)
-- [Authentication](https://api.ams.fortify.com/swagger/ui/index)
-- [Blog](https://community.opentext.com/cyberres/b/cybersecurity-blog)
-- [Status Page](https://status.fortify.com/)
-- [Support](https://www.opentext.com/support)
-- [Terms of Service](https://www.opentext.com/about/legal/website-terms-of-use)
-- [Privacy Policy](https://www.opentext.com/about/privacy)
-- [GitHub Organization](https://github.com/fortify)
-- [Community](https://community.opentext.com/cybersec/fortify)
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Fortify — jsonschema rules](https://apis.io/rules/fortify/fortify-jsonschema-spectral-rules/)
+- [Fortify API Rules](https://apis.io/rules/fortify/fortify-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Fortify Authentication](https://apis.io/security/fortify/fortify-authentication/)
+- [Fortify Domain Security](https://apis.io/security/fortify/fortify-domain-security/)
+- [Fortify Vulnerability Disclosure](https://apis.io/security/fortify/fortify-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Fortify Plans Pricing](https://apis.io/plans/fortify/fortify-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Fortify Rate Limits](https://apis.io/rate-limits/fortify/fortify-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Fortify Finops](https://apis.io/finops/fortify/fortify-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.opentext.com/products/fortify-on-demand)
-- [Login](https://ams.fortify.com/)
-- [Sign Up](https://www.opentext.com/products/fortify-on-demand/trial)
+- [Documentation](https://www.microfocus.com/documentation/fortify-on-demand/)
+- [Getting started](https://www.microfocus.com/documentation/fortify-on-demand/)
+- [API reference](https://api.ams.fortify.com/swagger/ui/index)
+- [Pricing](https://cybersecurity.opentext.com/products/saas-backup/pricing/)
+- [Support](https://www.opentext.com/support)
 - [Changelog](https://community.opentext.com/cybersec/fortify/w/tips)
-- [S D Ks](https://github.com/fortify/fortify-client-api)
-- [J S O N- L D  Context](json-ld/fortify-context.jsonld)
-- [J S O N  Schema](json-schema/fortify-application-schema.json)
-- [J S O N  Schema](json-schema/fortify-vulnerability-schema.json)
-- [J S O N  Schema](json-schema/fortify-scan-schema.json)
-- [J S O N  Schema](json-schema/fortify-release-schema.json)
-- [J S O N  Schema](json-schema/fortify-project-version-schema.json)
-- [Agent Skill](https://github.com/fortify/skills)
+- [Blog](https://community.opentext.com/cyberres/b/cybersecurity-blog)
+- [Security](https://www.opentext.com/about/security-acknowledgements)
+- [Terms of service](https://www.opentext.com/about/legal/website-terms-of-use)
+- [Privacy policy](https://www.opentext.com/about/privacy)
+- [GitHub](https://github.com/fortify)
+- [Status](https://status.fortify.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 57.4** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 85.7 |
+| Contract quality | 67.2 |
+| Contract governance | 22.0 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 72.0 |
+| Access clarity | 44.7 |
+
+**Agent readiness 22.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fortify/](https://apis.io/providers/fortify/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fortify: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fortify/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
